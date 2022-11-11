@@ -1,0 +1,168 @@
+* {
+  margin: 0px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  float: left;
+  z-index: 30000;
+}
+
+#nav {
+
+  height: 60px;
+  position: fixed;
+  z-index: 3000;
+  top: 0px;
+
+
+
+  display: flex;
+  flex-direction: row;
+
+
+
+  margin-top: 5px;
+  margin-left: 5px;
+  color: red;
+  text-align: center;
+
+  align-self: center;
+
+}
+
+#left {
+  display: inline-block;
+  display: flex;
+  /* float: left; */
+  flex-direction: row;
+
+}
+
+
+
+
+.middlenav {
+  height: 60px;
+
+  padding: 20px;
+
+  text-align: center;
+  cursor: pointer;
+  justify-content: start;
+
+
+
+}
+
+.mnhidden {
+  display: none;
+}
+
+.middlenav:hover {
+
+  background-color: rgb(33, 106, 224);
+
+
+}
+
+#middlee {
+  display: inline-block;
+  display: flex;
+  flex-direction: row;
+
+
+
+
+
+
+  text-align: center;
+  cursor: pointer;
+  /* align-self: center; */
+}
+
+#right {
+  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  float: right;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 30000;
+
+
+
+  text-align: center;
+
+}
+
+#store {
+  position: fixed;
+  left: 0px;
+  top: 200px;
+  display: flex;
+  flex-direction: column;
+
+  width: 40px;
+  z-index: 3000;
+  cursor: pointer;
+
+
+}
+
+@media (max-width: 950px) {
+
+  .mnhidden {
+    display: inline-block
+  }
+
+  #nav {
+    flex-direction: column;
+    justify-content: start;
+    margin-right: 0px;
+    width: auto;
+    /* background-color: rgba(10, 10, 9, 0.451); */
+
+    position: fixed;
+
+    top: 20px;
+    right: 0px;
+
+    height: 100%;
+    border-radius: 10%;
+
+  }
+
+
+  #middlee {
+
+    flex-direction: column;
+    width: auto;
+
+    z-index: 10000;
+
+
+  }
+
+  .middlenav {
+    display: flex;
+    z-index: 10000;
+    /* background-color: rgba(90, 62, 160, 0.365); */
+    width: 100%;
+    /* align-items: center; */
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  #right {
+    display: none;
+  }
+
+
+
+
+
+}
