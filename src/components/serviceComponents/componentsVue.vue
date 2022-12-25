@@ -15,7 +15,7 @@
           <div class="servtext">{{item.name}}</div>
           <div class="rat"><v-icon  class="rating">mdi-star</v-icon><v-icon class="rating">mdi-star</v-icon><v-icon class="rating">mdi-star</v-icon><v-icon class="rating">mdi-star</v-icon><v-icon class="notrating">mdi-star-outline</v-icon><v-icon  class="ratno">4.0</v-icon></div>
         </div>
-    <div id="bottomrow"><div id="v" style="color:#D50000;">View</div><v-btn rounded small style="background-color:#D50000;" class=" white--text ma-0">Book Now</v-btn></div>
+    <div id="bottomrow"><div id="v" style="color:#D50000;">VIEW</div><v-btn small style="background-color:#D50000; border-radius:8px; box-shadow: none;" class=" white--text ma-0">Book Now</v-btn></div>
 </div>
 
 

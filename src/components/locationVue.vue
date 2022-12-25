@@ -385,6 +385,11 @@ export default {
             "location2",
             JSON.stringify(this.$store.state.location2)
           );
+          localStorage.setItem(
+            "location",
+            JSON.stringify(this.$store.state.location)
+          );
+
 
           console.log(
             "loc",

@@ -18,7 +18,7 @@
             class="no-background-hover ma-0 pa-0"
             style="margin-left: -5px"
           >
-            / Standerd Services
+            / {{ key }}
           </v-btn>
         </div>
 
@@ -42,7 +42,7 @@
               active-class="red white--text"
               class="ma-0 pt-4 pb-4 pl-12 pr-12 xyza"
               @click="key = i.category"
-              style="height: 57px; border-radius: 30px; box-shadow: none"
+              style="height: 57px;width: 250px; border-radius: 18px; box-shadow: none"
               :color="
                 curpage == i.category
                   ? 'background: red '
@@ -74,7 +74,7 @@
           </v-card>
         </v-dialog>
         <div id="carddiv">
-          <div class="layer1-1-2" v-for="(service, i) in items" :key="i">
+          <div class="layer1-1-2" v-for="(service, i) in serviceData" :key="i">
             <div class="layer1-1-2-1">
               <img class="serviceimg" :src="service.thumbnail" alt="sevice" />
             </div>
@@ -147,7 +147,7 @@
                   :key="i"
                   class="servicedesc"
                 >
-                  <v-icon class="green--text" style="font-size: 14px"
+                  <v-icon class="green--text ma-1" style="font-size: 14px"
                     >mdi-check-decagram</v-icon
                   >{{ item }}
                 </div>
@@ -162,19 +162,23 @@
                   height: 48px;
                   background: #ffffff;
                   border: 1px solid #d50000;
-                  border-radius: 18px;
-
+                  border-radius: 8px;
+                  box-shadow: none;
                   font-family: 'Inter';
                   font-style: normal;
                   font-weight: 500;
                   font-size: 14px;
                   line-height: 17px;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
                   /* identical to box height */
 
                   text-transform: uppercase;
                 "
                 @click="addToCart(service)"
-                ><v-icon class="mr-1 black--text">mdi-cart-variant</v-icon>Add
+                >
+                <!-- <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon> -->
+                Add
                 to Cart</v-btn
               >
               <v-btn
@@ -182,7 +186,10 @@
                   width: 148.5px;
                   height: 48px;
                   background: #d50000;
-                  border-radius: 18px;
+                  border-radius: 8px;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+                  box-shadow: none;
                 "
                 class="white--text"
                 >Buy Now</v-btn
@@ -438,13 +445,14 @@
         </div>
       </div>
     </div>
-    <get-quick />
+  
   </div>
 </template>
     <script>
 import vechileInfo from "../vechileInfo.vue";
 import { db } from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
+
 
 export default {
   name: "scheduleService",
@@ -456,7 +464,9 @@ export default {
       e6: 1,
       boolotp: true,
       locationdata: ["", ""],
-      item: [],
+      item: [{
+        category: "All services"
+      }],
       model: null,
       phoneNumber: "",
       ph: false,
@@ -476,11 +486,20 @@ export default {
   mounted() {
     // this.$store.state.vinfo  = JSON.parse( localStorage.getItem('vdata' ) );
 
+
+    this.key = "All services";
     if (this.$store.state.vinfo.brand == "Brand") {
       this.$store.state.vdialog = true;
       this.dialogs = true;
       this.curpage = this.$route.params.id;
     }
+
+
+
+
+
+
+
 
     // To apply the default browser preference instead of explicitly setting it.
     // firebase.auth().useDeviceLanguage();
@@ -489,7 +508,14 @@ export default {
     // Creating function for
     // input component
     key: function () {
-      this.data = this.items.filter((item) => item.category == this.key);
+      if(this.key == "All services"){
+        this.serviceData = this.items; 
+      }
+      else{
+      this.serviceData = this.items.filter((item) => item.category == this.key);    
+
+      
+      }
       this.curpage = this.key;
     },
   },
@@ -513,6 +539,28 @@ export default {
   },
 
   methods: {
+
+    async carsdata() {
+      const brandname = this.$store.state.vinfo.model;
+      console.log("function started");
+      const q = query(
+        collection(db, "cars"),
+        where("name", "==", brandname)
+      );
+
+      const querySnapshots = await getDocs(q);
+      querySnapshots.forEach((doc) => {
+
+        this.$store.state.prices = doc.data();
+        console.log(this.$store.state.prices["Batteries"]);
+      });
+      console.log("function ended");
+    },
+
+
+
+
+
     addToCart(service) {
       this.$store.state.cartItems.push(service);
       console.log("Cart Items: ", this.$store.state.cartItems);
@@ -531,23 +579,24 @@ export default {
     },
 
     async firebaseData() {
-      this.items = [];
+      // this.items = [];
       const querySnapshot = await getDocs(collection(db, "services"));
+
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         this.items.push(doc.data());
       });
-      this.item = this.items;
 
-      this.$store.state.services = this.items;
-      //console.log("tttttttttt");
-      //console.log(this.item);
+      
+
+      // this.item = this.items;
+      this.items.forEach((doc)=>{
+        this.item.push(doc);
+        console.log(this.item);
+      })
+      this.$store.state.services = this.items;  
       this.data = this.items.filter((item) => item.category == this.key);
-      // console.log("periodic data ");
-      // console.log("services datra", this.items);
 
-      // console.log(this.data[0].description);
-      // console.log("periodic data ");
     },
   },
 };
@@ -596,7 +645,7 @@ export default {
 }
 .buttonrow {
   width: 100%;
-  height: 65px;
+  height: 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -967,7 +1016,7 @@ export default {
 }
 .layer1-1-2-2-2 {
   width: 100%;
-  height: 152px;
+  height: 14em;
 
   display: flex;
   flex-direction: column;
@@ -1013,7 +1062,7 @@ export default {
 }
 .servicedesc {
   font-size: 15px;
-  margin-left: 10px;
+  margin: 2px;
 
   font-family: "Inter";
   font-style: normal;

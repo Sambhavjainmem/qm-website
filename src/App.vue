@@ -16,10 +16,10 @@
           </div>
         </div>
       </div>
-
-      <v-navigation-drawer v-model="$store.state.cart" right="true" app width="350">
+<!-- 
+      <v-navigation-drawer v-model="$store.state.cart" right app width="350">
         <cart-vue />
-      </v-navigation-drawer>
+      </v-navigation-drawer> -->
       <div id="right">
         <v-btn
           text
@@ -106,14 +106,14 @@
       <location-vue />
     </v-dialog>
 
-    <!-- <v-dialog
+    <v-dialog
       v-model="$store.state.cart"
       fullscreen
       hide-overlay
       transition="dialog-right-transition"
     >
       <cart-vue />
-    </v-dialog> -->
+    </v-dialog>
 
     <v-main>
       <router-view></router-view>

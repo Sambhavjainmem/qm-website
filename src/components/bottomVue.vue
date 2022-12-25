@@ -1,7 +1,7 @@
 <template>
   <div class="topbottom" id="bottom">
     <div id="footerbanner">
-      <div id="seehow">See How it Works</div>
+      <div id="seehow">SEE HOW IT WORKS</div>
       <div id="subbottom">
         <div class="sbc">
           <div class="ytv" v-if="!ytbool">
@@ -9,8 +9,6 @@
               ><v-icon color="white" x-large>mdi-play-circle</v-icon>
             </v-btn>
           </div>
-
-          <!-- <img class="ytv" v-if="!ytbool" src="../assets/videologo.png"> -->
 
           <iframe
             class="ytv"
@@ -20,23 +18,47 @@
             src="https://www.youtube.com/embed/tgbNymZ7vqY"
           >
           </iframe>
-
-          <!-- <embed width="480" height="500" id="ytv"
-src="https://www.youtube.com/embed/il_t1WVLNxk"> -->
         </div>
 
         <div class="sbc">
           <div class="howWork">
-            <div class="sw">1. Select The Perfect Car Service</div>
-            <div class="sw">2.  Schedule Free Doorestep Pickup </div>
+            <div class="sw">
+              <v-avatar
+                color="grey lighten-1"
+                size="16"
+                class="ma-1"
+              ></v-avatar>
+              Select The Perfect Car Service
+            </div>
+            <div class="sw">
+              <v-avatar
+                color="grey lighten-1"
+                size="16"
+                class="ma-1"
+              ></v-avatar>
+              Schedule Free Doorestep Pickup
+            </div>
+            <div class="sw">
+              <v-avatar
+                color="grey lighten-1"
+                size="16"
+                class="ma-1"
+              ></v-avatar>
+              Track Your Car Service Realtime
+            </div>
+            <div class="sw">
+              <v-avatar
+                color="grey lighten-1"
+                size="16"
+                class="ma-1"
+              ></v-avatar>
+              Earn While We Service
+            </div>
           </div>
         </div>
 
         <div class="sbc">
-          <div class="howWork">
-          <div class="sw">3. Track Your Car Service Realtime </div>
-          <div class="sw">4. Earn While We Service </div>
-        </div>
+          <div class="howWork"></div>
         </div>
       </div>
     </div>
@@ -44,21 +66,74 @@ src="https://www.youtube.com/embed/il_t1WVLNxk"> -->
     <div class="bottom">
       <div class="footercolumn1" id="bottom">
         <img class="logo" src="../assets/Group_10826.png" />
+        <span
+          class="footertext"
+          style="height: auto; display: flex; margin-left: 120px"
+          ><b style="font-weight: bolder">Company Address</b></span
+        >
+        <span
+          class="footertext"
+          style="
+            font-size: 11px;
+            width: 180px;
+            height: auto;
+            display: flex;
+            margin-left: 120px;
+          "
+          >Omaxe NRI City Centre, 2nd Floor, Multiplex Area Pari Chowk, Omega
+          II, Greater Noida, Greater Noida UP 201308 India</span
+        >
+        <span
+          class="footertext"
+          style="
+            font-size: 12px;
+            width: 120px;
+            height: auto;
+            display: flex;
+            margin-left: 120px;
+            margin-top: 10px;
+          "
+        >
+          Follow us</span
+        >
+        <span
+          class="footertext"
+          style="width: 120px; height: auto; display: flex; margin-left: 115px"
+          ><v-avatar class="ma-1" color="white" size="20"
+            ><v-icon size="15">mdi-facebook</v-icon></v-avatar
+          >
+          <v-avatar class="ma-1" color="white" size="20"
+            ><v-icon size="15">mdi-instagram</v-icon></v-avatar
+          >
+          <v-avatar class="ma-1" color="white" size="20"
+            ><v-icon size="15">mdi-twitter</v-icon></v-avatar
+          >
+          <v-avatar class="ma-1" color="white" size="20"
+            ><v-icon size="15">mdi-youtube</v-icon></v-avatar
+          >
+          <v-avatar class="ma-1" color="white" size="20"
+            ><v-icon size="15">mdi-whatsapp</v-icon></v-avatar
+          >
+          <v-avatar class="ma-1" color="white" size="20"
+            ><v-icon size="15">mdi-linkedin</v-icon></v-avatar
+          >
+        </span>
       </div>
 
       <div class="footercolumn3">
-        <span class="footertext">Phone no</span>
-        <span class="footertext">Working Days</span>
-        <span class="footertext">Working Days</span>
-        <span class="footertext">Working Hours</span>
+        <span class="footertext" style="padding-bottom:10px">Phone no</span>
+        <span class="footertext" style="padding-bottom:10px">Working Days</span>
+        <span class="footertext" style="padding-bottom:10px">Working Days</span>
+        <span class="footertext" style="padding-bottom:10px">Working Hours</span>
+        <span class="footertext" style="padding-bottom:10px">Official Emails</span>
       </div>
 
       <div class="footercolumn2">
-        <span class="footertext">011-278900000</span>
-        <span class="footertext">Monday-Sunday</span>
-        <span class="footertext">Careers</span>
-        <span class="footertext">9:00 AM - 07:00 PM</span>
-        <span class="footertext">help@quickmechanic.com</span>
+        <span class="footertext" style="padding-bottom:10px">011-278900000</span>
+        <span class="footertext" style="padding-bottom:10px">Monday-Sunday</span>
+        <span class="footertext" style="padding-bottom:10px">Careers</span>
+        <span class="footertext" style="padding-bottom:10px">9:00 AM - 07:00 PM</span>
+        <span class="footertext" style="padding-bottom:10px">help@quickmechanic.com</span>
       </div>
 
       <div class="footercolumn2">
@@ -74,7 +149,7 @@ src="https://www.youtube.com/embed/il_t1WVLNxk"> -->
     </div>
 
     <!-- <img class ="logo" src="../assets/Group_10826.png">
-        <span id="copyright">copyright © {{new Date().getFullYear()}} Quick Mechanic</span>
+        <span id="copyright">copyright ©️ {{new Date().getFullYear()}} Quick Mechanic</span>
         <div>
             <img class ="master" src="../assets/visa.png">
             <img class ="master" src="../assets/master.png">
@@ -94,7 +169,7 @@ export default {
 };
 </script>
 <style scoped>
-import 'https://code.jquery.com/jquery-1.8.3.js'
+import ' https://code.jquery.com/jquery-1.8.3.js '
 
 #store {
   display: flex;
@@ -116,17 +191,21 @@ import 'https://code.jquery.com/jquery-1.8.3.js'
 }
 
 .sw {
-  margin-bottom: 10px;
-
+  margin-bottom: 23px;
+  margin-left: 0vw;
 }
+
 .sbc {
   width: 30%;
   height: 100%;
   display: flex;
+  margin-left: 0vw;
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: 0vw;
   flex-direction: column;
   justify-content: center;
   align-items: center;
- 
 }
 #subbottom {
   display: flex;
@@ -149,18 +228,17 @@ import 'https://code.jquery.com/jquery-1.8.3.js'
   background-repeat: no-repeat;
   background-size: cover;
   justify-content: center;
+  margin-left: 17vw;
   align-items: center;
 }
 #seehow {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 50;
+  font-size: 30px;
   line-height: 58px;
   width: 100%;
   height: fit-content;
   display: flex;
-
   justify-content: center;
   color: rgba(0, 0, 0, 0.87);
   align-content: center;
@@ -168,7 +246,7 @@ import 'https://code.jquery.com/jquery-1.8.3.js'
 #footerbanner {
   width: 100%;
   height: 360px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #EFEFEF 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #efefef 100%);
 
   display: flex;
   flex-direction: column;
@@ -189,12 +267,11 @@ import 'https://code.jquery.com/jquery-1.8.3.js'
   flex-direction: column;
   background-color: #373434;
   margin-top: 40px;
-  height: 578px;
+  height: 600px;
 }
 .bottom {
   width: 100%;
-  height: 219px;
-
+  height: 280px;
   display: flex;
   flex-direction: row;
 }
@@ -204,31 +281,33 @@ import 'https://code.jquery.com/jquery-1.8.3.js'
   flex-direction: column;
   width: 25%;
   margin: 10px;
-  margin-top: 40px;
+  margin-top: 30px;
+  margin-right: 20px;
 }
 .footercolumn2 {
   display: flex;
   flex-direction: column;
   width: 25%;
   margin: 10px;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 .footercolumn3 {
   display: flex;
   flex-direction: column;
   width: 25%;
   margin: 10px;
-  margin-top: 40px;
+  margin-top: 30px;
+  margin-left: 50px;
 }
 .footertext {
   display: inline-block;
-
+  font-style: normal;
   margin-left: 20px;
   margin-right: 10px;
   margin-top: 0px;
   margin-bottom: 0px;
   color: white;
-  font-weight: 200;
+  font-weight: 300;
 }
 .footertextheading {
   font-size: 30px;
@@ -245,7 +324,7 @@ import 'https://code.jquery.com/jquery-1.8.3.js'
   z-index: 5px;
 }
 .logo {
-  width: 60px;
+  width: 45px;
   height: auto;
   display: flex;
   align-self: center;
@@ -264,4 +343,3 @@ import 'https://code.jquery.com/jquery-1.8.3.js'
   align-items: center;
 }
 </style>
-

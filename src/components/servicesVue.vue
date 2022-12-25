@@ -1,7 +1,7 @@
 <template>
   <div class="service" >
     <div class="SDservices">
-      <div id="SDSText">VALUE ADDED SERVICES </div>
+      <div id="SDSText">SERVICES WE OFFER</div>
       <componentsVue :sdata="sservice" />
     </div>
 
@@ -26,7 +26,7 @@
 
 
 
-          <div id="bottomrow"><div id="v" style="color:#D50000;">VIEW</div><v-btn style="background-color:#D50000;" rounded small class="white--text ma-0">Book Now</v-btn></div>
+          <div id="bottomrow"><div id="v" style="color:#D50000;">VIEW</div><v-btn style="background-color:#D50000; border-radius:8px; box-shadow: none;" small class="white--text ma-0">Book Now</v-btn></div>
         </div>
 
         <!-- <div class="sdimgdiv" @click="spa">
@@ -89,8 +89,7 @@ export default {
 
 
     dent(cat) {
-
-this.$router.push({ path: "/"+cat });
+      this.$router.push({ path: "/"+"services" });
 console.log(cat);
 },
     // spa() {

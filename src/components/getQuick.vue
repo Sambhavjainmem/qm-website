@@ -7,61 +7,69 @@
       </div>
       <div class="downloadright">
         <div style="widht: 429px; height: 255px">
-          <p class="sendlink">
+          <div class="sendlink">
             Get QuickMechanic App installation link on your phone <br />
             via SMS/Whatsapp
-          </p>
+          </div>
           <div
             class="radiorow"
-            style="
-              width: 300px;
-              display: flex;
-              flex-direction: row;
-           
-            "
+            style="width: 300px; display: flex; flex-direction: row"
           >
             <v-radio-group v-model="radioGroup">
-              <div style="display: flex;flex-direction: row;width: 300px;height: 50px;">
               <div
                 style="
-                  width: fit-content;
-                  height: fit-content;
-                  margin-right: 50px;
                   display: flex;
-                  flex-diraction: row;
-                  align-items: center;
-                
-                  justify-content: center;
-                  align-items: center;
-                  text-align: center;
+                  flex-direction: row;
+                  width: 300px;
+                  height: 50px;
                 "
               >
-                <v-radio  style="font-size: 30px" :label="SMS" value="sms" color="black" class="ma-0 pa-0"> </v-radio>
+                <div
+                  style="
+                    width: fit-content;
+                    height: fit-content;
+                    margin-right: 50px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                  "
+                >
+                  <v-radio
+                    style="font-size: 30px"
+                    :label="SMS"
+                    value="sms"
+                    color="gray"
+                    class="ma-0 pa-0"
+                  >
+                  </v-radio>
 
-                <div class="ll">SMS</div>
-              </div>
-              <div
-                style="
-                  width: fit-content;
-                  height: fit-content;
-                  margin-right: 50px;
-                  display: flex;
-                  flex-diraction: row;
-                  align-items: center;
-                  justify-content: center;
-                  align-items: center;
-                  text-align: center;
-                "
-              >
-                <v-radio
-                  :label="whatsApp"
-                  value="whatsApp"
-                  color="black"
-                  class="ma-0 pa-0"
-                ></v-radio>
+                  <div class="ll">SMS</div>
+                </div>
+                <div
+                  style="
+                    width: fit-content;
+                    height: fit-content;
+                    margin-right: 50px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                  "
+                >
+                  <v-radio
+                    :label="whatsApp"
+                    value="whatsApp"
+                    color="gray"
+                    class="ma-0 pa-0"
+                  ></v-radio>
 
-                <div class="ll">Whatsapp</div>
-              </div>
+                  <div class="ll">Whatsapp</div>
+                </div>
               </div>
             </v-radio-group>
           </div>
@@ -71,11 +79,12 @@
               width: 100%px;
               margin-left: 0px;
               margin-right: 0px;
+              margin-bottom: 40px;
               border-radius: 8px;
               height: 48px;
               border: 1px solid rgba(0, 0, 0, 0.3);
               display: flex;
-              flex-diraction: row;
+              flex-direction: row;
               margin-top: 10px;
               align-items: center;
               padding-right: 5px;
@@ -83,8 +92,8 @@
           >
             <div
               style="
-                margin-left: 4px;
-                font-family: 'Inter';
+                margin-left: 6px;
+                font-family: Arial, Helvetica, sans-serif;
                 font-style: normal;
                 font-weight: 500;
                 font-size: 24px;
@@ -98,7 +107,7 @@
             <input
               type="text"
               name="fname"
-              placeholder="Mobile No"
+              placeholder="-"
               style="width: calc(100% - 110px); height: 100%"
             />
             <button
@@ -106,19 +115,19 @@
               style="
                 width: 106px;
                 height: 36px;
-                
+
                 color: white;
                 padding-left: 8px;
                 padding-right: 8px;
-                font-family: 'Inter';
+                font-family: Arial, Helvetica, sans-serif;
                 font-style: normal;
                 font-weight: 500;
                 font-size: 14px;
                 line-height: 17px;
 
                 text-transform: uppercase;
-                background: #D50000;
-            border-radius: 18px
+                background: #d50000;
+                border-radius: 18px;
               "
             >
               SEND LINK
@@ -127,7 +136,7 @@
 
           <div
             style="
-              widht: 428px;
+              width: 428px;
               height: 65px;
               margin-top: 10px;
               display: flex;
@@ -136,7 +145,11 @@
             "
           >
             <img class="storeimg" src="../assets/Group 10765-h.jpg" />
-            <img class="storeimg" src="../assets/Group 10765-h.jpg" />
+            <img
+              class="storeimg"
+              style="margin-left: 3px"
+              src="../assets/Group 10766-h.jpg"
+            />
           </div>
         </div>
       </div>
@@ -144,6 +157,8 @@
   </div>
 </template>
 <script>
+
+
 export default {
   name: "getQuick",
   data() {
@@ -167,7 +182,20 @@ export default {
   mounted() {
     console.log(this.radioGroup);
     console.log(this.radioGroup2);
+    // this.sendSms();
+    
   },
+  // methods: {
+  //   sendSms() {
+  //     const client = Twilio('AC753557afb669991fd24cf49766de7f78', '5f62a5b764913bce85aef0d778f128ea');
+  //       client.messages.create({
+  //         "to" : "+917352540343",
+  //         "from": "+918865880350",
+  //         "body" : "hello"
+  //       });
+    
+  //   },
+  // },
 };
 </script>
 
@@ -183,7 +211,7 @@ export default {
 }
 
 ::placeholder {
-  font-family: "Inter";
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -204,7 +232,7 @@ input {
   color: rgba(0, 0, 0, 0.4);
 }
 input ::after {
-  font-family: "Inter";
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
@@ -229,7 +257,6 @@ input ::after {
   height: 50px;
   display: flex;
   flex-direction: row;
-
 }
 
 .v-stepper__step {
@@ -251,14 +278,13 @@ input ::after {
 }
 
 .ll {
-  font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
 
-color: rgba(0, 0, 0, 0.6);
-
+  color: gray;
 }
 .container1 {
   margin: 10px;
@@ -371,7 +397,7 @@ color: rgba(0, 0, 0, 0.6);
 
   justify-content: space-evenly;
 
-  background: linear-gradient(180deg, #FFFFFF 0%, #EFEFEF 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #efefef 100%);
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
   position: relative;
 }
@@ -402,14 +428,7 @@ color: rgba(0, 0, 0, 0.6);
 
   margin-left: 80px;
 }
-.headderofpage {
-  width: 100%;
-  height: auto%;
 
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-}
 .radioandemail {
   width: 100%;
   height: auto;
@@ -420,21 +439,18 @@ color: rgba(0, 0, 0, 0.6);
 
 .getquick {
   width: fit-content;
-  font-family: "Inter";
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
 
   color: rgba(0, 0, 0, 0.6);
-
 }
-sendlink {
+.sendlink {
   font-size: 19px;
-
+  color: gray;
   width: 100%;
-}
-.inputemaildiv {
 }
 
 .subradioandemail {
@@ -455,7 +471,6 @@ sendlink {
   position: relative;
 
   height: 100%;
-
 }
 .inputemail {
   width: 80%;
@@ -504,19 +519,13 @@ sendlink {
 
 .bgtext {
   height: fit-content;
-
-  /* left: 103px;
-top: 38px; */
-
   z-index: 2;
-
   width: 100%;
   display: flex;
   text-align: center;
   justify-content: center;
   align-items: center;
-
-  font-family: "Inter";
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 34px;
@@ -532,4 +541,3 @@ top: 38px; */
   }
 }
 </style>
-

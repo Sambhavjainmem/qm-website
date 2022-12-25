@@ -111,13 +111,13 @@
         </div>
       </div>
 
-      <!-- <div
+      <div
         style="
           width: 100%;
-          height: 50px;
+          height: 10px;
           position: relative;
           left: 0px;
-          bottom: 110px;
+          bottom: 55px;
         "
       >
         <div class="footer">
@@ -137,7 +137,7 @@
             2,000+ Google views!
           </div>
         </div>
-      </div> -->
+      </div>
 
       <secondSection />
 

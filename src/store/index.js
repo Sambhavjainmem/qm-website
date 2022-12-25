@@ -13,10 +13,10 @@ export default new Vuex.Store({
     logindialog: false,
     vdialog: false,
     locdialog: false,
-    location: "Address",
+    location: "Set Location",
     uid: "",
     loginpage: false,
-
+    
     Vservices: [1,3,3],
     Sservices: [1,2,4],
     vinfo: {
