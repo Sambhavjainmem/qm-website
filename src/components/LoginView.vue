@@ -1,9 +1,9 @@
 <template>
-  <div class="maindivlogin">
-    <div id="cardlogin">
-      <div id="login">
+  <div class="maindiv123">
+    <div id="card123">
+      <div id="login123">
         <form action="javascript:void(0);" method="get">
-          <fieldset class="clearfixlogin">
+          <fieldset class="clearfix123">
             <p v-if="!boolotp">
               <span class="fontawesome-user"></span
               ><input
@@ -23,6 +23,7 @@
                 value="Get OTP"
                 @click="loggin"
                 id="log-in"
+                :loading="ds"
               />
             </p>
             <p>
@@ -49,7 +50,7 @@
               </template>
             </p>
             <p v-if="boolotp">
-              <input type="submit" value="Submit" @click="submit" />
+              <input type="submit"  value="Submit" @click="submit" />
             </p>
             <!-- JS because of IE support; better: placeholder="Password" -->
           </fieldset>
@@ -86,7 +87,8 @@ export default {
     snackbarColor: "default",
     otp: "",
     text: "",
-    expectedOtp: "133707",
+    ds: true,
+    expectedOtp: "133707", 
     boolotp: false,
 
     phoneNumber: "+917352540343",
@@ -98,25 +100,20 @@ export default {
     smsSent: false,
   }),
   mounted() {
-    const auth = getAuth();
-    auth.useDeviceLanguage();
-    this.recaptchaVerifier = new RecaptchaVerifier(
-      "log-in",
-      {
-        size: "invisible",
-        callback: (response) => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-          // onSignInSubmit();
-          console.log(response);
-          this.$store.commit('changeDilog',false)
-        },
-      },
-      auth
-    );
+                    const auth = getAuth();
+                    auth.useDeviceLanguage();
+                    this.recaptchaVerifier = new RecaptchaVerifier("log-in",{
+                       size: "invisible",
+                        callback: (response) => {
+                            // reCAPTCHA solved, allow signInWithPhoneNumber.
+                            // onSignInSubmit();
+                            console.log(response);
+                         },
+                    },auth );
 
     // To apply the default browser preference instead of explicitly setting it.
     // firebase.auth().useDeviceLanguage();
-  },
+          },
 
   methods: {
     submit() {
@@ -144,6 +141,7 @@ export default {
     },
 
     loggin() {
+      this.ds = true;
       this.recaptchaVerifier.render().then((widgetId) => {
         this.recaptchaWidgetId = widgetId;
         const phoneNumber = "+91" + this.phoneNumber;
@@ -168,8 +166,9 @@ export default {
 };
 </script>
 <style scoped>
-.maindivlogin {
-  background-color: rgba(0, 0, 0, 0.297);
+.maindiv123 {
+ background: rgba(255, 255, 255, 0.87);
+backdrop-filter: blur(16px);
   width: 100%;
   height: 100vh;
   display: flex;
@@ -199,7 +198,7 @@ export default {
   box-sizing: border-box;
 }
 
-#cardlogin {
+#card123 {
   background-color: rgba(45, 45, 41, 0.353);
 }
 
@@ -225,26 +224,26 @@ p {
   line-height: 1.5em;
 }
 
-.clearfixlogin {
+.clearfix123 {
   *zoom: 1;
 }
 
-.clearfixlogin:before,
-.clearfixlogin:after {
+.clearfix123:before,
+.clearfix123:after {
   content: " ";
   display: table;
 }
 
-.clearfixlogin:after {
+.clearfix123:after {
   clear: both;
 }
 
-#login {
+#login123 {
   width: 280px;
   margin: 40px;
 }
 
-#login form span {
+#login123 form span {
   background-color: #363b41;
   border-radius: 3px 0px 0px 3px;
   color: #606468;
@@ -256,11 +255,11 @@ p {
   width: 50px;
 }
 
-#login form input {
+#login123 form input {
   height: 50px;
 }
 
-#login form input[type="text"],
+#login123 form input[type="text"],
 input[type="password"] {
   background-color: #3b4148;
   border-radius: 0px 3px 3px 0px;
@@ -270,7 +269,7 @@ input[type="password"] {
   width: 230px;
 }
 
-#login form input[type="submit"] {
+#login123 form input[type="submit"] {
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -282,15 +281,15 @@ input[type="password"] {
   width: 280px;
 }
 
-#login form input[type="submit"]:hover {
+#login123 form input[type="submit"]:hover {
   background-color: #d44179;
 }
 
-#login > p {
+#login123 > p {
   text-align: center;
 }
 
-#login > p span {
+#login123 > p span {
   padding-left: 5px;
 }
 </style>

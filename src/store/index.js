@@ -1,32 +1,64 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 
   state: {
+    cartItems:[],
     count : "suraj",
     dialog: false,
-    dialog2: false,
+    logindialog: false,
+    vdialog: false,
+    locdialog: false,
+    location: "Address",
+    uid: "",
+    loginpage: false,
+
+    Vservices: [1,3,3],
+    Sservices: [1,2,4],
+    vinfo: {
+      brand: "Brand",
+      model: "Model",
+      fuel: "Fuel",
+    }
+,
+    brand: "Brand",
+    model: "Model",
+    fueltype: "Fuel",
+    cart: false,
+    phno:"",
+    location1: "Get Location",
+    location2: "",
+    
+    services: [] 
+
+
+
+
+   
 
   },
   getters: {
   },
   mutations: {
 
-        changeDilog(state,payload){
-          state.dialog = payload;
-          
-               
+   vinfo(state){
+     
+     state.vinfo= false
       
-      }
-      ,
-      changeDilogState(state,payload){
-        state.dialog2 = payload;
-             
-    
-    }
+      
+    },
+    VgetData(state,payload){
+     
+      state.Vservices= payload
+     
+       
+       
+     }
+     
 
 
 
@@ -35,4 +67,5 @@ export default new Vuex.Store({
   },
   modules: {
   }
-})
+});
+

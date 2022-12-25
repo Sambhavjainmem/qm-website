@@ -1,12 +1,13 @@
 <template><div class="secondcomponent">
 <servicesVue />
-<div class="partners">
+<!-- <div class="partners">
+    <div id="ATP">Accredited Training Partners</div>
      <img class="partnerimg"
           src="../assets/Image3.jpg"/>
      <img class="partnerimgt"
           src="../assets/Image 4.jpg" />
 
-</div>
+</div> -->
 </div>
 </template>
 <script>
@@ -22,15 +23,25 @@ export default {
 
 </script>
 <style scoped>
+#ATP{
+    font-size: 24px;
+    text-align: center;
+}
 .partners {
-    width: 35%;
+    width: 0%;
   
     height: inherit;
 }
 .secondcomponent{
     display: flex;
     flex-direction: row;
-}
+    justify-content: center;
+    align-items: center;
+   
+    margin-top: 0px;
+    height: fit-content;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8F8F8 100%);
+    }
 .partners {
     display: flex;
     flex-direction: column;

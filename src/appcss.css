@@ -1,5 +1,6 @@
-.maindivlogin {
-  background-color: rgba(0, 0, 0, 0.297);
+
+.maindiv123 {
+
   width: 100%;
   height: 100vh;
   display: flex;
@@ -29,8 +30,8 @@
   box-sizing: border-box;
 }
 
-#cardlogin {
-  background-color: rgba(45, 45, 41, 0.353);
+#card123 {
+  background-color: white;
 }
 
 a {
@@ -55,26 +56,34 @@ p {
   line-height: 1.5em;
 }
 
-.clearfixlogin {
+.clearfix123 {
   *zoom: 1;
 }
 
-.clearfixlogin:before,
-.clearfixlogin:after {
+.clearfix123:before,
+.clearfix123:after {
   content: " ";
   display: table;
 }
 
-.clearfixlogin:after {
+.clearfix123:after {
   clear: both;
 }
 
-#login {
-  width: 280px;
-  margin: 40px;
+#login123 {
+  width: 545px;
+  height: 545px;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .3rem;
+  outline: 0;
+  display: flex;
+  justify-content: ;
+  align-items: center;
 }
 
-#login form span {
+#login123 form span {
   background-color: #363b41;
   border-radius: 3px 0px 0px 3px;
   color: #606468;
@@ -86,11 +95,11 @@ p {
   width: 50px;
 }
 
-#login form input {
+#login123 form input {
   height: 50px;
 }
 
-#login form input[type="text"],
+#login123 form input[type="text"],
 input[type="password"] {
   background-color: #3b4148;
   border-radius: 0px 3px 3px 0px;
@@ -100,11 +109,11 @@ input[type="password"] {
   width: 230px;
 }
 
-#login form input[type="submit"] {
+#login123 form input[type="submit"] {
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  background-color: #ea4c88;
+  background-color: #1778a3;
   color: #eee;
   font-weight: bold;
   margin-bottom: 2em;
@@ -112,19 +121,17 @@ input[type="password"] {
   width: 280px;
 }
 
-#login form input[type="submit"]:hover {
-  background-color: #d44179;
+#login123 form input[type="submit"]:hover {
+  background-color: #1778a3;
 }
 
-#login > p {
+#login123 > p {
   text-align: center;
 }
 
-#login > p span {
+#login123 > p span {
   padding-left: 5px;
 }
-
-
 
 
 
@@ -157,13 +164,22 @@ input[type="password"] {
  
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  position: fixed;
   top: 0;
  
   
   background-color: white;
-  z-index: 1;
+  z-index: 3;
+  height: 56px;
+  -webkit-box-shadow: 1px 1px 5px 0px #0804005b;
+  -moz-box-shadow: 1px 1px 5px 0px #0e06005d;
+  box-shadow: 1px 1px 5px 0px #0000004d; 
 
+}
+#skt {
+  color: red;
+  margin-bottom: 0px;
+  font-size: 13px;
 }
 .middlenav {
   display: inline-block;
@@ -190,6 +206,13 @@ input[type="password"] {
   
 
 }
+#left {
+  margin-left: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
 .closebtn {
   position: fixed;
  top:10px;
@@ -197,8 +220,46 @@ input[type="password"] {
   color: green;
 
 }
+.locName {
+  font-size: 20px;
+
+  margin-left: 20px;
+  cursor: pointer;
+  
+}
+.item {
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+color: #000000;
+cursor: pointer;
+}
+
+#qm {
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  margin-left: 10px;
+}
+#q {
+  color: red;
+}
+#m{
+  color: #606468;
+}
 .maindiv {
-  background-color:rgba(0, 128, 0, 0.366);
+  background: rgba(255, 255, 255, 0.87);
+  backdrop-filter: blur(16px);
   width: 100%;
   height: 100vh;
   display: flex;
@@ -206,10 +267,43 @@ input[type="password"] {
   align-items: center;
  }
 .logo {
-  width: 60px;
-  height: 60px;
-  padding-left: 10px;
-  padding-top: 10px;
+  width: 24px;
+  height: auto;
+  margin-left: -7px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+}
+.locName {
+  color: rgba(0, 0, 0, 0.882);
+  display: flex;
+  flex-direction: row;
+}
+
+.bgtext {
+            position: relative;
+        }
+  
+        .bgtext:after {
+            margin: 3rem;
+            content: "";
+            position: absolute;
+            transform: rotate(300deg);
+            -webkit-transform: rotate(300deg);
+            color: rgb(187, 182, 182);
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+
+
+
+
+#locicon {
+  align-self: center;
+  justify-self: center;
+  display: flex;
 }
 .no-background-hover::before {
   background-color: transparent;
@@ -241,6 +335,7 @@ input[type="password"] {
   }
   #nav {
     display: none;
+
   }
 
 }

@@ -2,8 +2,8 @@
 
    
 <div>
-<div class="servicenavigationbar" id="someSection" >
-
+<div class="servicenavigationbar"  >
+\
     <v-btn  text to="/"  >Service </v-btn>
     <v-btn  text to="/service/1"  >AC Services </v-btn>
     <v-btn  text to="/service/2"  >Wheel Care</v-btn>

@@ -3,14 +3,20 @@ import VueRouter from 'vue-router'
 
 
 import homePage from '../components/homePage.vue';
-import servicesVue from '../components/services/servicesVue.vue';
-import serviceVue from '../components/services/serviceVue.vue';
+
+
 import scheduleService from '../components/services/scheduleService.vue'
-import contactUs from '../components/contactUs.vue';
-import faqVue from '../components/faqVue.vue';
-import LoginView from '../components/LoginView.vue'
+
 import SignupForm from '../components/SignupForm.vue'
-import getQuick from '../components/getQuick.vue'
+import vechileInfo from '../components/vechileInfo.vue'
+import dashbordVue from '../components/dashbordVue.vue'
+import locationVue from '../components/locationVue.vue';
+import cartVue from '../components/cartVue.vue';
+import productsVue from '../components/productsVue.vue';
+import newLogin from '../components/newLogin.vue';
+
+// import LoginView from '../components/LoginView.vue'
+import LoginPage from '../components/LoginPage.vue'
 import { auth } from '../firebase'
 
 Vue.use(VueRouter)
@@ -24,38 +30,53 @@ const routes = [
       requiresAuth: false
     }
   },
+ 
   {
-    path: '/services',
-    name: 'servicesVue',
-    component: servicesVue,
+    path: '/vechile',
+    name: 'vechileInfo',
+    component: vechileInfo,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/newLogin',
+    name: 'newLogin',
+    component: newLogin,
+    meta: {
+      requiresAuth: false
+    }
+  },
+
+  
+  {
+    path: '/dash',
+    name: 'dashbordVue',
+    component: dashbordVue,
     meta: {
       requiresAuth: true
     }
   },
   {
-    path: '/contactUs',
-    name: 'contactUs',
-    component: contactUs,
+    path: '/log',
+    name: 'LoginPage',
+    component: LoginPage,
     meta: {
       requiresAuth: false
     }
   },
   {
-    path: '/faqVue',
-    name: 'faqVue',
-    component: faqVue,
+    path: '/products',
+    name: 'productsVue',
+    component: productsVue,
     meta: {
       requiresAuth: false
     }
   },
-  {
-    path: '/login',
-    name: 'LoginView',
-    component: LoginView,
-    meta: {
-      requiresAuth: false
-    }
-  },
+
+
+  
+  
   {
     path: '/signup',
     name: 'SignupForm',
@@ -65,29 +86,36 @@ const routes = [
     }
   },
   {
-    path: '/service/:id',
-    name: 'serviceVue',
-    component: serviceVue,
+    path: '/locationVue',
+    name: 'locationVue',
+    component: locationVue,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
-    path: '/periodic',
+    path: '/cart',
+    name: 'cartVue',
+    component: cartVue,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/:id',
     name: 'scheduleService',
     component: scheduleService,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
-  {
-    path: '/addmechanic',
-    name: 'getQuick',
-    component: getQuick,
-    meta: {
-      requiresAuth: true
-    }
-  },
+
+ 
+
+
+
+  
+ 
 
 
  
@@ -109,9 +137,43 @@ router.beforeEach((to, from, next) => {
 
   if (requiressAuth && !isAuthenticated) {
     next('/login');
+
+
   }
   else {
+      // console.log(to);
+      // console.log(from);
+      // console.log(to.path);
+      // console.log(to.hash);
+
+    //   var hcondition = ((to.hash == "#someSections") || (to.hash == "#faq") || (to.hash == "#contactus"))
+    // console.log(hcondition)
+
+      // if(to.fullPath == "/#someSections" || to.fullPath == "/#someSections" || )
+    // //  // console.log(this.$route.path);
+    var pathr = to.path;
+    var hash = to.hash;
+
+      
+
+
+
+
+
+
+
+    if( (pathr != '/') && ((hash == '#vas') || (hash == '#faq') ))
+    {
+      // console.log("error in routhgibg ")
+      // this.$router.replace("/");
+      next('/');
+    }
+else{
+
+
+
     next();
+}
   }
 })
 

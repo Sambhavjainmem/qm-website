@@ -1,380 +1,418 @@
 <template>
-  <div id="login-box">
-    <div class="left">
-      <h1>Personal Info..</h1>
+  <div id="body">
+    <div id="l1">
+      <div class="closebtn">
+        <v-btn icon dark @click="$store.state.dialog = false">
+          <v-icon class="black--text">mdi-close</v-icon>
+        </v-btn>
+      </div>
+      <div id="l1-1">
+        <div id="l1-1-1">
+          <div id="l1-1-1-1">
+            <img width="98px" height="auto" src="../assets/Logo-2 (1).png" />
+          </div>
+          <div id="l1-1-1-2">
+            <div id="lmiht">LET'S MAKE IT HAPPY TOGETHER</div>
+          </div>
+        </div>
+      </div>
 
-      <input type="text" name="username" placeholder="Enter Full Name" />
-      <input type="text" name="gender" placeholder="Gender" />
-      <input type="date"  id="date" placeholder="DD/MM/YEAR">
-      <input type="text" name="country" disabled placeholder="INDIA" />
-      <input type="text" name="state" placeholder="State" />
-      <input type="text" name="District" placeholder="District" />
-      <input type="text" name="city" placeholder="Postal Code" />
-    </div>
+      <div id="l1-2">
+        <div id="signin">
+          Already you have an account?<a href="/" @click="ggg">sign in here</a>
+        </div>
+        <div id="l1-2-1">Create an Account</div>
+        <div id="l1-2-2">
+          <div id="l1-2-2-1">
+            <div class="left">
+              <div class="frmhead">Personal Details</div>
 
-    <div class="right">
-      <h1>Vehicle Info..</h1>
+              <input
+                class="inputform"
+                type="text"
+                name="username"
+                v-model="name"
+                placeholder="Enter Full Name"
+              />
+              <input
+                class="inputform"
+                type="date"
+                id="date"
+                placeholder="DD/MM/YEAR"
+                v-model="dob"
+              />
+              <input
+                class="inputform"
+                type="text"
+                name="country"
+                placeholder="Mobile"
+                v-model="mobile"
+              />
+              <input
+                class="inputform"
+                type="text"
+                name="email"
+                placeholder="E-mail"
+                v-model="email"
+              />
+            </div>
+          </div>
+          <div id="l1-2-2-2">
+            <div class="left">
+              <div class="frmhead">Car Details</div>
 
-      
-      
-      <v-combobox
-        v-model="vtype"
-        :items="items"
-      
-       
-        outlined
-        
-      ></v-combobox>
-      <v-combobox
-        v-model="vbrand"
-        :items="items"
-      
-       
-        outlined
-      ></v-combobox>
-      <v-combobox
-        v-model="vname"
-        :items="items"
-       
-       
-        outlined
-      ></v-combobox>
-    
-      <v-combobox
-        v-model="vftype"
-        :items="items"
-       
-       
-        outlined
-      ></v-combobox>
-      
-      <v-combobox
-        v-model="vtransmission"
-        :items="items"
-       
-       
-        outlined
-      ></v-combobox>
-      
+              <select class="inputform" @change="onChange($event)">
+                <option value="" selected disabled>Select Brand</option>
+                <option v-for="item in items" :value="item" :key="item">
+                  {{ item }}
+                </option>
+              </select>
+              <select class="inputform" @change="onChangecar($event)">
+                <option value="0">
+                  Select car<v-icon>mdi--google</v-icon>
+                </option>
+                <option v-for="item in caritems" :value="item" :key="item">
+                  {{ item }}
+                </option>
+              </select>
+              <select class="inputform" @change="onChangefuel($event)">
+                <option value="0">Fuel Type<v-icon>mdi--google</v-icon></option>
+                <option value="Desial">Desial</option>
+                <option value="Petrol">Petrol</option>
+                <option value="EV">EV</option>
+                <option value="Gass">Gass</option>
+              </select>
+            </div>
+          </div>
 
-      <input type="submit" name="signup_submit" value="Sign me up" />
-    </div>
-    <div class="or">
-      <div class="profile-pic-div">
-        <img src="../assets/image.jpg" id="photo" />
-        <input type="file" id="file" />
-        <label for="file" id="uploadBtn">Choose Photo</label>
+          <v-btn
+            style="
+              position: absolute;
+              bottom: 0px;
+              display: flex;
+              justify-self: center;
+              align-self: center;
+              background: #d50000;
+              border-radius: 8px;
+              color: white;
+              font-family: 'Inter';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 17px;
+            "
+            @click="sendData"
+            >Create Account</v-btn
+          >
+        </div>
+        <div id="l1-2-3"></div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import axios from "axios";
+import { updateDoc ,getDocs,collection,doc,arrayUnion} from "@firebase/firestore";
+import {db} from '../firebase'
 export default {
   name: "SignupForm",
   components: {},
-  props: {
-    companyName: {
-      type: String,
-      default: "Quick Mechanic",
-    },
-  },
+
   data() {
     return {
-      vtype: ["Vechile Type"],
-      vbrand: ["Vechile Brand"],
-      vname: ["Vechile Name"],
-      vftype: ["Fuel Type"],
-      vtransmission: ["Transmission"],
-      items: ["Programming", "Design", "Vue", "Vuetify"],
-      elevate: false,
-
-      reset: 0,
-      email: "",
       name: "",
-      nameRule: [(v) => !!v || "User Name is required"],
-      emailRule: [
-        (v) => !!v || "Email is required",
-        (v) =>
-          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-          "E-mail must be valid",
-      ],
-      showPassword: false,
-      passwordRule: [
-        (v) => !!v || "Password is required",
-        (v) =>
-          (v && v.length <= 15 && v.length >= 8) ||
-          "Password must be between 8 to 15 characters",
-      ],
-      showCnfrmPassword: false,
-      cnfrmpasswordRule: [
-        (v) => !!v || "Confirm Password is required",
-        (v) => v === this.password || "Password doesn't match",
-      ],
-      countryRule: [(v) => !!v || "Country is required"],
-      //Below is the regex validation of mobile number
-      mobnumberRule: [
-        (v) => !!v || "Mobile Number is required",
-        (v) =>
-          /^(\+\d{1,3}[- ]?)?\d{10}$/.test(v) || "Mobile Number must be valid",
-      ],
-      password: "",
-      cnfrmpassword: "",
-      mobnumber: "",
-      country: "",
-      countryCode: "",
-      snackbar: false,
-      text: "Sign Up Successful!!!",
+      email: "",
+      dob: "",
+      mobile: "",
+      items: [],
+      caritems: [],
+      brand: "",
+      model: "",
+      fueltype: "",
     };
   },
   mounted() {
-    this.callApi();
-    const options = {
-      method: "GET",
-      url: "https://andruxnet-world-cities-v1.p.rapidapi.com/",
-      params: { query: "paris", searchby: "city" },
-      headers: {
-        "X-RapidAPI-Key": "e78cc4045emsh013b0966a5b43e6p1a5d3bjsnfbe395dc477c",
-        "X-RapidAPI-Host": "andruxnet-world-cities-v1.p.rapidapi.com",
-      },
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    this.firebaseData();
   },
-  beforeUpdate() {
-    this.updatingCountry();
-  },
+  beforeUpdate() {},
   methods: {
+    async firebaseData() {
+      // let items = [];
+      const querySnapshot = await getDocs(collection(db, "brands"));
     
-   
+      
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        this.items.push(doc.data().brandName);
+      });
+     
+      console.log(this.items);
+      
+    },
+    ggg() {
+      console.log("hello");
+      this.dialog = false;
+      this.$store.state.logindialog = true;
+    },
+    async carmodel(car) {
+      // let items = [];
+      console.log("car model function");
+      const carSnapshot = await getDocs(collection(db, "cars"));
     
+      
+      carSnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+          if(doc.data().brand == car){      
+            this.caritems.push(doc.data().name);
+          }
+      });
+     
+      console.log("car naem",this.caritems);
+      
+    },
     
+
+   onChange(e){
+    this.caritems = [],
+      console.log("car movdel");
+      this.$store.state.brand = e.target.value;
+      console.log(this.brand);
+      
+      this.carmodel(this.$store.state.brand)
+
+
+     }
+
+     ,
+
+     onChangecar(e){
+  
+      this.$store.state.model = e.target.value;
+      console.log(this.model);
+      
+     }
+,
+onChangefuel(e){
+  
+  this.$store.state.fueltype = e.target.value;
+  console.log(this.fueltype);
+  
+ },
+
+    sendData() {
+                      const userData = {
+                        "userInfo.fullName": this.name,
+                        "userInfo.email": this.email,
+                        "userInfo.phoneNumber": this.mobile,
+                        "userInfo.dob": this.dob,
+                           
+                      };
+                    const userref = doc(db, "users", this.$store.state.uid);
+                    updateDoc(userref, userData )
+               updateDoc(userref, {"vehicleInfo": arrayUnion({"vehicleBrand": this.$store.state.brand,"vehicleName": this.$store.state.model, "fuelType": this.$store.state.fueltype})} )
+               .then(()=>{
+                
+                this.$store.state.dialog = false;
+               })
+               .catch((error)=>{
+                console.log("errroo upddate",error)
+               })
+        
+      
+    },
+
+
+    // await updateDoc(washingtonRef, {
+    // regions: arrayUnion("greater_virginia")
+
+
+
+
+
+
   },
   created() {},
 };
 </script>
 <style scoped>
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
-*:focus {
-  outline: none;
-}
+.frmhead {
+  font-family: Inter;
 
-body {
-  margin: 0;
-  padding: 0;
-  background: #ddd;
-  font-size: 16px;
-  color: #222;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-}
+  letter-spacing: 0em;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
-#login-box {
-  position: relative;
-  margin: 5% auto;
-  width: 675px;
-  height: 475px;
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  height: 15px;
+  width: 100%;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 15px;
+  /* identical to box height */
+
+  color: rgba(0, 0, 0, 0.86);
+  text-align: center;
 }
 
 .left {
   position: absolute;
-  top: 0;
+  top: 0px;
   left: 0;
   box-sizing: border-box;
-  padding: 40px;
-  width: 300px;
-  height: 400px;
+
+  width: 180px;
+  height: auto;
+  margin-left: 40px;
 }
 
-h1 {
-  margin: 0 0 20px 0;
-  font-weight: 300;
-  font-size: 28px;
+.closebtn {
+  position: absolute;
+  left: 5px;
+  top: 5px;
 }
 
-input[type="text"],
-input[type="password"] {
+.inputform {
   display: block;
-  box-sizing: border-box;
+
   margin-bottom: 20px;
   padding: 4px;
-  width: 220px;
-  height: 32px;
-  border: none;
-  border: 1px solid #aaa;
+  width: 180px;
+  height: 30px;
+  box-sizing: border-box;
+
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 15px;
   transition: 0.2s ease;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  opacity: 0.6;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border-bottom: 2px solid #16a085;
-  color: #16a085;
-  transition: 0.2s ease;
+#l1-2-2-1 {
+  width: 50%;
+  height: 100%;
+
+  position: relative;
 }
-
-input[type="submit"] {
-  margin-top: 28px;
-  width: 120px;
-  height: 32px;
-  background: #16a085;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: 0.1s ease;
-  cursor: pointer;
+#l1-1-1 {
+  width: 100%;
+  height: 80%;
 }
+#l1-1-1-2 {
+  width: 100%;
+  height: 50%;
 
-input[type="submit"]:hover,
-input[type="submit"]:focus {
-  opacity: 0.8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-input[type="submit"]:active {
-  opacity: 1;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
+#lmiht {
+  width: 204px;
+  height: 117px;
+  font: Inter;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 38.73px;
 }
+#l1-1-1-1 {
+  width: 100%;
+  height: 50%;
 
-.or {
-  position: absolute;
-  top: 0px;
-  left: calc(50% - 50px);
-  width: 100px;
-  height: 100px;
-  background: #ddd;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  line-height: 40px;
-
-  background-color: blue;
-}
-
-.right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  box-sizing: border-box;
-  padding: 40px;
-  width: 300px;
-  height: 400px;
-  background: url("https://goo.gl/YbktSj");
-  background-size: cover;
-  background-position: center;
-  border-radius: 0 2px 2px 0;
-}
-
-.right .loginwith {
-  display: block;
-  margin-bottom: 40px;
-  font-size: 28px;
-  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: end;
   text-align: center;
 }
-
-button.social-signin {
-  margin-bottom: 20px;
-  width: 220px;
-  height: 36px;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  transition: 0.2s ease;
-  cursor: pointer;
-}
-
-button.social-signin:hover,
-button.social-signin:focus {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  transition: 0.2s ease;
-}
-
-button.social-signin:active {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  transition: 0.2s ease;
-}
-
-button.social-signin.facebook {
-  background: #32508e;
-}
-
-button.social-signin.twitter {
-  background: #55acee;
-}
-
-button.social-signin.google {
-  background: #dd4b39;
-}
-
-.profile-pic-div {
+#l1-2-2-2 {
+  width: 50%;
   height: 100%;
-  width: 100%;
 
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid grey;
+  position: relative;
+}
+#l1-1-2 {
+  width: 100%;
+  height: 80%;
 }
 
-#photo {
+#l1 {
+  width: 933px;
+  height: 558px;
+
+  display: flex;
+  flex-direction: row;
+
+  position: relative;
+  background-color: white;
+}
+#l1-1 {
+  width: 30%;
   height: 100%;
-  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
 }
 
-#file {
-  display: none;
+#l1-2 {
+  width: 60%;
+  height: 100%;
 }
 
-#uploadBtn {
-  height: 40px;
+#l1-2-1 {
+  height: 150px;
   width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+
+  position: relative;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 19px;
+
+  color: rgba(0, 0, 0, 0.86);
   text-align: center;
-  background: rgba(0, 0, 0, 0.7);
-  color: wheat;
-  line-height: 30px;
-  font-family: sans-serif;
-  font-size: 15px;
-  cursor: pointer;
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#date {
-  
-  display: block;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-    padding: 4px;
-    width: 220px;
-    height: 32px;
-    border: none;
-    border-bottom: 1px solid #aaa;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    transition: 0.2s ease;  
-    
- 
-  
+#l1-2-2 {
+  height: 350px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+#body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+#signin {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 10px;
+  /* identical to box height */
+
+  color: rgba(0, 0, 0, 0.87);
 }
 </style>

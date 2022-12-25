@@ -1,12 +1,12 @@
 <template>
 <div>
-<div class="s1">
-    <div class="s1-1">
+<div class="s1" >
+    <div class="s1-1" >
        {{summy.header}}
 
 
     </div>
-    <div class="s1-2">
+    <div class="s1-2" id="top">
         <div class="s1-2-1">
             <div class="s1-2-1-1">
                  <img height="100%" class="serviceimg" src="../../assets/ac.jpg">
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="s1-2-2">
-            <v-btn class="button flat red--text">Proceed</v-btn>
+        <v-btn class="button flat red--text">Proceed</v-btn>
             
         </div>
         
@@ -37,6 +37,7 @@
 import howWork from './howWeWork/howWork.vue'
 import getQuick from '../getQuick.vue';
 import bottomVue from '../bottomVue.vue';
+
 export default {
   name: "serviceVue",
   data: () => ({
@@ -98,6 +99,12 @@ howWork,getQuick,bottomVue
   },
   mounted() {
     //const urlParams = new URLSearchParams(window.location.search);
+
+     console.log(this.$route.fullPath)
+
+
+
+
    this.key = this.$route.params.id;
    if(this.key == 1){
     this.summy = this.ac;
@@ -124,9 +131,63 @@ howWork,getQuick,bottomVue
     this.summy = this.inspaction;
     
    }
+//    document.addEventListener('DOMContentLoaded', function() {
+//     if(typeof(Storage) !== 'undefined') {
+//         // See if there is a scroll pos and go there.
+//         var lastYPos = +localStorage.getItem('scrollYPos');
+//         if (lastYPos) {
+//             console.log('Setting scroll pos to:', lastYPos);
+//             window.scrollTo(0, lastYPos);
+//         }
+
+//         // On navigating away first save the position.
+//         var anchors = document.querySelectorAll('article a');
+
+//         var onNavClick = function() {
+//             console.log('Saving scroll pos to:', window.scrollY);
+//             localStorage.setItem('scrollYPos', window.scrollY);
+//         };
+
+//         for (var i = 0; i < anchors.length; i++) {
+//             anchors[i].addEventListener('click', onNavClick);
+//         }
+//     }
+// });
+
+  
+
 
   },
- 
+
+  beforeCreate(){
+    console.log('Saving scroll pos to:', window.scrollY);
+const lastYPos =  window.scrollY
+    window.scrollTo(0, lastYPos);
+   
+    // this.$router.push({ hash: 'top' })
+//     document.addEventListener('DOMContentLoaded', function() {
+//     if(typeof(Storage) !== 'undefined') {
+//         // See if there is a scroll pos and go there.
+//         var lastYPos = +localStorage.getItem('scrollYPos');
+//         if (lastYPos) {
+//             console.log('Setting scroll pos to:', lastYPos);
+//             window.scrollTo(0, lastYPos);
+//         }
+
+//         // On navigating away first save the position.
+//         var anchors = document.querySelectorAll('article a');
+
+//         var onNavClick = function() {
+//             console.log('Saving scroll pos to:', window.scrollY);
+//             localStorage.setItem('scrollYPos', window.scrollY);
+//         };
+
+//         for (var i = 0; i < anchors.length; i++) {
+//             anchors[i].addEventListener('click', onNavClick);
+//         }
+//     }
+// });
+  } 
   
 };
 </script>

@@ -1,54 +1,143 @@
 <template>
-  <div class="downloadmain" id="someSection">
-    <div class="downloadleft">
-      <img class="sosphone" src="../assets/sosphone.png" />
-    </div>
-    <div class="downloadright">
-      <div class="headderofpage">
-        <p class="getquick">Get the Quick Mechanic App</p>
-        <p class="sendlink">
-          WE will send you link, open it on your phone the app
-        </p>
+  <div class="downloadmain">
+    <div class="bgtext">GET QUICKMECHANIC APP</div>
+    <div id="fff">
+      <div class="downloadleft">
+        <img class="sosphone" src="../assets/App_website-logo.png" />
       </div>
-      
-      <div class="radioandemail">
-        <div class="subradioandemail">
-          <!-- //width 70% -->
-          <div class="emailandphone">
-            
-            <div class="container">
-              <div class="right">Email</div>
-              <div class="radio">
-                <input type="radio" value="email" name="send" id="email" />
-                <label for="email"></label>
-              </div>
-            </div>
-
+      <div class="downloadright">
+        <div style="widht: 429px; height: 255px">
+          <p class="sendlink">
+            Get QuickMechanic App installation link on your phone <br />
+            via SMS/Whatsapp
+          </p>
+          <div
+            class="radiorow"
+            style="
+              width: 300px;
+              display: flex;
+              flex-direction: row;
            
-            <div class="container1">
-                <div class="right">Phone</div>
-              <div class="radio">
-                <input type="radio" value="phone" name="send" id="phone" />
-                <label for="phone"></label>
+            "
+          >
+            <v-radio-group v-model="radioGroup">
+              <div style="display: flex;flex-direction: row;width: 300px;height: 50px;">
+              <div
+                style="
+                  width: fit-content;
+                  height: fit-content;
+                  margin-right: 50px;
+                  display: flex;
+                  flex-diraction: row;
+                  align-items: center;
+                
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                "
+              >
+                <v-radio  style="font-size: 30px" :label="SMS" value="sms" color="black" class="ma-0 pa-0"> </v-radio>
+
+                <div class="ll">SMS</div>
               </div>
-            </div>
+              <div
+                style="
+                  width: fit-content;
+                  height: fit-content;
+                  margin-right: 50px;
+                  display: flex;
+                  flex-diraction: row;
+                  align-items: center;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                "
+              >
+                <v-radio
+                  :label="whatsApp"
+                  value="whatsApp"
+                  color="black"
+                  class="ma-0 pa-0"
+                ></v-radio>
+
+                <div class="ll">Whatsapp</div>
+              </div>
+              </div>
+            </v-radio-group>
           </div>
-          <input
-            class="inputemail"
-            type="text"
-            placeholder="  Email"
-          />
-        </div>
-        <div class="sendbtn">
-          <!-- width 30% -->
-          <button class="button button2">Share App Link</button>
-        </div>
-      </div>
-      <div class="downloaddiv">
-        <div class="downloadapp">Download the App</div>
-        <div class="imgofplayandapple">
-          <img class="storeimg" src="../assets/Group 10765-h.jpg" />
-          <img class="storeimg" src="../assets/Group 10765-h.jpg" />
+
+          <div
+            style="
+              width: 100%px;
+              margin-left: 0px;
+              margin-right: 0px;
+              border-radius: 8px;
+              height: 48px;
+              border: 1px solid rgba(0, 0, 0, 0.3);
+              display: flex;
+              flex-diraction: row;
+              margin-top: 10px;
+              align-items: center;
+              padding-right: 5px;
+            "
+          >
+            <div
+              style="
+                margin-left: 4px;
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 29px;
+                color: rgba(0, 0, 0, 0.4);
+              "
+            >
+              +91
+            </div>
+            <div style="width: 6px; margin-right: 2px; height: 1px"></div>
+            <input
+              type="text"
+              name="fname"
+              placeholder="Mobile No"
+              style="width: calc(100% - 110px); height: 100%"
+            />
+            <button
+              type="button"
+              style="
+                width: 106px;
+                height: 36px;
+                
+                color: white;
+                padding-left: 8px;
+                padding-right: 8px;
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+
+                text-transform: uppercase;
+                background: #D50000;
+            border-radius: 18px
+              "
+            >
+              SEND LINK
+            </button>
+          </div>
+
+          <div
+            style="
+              widht: 428px;
+              height: 65px;
+              margin-top: 10px;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+            "
+          >
+            <img class="storeimg" src="../assets/Group 10765-h.jpg" />
+            <img class="storeimg" src="../assets/Group 10765-h.jpg" />
+          </div>
         </div>
       </div>
     </div>
@@ -57,22 +146,129 @@
 <script>
 export default {
   name: "getQuick",
+  data() {
+    return {
+      radioGroup: true,
+      radioGroup2: true,
+    };
+  },
+
   components: {},
+  watch: {
+    // Creating function
+    // for input component
+    radioGroup: function () {
+      console.log(this.radioGroup2);
+    },
+    radioGroup2: function () {
+      console.log(this.radioGroup);
+    },
+  },
+  mounted() {
+    console.log(this.radioGroup);
+    console.log(this.radioGroup2);
+  },
 };
 </script>
 
 
 <style scoped>
+#fff {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+
+  justify-content: center;
+}
+
+::placeholder {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  /* identical to box height */
+
+  color: rgba(0, 0, 0, 0.4);
+}
+
+input {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  /* identical to box height */
+
+  color: rgba(0, 0, 0, 0.4);
+}
+input ::after {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 29px;
+  border: none;
+  /* identical to box height */
+
+  color: rgba(0, 0, 0, 0.4);
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: red;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: red;
+}
+.radiorow {
+  width: 400px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.v-stepper__step {
+  align-items: normal;
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  padding: 24px;
+  position: relative;
+}
+
+#back {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ll {
+  font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+
+color: rgba(0, 0, 0, 0.6);
+
+}
 .container1 {
   margin: 10px;
 
   display: flex;
 
-  align-items:center;
-  justify-content: left;
+  align-items: center;
+
   width: 50%;
- 
- 
+  width: 40px;
 }
 .container {
   margin: 10px;
@@ -80,13 +276,21 @@ export default {
 
   align-items: center;
   width: 50%;
+  height: 40px;
 }
 .right {
-  float: left;
-  margin: 10px;
+  margin-left: 26px;
   color: black;
   font-size: 20px;
   font-weight: bold;
+  align-items: center;
+  font-weight: 400;
+}
+.right1 {
+  margin-left: 6px;
+  color: black;
+  font-size: 20px;
+  font-weight: 400;
   align-items: center;
 }
 .radio {
@@ -94,8 +298,8 @@ export default {
   position: relative;
 }
 .radio label {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
   position: absolute;
   top: 1;
@@ -103,14 +307,13 @@ export default {
   background: white;
   border-radius: 50px;
   box-shadow: inset 0px 1px 1px white, 3px 3px 9px rgba(0, 0, 0, 0.5);
-  border: 1px solid black;
 }
 .radio label:after {
   content: "";
   position: absolute;
   top: 4px;
   left: 4px;
-  border: 6px solid blue;
+  border: 6px solid black;
   border-radius: 50px;
   opacity: 0;
 }
@@ -125,12 +328,11 @@ export default {
 }
 
 .button {
-  background-color: red; /* Green */
   border: none;
   color: white;
-  width: auto;
+  width: 200px;
   height: 50px;
-  padding-left: 25px ;
+  padding-left: 25px;
   padding-right: 25px;
   font-size: 20px;
 
@@ -144,15 +346,15 @@ export default {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   border-radius: 15px;
- 
- 
 
-  position:absolute;
+  position: absolute;
   bottom: 8px;
   left: 0px;
-
 }
 
+#homepage {
+  position: absolute;
+}
 .button2:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
@@ -160,32 +362,45 @@ export default {
 
 .downloadmain {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   width: 100%;
-  height: 500px;
-  padding-top: 30px;
+  height: calc(100vh - 100px);
+
+  background-color: white;
+
+  justify-content: space-evenly;
+
+  background: linear-gradient(180deg, #FFFFFF 0%, #EFEFEF 100%);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
+  position: relative;
 }
+
 .downloadleft {
-  width: 30%;
+  width: fit-content;
   height: 100%;
 
   display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .emailandphone {
-
   display: flex;
 
   flex-direction: row;
 
+  height: 50px;
 }
 .downloadright {
-  width: 70%;
+  width: fit-content;
   height: 100%;
 
   display: flex;
+  justify-content: center;
   flex-direction: column;
+
+  margin-left: 80px;
 }
 .headderofpage {
   width: 100%;
@@ -204,35 +419,50 @@ export default {
 }
 
 .getquick {
-  font-size: 29px;
+  width: fit-content;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: rgba(0, 0, 0, 0.6);
+
 }
 sendlink {
   font-size: 19px;
+
+  width: 100%;
 }
 .inputemaildiv {
 }
 
 .subradioandemail {
-  width: 70%;
+  width: 350px;
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  width: fit-content;
 }
 
 .sendbtn {
   width: 30%;
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
- 
+  align-items: flex-start;
+
   position: relative;
 
   height: 100%;
+
 }
 .inputemail {
   width: 80%;
   height: 50px;
   place-content: "suraj";
+  border: 1px solid black;
+  width: fit-content;
 }
 .downloaddiv {
   width: 100%;
@@ -243,35 +473,63 @@ sendlink {
 }
 .downloadapp {
   width: 100%;
-  height: 50%;
+  height: 50px;
   font-size: 29px;
   padding-top: 10px;
 }
 .imgofplayandapple {
-  width: 70%;
-  height: 50%;
+  width: 440px;
+  height: 65px;
   display: flex;
   justify-content: space-between;
   margin-top: -10px;
-  padding-right:30px;
- 
+  padding-right: 30px;
+
+  margin-left: 20px;
 }
 .sosphone {
-  width: 85%;
-  height: auto;
-
- 
+  width: 261px;
+  height: 255px;
 }
 .inputemail {
-  border: 1px solid black;
   border-radius: 10px;
   margin: 10px;
   width: 95%;
 }
 .storeimg {
-  width: 200px;
-  height: 60px;
+  width: width;
+  height: 63px;
   cursor: pointer;
+}
+
+.bgtext {
+  height: fit-content;
+
+  /* left: 103px;
+top: 38px; */
+
+  z-index: 2;
+
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 41px;
+  text-transform: uppercase;
+
+  color: #000000;
+}
+
+@media (min-height: 720px) {
+  .downloadmain {
+    height: 720px;
+  }
 }
 </style>
 
