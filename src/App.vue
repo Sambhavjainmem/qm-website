@@ -171,7 +171,7 @@ import "./appcss.css";
 import getQuick from "./components/getQuick.vue";
 import { auth, db } from "./firebase";
 import { signOut, onAuthStateChanged } from "@firebase/auth";
-import { collection, onSnapshot, getDocs, doc } from "firebase/firestore";
+import { collection, onSnapshot, getDocs, doc,getDoc } from "firebase/firestore";
 import SignupForm from "./components/SignupForm.vue";
 import locationVue from "./components/locationVue.vue";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
@@ -258,9 +258,15 @@ export default {
     // this.$store.commit("getData", [{ name: "suraj" }, { name: "kumar" }]);
     // console.log(this.items);
     console.log("this is auth", auth);
+    if(auth.currentUser!=null){
+      console.log('Checkpoint Customer Data Fetched');
+      this.fetchCustomerData();
+    }
   },
 
   created() {
+   
+    
     this.firebaseData();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -292,6 +298,12 @@ export default {
   },
 
   methods: {
+    async fetchCustomerData() {
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+      this.$store.state.customer=docSnap.data();
+      console.log(this.customer.userInfo);
+    },
     booklist(){
         console.log("clicked");
         this.$router.push({ path: "/bookingList" });
