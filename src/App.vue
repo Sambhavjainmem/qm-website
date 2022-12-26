@@ -11,8 +11,8 @@
         </a>
         <div class="locName" @click="$store.state.locdialog = true">
           <v-icon id="locicon">mdi-map-marker </v-icon>
-          <div style="font-size: 15px; opicity: 0.7">
-            {{ $store.state.location1 }} ,{{ $store.state.location2 }}
+          <div style="font-size: 15px; opicity: 0.7;display: flex;flex-direction: row;">
+            {{ $store.state.location1 }} <div  style="mergin-left: 2px; margin-right: 2px;" v-if="$store.state.location2">,</div>{{ $store.state.location2 }}
           </div>
         </div>
       </div>
@@ -178,8 +178,29 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import CartVue from "./components/cartVue.vue";
 import newLogin from "./components/newLogin.vue";
 
+
+
+
+
+
+
+
+
+
+
+
 export default {
   name: "App",
+  restrictChars: function($event) {
+    if ($event.charCode === 0 || /\d/.test(String.fromCharCode($event.charCode))) {
+      console.log("clicked");
+        return true
+    } else {
+        $event.preventDefault();
+      console.log("clicked");
+        
+    }
+},
   data() {
     return {
       msg: "",
@@ -261,6 +282,7 @@ export default {
   },
 
   created() {
+
     this.firebaseData();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -278,10 +300,12 @@ export default {
     var location1 = JSON.parse(localStorage.getItem("location1"));
     var location2 = JSON.parse(localStorage.getItem("location2"));
     if (location1 == null && location2 == null) {
-      console.log(location1);
+      console.log("location one and two is null");
     } else {
+      console.log("location one and two",location1,location2)
       this.$store.state.location1 = location1;
       this.$store.state.location2 = location2;
+      console.log("location one and two is set",this.$store.state.location1,this.$store.state.location2)
     }
     if (vobj == null) {
       console.log("vobj", vobj);
@@ -292,6 +316,40 @@ export default {
   },
 
   methods: {
+
+    win_onkeydown_handler(event) {
+      console.log(event.keyCode);
+    // switch (event.keyCode) {
+
+    // case 116 : // 'F5'
+    //      event.returnValue = false;
+    //      conole.log(event.keyCode);
+    //      event.keyCode = 0;
+    //      break;  
+
+    // case 27: // 'Esc'
+    //     event.returnValue = false;
+    //     conole.log(event.keyCode);
+    //     event.keyCode = 0;
+    //     break;
+
+    // case 08: // 'BackSpace'
+    //     if (event.srcElement.tagName == "INPUT"
+    //             || event.srcElement.tagName == "TEXTAREA") {
+    //     } else {
+    //         event.returnValue = false;
+    //         event.keyCode = 0;
+    //     }
+    //     break;
+
+    // }
+}
+,
+
+
+
+
+
     booklist(){
         console.log("clicked");
         this.$router.push({ path: "/bookingList" });

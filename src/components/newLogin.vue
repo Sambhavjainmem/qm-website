@@ -171,13 +171,7 @@ export default {
           const user = result.user;
           console.log("this one", user.uid);
 
-          // getuserdata(user.uid);
-
-          // console.log(this.$xyz);
-          // this.boolotp = false;
-          // this.$xyz = false;
-          // this.dialog = false;
-          // this.$store.state.logindialog = false;
+         
           this.$store.state.logindialog = false;
           this.flag = false;
         })
