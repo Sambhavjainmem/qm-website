@@ -143,8 +143,7 @@
 
             <v-btn color="#D50000" class="white--text"  @click="e6 = 2"> Continue </v-btn>
             <v-btn text @click="isCheckoutClicked = false"> Cancel </v-btn>
-            <v-btn color="#D50000" class="white--text" @click="e6 = 2"> Continue </v-btn>
-            <v-btn text> Cancel </v-btn>
+            
           </v-stepper-content>
 
           <v-stepper-step class="stepperCss" :complete="e6 > 2" step="2">
