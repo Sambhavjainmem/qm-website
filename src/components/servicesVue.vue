@@ -277,7 +277,7 @@ img {
 #bottomrow {
   display: flex;
   flex-direction: row;
-  margin-top: 8px;
+  margin-top: 0px;
   justify-content: space-between;
   margin-left: 22px;
   margin-right: 22px;
