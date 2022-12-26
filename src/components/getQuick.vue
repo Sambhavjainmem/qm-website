@@ -122,11 +122,11 @@
                 font-family: Arial, Helvetica, sans-serif;
                 font-style: normal;
                 font-weight: 500;
-                font-size: 14px;
+                font-size: 13px;
                 line-height: 17px;
 
                 text-transform: uppercase;
-                background: #d50000;
+                background: #D50000;
                 border-radius: 18px;
               "
             >
@@ -528,7 +528,7 @@ input ::after {
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 34px;
+  font-size: 40px;
   line-height: 41px;
   text-transform: uppercase;
 

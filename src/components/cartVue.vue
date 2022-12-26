@@ -96,7 +96,7 @@
               border-radius: 12px;
               width: 100%;
               height: 50px;
-              background-color: red;
+              background-color: #D50000;
               color: white;
               font-weight: 700;
               text-align: center;
@@ -141,7 +141,7 @@
               ></v-text-field>
             </v-row>
 
-            <v-btn color="primary" @click="e6 = 2"> Continue </v-btn>
+            <v-btn color="#D50000" class="white--text" @click="e6 = 2"> Continue </v-btn>
             <v-btn text> Cancel </v-btn>
           </v-stepper-content>
 
@@ -164,7 +164,7 @@
               </v-chip-group>
             </v-row>
 
-            <v-btn color="primary" @click="e6 = 3"> Continue </v-btn>
+            <v-btn color="#D50000"  class="white--text" @click="e6 = 3"> Continue </v-btn>
             <v-btn text @click="e6 = 1"> Cancel </v-btn>
           </v-stepper-content>
 
@@ -186,7 +186,7 @@
                 </v-chip>
               </v-chip-group>
             </v-row>
-            <v-btn color="primary" @click="schedulePickupService">
+            <v-btn color="#D50000" class="white--text" @click="schedulePickupService">
               Continue
             </v-btn>
             <v-btn text @click="e6 = 2"> Cancel </v-btn>
@@ -387,6 +387,12 @@ export default {
   },
 };
 </script>
+<style>
+.v-application .primary {
+  background-color: RED;
+  border-color: red;
+}
+</style>
     
 
 
