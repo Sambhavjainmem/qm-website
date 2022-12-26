@@ -141,10 +141,8 @@
               ></v-text-field>
             </v-row>
 
-            <v-btn color="primary" @click="e6 = 2"> Continue </v-btn>
+            <v-btn color="#D50000" class="white--text"  @click="e6 = 2"> Continue </v-btn>
             <v-btn text @click="isCheckoutClicked = false"> Cancel </v-btn>
-            <v-btn color="#D50000" class="white--text" @click="e6 = 2"> Continue </v-btn>
-            <v-btn text> Cancel </v-btn>
           </v-stepper-content>
 
           <v-stepper-step :complete="e6 > 2" step="2">
@@ -274,7 +272,7 @@ export default {
     async schedulePickupService() {
       let id = Math.random().toString(36).slice(2);
       const docRef = doc(db, "pickups", id);
-      console.log(this.$store.state.customer.userInfo.dob);
+      console.log('Checkpoint ',this.$store.state.customer.userInfo.dob);
       setDoc(docRef, {
         status: "pending",
         id: id,

@@ -171,7 +171,7 @@ import "./appcss.css";
 import getQuick from "./components/getQuick.vue";
 import { auth, db } from "./firebase";
 import { signOut, onAuthStateChanged } from "@firebase/auth";
-import { collection, onSnapshot, getDocs, doc } from "firebase/firestore";
+import { collection, onSnapshot, getDocs, doc,getDoc } from "firebase/firestore";
 import SignupForm from "./components/SignupForm.vue";
 import locationVue from "./components/locationVue.vue";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
@@ -279,10 +279,15 @@ export default {
     // this.$store.commit("getData", [{ name: "suraj" }, { name: "kumar" }]);
     // console.log(this.items);
     console.log("this is auth", auth);
+    if(auth.currentUser!=null){
+      console.log('Checkpoint Customer Data Fetched');
+      this.fetchCustomerData();
+    }
   },
 
   created() {
-
+   
+    
     this.firebaseData();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -317,40 +322,6 @@ export default {
   },
 
   methods: {
-
-    win_onkeydown_handler(event) {
-      console.log(event.keyCode);
-    // switch (event.keyCode) {
-
-    // case 116 : // 'F5'
-    //      event.returnValue = false;
-    //      conole.log(event.keyCode);
-    //      event.keyCode = 0;
-    //      break;  
-
-    // case 27: // 'Esc'
-    //     event.returnValue = false;
-    //     conole.log(event.keyCode);
-    //     event.keyCode = 0;
-    //     break;
-
-    // case 08: // 'BackSpace'
-    //     if (event.srcElement.tagName == "INPUT"
-    //             || event.srcElement.tagName == "TEXTAREA") {
-    //     } else {
-    //         event.returnValue = false;
-    //         event.keyCode = 0;
-    //     }
-    //     break;
-
-    // }
-}
-,
-
-
-
-
-
     booklist(){
         console.log("clicked");
         this.$router.push({ path: "/bookingList" });
