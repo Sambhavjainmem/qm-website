@@ -119,7 +119,7 @@ console.log(cat);
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 1%;
+  margin: 8px;
 
   align-content: center;
   justify-content: space-between;

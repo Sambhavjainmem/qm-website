@@ -1,51 +1,92 @@
 <template>
-  <div class="service" >
+  <div class="service">
     <div class="SDservices">
       <div id="SDSText">SERVICES WE OFFER</div>
-      <componentsVue :sdata="sservice" />
+      <!-- <componentsVue :sdata="sservice" /> -->
     </div>
 
     <div class="VAservices">
-     
-      <div class="VASimg" >
-        <div class="sdimgdiv" @click="dent(item.name)"  v-for="item in this.vservice" v-bind:key="item.title">
+
+      <div class="VASimg">
+        <div
+          class="sdimgdiv"
+          @click="dent(item.name)"
+          v-for="item in this.sservice"
+          v-bind:key="item.title"
+        >
           <v-icon id="fav">mdi-heart-outline</v-icon>
           <img class="SDImage" :src="item.photoURL" />
-         
-
 
           <div id="abc">
             <div id="line"></div>
-          <div class="servtext">{{item.name}}</div>
-          <div class="rat"><v-icon  class="rating">mdi-star</v-icon><v-icon class="rating">mdi-star</v-icon><v-icon class="rating">mdi-star</v-icon><v-icon class="rating">mdi-star</v-icon><v-icon class="notrating">mdi-star-outline</v-icon><v-icon  class="ratno">4.0</v-icon></div>
+            <div class="servtext">{{ item.name }}</div>
+            <div class="rat">
+              <v-icon class="rating">mdi-star</v-icon
+              ><v-icon class="rating">mdi-star</v-icon
+              ><v-icon class="rating">mdi-star</v-icon
+              ><v-icon class="rating">mdi-star</v-icon
+              ><v-icon class="notrating">mdi-star-outline</v-icon
+              ><v-icon class="ratno">4.0</v-icon>
+            </div>
+          </div>
+
+          <div id="bottomrow">
+            <div id="v" style="color: #d50000">VIEW</div>
+            <v-btn
+              style="background-color: #d50000; border-radius: 8px"
+              small
+              class="white--text ma-0"
+              >Book Now</v-btn
+            >
+          </div>
         </div>
+      </div>
 
 
 
 
 
+      <div class="VASimg">
+        <div
+          class="sdimgdiv"
+          @click="dent(item.name)"
+          v-for="item in this.vservice"
+          v-bind:key="item.title"
+        >
+          <v-icon id="fav">mdi-heart-outline</v-icon>
+          <img class="SDImage" :src="item.photoURL" />
 
+          <div id="abc">
+            <div id="line"></div>
+            <div class="servtext">{{ item.name }}</div>
+            <div class="rat">
+              <v-icon class="rating">mdi-star</v-icon
+              ><v-icon class="rating">mdi-star</v-icon
+              ><v-icon class="rating">mdi-star</v-icon
+              ><v-icon class="rating">mdi-star</v-icon
+              ><v-icon class="notrating">mdi-star-outline</v-icon
+              ><v-icon class="ratno">4.0</v-icon>
+            </div>
+          </div>
 
-          <div id="bottomrow"><div id="v" style="color:#D50000;">VIEW</div><v-btn style="background-color:#D50000; border-radius:8px; box-shadow: none;" small class="white--text ma-0">Book Now</v-btn></div>
+          <div id="bottomrow">
+            <div id="v" style="color: #d50000">VIEW</div>
+            <v-btn
+              style="background-color: #d50000; border-radius: 8px"
+              small
+              class="white--text ma-0"
+              >Book Now</v-btn
+            >
+          </div>
         </div>
-
-        <!-- <div class="sdimgdiv" @click="spa">
-          <img class="SDImage" src="../assets/Group 1554.jpg" />
-          <div class="servtext">Car Spa</div>
-        </div>
-        <div class="sdimgdiv" @click="inspection">
-          <img class="SDImage sdimgright" src="../assets/Group 10800.jpg" />
-          <div class="servtext">Car Inspection</div>
-        </div> -->
       </div>
     </div>
   </div>
 </template>
 <script>
-import componentsVue from "./serviceComponents/componentsVue.vue";
+//import componentsVue from "./serviceComponents/componentsVue.vue";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
-
 
 export default {
   name: "servicesVue",
@@ -77,21 +118,12 @@ export default {
       );
       console.log("this service", this.sservice);
       console.log("this service", this.vservice);
-      
     },
 
-    
-
-
-
-
-
-
-
     dent(cat) {
-      this.$router.push({ path: "/"+"services" });
-console.log(cat);
-},
+      this.$router.push({ path: "/" + cat });
+      console.log(cat);
+    },
     // spa() {
     //   this.$router.push({ path: "/service/5" });
     // },
@@ -101,7 +133,7 @@ console.log(cat);
   },
 
   components: {
-    componentsVue,
+    //componentsVue,
   },
 };
 </script>
@@ -109,13 +141,9 @@ console.log(cat);
 .ratno {
   font-size: 13px;
 }
-#abc {
-  /* display: flex;
-  justify-content: flex-start; */
 
-}
 #fav {
-  position:absolute;
+  position: absolute;
   top: 8px;
   right: 8px;
   z-index: 5;
@@ -127,28 +155,18 @@ console.log(cat);
 #line {
   width: 100%;
   height: 2px;
-  background-color:rgba(0, 0, 0, 0.2);;
+  background-color: rgba(0, 0, 0, 0.2);
   opacity: 0.6;
 }
 .red {
   margin-bottom: 10px;
-  margin-right:3px
+  margin-right: 3px;
 }
 .service {
   width: 100%;
   z-index: 0;
   margin: 0px 30%;
-
   margin-bottom: 100px;
-  /* background: linear-gradient(180deg, #FFFFFF 0%, #F8F8F8 100%); */
-
- 
-
-
-  /* margin-left: 0px;
-  margin-top: 20px;
-  margin-bottom: 200px; */
- 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,8 +179,7 @@ console.log(cat);
   padding-left: 10px;
   margin-top: "30px";
   margin-bottom: "20px";
-  font-weight:400;
-  
+  font-weight: 400;
 }
 #VASText {
   font-size: 20px;
@@ -179,8 +196,6 @@ console.log(cat);
   z-index: 0;
   align-items: center;
   justify-content: center;
-
-
 }
 .VAservices {
   width: 100%;
@@ -188,26 +203,28 @@ console.log(cat);
   flex-direction: column;
 }
 .VASimg {
-  width: 100%;
+  width: fit-content;
+  height: fit-content;
   display: flex;
   flex-direction: row;
   margin-top: 20px;
-
+  margin-right: 30px;
   justify-content: left;
   cursor: pointer;
+ 
 }
 
 .sdimgdiv {
-  width: 180PX;
+  width: 195px;
   height: 300px;
   font-size: 14px;
   font-weight: 500;
-  
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 1%;
 
+  margin: 8px;
+  margin-right: 20px;
   align-content: center;
   justify-content: space-between;
   /* -webkit-box-shadow: 1px 1px 5px 0px #a2958a;
@@ -242,47 +259,35 @@ img {
   justify-self: center;
 }
 .servtext {
-  
-
-margin-left:10px; 
-margin-top: 18px;
+  margin-left: 10px;
+  margin-top: 18px;
 }
 #v {
   display: flex;
   text-align: center;
-  
-  margin-right: 20px;
-  
 
-  
+  margin-right: 20px;
+
   align-items: center;
   font-size: 12px;
   font-weight: 500;
   line-height: 12.52px;
-  color: #FF3B30;
-;
+  color: #ff3b30;
 }
 #bottomrow {
   display: flex;
   flex-direction: row;
-   margin-top: 8px;
-   justify-content: space-between;
-   margin-left: 22px;
-   margin-right: 22px;
-   margin-bottom: 16px;
- 
+  margin-top: 8px;
+  justify-content: space-between;
+  margin-left: 22px;
+  margin-right: 22px;
+  margin-bottom: 16px;
 }
 .rating {
-
- color:gold;
- font-size: 15px;
-
-
+  color: gold;
+  font-size: 15px;
 }
 .notrating {
-
-
-font-size: 15px;
+  font-size: 15px;
 }
 </style>
-

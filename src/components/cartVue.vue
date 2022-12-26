@@ -158,7 +158,7 @@
                 width="100%"
                 v-model="dateChipIndex"
               >
-                <v-chip v-for="item in listDateSlots" :key="item">
+                <v-chip v-for="(item, i) in listDateSlots" :key="i">
                   {{ item.day + "\n" + item.date + "\n" + item.mon }}
                 </v-chip>
               </v-chip-group>
@@ -181,12 +181,12 @@
                 width="100%"
                 v-model="timeChipIndex"
               >
-                <v-chip v-for="item in listTimeSlots" :key="item">
+                <v-chip v-for="(item, i) in listTimeSlots" :key="i">
                   {{ item }}
                 </v-chip>
               </v-chip-group>
             </v-row>
-            <v-btn color="primary" @click="createRazorPayOrder">
+            <v-btn color="primary" @click="schedulePickupService">
               Continue
             </v-btn>
             <v-btn text @click="e6 = 2"> Cancel </v-btn>
@@ -199,12 +199,14 @@
 <script>
 import axios from "axios";
 import { auth, db } from "../firebase";
-import { addDoc, collection } from "@firebase/firestore";
+import { addDoc, collection, doc, getDoc } from "@firebase/firestore";
 export default {
   name: "cartVue",
   data() {
     return {
+      customer:{},
       isCheckoutClicked: false,
+      orderSuccess: false,
       e6: 1,
       dateChipIndex: 1,
       timeChipIndex: 1,
@@ -234,58 +236,68 @@ export default {
     },
   },
   methods: {
+    async fetchCustomerData() {
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+      this.customer=docSnap.data();
+      console.log(this.customer.userInfo);
+    },
     async schedulePickupService() {
       const colRef = collection(db, "pickups");
-
       addDoc(colRef, {
         status: "pending",
         id: Math.random().toString(36).slice(2),
         customerInfo: {
-          dob: "NA",
-          fcmToken: "NA",
-          name: "NA",
-          gender: "NA",
-          phoneNo: "NA",
-          photoURL: "NA",
+          dob: this.customer.userInfo.dob,
+          fcmToken: this.customer.fcmToken.tokedId,
+          name: this.customer.userInfo.fullName,
+          gender:this.customer.userInfo.gender,
+          phoneNo: this.customer.userInfo.phoneNumber,
+          photoURL: this.customer.userInfo.photoURL,
           id: auth.currentUser.uid,
         },
-        startTime:{
-          date:'NA',
-          time:'NA',
+        startTime: {
+          date: "NA",
+          time: "NA",
         },
-        when:{
-          date:'NA',
-          time:'NA',
+        when: {
+          date: "NA",
+          time: "NA",
         },
-        endTime:{
-          date:'NA',
-          time:'NA',
+        endTime: {
+          date: "NA",
+          time: "NA",
         },
-        pickupInfo:{
-          mode:'NA',
-          address:'NA',
-          date:'NA',
-          time:'NA',
-          location:{
-            latitude:'NA',
-            longitude:'NA',
+        pickupInfo: {
+          mode: "NA",
+          address: "NA",
+          date: "NA",
+          time: "NA",
+          location: {
+            latitude: "NA",
+            longitude: "NA",
           },
-          state:'NA'
+          state: "NA",
         },
-        acceptedAt:{
-          date:'NA',
-          time:'NA',
+        acceptedAt: {
+          date: "NA",
+          time: "NA",
         },
-        couponInfo:{
-          couponCode:'NA',
-          isCouponUsed:'NA',
+        couponInfo: {
+          couponCode: "NA",
+          isCouponUsed: "NA",
         },
-        vehicleInfo:{
-          vehicleName:'NA'
-        }
+        vehicleInfo: {
+          vehicleName: "NA",
+        },
+      }).then(() => {
+        console.log("Success");
+        this.$store.state.cartItems = [];
+        this.$store.state.cart = false;
+        this.isCheckoutClicked = false;
 
-      }).then({
-        
+        this.orderSuccess = true;
+        alert("Pickup Scheduled Successfully");
       });
     },
 
@@ -371,6 +383,7 @@ export default {
   created() {
     this.generateDateSlots();
     this.setAddress();
+    this.fetchCustomerData();
   },
 };
 </script>

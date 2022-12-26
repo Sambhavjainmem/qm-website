@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-<!-- 
+      <!-- 
       <v-navigation-drawer v-model="$store.state.cart" right app width="350">
         <cart-vue />
       </v-navigation-drawer> -->
@@ -148,7 +148,7 @@
       >
         Login
       </div>
-      <div class="item">My Bookings</div>
+      <div class="item" @click="booklist">My Bookings</div>
       <div class="item">Resources</div>
       <div class="item">FAQs</div>
       <div class="item">Become a Quick Mechanic</div>
@@ -292,6 +292,10 @@ export default {
   },
 
   methods: {
+    booklist(){
+        console.log("clicked");
+        this.$router.push({ path: "/bookingList" });
+    },
     onClickOutside() {
       this.menu = false;
     },

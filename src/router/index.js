@@ -14,7 +14,7 @@ import locationVue from '../components/locationVue.vue';
 import cartVue from '../components/cartVue.vue';
 import productsVue from '../components/productsVue.vue';
 import newLogin from '../components/newLogin.vue';
-
+import BookingList from '../components/BookingList.vue';
 // import LoginView from '../components/LoginView.vue'
 import LoginPage from '../components/LoginPage.vue'
 import { auth } from '../firebase'
@@ -74,7 +74,14 @@ const routes = [
     }
   },
 
-
+  {
+    path: '/bookingList',
+    name: 'bookingList',
+    component: BookingList,
+    meta: {
+      requiresAuth: false
+    }
+  },
   
   
   {
