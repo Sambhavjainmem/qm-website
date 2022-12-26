@@ -109,7 +109,7 @@ const routes = [
     }
   },
   {
-    path: '/:id',
+    path: '/services',
     name: 'scheduleService',
     component: scheduleService,
     meta: {

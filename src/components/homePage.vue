@@ -87,12 +87,10 @@
           <div id="msh"></div>
           <div id="svechile2">
             <!-- HTML !-->
-            <a href="#vas">
-              <button class="cpb2" role="button">
+            
+              <button class="cpb2" role="button" @click="goservices">
                 OUR SERVICES
-              </button></a
-            >
-
+              </button>
             <!-- HTML !-->
             <!-- <button class="button-75 cpb2" role="button"><span class="text"> VALUE ADDED SERVICES</span></button> -->
 
@@ -179,6 +177,11 @@ export default {
     checkOut,
     // profileVue ,
   },
+  methods: {
+    goservices(){
+     this.$router.push({path : "/services"});
+    }
+  }
 };
 </script>,
  

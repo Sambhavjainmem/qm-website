@@ -292,6 +292,7 @@ export default {
         this.getuserdata(this.$store.state.uid);
       } else {
         this.user = false;
+        console.log("userid =", this.$store.state.uid);
       }
     });
 
