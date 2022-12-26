@@ -42,7 +42,12 @@
               active-class="red white--text"
               class="ma-0 pt-4 pb-4 pl-12 pr-12 xyza"
               @click="key = i.category"
-              style="height: 57px;width: 250px; border-radius: 18px; box-shadow: none"
+              style="
+                height: 57px;
+                width: 250px;
+                border-radius: 18px;
+                box-shadow: none;
+              "
               :color="
                 curpage == i.category
                   ? 'background: red '
@@ -61,11 +66,12 @@
       <!-- <div style="display: flex; justify-content: c"> -->
       <div class="layer1">
         <v-dialog
-        @keydown.esc="dialog = true"
+          @keydown.esc="dialog = true"
           v-model="this.$store.state.vdialog"
           fullscreen
           hide-overlay
           transition="dialog-bottom-transition"
+          persistent
         >
           <v-card>
             <v-btn icon dark @click="this.$store.state.vdialog = false">
@@ -177,10 +183,9 @@
                   text-transform: uppercase;
                 "
                 @click="addToCart(service)"
-                >
+              >
                 <!-- <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon> -->
-                Add
-                to Cart</v-btn
+                Add to Cart</v-btn
               >
               <v-btn
                 style="
@@ -193,6 +198,7 @@
                   box-shadow: none;
                 "
                 class="white--text"
+                @click="buyNow(service)"
                 >Buy Now</v-btn
               >
             </div>
@@ -446,7 +452,7 @@
         </div>
       </div>
     </div>
-  
+    <v-snackbar v-model="snackbar"> Added To Cart </v-snackbar>
   </div>
 </template>
     <script>
@@ -454,20 +460,22 @@ import vechileInfo from "../vechileInfo.vue";
 import { db } from "../../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-
 export default {
   name: "scheduleService",
   data() {
     return {
+      snackbar: false,
       dialogs: false,
       key: this.$route.params.id,
       data: [],
       e6: 1,
       boolotp: true,
       locationdata: ["", ""],
-      item: [{
-        category: "All services"
-      }],
+      item: [
+        {
+          category: "All services",
+        },
+      ],
       model: null,
       phoneNumber: "",
       ph: false,
@@ -487,20 +495,12 @@ export default {
   mounted() {
     // this.$store.state.vinfo  = JSON.parse( localStorage.getItem('vdata' ) );
 
-
     this.key = "All services";
     if (this.$store.state.vinfo.brand == "Brand") {
       this.$store.state.vdialog = true;
       this.dialogs = true;
       this.curpage = this.$route.params.id;
     }
-
-
-
-
-
-
-
 
     // To apply the default browser preference instead of explicitly setting it.
     // firebase.auth().useDeviceLanguage();
@@ -509,13 +509,12 @@ export default {
     // Creating function for
     // input component
     key: function () {
-      if(this.key == "All services"){
-        this.serviceData = this.items; 
-      }
-      else{
-      this.serviceData = this.items.filter((item) => item.category == this.key);    
-
-      
+      if (this.key == "All services") {
+        this.serviceData = this.items;
+      } else {
+        this.serviceData = this.items.filter(
+          (item) => item.category == this.key
+        );
       }
       this.curpage = this.key;
     },
@@ -541,23 +540,19 @@ export default {
   },
 
   methods: {
-    vechileDialog(){
+    vechileDialog() {
       console.log(this.$store.state.vdialog);
-     this.$store.state.vdialog = true;
+      this.$store.state.vdialog = true;
       console.log(this.$store.state.vdialog);
     }
 ,
 async carsdata() {
       const brandname = this.$store.state.vinfo.model;
       console.log("function started");
-      const q = query(
-        collection(db, "cars"),
-        where("name", "==", brandname)
-      );
+      const q = query(collection(db, "cars"), where("name", "==", brandname));
 
       const querySnapshots = await getDocs(q);
       querySnapshots.forEach((doc) => {
-
         this.$store.state.prices = doc.data();
         console.log(this.$store.state.prices["Batteries"]);
       });
@@ -567,9 +562,10 @@ async carsdata() {
 
 
 
+
     addToCart(service) {
       this.$store.state.cartItems.push(service);
-      console.log("Cart Items: ", this.$store.state.cartItems);
+      this.snackbar = true;
     },
     stp1() {
       this.st1 = false;
@@ -593,16 +589,13 @@ async carsdata() {
         this.items.push(doc.data());
       });
 
-      
-
       // this.item = this.items;
-      this.items.forEach((doc)=>{
+      this.items.forEach((doc) => {
         this.item.push(doc);
         console.log(this.item);
-      })
-      this.$store.state.services = this.items;  
+      });
+      this.$store.state.services = this.items;
       this.data = this.items.filter((item) => item.category == this.key);
-
     },
   },
 };

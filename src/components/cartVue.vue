@@ -96,7 +96,7 @@
               border-radius: 12px;
               width: 100%;
               height: 50px;
-              background-color: red;
+              background-color: #D50000;
               color: white;
               font-weight: 700;
               text-align: center;
@@ -115,7 +115,7 @@
         <v-card>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title>Your Cart</v-list-item-title>
+              <v-list-item-title >Your Cart</v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>
               <v-btn icon @click="$store.state.cart = false">
@@ -142,6 +142,8 @@
             </v-row>
 
             <v-btn color="primary" @click="e6 = 2"> Continue </v-btn>
+            <v-btn text @click="isCheckoutClicked = false"> Cancel </v-btn>
+            <v-btn color="#D50000" class="white--text" @click="e6 = 2"> Continue </v-btn>
             <v-btn text> Cancel </v-btn>
           </v-stepper-content>
 
@@ -164,7 +166,7 @@
               </v-chip-group>
             </v-row>
 
-            <v-btn color="primary" @click="e6 = 3"> Continue </v-btn>
+            <v-btn color="#D50000"  class="white--text" @click="e6 = 3"> Continue </v-btn>
             <v-btn text @click="e6 = 1"> Cancel </v-btn>
           </v-stepper-content>
 
@@ -186,7 +188,7 @@
                 </v-chip>
               </v-chip-group>
             </v-row>
-            <v-btn color="primary" @click="schedulePickupService">
+            <v-btn color="#D50000" class="white--text" @click="schedulePickupService">
               Continue
             </v-btn>
             <v-btn text @click="e6 = 2"> Cancel </v-btn>
@@ -194,17 +196,50 @@
         </v-stepper>
       </div>
     </div>
+    <template>
+  <div class="text-center">
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      
+
+      <v-card>
+        <v-card-title class="text-h5 grey lighten-2">
+          Privacy Policy
+        </v-card-title>
+
+        <v-card-text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            I accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+</template>
   </div>
 </template>
 <script>
 import axios from "axios";
 import { auth, db } from "../firebase";
-import { addDoc, collection, doc, getDoc } from "@firebase/firestore";
+import { doc, setDoc } from "@firebase/firestore";
 export default {
   name: "cartVue",
   data() {
     return {
-      customer:{},
+      dialog:false,
       isCheckoutClicked: false,
       orderSuccess: false,
       e6: 1,
@@ -236,24 +271,20 @@ export default {
     },
   },
   methods: {
-    async fetchCustomerData() {
-      const docRef = doc(db, "users", auth.currentUser.uid);
-      const docSnap = await getDoc(docRef);
-      this.customer=docSnap.data();
-      console.log(this.customer.userInfo);
-    },
     async schedulePickupService() {
-      const colRef = collection(db, "pickups");
-      addDoc(colRef, {
+      let id = Math.random().toString(36).slice(2);
+      const docRef = doc(db, "pickups", id);
+      console.log(this.$store.state.customer.userInfo.dob);
+      setDoc(docRef, {
         status: "pending",
-        id: Math.random().toString(36).slice(2),
+        id: id,
         customerInfo: {
-          dob: this.customer.userInfo.dob,
-          fcmToken: this.customer.fcmToken.tokedId,
-          name: this.customer.userInfo.fullName,
-          gender:this.customer.userInfo.gender,
-          phoneNo: this.customer.userInfo.phoneNumber,
-          photoURL: this.customer.userInfo.photoURL,
+          dob: this.$store.state.customer.userInfo.dob,
+          fcmToken: this.$store.state.customer.fcmToken.tokenId,
+          name: this.$store.state.customer.userInfo.fullName,
+          gender: this.$store.state.customer.userInfo.gender,
+          phoneNo: this.$store.state.customer.userInfo.phoneNumber,
+          photoURL: this.$store.state.customer.userInfo.photoURL,
           id: auth.currentUser.uid,
         },
         startTime: {
@@ -288,7 +319,8 @@ export default {
           isCouponUsed: "NA",
         },
         vehicleInfo: {
-          vehicleName: "NA",
+          vehicleName: this.$store.state.vinfo.model,
+          vehicleBrand: this.$store.state.vinfo.brand,
         },
       }).then(() => {
         console.log("Success");
@@ -297,7 +329,7 @@ export default {
         this.isCheckoutClicked = false;
 
         this.orderSuccess = true;
-        alert("Pickup Scheduled Successfully");
+        this.dialog=true;
       });
     },
 
@@ -383,10 +415,15 @@ export default {
   created() {
     this.generateDateSlots();
     this.setAddress();
-    this.fetchCustomerData();
   },
 };
 </script>
+<style>
+.v-application .primary {
+  background-color: RED;
+  border-color: red;
+}
+</style>
     
 
 

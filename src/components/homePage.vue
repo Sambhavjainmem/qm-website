@@ -28,24 +28,24 @@
 
               <div id="chip">
             <v-chip class="ma-0" :input-value="active" filter
-            style="background: #eeeeee;"
+            style="background: #eeeeee; width:165px"
             >
               Free Pick Up and Drop
             </v-chip>
 
            
-            <v-chip class="ma-0" :input-value="active" filter
-            style="background:#eeeeee;"
+            <v-chip class="ma-0 pl-7" :input-value="active" filter
+            style="background:#eeeeee; width:165px"
             >
               1 Month Warranty
             </v-chip>
 
             <v-chip
-              class="ma-0"
+              class="ma-0 pl-10"
               :input-value="active"
               filter
               filter-icon="mdi-minus"
-              style="background: #eeeeee;"
+              style="background: #eeeeee; width:165px"
               
             >
               Take 5 Hours
@@ -233,7 +233,7 @@ export default {
   color: black;
   border: 1px solid black;
   border-radius: 8px;
-
+  
   width: 221px;
   height: 48px;
 }
@@ -259,10 +259,10 @@ export default {
 .cpb2 {
   width: 221px;
   height: 48px;
-  background-color: red;
-  color: rgb(94, 28, 28);
+  background-color: #D50000;
+  color: #D50000;
   align-items: center;
-
+  box-shadow: #fc894d 20px;
   color: white;
   padding-left: 10px;
   padding-right: 10px;
@@ -353,7 +353,7 @@ option {
   .cpb2 {
     width: fit-content;
     height: 38px;
-    background-color: red;
+    background-color: #D50000;
     color: rgb(94, 28, 28);
     align-items: center;
 
@@ -361,7 +361,7 @@ option {
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 3px;
-
+    box-shadow: ins;
     border-radius: 8px;
     justify-content: space-between;
     z-index: 3;
@@ -437,13 +437,13 @@ option {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 70%;
+  width: 80%;
 
   z-index: 3;
   margin-bottom: 0cm;
   /* border: 1px solid black; */
   position: absolute;
-  bottom: -65px;
+  bottom: -80px;
   left: 0;
 }
 
@@ -570,7 +570,7 @@ top: 38px; */
 .ford {
   width: 700px;
   float: right;
-  margin-right: -350px;
+  margin-right: -200px;
 
   margin-top: 110px;
   z-index: -2;
@@ -645,9 +645,9 @@ top: 38px; */
 
 .bgtext {
   position: absolute;
-  width: 100%;
+  width: 90vw;
   height: 200px;
-  font-size: 125px;
+  font-size: 155px;
   z-index: 0;
 
   font-family: Arial, Helvetica, sans-serif;

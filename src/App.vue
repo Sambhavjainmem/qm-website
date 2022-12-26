@@ -394,6 +394,7 @@ export default {
       signOut(auth).then(() => {
         console.log("logout sechusdokfj");
         this.router.replace("/");
+        this.$store.state.customer={};
       });
     },
     fff() {

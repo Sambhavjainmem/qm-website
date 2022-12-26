@@ -1,5 +1,5 @@
 <template>
-  <div class="topbottom" id="bottom">
+  <div class="topbottom" >
     <div id="footerbanner">
       <div id="seehow">SEE HOW IT WORKS</div>
       <div id="subbottom">
@@ -245,7 +245,7 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
 }
 #footerbanner {
   width: 100%;
-  height: 360px;
+  height: 425px;
   background: linear-gradient(180deg, #ffffff 0%, #efefef 100%);
 
   display: flex;
@@ -267,11 +267,11 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   flex-direction: column;
   background-color: #373434;
   margin-top: 40px;
-  height: 600px;
+  height: 700px;
 }
 .bottom {
   width: 100%;
-  height: 280px;
+  height: 265px;
   display: flex;
   flex-direction: row;
 }
@@ -283,13 +283,17 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   margin: 10px;
   margin-top: 30px;
   margin-right: 20px;
+  margin-left: 60px;
+  margin-bottom: 20px;
 }
 .footercolumn2 {
   display: flex;
   flex-direction: column;
   width: 25%;
-  margin: 10px;
+  
   margin-top: 30px;
+  margin-left: 50px;
+  margin-bottom: 20px;
 }
 .footercolumn3 {
   display: flex;
@@ -297,7 +301,8 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   width: 25%;
   margin: 10px;
   margin-top: 30px;
-  margin-left: 50px;
+  margin-left: 40px;
+  margin-bottom: 20px;
 }
 .footertext {
   display: inline-block;
