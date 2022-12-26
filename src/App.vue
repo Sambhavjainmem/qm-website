@@ -137,6 +137,7 @@
     >
       <div
         class="item"
+        style="font-family:Arial, Helvetica, sans-serif" 
         @click="
           () => {
             $store.state.logindialog = true;
@@ -148,16 +149,16 @@
       >
         Login
       </div>
-      <div class="item" @click="booklist">My Bookings</div>
-      <div class="item">Resources</div>
-      <div class="item">FAQs</div>
-      <div class="item">Become a Quick Mechanic</div>
-      <div class="item">
+      <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="booklist">My Bookings</div>
+      <div class="item" style="font-family:Arial, Helvetica, sans-serif">Resources</div>
+      <div class="item" style="font-family:Arial, Helvetica, sans-serif">FAQs</div>
+      <div class="item" style="font-family:Arial, Helvetica, sans-serif">Become a Quick Mechanic</div>
+      <div class="item" style="font-family:Arial, Helvetica, sans-serif">
         Call Us:
         <div style="color: red">1800 XXXX XXXX</div>
         <v-icon style="font-size: 15px" class="red--text">mdi-phone</v-icon>
       </div>
-      <div class="item" @click="logoutfn" v-if="user">Log Out</div>
+      <div class="item" @click="logoutfn" v-if="user"  style="font-family:Arial, Helvetica, sans-serif">Log Out</div>
     </div>
   </v-app>
 </template>

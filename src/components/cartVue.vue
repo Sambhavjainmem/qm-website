@@ -125,7 +125,7 @@
           </v-list-item>
         </v-card>
         <v-stepper v-model="e6" vertical>
-          <v-stepper-step :complete="e6 > 1" step="1">
+          <v-stepper-step class="stepperCss" :complete="e6 > 1" step="1">
             Select Pickup Location
           </v-stepper-step>
 
@@ -141,13 +141,12 @@
               ></v-text-field>
             </v-row>
 
-            <v-btn color="primary" @click="e6 = 2"> Continue </v-btn>
+            <v-btn  color="#D50000" class="white--text" @click="e6 = 2"> Continue </v-btn>
             <v-btn text @click="isCheckoutClicked = false"> Cancel </v-btn>
-            <v-btn color="#D50000" class="white--text" @click="e6 = 2"> Continue </v-btn>
-            <v-btn text> Cancel </v-btn>
+            
           </v-stepper-content>
 
-          <v-stepper-step :complete="e6 > 2" step="2">
+          <v-stepper-step class="stepperCss" :complete="e6 > 2" step="2">
             Select Pickup Date
           </v-stepper-step>
 
@@ -418,10 +417,10 @@ export default {
   },
 };
 </script>
-<style>
-.v-application .primary {
-  background-color: RED;
-  border-color: red;
+<style scoped>
+.v-stepper__step__step{
+  background-color: #D50;
+  color: red;
 }
 </style>
     

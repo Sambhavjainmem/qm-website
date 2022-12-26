@@ -3,12 +3,16 @@
         <v-card class="card" elevation="0">
           <v-card-title style="
           font-family: Arial, Helvetica, sans-serif;
-          margin-left: 36vw;
+          margin-left: 33vw;
           margin-right: 35vw;
           text-align: center;
           ">My Bookings</v-card-title>
-          <v-card class="ma-2">
+          <v-card class="ma-2" style="
+          border-radius:12px;
+          border: solid #d50000 2px
+          ">
                   <v-data-table
+                  class="ma-2 pa-2"
                   :headers="headers"
                   :items="tableData"
                   :search="search"
@@ -33,6 +37,7 @@
               align: 'start',
               filterable: false,
               value: 'vehicleInfo.vehicleName',
+              class: 'header',
             },
             { text: 'Pickup Date', value: 'pickupInfo.date' },
             { text: 'Pickup Time', value: 'pickupInfo.time' },
@@ -66,5 +71,12 @@
   <style scoped>
   .card{
     margin-top: 9vh;
+  }
+  tbody > tr > td {
+    border: solid black 3px;
+  }
+  thead tr th span{
+    font-size: large;
+    background-color: BLUE;
   }
   </style>
