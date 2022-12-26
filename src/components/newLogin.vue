@@ -44,14 +44,16 @@
                 maxlength="10"
                 required
                 v-model="phoneNumber"
-                
               />
-              <button  v-if="clicked" id="getotp" @click="submit"    style="color: #D50000">Get OTP</button>
-              <v-btn v-if="!clicked"
-  elevation="2"
-  icon
-  loading
-></v-btn>
+              <button
+                v-if="clicked"
+                id="getotp"
+                @click="submit"
+                style="color: #d50000"
+              >
+                Get OTP
+              </button>
+              <v-btn v-if="!clicked" elevation="2" icon loading></v-btn>
             </div>
             <div class="area style">
               <div style="width: 200px">
@@ -61,16 +63,13 @@
 
             <div
               class="area"
-             
-
-            
-              :style="!flag ? 'background: #eaeff3;color: rgba(70, 81, 102, 0.3);cursor: pointer;color: white':'background: #D50000; color: rgba(70, 81, 102, 0.3);cursor: pointer;color: white'"
-
-
-              
+              :style="
+                !flag
+                  ? 'background: #eaeff3;color: rgba(70, 81, 102, 0.3);cursor: pointer;color: white'
+                  : 'background: #D50000; color: rgba(70, 81, 102, 0.3);cursor: pointer;color: white'
+              "
               @click="
                 () => {
-                  
                   confirm();
                   console.log(otp);
                   store.state.loginpage = false;
@@ -87,7 +86,6 @@
                 color: red;
                 font-size: 10px;
                 margin-top: -5px;
-                
               "
               id="log-in"
             ></div>
@@ -102,8 +100,8 @@
 //   import { db } from "../../firebase";
 //   import { collection, getDocs } from "firebase/firestore";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import { auth } from "../firebase";
-
+import { auth, db } from "../firebase";
+import {  doc, getDoc } from "@firebase/firestore";
 export default {
   name: "newLogin",
   data() {
@@ -145,13 +143,18 @@ export default {
   },
 
   methods: {
+    async fetchCustomerData() {
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+      this.$store.state.customer=docSnap.data();
+      console.log(this.customer.userInfo);
+    },
     getBaseLog() {
       // this.size = Math.log(y) / Math.log(x);
       if (this.otp.length == 6 && this.phoneNumber.length == 10) {
         this.flag = true;
         console.log(this.flag);
-      }
-      else{
+      } else {
         this.flag = false;
       }
     },
@@ -161,34 +164,31 @@ export default {
       // this.$xyz = false;
       // console.log(this.$xyz);
 
-
-
-      if(this.flag){
+      if (this.flag) {
         console.log("filled");
-      this.confirmationResult
-        .confirm(this.otp)
-        .then((result) => {
-          const user = result.user;
-          console.log("this one", user.uid);
+        this.confirmationResult
+          .confirm(this.otp)
+          .then((result) => {
+            const user = result.user;
+            console.log("this one", user.uid);
+            this.fetchCustomerData();
+            // getuserdata(user.uid);
 
-          // getuserdata(user.uid);
-
-          // console.log(this.$xyz);
-          // this.boolotp = false;
-          // this.$xyz = false;
-          // this.dialog = false;
-          // this.$store.state.logindialog = false;
-          this.$store.state.logindialog = false;
-          this.flag = false;
-        })
-        .catch((error) => {
-          console.log(error);
-          this.msg = "Wrong OTP";
-          // User couldn't sign in (bad verification code?)
-          // ...
-        });
-      }
-      else {
+            // console.log(this.$xyz);
+            // this.boolotp = false;
+            // this.$xyz = false;
+            // this.dialog = false;
+            // this.$store.state.logindialog = false;
+            this.$store.state.logindialog = false;
+            this.flag = false;
+          })
+          .catch((error) => {
+            console.log(error);
+            this.msg = "Wrong OTP";
+            // User couldn't sign in (bad verification code?)
+            // ...
+          });
+      } else {
         console.log("not filled");
       }
     },
@@ -226,7 +226,7 @@ export default {
     
 <style scoped>
 .maindiv {
-  background: rgba(255, 255, 255, 0.60);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(24px);
   width: 100%;
   height: 100vh;
@@ -250,7 +250,6 @@ export default {
   width: 80%;
   /* border: 1 px solid blue; */
   height: 100%;
-
 }
 input ::after {
   font-family: "Inter";
@@ -259,8 +258,6 @@ input ::after {
   font-size: 48px;
   line-height: 29px;
   border: none;
-
- 
 
   /* identical to box height */
 }
