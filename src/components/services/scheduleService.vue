@@ -28,7 +28,7 @@
           {{ this.$store.state.vinfo.fuel }}
           <div
             style="color: red; cursor: pointer; margin-left: 6px"
-            @click="$store.state.vdialog = true"
+            @click="vechileDialog"
           >
             (Change Car)
           </div>
@@ -61,6 +61,7 @@
       <!-- <div style="display: flex; justify-content: c"> -->
       <div class="layer1">
         <v-dialog
+        @keydown.esc="dialog = true"
           v-model="this.$store.state.vdialog"
           fullscreen
           hide-overlay
@@ -539,7 +540,12 @@ export default {
   },
 
   methods: {
-
+    vechileDialog(){
+      console.log(this.$store.state.vdialog);
+     this.$store.state.vdialog = true;
+      console.log(this.$store.state.vdialog);
+    }
+,
     async carsdata() {
       const brandname = this.$store.state.vinfo.model;
       console.log("function started");
