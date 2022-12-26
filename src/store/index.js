@@ -32,9 +32,9 @@ export default new Vuex.Store({
     phno: "",
     location1: "Get Location",
     location2: "",
-
-    services: []
-
+    prices : {},
+    
+    services: [] 
 
 
 

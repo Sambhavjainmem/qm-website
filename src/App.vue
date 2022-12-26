@@ -11,8 +11,22 @@
         </a>
         <div class="locName" @click="$store.state.locdialog = true">
           <v-icon id="locicon">mdi-map-marker </v-icon>
-          <div style="font-size: 15px; opicity: 0.7">
-            {{ $store.state.location1 }} ,{{ $store.state.location2 }}
+          <div
+            style="
+              font-size: 15px;
+              opicity: 0.7;
+              display: flex;
+              flex-direction: row;
+            "
+          >
+            {{ $store.state.location1 }}
+            <div
+              style="mergin-left: 2px; margin-right: 2px"
+              v-if="$store.state.location2"
+            >
+              ,
+            </div>
+            {{ $store.state.location2 }}
           </div>
         </div>
       </div>
@@ -181,6 +195,18 @@ import newLogin from "./components/newLogin.vue";
 
 export default {
   name: "App",
+  restrictChars: function ($event) {
+    if (
+      $event.charCode === 0 ||
+      /\d/.test(String.fromCharCode($event.charCode))
+    ) {
+      console.log("clicked");
+      return true;
+    } else {
+      $event.preventDefault();
+      console.log("clicked");
+    }
+  },
   data() {
     return {
       msg: "",
@@ -259,6 +285,10 @@ export default {
     // this.$store.commit("getData", [{ name: "suraj" }, { name: "kumar" }]);
     // console.log(this.items);
     console.log("this is auth", auth);
+    if (auth.currentUser != null) {
+      console.log("Checkpoint Customer Data Fetched");
+      this.fetchCustomerData();
+    }
   },
 
   created() {
@@ -271,6 +301,7 @@ export default {
         this.getuserdata(this.$store.state.uid);
       } else {
         this.user = false;
+        console.log("userid =", this.$store.state.uid);
       }
     });
 
@@ -279,10 +310,16 @@ export default {
     var location1 = JSON.parse(localStorage.getItem("location1"));
     var location2 = JSON.parse(localStorage.getItem("location2"));
     if (location1 == null && location2 == null) {
-      console.log(location1);
+      console.log("location one and two is null");
     } else {
+      console.log("location one and two", location1, location2);
       this.$store.state.location1 = location1;
       this.$store.state.location2 = location2;
+      console.log(
+        "location one and two is set",
+        this.$store.state.location1,
+        this.$store.state.location2
+      );
     }
     if (vobj == null) {
       console.log("vobj", vobj);
@@ -293,9 +330,9 @@ export default {
   },
 
   methods: {
-    booklist(){
-        console.log("clicked");
-        this.$router.push({ path: "/bookingList" });
+    booklist() {
+      console.log("clicked");
+      this.$router.push({ path: "/bookingList" });
     },
     onClickOutside() {
       this.menu = false;
@@ -336,7 +373,7 @@ export default {
       signOut(auth).then(() => {
         console.log("logout sechusdokfj");
         this.router.replace("/");
-        this.$store.state.customer={};
+        this.$store.state.customer = {};
       });
     },
     fff() {

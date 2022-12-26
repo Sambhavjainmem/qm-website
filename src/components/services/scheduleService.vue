@@ -127,7 +127,7 @@
                           color: #d12121;
                           margin-right: 11px;
                         "
-                        >₹ {{ (service.price * 110) / 100 }}</del
+                        >₹{{ ($store.state.prices[service.category] * 110) / 100 }}</del
                       >
 
                       <div
@@ -142,7 +142,7 @@
                           width: fit-content;
                         "
                       >
-                        ₹ {{ service.price }}
+                        ₹ {{ $store.state.prices[service.category] }}
                       </div>
                     </div>
                   </div>
@@ -521,6 +521,7 @@ export default {
   },
   created() {
     this.firebaseData();
+    this.carsdata();
     // console.log(this.key)
     this.dialogs = true;
     //  console.log("********************")
@@ -543,8 +544,9 @@ export default {
       console.log(this.$store.state.vdialog);
       this.$store.state.vdialog = true;
       console.log(this.$store.state.vdialog);
-    },
-    async carsdata() {
+    }
+,
+async carsdata() {
       const brandname = this.$store.state.vinfo.model;
       console.log("function started");
       const q = query(collection(db, "cars"), where("name", "==", brandname));
@@ -557,12 +559,10 @@ export default {
       console.log("function ended");
     },
 
-    buyNow(service) {
-      this.snackbar = true;
-      this.$store.state.cartItems = [];
-      this.$store.state.cart = true;
-      this.$store.state.cartItems.push(service);
-    },
+
+
+
+
     addToCart(service) {
       this.$store.state.cartItems.push(service);
       this.snackbar = true;
