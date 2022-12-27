@@ -1,11 +1,11 @@
 <template id="tem">
   <div id="tem">
     <div class="home" id="refhome">
-      <v-dialog v-model="dialogs">
+      <v-dialog v-model="dialogs" fullscreen>
         <v-btn icon dark @click="dialogs = false">
           <v-icon class="white--text">mdi-close</v-icon>
         </v-btn>
-        <getQuick />
+        <getQuick style="height:100vh" dialogs:true/>
       </v-dialog>
       <div id="vsm">
         <div class="bgtext">
