@@ -79,16 +79,9 @@
               <div class="layer1-1-2-2-1">
                 <div id="cardrow">
                   <div class="cardcell left">
+                    <div style="" class="titletool">{{ service.title }}</div>
                     <div class="title">{{ service.title }}
-                    <!-- <div style="position: absolute; top: -40px; left: 0px; width: fit-content; height: 43px; background-color: white;
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    ">{{ service.title }}</div> -->
                     
                     
                     
@@ -670,6 +663,26 @@ export default {
   text-align: center;
   height: auto;
 }
+.titletool {
+  position: absolute;
+    top: -54px;
+    left: -10px;
+    width: -moz-fit-content;
+    width: 211px;
+    height: 47px;
+    background-color: #ffffffa8;
+    z-index: 10000;
+    padding: 5px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 559;
+    font-size: 19px;
+    line-height: 21px;
+    border-top-right-radius: 10px;
+   display: none;
+ 
+      
+}
 .buttonrow {
   width: 100%;
   height: 80px;
@@ -748,16 +761,12 @@ export default {
 
 
 
-/* 
-.layer1-1-2-2:hover .cardcellprice{
-  width: fit-content;
-  height: 100%;
 
-  position: relative;
-  margin-bottom: 20px;
-  border: blue;
+.layer1-1-2:hover .titletool{
+  display: flex;
 
-} */
+}
+
 /* .layer1-1-2-2:hover .cardcell {
   width: fit-content;
   height: 100%;
