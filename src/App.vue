@@ -163,7 +163,7 @@
       >
         Login
       </div>
-      <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="booklist">My Bookings</div>
+      <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="booklist" v-if="user">My Bookings</div>
       <div class="item" style="font-family:Arial, Helvetica, sans-serif">Resources</div>
       <div class="item" style="font-family:Arial, Helvetica, sans-serif">FAQs</div>
       <div class="item" style="font-family:Arial, Helvetica, sans-serif">Become a Quick Mechanic</div>

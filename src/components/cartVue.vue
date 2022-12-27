@@ -205,9 +205,9 @@
           <v-card>
             
             <v-card-text>
-              <v-row>
+              <v-row justify="center" align="center">
                 <v-col cols="2">
-                  <v-icon class="pa-12" color="green" x-large>mdi-check</v-icon>
+                  <v-icon class="pa-12" color="green" size="100px">mdi-check-circle-outline</v-icon>
                 </v-col>
                 <v-col cols="10">
               <div class="text-h5 pa-12">Pickup Scheduled Successfully!</div>

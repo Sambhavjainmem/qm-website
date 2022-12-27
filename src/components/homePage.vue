@@ -27,14 +27,14 @@
             <div id="mh1" style="colo"><div>GET YOUR CAR SERVICED AT AFFORDABLE PRICES</div>
 
               <div id="chip">
-            <v-chip class="ma-0" :input-value="active" filter
+            <v-chip class="ma-0"  filter
             style="background: #eeeeee; width:165px"
             >
               Free Pick Up and Drop
             </v-chip>
 
            
-            <v-chip class="ma-0 pl-7" :input-value="active" filter
+            <v-chip class="ma-0 pl-7" filter
             style="background:#eeeeee; width:165px"
             >
               1 Month Warranty
@@ -42,7 +42,7 @@
 
             <v-chip
               class="ma-0 pl-10"
-              :input-value="active"
+             
               filter
               filter-icon="mdi-minus"
               style="background: #eeeeee; width:165px"
@@ -141,10 +141,10 @@
 
       <getQuick />
 
-      <checkOut />
+      <!-- <checkOut /> -->
       <bottomVue />
     </div>
-    <div></div>
+ 
   </div>
 </template>
 <script>
@@ -153,7 +153,7 @@ import secondSection from "./secondSection.vue";
 import bottomVue from "./bottomVue";
 import getQuick from "./getQuick.vue";
 
-import checkOut from "./checkOut.vue";
+
 export default {
   name: "homePage",
   data() {
@@ -174,7 +174,7 @@ export default {
     bottomVue,
     getQuick,
 
-    checkOut,
+   
     // profileVue ,
   },
   methods: {

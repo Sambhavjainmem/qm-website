@@ -166,6 +166,7 @@
 
             <div class="buttonrow">
               <v-btn
+              :disabled=alreadyExist(service) 
                 class="red--text"
                 style="
                   width: 148.5px;
@@ -186,6 +187,7 @@
                   text-transform: uppercase;
                 "
                 @click="addToCart(service)"
+               
               >
                 <!-- <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon> -->
                 Add to Cart</v-btn
@@ -467,6 +469,7 @@ export default {
   name: "scheduleService",
   data() {
     return {
+      serviceData:[],
       snackbarMessage: "",
       snackbar: false,
       dialogs: false,
@@ -496,6 +499,7 @@ export default {
   components: {
     vechileInfo,
   },
+ 
   mounted() {
     // this.$store.state.vinfo  = JSON.parse( localStorage.getItem('vdata' ) );
 
@@ -544,6 +548,9 @@ export default {
   },
 
   methods: {
+    alreadyExist(service) {
+      return this.$store.state.cartItems.includes(service);
+    },
     buyNow(service) {
       this.$store.state.cartItems = [];
       this.$store.state.cartItems.push(service);
