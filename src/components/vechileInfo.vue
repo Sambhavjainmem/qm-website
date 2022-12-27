@@ -458,12 +458,8 @@
   
 
   
-  
-  // import VechileInfo from './vechileInfo.vue';
-  
-  
-  // import profileVue from './profileVue.vue';
-  import { collection, getDocs } from "firebase/firestore";
+
+  import { collection, getDocs, query, where } from "firebase/firestore";
   import {db} from '../firebase.js'
 
   
@@ -544,11 +540,12 @@
 
      ,
 
-     onChangecar(e){
+     onChangecar(){
   
-      this.$store.state.vinfo.model = e.target.value;
-      console.log( this.$store.state.vinfo.model);
-      
+    
+     
+      console.log(  "carmodel selected",this.$store.state.vinfo.model);
+      this.carsdata();
      }
 ,
 onChangefuel(e){
@@ -557,13 +554,29 @@ onChangefuel(e){
   console.log(this.$store.state.vinfo.fueltype);
   
  },
-    ggg(){
+ ggg(){
+      if(this.$store.state.vinfo.model == 'Model'){
+      alert("please select car")}
+      else{
       localStorage.setItem("vdata", JSON.stringify(this.$store.state.vinfo));
       this.$store.state.vdialog = false;
       console.log(this.$store.state.vdialog);
+     
       
+      }
       
-      
+    },
+    async carsdata() {
+      const brandname = this.$store.state.vinfo.model;
+      console.log("function started");
+      const q = query(collection(db, "cars"), where("name", "==", brandname));
+
+      const querySnapshots = await getDocs(q);
+      querySnapshots.forEach((doc) => {
+        this.$store.state.prices = doc.data();
+        console.log(this.$store.state.prices["Batteries"]);
+      });
+      console.log("function ended");
     },
 
     },
