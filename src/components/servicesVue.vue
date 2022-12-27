@@ -115,8 +115,6 @@ export default {
       this.vservice = items.filter(
         (item) => item.type == "Value Added Services"
       );
-      console.log("this service", this.sservice);
-      console.log("this service", this.vservice);
     },
 
     dent() {
@@ -130,9 +128,7 @@ export default {
     // },
   },
 
-  components: {
-    //componentsVue,
-  },
+  
 };
 </script>
 <style scoped>

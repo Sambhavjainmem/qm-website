@@ -127,7 +127,9 @@
                           color: #d12121;
                           margin-right: 11px;
                         "
-                        >₹{{ ($store.state.prices[service.category] * 110) / 100 }}</del
+                        >₹{{
+                          ($store.state.prices[service.category] * 110) / 100
+                        }}</del
                       >
 
                       <div
@@ -452,7 +454,7 @@
         </div>
       </div>
     </div>
-    <v-snackbar v-model="snackbar"> Added To Cart </v-snackbar>
+    <v-snackbar v-model="snackbar"> {{ snackbarMessage }} </v-snackbar>
   </div>
 </template>
     <script>
@@ -464,6 +466,7 @@ export default {
   name: "scheduleService",
   data() {
     return {
+      snackbarMessage: "",
       snackbar: false,
       dialogs: false,
       key: this.$route.params.id,
@@ -540,13 +543,19 @@ export default {
   },
 
   methods: {
+    buyNow(service) {
+      this.$store.state.cartItems = [];
+      this.$store.state.cartItems.push(service);
+      this.snackbarMessage = "Added To Cart";
+      this.snackbar = true;
+      this.$store.state.cart = true;
+    },
     vechileDialog() {
       console.log(this.$store.state.vdialog);
       this.$store.state.vdialog = true;
       console.log(this.$store.state.vdialog);
-    }
-,
-async carsdata() {
+    },
+    async carsdata() {
       const brandname = this.$store.state.vinfo.model;
       console.log("function started");
       const q = query(collection(db, "cars"), where("name", "==", brandname));
@@ -559,13 +568,18 @@ async carsdata() {
       console.log("function ended");
     },
 
-
-
-
-
     addToCart(service) {
-      this.$store.state.cartItems.push(service);
-      this.snackbar = true;
+      if (this.$store.state.cartItems.includes(service)) {
+        console.log("Already In Cart");
+        this.snackbarMessage = "Item Already Exist!";
+
+        this.snackbar = true;
+      } else {
+        this.$store.state.cartItems.push(service);
+        this.snackbarMessage = "Added To Cart";
+
+        this.snackbar = true;
+      }
     },
     stp1() {
       this.st1 = false;
