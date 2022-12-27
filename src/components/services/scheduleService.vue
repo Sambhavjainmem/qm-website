@@ -671,7 +671,7 @@ export default {
     width: 211px;
     height: 47px;
     background-color: #ffffffa8;
-    z-index: 10000;
+    z-index: 0;
     padding: 5px;
     font-family: sans-serif;
     font-style: normal;
