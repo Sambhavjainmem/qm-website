@@ -1,5 +1,12 @@
 <template>
   <div class="downloadmain">
+    <div class="dialogBoxCss">
+      <v-btn @click="dialogs = false" style="
+      background: transparent; box-shadow: none;
+      ">
+          <v-icon class="elevation-0 red--text">mdi-close</v-icon>
+        </v-btn>
+    </div>
     <div class="bgtext">GET QUICKMECHANIC APP</div>
     <div id="fff">
       <div class="downloadleft">
@@ -165,10 +172,12 @@ export default {
     return {
       radioGroup: true,
       radioGroup2: true,
+      dialogs: false,
     };
   },
 
   components: {},
+  
   watch: {
     // Creating function
     // for input component
@@ -485,6 +494,12 @@ input ::after {
 
   display: flex;
   flex-direction: column;
+}
+.dialogBoxCss{
+  width: 1cm;
+  position: absolute;
+  top: 5mm;
+  left: 3mm;
 }
 .downloadapp {
   width: 100%;
