@@ -19,15 +19,31 @@
     >
       <div v-if="!isCheckoutClicked">
         <v-card>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Your Cart</v-list-item-title>
-            </v-list-item-content>
-            <v-list-item-action>
+          <v-list-item class="ma-0 pa-0">
+            <div class="carttitleblock">
+              <v-btn icon >
+               </v-btn>
+              
+              <div class="carttitle">Add to cart</div>
+
+
+
               <v-btn icon @click="$store.state.cart = false">
                 <v-icon> mdi-close </v-icon></v-btn
               >
-            </v-list-item-action>
+              
+              
+              
+           
+            
+            
+            
+            </div>
+            <!-- <v-list-item-action>
+              <v-btn icon @click="$store.state.cart = false">
+                <v-icon> mdi-close </v-icon></v-btn
+              >
+            </v-list-item-action> -->
           </v-list-item>
         </v-card>
         <v-list flat v-if="this.$store.state.cartItems != 0">
@@ -427,6 +443,16 @@ export default {
    
    
     height: calc(100vh - 67px);
+}
+.carttitle{
+  font-size: 22px;
+    font-weight: 400;
+}
+
+
+.carttitleblock{
+display:flex;width: 100%; height: 100%; justify-content: space-between;align-items: center;
+
 }
 </style>
     
