@@ -6,13 +6,12 @@
     </div>
 
     <div class="VAservices">
-
       <div class="VASimg">
         <div
           class="sdimgdiv"
-          @click="dent()"
           v-for="item in this.sservice"
           v-bind:key="item.title"
+          @click="dent(item.name)"
         >
           <!-- <v-icon id="fav">mdi-heart-outline</v-icon> -->
           <img class="SDImage" :src="item.photoURL" />
@@ -42,16 +41,12 @@
         </div>
       </div>
 
-
-
-
-
       <div class="VASimg">
         <div
           class="sdimgdiv"
-          @click="dent()"
           v-for="item in this.vservice"
           v-bind:key="item.title"
+          @click="dent(item.name)"
         >
           <!-- <v-icon id="fav">mdi-heart-outline</v-icon> -->
           <img class="SDImage" :src="item.photoURL" />
@@ -117,8 +112,13 @@ export default {
       );
     },
 
-    dent() {
-      this.$router.push({path : "/services"});
+    dent(data) {
+      // this.$router.push({path : "/services"});
+      console.log(data);
+      this.$router.push({
+        name: "scheduleService",
+        params: { data },
+      });
     },
     // spa() {
     //   this.$router.push({ path: "/service/5" });
@@ -127,8 +127,6 @@ export default {
     //   this.$router.push({ path: "/service/6" });
     // },
   },
-
-  
 };
 </script>
 <style scoped>
@@ -205,7 +203,6 @@ export default {
   margin-right: 30px;
   justify-content: left;
   cursor: pointer;
- 
 }
 
 .sdimgdiv {

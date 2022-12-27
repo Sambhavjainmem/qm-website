@@ -24,7 +24,7 @@
               <v-btn icon >
                </v-btn>
               
-              <div class="carttitle">Add to cart</div>
+              <div class="carttitle">Your Cart</div>
 
 
 

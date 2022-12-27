@@ -46,7 +46,7 @@
                 >
                   <v-radio
                     style="font-size: 30px"
-                    label="SMS"
+              
                     value="sms"
                     color="gray"
                     class="ma-0 pa-0"
@@ -69,13 +69,13 @@
                   "
                 >
                   <v-radio
-                    label="WhatsApp"
+             
                     value="whatsApp"
                     color="gray"
                     class="ma-0 pa-0"
                   ></v-radio>
 
-                  <div class="ll">Whatsapp</div>
+                  <div class="ll">WhatsApp</div>
                 </div>
               </div>
             </v-radio-group>

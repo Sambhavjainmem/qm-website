@@ -21,8 +21,6 @@
             / {{ key }}
           </v-btn>
         </div>
-
-       
       </div>
 
       <v-sheet class="xyz pa-0" style="width: 100%; height: 60px">
@@ -39,7 +37,7 @@
                 box-shadow: none;
               "
               :color="
-                curpage == i.category
+                serviceCategory == i.category
                   ? 'background: red '
                   : 'background: transparent'
               "
@@ -71,7 +69,7 @@
           </v-card>
         </v-dialog>
         <div id="carddiv">
-          <div class="layer1-1-2" v-for="(service, i) in serviceData" :key="i">
+          <div class="layer1-1-2" v-for="(service, i) in data" :key="i">
             <div class="layer1-1-2-1">
               <img class="serviceimg" :src="service.thumbnail" alt="sevice" />
             </div>
@@ -80,15 +78,7 @@
                 <div id="cardrow">
                   <div class="cardcell left">
                     <div style="" class="titletool">{{ service.title }}</div>
-                    <div class="title">{{ service.title }}
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    </div>
+                    <div class="title">{{ service.title }}</div>
 
                     <div class="rat">
                       <v-icon class="rating">mdi-star</v-icon
@@ -165,7 +155,7 @@
 
             <div class="buttonrow">
               <v-btn
-              :disabled=alreadyExist(service) 
+                :disabled="alreadyExist(service)"
                 class="red--text"
                 style="
                   width: 148.5px;
@@ -186,7 +176,6 @@
                   text-transform: uppercase;
                 "
                 @click="addToCart(service)"
-               
               >
                 <!-- <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon> -->
                 Add to Cart</v-btn
@@ -468,7 +457,7 @@ export default {
   name: "scheduleService",
   data() {
     return {
-      serviceData:[],
+      serviceData: [],
       snackbarMessage: "",
       snackbar: false,
       dialogs: false,
@@ -492,15 +481,18 @@ export default {
       otp: " Enter OTP",
       curpage: "",
       items: [],
+      serviceCategory: "",
     };
   },
 
   components: {
     vechileInfo,
   },
- 
+
   mounted() {
     // this.$store.state.vinfo  = JSON.parse( localStorage.getItem('vdata' ) );
+    this.serviceCategory = this.serviceCategory = this.$route.params.data;
+    console.log(this.serviceCategory);
 
     this.key = "All services";
     if (this.$store.state.vinfo.brand == "Brand") {
@@ -517,9 +509,9 @@ export default {
     // input component
     key: function () {
       if (this.key == "All services") {
-        this.serviceData = this.items;
+        this.data = this.items;
       } else {
-        this.serviceData = this.items.filter(
+        this.data = this.items.filter(
           (item) => item.category == this.key
         );
       }
@@ -527,6 +519,7 @@ export default {
     },
   },
   created() {
+    
     this.firebaseData();
     this.carsdata();
     // console.log(this.key)
@@ -616,7 +609,7 @@ export default {
         console.log(this.item);
       });
       this.$store.state.services = this.items;
-      this.data = this.items.filter((item) => item.category == this.key);
+      this.data = this.items.filter((item) => item.category == this.serviceCategory);
     },
   },
 };
@@ -665,23 +658,21 @@ export default {
 }
 .titletool {
   position: absolute;
-    top: -54px;
-    left: -10px;
-    width: -moz-fit-content;
-    width: 211px;
-    height: 47px;
-    background-color: #ffffffa8;
-    z-index: 0;
-    padding: 5px;
-    font-family: sans-serif;
-    font-style: normal;
-    font-weight: 559;
-    font-size: 19px;
-    line-height: 21px;
-    border-top-right-radius: 10px;
-   display: none;
- 
-      
+  top: -54px;
+  left: -10px;
+  width: -moz-fit-content;
+  width: 211px;
+  height: 47px;
+  background-color: #ffffffa8;
+  z-index: 0;
+  padding: 5px;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: 559;
+  font-size: 19px;
+  line-height: 21px;
+  border-top-right-radius: 10px;
+  display: none;
 }
 .buttonrow {
   width: 100%;
@@ -709,7 +700,6 @@ export default {
 
   align-items: center;
 }
-
 
 .rating {
   color: gold;
@@ -759,12 +749,8 @@ export default {
 
 } */
 
-
-
-
-.layer1-1-2:hover .titletool{
+.layer1-1-2:hover .titletool {
   display: flex;
-
 }
 
 /* .layer1-1-2-2:hover .cardcell {
@@ -775,9 +761,6 @@ export default {
   margin-bottom: 20px;
   border: blue;
 } */
-
-
-
 
 #star {
   color: goldenrod;
@@ -796,14 +779,13 @@ export default {
   font-size: 15px;
 }
 
-.cardcellprice{
+.cardcellprice {
   width: 50%;
   height: 100%;
 
   position: relative;
   margin-bottom: 20px;
   border: blue;
-
 }
 .cardcell {
   width: 50%;
@@ -1053,7 +1035,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-    align-items: center
+  align-items: center;
 
   /* border-radius: 0px 0px 8px 8px; */
 }
