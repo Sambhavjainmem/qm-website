@@ -570,8 +570,6 @@ top: 38px; */
 .ford {
   width: 630px;
   float: right;
-  margin-right: -200px;
-
   margin-top: 90px;
   z-index: -2;
 }
