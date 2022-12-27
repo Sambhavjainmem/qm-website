@@ -574,7 +574,7 @@ top: 38px; */
   margin-left: -400px;
 
   margin-top: 90px;
-  z-index: 3;
+  z-index: 0;
   
 }
 .footer {
