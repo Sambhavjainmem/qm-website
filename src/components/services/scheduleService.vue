@@ -79,7 +79,23 @@
               <div class="layer1-1-2-2-1">
                 <div id="cardrow">
                   <div class="cardcell left">
-                    <div class="title">{{ service.title }}</div>
+                    <div class="title">{{ service.title }}
+                    <!-- <div style="position: absolute; top: -40px; left: 0px; width: fit-content; height: 43px; background-color: white;
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    ">{{ service.title }}</div> -->
+                    
+                    
+                    
+                    
+                    
+                    
+                    </div>
 
                     <div class="rat">
                       <v-icon class="rating">mdi-star</v-icon
@@ -712,6 +728,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   width: auto;
+  position: relative;
 
   /* text-align: center; */
 }
@@ -751,46 +768,8 @@ export default {
 } */
 
 
-.layer1-1-2:hover .layer1-1-2-2-1 {
-
-width: 135%;
-height: 150px;
-
-padding: 18px;
-padding-bottom:0px ;
-height: fit-content;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-background-color: white;
-z-index:10000;
-border: 1px solid rgba(0, 0, 0, 0.2);
-border-radius: 8px;
-/* border-radius: 0px 0px 8px 8px; */
-
-}
 
 
-
-.layer1-1-2:hover .title {
-
-  white-space: pre-wrap;
-
-
-  text-overflow: ellipsis;
-  width: 200px;
-
-  /* text-align: center; */
-}
-
-.layer1-1-2:hover .cardcell {
-
-width: fit-content;
-
-/* border-radius: 0px 0px 8px 8px; */
-
-}
 #star {
   color: goldenrod;
   width: 20px;
