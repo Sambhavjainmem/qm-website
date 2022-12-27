@@ -2,10 +2,14 @@
   <div id="tem">
     <div class="home" id="refhome">
       <v-dialog v-model="dialogs" fullscreen>
-        <v-btn icon dark @click="dialogs = false">
-          <v-icon class="white--text">mdi-close</v-icon>
-        </v-btn>
-        <getQuick style="height:100vh" dialogs:true/>
+        <div style="background-color:white">
+          <v-btn icon dark @click="dialogs = false" style="width: 1cm;
+              top: ;">
+            <v-icon class="red--text ma-5 pa-5">mdi-close</v-icon>
+          </v-btn>
+          <getQuick style="height:95vh" />
+        </div>
+        
       </v-dialog>
       <div id="vsm">
         <div class="bgtext">
@@ -27,14 +31,14 @@
             <div id="mh1" style="colo"><div>GET YOUR CAR SERVICED AT AFFORDABLE PRICES</div>
 
               <div id="chip">
-            <v-chip class="ma-0"  filter
+            <v-chip class="ma-0" :input-value="active" filter
             style="background: #eeeeee; width:165px"
             >
               Free Pick Up and Drop
             </v-chip>
 
            
-            <v-chip class="ma-0 pl-7" filter
+            <v-chip class="ma-0 pl-7" :input-value="active" filter
             style="background:#eeeeee; width:165px"
             >
               1 Month Warranty
@@ -42,7 +46,7 @@
 
             <v-chip
               class="ma-0 pl-10"
-             
+              :input-value="active"
               filter
               filter-icon="mdi-minus"
               style="background: #eeeeee; width:165px"
@@ -141,10 +145,10 @@
 
       <getQuick />
 
-      <!-- <checkOut /> -->
+      <checkOut />
       <bottomVue />
     </div>
- 
+    <div></div>
   </div>
 </template>
 <script>
@@ -153,7 +157,7 @@ import secondSection from "./secondSection.vue";
 import bottomVue from "./bottomVue";
 import getQuick from "./getQuick.vue";
 
-
+import checkOut from "./checkOut.vue";
 export default {
   name: "homePage",
   data() {
@@ -174,7 +178,7 @@ export default {
     bottomVue,
     getQuick,
 
-   
+    checkOut,
     // profileVue ,
   },
   methods: {
