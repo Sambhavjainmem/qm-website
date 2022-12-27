@@ -568,11 +568,11 @@ top: 38px; */
 }
 
 .ford {
-  width: 700px;
+  width: 630px;
   float: right;
   margin-right: -200px;
 
-  margin-top: 110px;
+  margin-top: 90px;
   z-index: -2;
 }
 .footer {

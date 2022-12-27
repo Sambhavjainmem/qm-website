@@ -125,6 +125,7 @@
                           line-height: 15px;
                           text-decoration-line: line-through;
                           color: #d12121;
+                          margin-top: 5px;
                           margin-right: 11px;
                         "
                         >₹{{ ($store.state.prices[service.category] * 110) / 100 }}</del
@@ -138,7 +139,7 @@
                           font-size: 20px;
                           line-height: 24px;
                           color: rgba(0, 0, 0, 0.87);
-
+                          margin-top: 5px;
                           width: fit-content;
                         "
                       >
@@ -705,7 +706,7 @@ async carsdata() {
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
-
+  margin-top: 5px;
   color: rgba(0, 0, 0, 0.86);
   white-space: nowrap;
 
