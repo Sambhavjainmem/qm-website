@@ -10,7 +10,7 @@
       <div class="VASimg">
         <div
           class="sdimgdiv"
-          @click="dent(item.name)"
+          @click="dent()"
           v-for="item in this.sservice"
           v-bind:key="item.title"
         >
@@ -49,7 +49,7 @@
       <div class="VASimg">
         <div
           class="sdimgdiv"
-          @click="dent(item.name)"
+          @click="dent()"
           v-for="item in this.vservice"
           v-bind:key="item.title"
         >
@@ -94,7 +94,6 @@ export default {
     return {
       drawer: false,
       mini: true,
-      isLoggedIn: false,
       height: 0,
       width: 0,
       sservice: [],
@@ -120,9 +119,8 @@ export default {
       console.log("this service", this.vservice);
     },
 
-    dent(cat) {
-      this.$router.push({ path: "/" + cat });
-      console.log(cat);
+    dent() {
+      this.$router.push({path : "/services"});
     },
     // spa() {
     //   this.$router.push({ path: "/service/5" });
