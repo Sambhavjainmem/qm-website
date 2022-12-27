@@ -22,17 +22,7 @@
           </v-btn>
         </div>
 
-        <div id="link">
-          {{ this.$store.state.vinfo.brand }} /
-          {{ this.$store.state.vinfo.model }} /
-          {{ this.$store.state.vinfo.fuel }}
-          <div
-            style="color: red; cursor: pointer; margin-left: 6px"
-            @click="vechileDialog"
-          >
-            (Change Car)
-          </div>
-        </div>
+       
       </div>
 
       <v-sheet class="xyz pa-0" style="width: 100%; height: 60px">
@@ -101,7 +91,7 @@
                     </div>
                   </div>
 
-                  <div class="cardcell">
+                  <div class="cardcellprice">
                     <div
                       style="
                         display: flex;
@@ -668,19 +658,7 @@ async carsdata() {
 
   align-items: center;
 }
-#link {
-  display: flex;
-  flex-direction: row;
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
 
-  /* identical to box height */
-
-  color: rgba(0, 0, 0, 0.86);
-}
 
 .rating {
   color: gold;
@@ -712,22 +690,84 @@ async carsdata() {
   overflow: hidden;
   text-overflow: ellipsis;
   width: auto;
+
   /* text-align: center; */
 }
 
-.title:hover {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
+/* .layer1-1-2-2:hover {
 
-  color: rgba(0, 0, 0, 0.86);
-  white-space: normal;
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     border-radius: 0px 0px 8px 8px; 
 
-  overflow: visible;
-  text-overflow: inherit;
+} */
+
+
+
+/* 
+.layer1-1-2-2:hover .cardcellprice{
+  width: fit-content;
+  height: 100%;
+
+  position: relative;
+  margin-bottom: 20px;
+  border: blue;
+
+} */
+/* .layer1-1-2-2:hover .cardcell {
+  width: fit-content;
+  height: 100%;
+
+  position: relative;
+  margin-bottom: 20px;
+  border: blue;
+} */
+
+
+.layer1-1-2:hover .layer1-1-2-2-1 {
+
+width: 135%;
+height: 150px;
+
+padding: 18px;
+padding-bottom:0px ;
+height: fit-content;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: white;
+z-index:10000;
+border: 1px solid rgba(0, 0, 0, 0.2);
+border-radius: 8px;
+/* border-radius: 0px 0px 8px 8px; */
+
+}
+
+
+
+.layer1-1-2:hover .title {
+
+  white-space: pre-wrap;
+
+
+  text-overflow: ellipsis;
+  width: 200px;
+
   /* text-align: center; */
+}
+
+.layer1-1-2:hover .cardcell {
+
+width: fit-content;
+
+/* border-radius: 0px 0px 8px 8px; */
+
 }
 #star {
   color: goldenrod;
@@ -745,12 +785,23 @@ async carsdata() {
 .notrating {
   font-size: 15px;
 }
+
+.cardcellprice{
+  width: 50%;
+  height: 100%;
+
+  position: relative;
+  margin-bottom: 20px;
+  border: blue;
+
+}
 .cardcell {
   width: 50%;
   height: 100%;
 
   position: relative;
   margin-bottom: 20px;
+  border: blue;
 }
 .xyz {
   display: flex;
@@ -991,6 +1042,8 @@ async carsdata() {
   height: fit-content;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+    align-items: center
 
   /* border-radius: 0px 0px 8px 8px; */
 }
@@ -1005,7 +1058,7 @@ async carsdata() {
 .layer1-1-2-2-1 {
   width: calc(100% - 30px);
   height: fit-content;
-
+  transition: width 1s, height 10s;
   margin-left: 10px;
   margin-right: 20px;
 
