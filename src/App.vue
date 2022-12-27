@@ -35,6 +35,22 @@
         <cart-vue />
       </v-navigation-drawer> -->
       <div id="right">
+        <div id="link">
+          {{ this.$store.state.vinfo.brand }} /
+          {{ this.$store.state.vinfo.model }} /
+          {{ this.$store.state.vinfo.fuel }}
+          <div
+            style="color: red; cursor: pointer; margin-left: 6px"
+            @click="$store.state.vdialog = true"
+          >
+            (Change Car)
+          </div>
+        </div>
+
+
+
+
+
         <v-btn
           text
           :ripple="false"
@@ -65,6 +81,21 @@
         >
           <newLogin />
         </v-dialog>
+        <v-dialog
+          
+          v-model="this.$store.state.vdialog"
+          fullscreen
+          hide-overlay
+          transition="dialog-bottom-transition"
+          persistent
+        >
+          <v-card>
+            <v-btn icon dark @click="this.$store.state.vdialog = false">
+            </v-btn>
+
+            <vechileInfo />
+          </v-card>
+        </v-dialog>
 
         <v-dialog
           v-model="$store.state.dialog"
@@ -74,6 +105,12 @@
         >
           <SignupForm />
         </v-dialog>
+        <v-dialog v-model="dialogs">
+        <v-btn icon dark @click="dialogs = false">
+          <v-icon class="white--text">mdi-close</v-icon>
+        </v-btn>
+        <getQuick />
+      </v-dialog>
 
         <!-- <v-btn
           text
@@ -93,18 +130,7 @@
           v-if="user"
           >Log Out</v-btn
         > -->
-        <v-dialog
-          v-model="dialogs"
-          fullscreen
-          hide-overlay
-          transition="dialog-bottom-transition"
-        >
-          <v-card>
-            <v-btn icon dark @click="dialogs = false"> </v-btn>
-
-            <getQuick />
-          </v-card>
-        </v-dialog>
+       
 
         <!-- <v-btn icon v-if="user">
           <v-icon>mdi-account</v-icon>
@@ -163,10 +189,10 @@
       >
         Login
       </div>
-      <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="booklist">My Bookings</div>
+      <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="booklist" v-if="user">My Bookings</div>
       <div class="item" style="font-family:Arial, Helvetica, sans-serif">Resources</div>
       <div class="item" style="font-family:Arial, Helvetica, sans-serif">FAQs</div>
-      <div class="item" style="font-family:Arial, Helvetica, sans-serif">Become a Quick Mechanic</div>
+      <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="dialogs = true">Become a Quick Mechanic</div>
       <div class="item" style="font-family:Arial, Helvetica, sans-serif">
         Call Us:
         <div style="color: red">1800 XXXX XXXX</div>
@@ -192,6 +218,7 @@ import locationVue from "./components/locationVue.vue";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import CartVue from "./components/cartVue.vue";
 import newLogin from "./components/newLogin.vue";
+import vechileInfo from './components/vechileInfo.vue'
 
 export default {
   name: "App",
@@ -280,6 +307,7 @@ export default {
     locationVue,
     CartVue,
     newLogin,
+    vechileInfo,
   },
 
   created() {

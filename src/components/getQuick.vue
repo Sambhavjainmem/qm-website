@@ -46,7 +46,7 @@
                 >
                   <v-radio
                     style="font-size: 30px"
-                    :label="SMS"
+                    label="SMS"
                     value="sms"
                     color="gray"
                     class="ma-0 pa-0"
@@ -69,7 +69,7 @@
                   "
                 >
                   <v-radio
-                    :label="whatsApp"
+                    label="WhatsApp"
                     value="whatsApp"
                     color="gray"
                     class="ma-0 pa-0"

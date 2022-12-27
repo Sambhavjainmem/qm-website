@@ -53,7 +53,15 @@
               >
                 Get OTP
               </button>
-              <v-btn v-if="!clicked" elevation="2" icon loading></v-btn>
+              <button
+                v-if="!clicked"
+                id="getotp"
+                
+                style="color: green; "
+              >
+               <v-icon>mdi-check-all</v-icon>
+              </button>
+              <!-- <v-btn v-if="!clicked" elevation="2" icon loading></v-btn> -->
             </div>
             <div class="area style">
               <div style="width: 200px">
@@ -117,6 +125,7 @@ export default {
 
   components: {},
   mounted() {
+    this.clicked = true;
     auth.useDeviceLanguage();
     this.recaptchaVerifier = new RecaptchaVerifier(
       "log-in",
@@ -193,12 +202,14 @@ export default {
       }
     },
     closedialog() {
+      this.clicked = true;
       console.log("funtion colleed ddfia");
 
       this.$store.state.logindialog = false;
       console.log(this.$store.state.logindialog);
     },
     submit() {
+      this.clicked = false;
       this.recaptchaVerifier.render().then((widgetId) => {
         this.recaptchaWidgetId = widgetId;
         const phoneNumber = this.phoneNumber;
