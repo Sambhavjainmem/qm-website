@@ -422,6 +422,12 @@ export default {
   background-color: #D50;
   color: red;
 }
+
+.v-sheet.v-stepper {
+   
+   
+    height: calc(100vh - 67px);
+}
 </style>
     
 
