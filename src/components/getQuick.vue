@@ -1,11 +1,11 @@
 <template>
-  <div class="downloadmain">
+  <div class="downloadmain" >
     <div class="dialogBoxCss">
-      <v-btn @click="dialogs = false" style="
+      <!-- <v-btn @click="dialogs = false" style="
       background: transparent; box-shadow: none;
       ">
           <v-icon class="elevation-0 red--text">mdi-close</v-icon>
-        </v-btn>
+        </v-btn> -->
     </div>
     <div class="bgtext">GET QUICKMECHANIC APP</div>
     <div id="fff">
@@ -175,7 +175,6 @@ export default {
       dialogs: false,
     };
   },
-
   components: {},
   
   watch: {
