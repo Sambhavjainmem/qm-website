@@ -240,6 +240,7 @@ export default {
   
   width: 221px;
   height: 48px;
+  z-index: 5px;
 }
 .socl {
   color: black;
@@ -572,10 +573,13 @@ top: 38px; */
 }
 
 .ford {
-  width: 630px;
-  float: right;
+  width: fit-content;
+ 
+  margin-left: -400px;
+
   margin-top: 90px;
-  z-index: -2;
+  z-index: 0;
+  
 }
 .footer {
   position: absolute;
