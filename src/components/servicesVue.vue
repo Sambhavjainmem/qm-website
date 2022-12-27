@@ -14,7 +14,7 @@
           v-for="item in this.sservice"
           v-bind:key="item.title"
         >
-          <v-icon id="fav">mdi-heart-outline</v-icon>
+          <!-- <v-icon id="fav">mdi-heart-outline</v-icon> -->
           <img class="SDImage" :src="item.photoURL" />
 
           <div id="abc">
@@ -53,7 +53,7 @@
           v-for="item in this.vservice"
           v-bind:key="item.title"
         >
-          <v-icon id="fav">mdi-heart-outline</v-icon>
+          <!-- <v-icon id="fav">mdi-heart-outline</v-icon> -->
           <img class="SDImage" :src="item.photoURL" />
 
           <div id="abc">
@@ -115,8 +115,6 @@ export default {
       this.vservice = items.filter(
         (item) => item.type == "Value Added Services"
       );
-      console.log("this service", this.sservice);
-      console.log("this service", this.vservice);
     },
 
     dent() {
@@ -130,9 +128,7 @@ export default {
     // },
   },
 
-  components: {
-    //componentsVue,
-  },
+  
 };
 </script>
 <style scoped>

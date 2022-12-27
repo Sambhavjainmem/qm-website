@@ -189,7 +189,7 @@
       >
         Login
       </div>
-      <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="booklist">My Bookings</div>
+      <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="booklist" v-if="user">My Bookings</div>
       <div class="item" style="font-family:Arial, Helvetica, sans-serif">Resources</div>
       <div class="item" style="font-family:Arial, Helvetica, sans-serif">FAQs</div>
       <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="dialogs = true">Become a Quick Mechanic</div>
@@ -212,7 +212,7 @@ import "./appcss.css";
 import getQuick from "./components/getQuick.vue";
 import { auth, db } from "./firebase";
 import { signOut, onAuthStateChanged } from "@firebase/auth";
-import { collection, onSnapshot, getDocs, doc ,getDoc} from "firebase/firestore";
+import { collection, getDocs, doc, onSnapshot } from "firebase/firestore";
 import SignupForm from "./components/SignupForm.vue";
 import locationVue from "./components/locationVue.vue";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
@@ -309,16 +309,6 @@ export default {
     newLogin,
     vechileInfo,
   },
-  mounted() {
-    // this.$store.commit("getData", [{ name: "suraj" }, { name: "kumar" }]);
-    // console.log(this.items);
-    console.log("Checkpoint: This is auth", auth.currentUser);
-    if (auth.currentUser != null) {
-      console.log("Checkpoint Customer Data Fetched");
-      this.fetchCustomerData();
-    }
-
-  },
 
   created() {
     this.firebaseData();
@@ -359,12 +349,7 @@ export default {
   },
 
   methods: {
-    async fetchCustomerData() {
-      const docRef = doc(db, "users", auth.currentUser.uid);
-      const docSnap = await getDoc(docRef);
-      this.$store.state.customer=docSnap.data();
-      console.log(this.customer.userInfo);
-    },
+    
     booklist() {
       console.log("clicked");
       this.$router.push({ path: "/bookingList" });
@@ -376,7 +361,7 @@ export default {
       let items = [];
       const querySnapshot = await getDocs(collection(db, "services"));
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
+      
         items.push(doc.data());
       });
       this.sservice = items.filter((item) => item.type == "Scheduled Services");
@@ -386,22 +371,13 @@ export default {
     },
 
     getuserdata(uid) {
+      console.log('Checkpoint: getUserData Called')
       const docRef = doc(db, "users", uid);
       onSnapshot(docRef, (doc) => {
-        // this.doctor = doc.data();
-        // let doctor = doc.data();
-        // this.fcmToken = doctor.fcmToken.tokenId;
-        // this.consultationFee = doctor.consultationData.consultationFee;
-        // this.schedule = doctor.consultationData.schedule;
-        // this.isLoading = false;
-        console.log("shnapshot doc detaiols", doc.data().userInfo);
+        this.$store.state.customer=doc.data();
+        console.log("Checkpoint Customer Details Stored", this.$store.state.customer.userInfo);
       });
-      // let items = [];
-      // const docRef = doc(db, "users", uid);
-
-      // const docSnap = await getDoc(docRef);
-
-      // console.log("docsnpa shot",docSnap);
+     
     },
 
     logoutfn() {

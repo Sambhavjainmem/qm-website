@@ -200,7 +200,7 @@
   
         <v-col
           class="d-flex"
-          cols="2"
+          cols="4"
          
           flat
           style="border-right: 2px soid black"
@@ -218,17 +218,17 @@
             
             
         
-          >
-          <div class="seperater">
-          </div>
-        </v-select>
+            >
+            <div class="seperater">
+            </div>
+          </v-select>
         
    
         </v-col>
         
          <v-col
           class="d-flex"
-          cols="2"
+          cols="4"
          
         >
       
@@ -243,22 +243,6 @@
 
       
         </v-col>
-         <v-col
-          class="d-flex"
-          cols="2"
-         
-        >
-          <v-select
-            :items="fueltype"
-            label="FUEL"
-            solo
-            flat
-            v-model="$store.state.vinfo.fueltype"
-            @change="onChangefuel($event)"
-          ></v-select>
-        </v-col>
-        
-       
         <v-col
           class="d-flex ma-0 pa-0"
           cols="4"

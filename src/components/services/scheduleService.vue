@@ -115,9 +115,12 @@
                           line-height: 15px;
                           text-decoration-line: line-through;
                           color: #d12121;
+                          margin-top: 5px;
                           margin-right: 11px;
                         "
-                        >₹{{ ($store.state.prices[service.category] * 110) / 100 }}</del
+                        >₹{{
+                          ($store.state.prices[service.category] * 110) / 100
+                        }}</del
                       >
 
                       <div
@@ -128,7 +131,7 @@
                           font-size: 20px;
                           line-height: 24px;
                           color: rgba(0, 0, 0, 0.87);
-
+                          margin-top: 5px;
                           width: fit-content;
                         "
                       >
@@ -153,6 +156,7 @@
 
             <div class="buttonrow">
               <v-btn
+              :disabled=alreadyExist(service) 
                 class="red--text"
                 style="
                   width: 148.5px;
@@ -173,6 +177,7 @@
                   text-transform: uppercase;
                 "
                 @click="addToCart(service)"
+               
               >
                 <!-- <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon> -->
                 Add to Cart</v-btn
@@ -442,7 +447,7 @@
         </div>
       </div>
     </div>
-    <v-snackbar v-model="snackbar"> Added To Cart </v-snackbar>
+    <v-snackbar v-model="snackbar"> {{ snackbarMessage }} </v-snackbar>
   </div>
 </template>
     <script>
@@ -454,6 +459,8 @@ export default {
   name: "scheduleService",
   data() {
     return {
+      serviceData:[],
+      snackbarMessage: "",
       snackbar: false,
       dialogs: false,
       key: this.$route.params.id,
@@ -482,6 +489,7 @@ export default {
   components: {
     vechileInfo,
   },
+ 
   mounted() {
     // this.$store.state.vinfo  = JSON.parse( localStorage.getItem('vdata' ) );
 
@@ -530,13 +538,22 @@ export default {
   },
 
   methods: {
+    alreadyExist(service) {
+      return this.$store.state.cartItems.includes(service);
+    },
+    buyNow(service) {
+      this.$store.state.cartItems = [];
+      this.$store.state.cartItems.push(service);
+      this.snackbarMessage = "Added To Cart";
+      this.snackbar = true;
+      this.$store.state.cart = true;
+    },
     vechileDialog() {
       console.log(this.$store.state.vdialog);
       this.$store.state.vdialog = true;
       console.log(this.$store.state.vdialog);
-    }
-,
-async carsdata() {
+    },
+    async carsdata() {
       const brandname = this.$store.state.vinfo.model;
       console.log("function started");
       const q = query(collection(db, "cars"), where("name", "==", brandname));
@@ -549,13 +566,18 @@ async carsdata() {
       console.log("function ended");
     },
 
-
-
-
-
     addToCart(service) {
-      this.$store.state.cartItems.push(service);
-      this.snackbar = true;
+      if (this.$store.state.cartItems.includes(service)) {
+        console.log("Already In Cart");
+        this.snackbarMessage = "Item Already Exist!";
+
+        this.snackbar = true;
+      } else {
+        this.$store.state.cartItems.push(service);
+        this.snackbarMessage = "Added To Cart";
+
+        this.snackbar = true;
+      }
     },
     stp1() {
       this.st1 = false;
@@ -683,7 +705,7 @@ async carsdata() {
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
-
+  margin-top: 5px;
   color: rgba(0, 0, 0, 0.86);
   white-space: nowrap;
 

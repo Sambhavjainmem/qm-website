@@ -197,35 +197,35 @@
     </div>
     <template>
   <div class="text-center">
-    <v-dialog
-      v-model="dialog"
-      width="500"
-    >
+    <v-dialog v-model="dialog"
+        transition="dialog-bottom-transition"
+        max-width="600"
+      >
+        <template >
+          <v-card>
+            
+            <v-card-text>
+              <v-row justify="center" align="center">
+                <v-col cols="2">
+                  <v-icon class="pa-12" color="green" size="100px">mdi-check-circle-outline</v-icon>
+                </v-col>
+                <v-col cols="10">
+              <div class="text-h5 pa-12">Pickup Scheduled Successfully!</div>
+
+                </v-col>
+
+              </v-row>
+            </v-card-text>
+            <v-card-actions class="justify-end">
+              <v-btn
+                text
+                @click="dialog = false"
+              >Close</v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </v-dialog>
       
-
-      <v-card>
-        <v-card-title class="text-h5 grey lighten-2">
-          Privacy Policy
-        </v-card-title>
-
-        <v-card-text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            text
-            @click="dialog = false"
-          >
-            I accept
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </div>
 </template>
   </div>
@@ -407,7 +407,7 @@ export default {
           value: dateString,
         });
       }
-      console.log(listOfDates);
+    
       this.listDateSlots = listOfDates;
     },
   },
