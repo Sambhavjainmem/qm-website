@@ -17,7 +17,7 @@
         background-color: white;
       "
     >
-      <div v-if="!isCheckoutClicked">
+      <div v-if=" !this.$store.state.isCheckoutClicked ">
         <v-card>
           <v-list-item class="ma-0 pa-0">
             <div class="carttitleblock">
@@ -121,7 +121,7 @@
               align-items: center;
               cursor: pointer;
             "
-            @click="isCheckoutClicked = true"
+            @click="enableCheckOutButton"
           >
             CHECK OUT
           </div>
@@ -134,7 +134,7 @@
               <v-list-item-title >Your Cart</v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>
-              <v-btn icon @click="$store.state.cart = false">
+              <v-btn icon @click="closeCart">
                 <v-icon> mdi-close </v-icon></v-btn
               >
             </v-list-item-action>
@@ -159,7 +159,7 @@
             </v-row>
 
             <v-btn color="#D50000" class="white--text"  @click="e6 = 2"> Continue </v-btn>
-            <v-btn text @click="isCheckoutClicked = false"> Cancel </v-btn>
+            <v-btn text @click="this.$store.state.isCheckoutClicked = false"> Cancel </v-btn>
             
           </v-stepper-content>
 
@@ -257,7 +257,6 @@ export default {
   data() {
     return {
       dialog:false,
-      isCheckoutClicked: false,
       orderSuccess: false,
       e6: 1,
       dateChipIndex: 1,
@@ -343,7 +342,7 @@ export default {
         console.log("Success");
         this.$store.state.cartItems = [];
         this.$store.state.cart = false;
-        this.isCheckoutClicked = false;
+        this.$store.state.isCheckoutClicked = false;
 
         this.orderSuccess = true;
         this.dialog=true;
@@ -365,6 +364,13 @@ export default {
         }
       );
       alert(response);
+    },
+    closeCart(){
+      this.$store.state.cart = false;
+      this.$store.state.isCheckoutClicked = false;
+    },
+    enableCheckOutButton(){
+      this.$store.state.isCheckoutClicked = true;
     },
     setAddress() {
       var location = JSON.parse(localStorage.getItem("location"));

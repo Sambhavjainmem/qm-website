@@ -1,10 +1,30 @@
 <template>
   <v-container>
     <v-card class="card" elevation="0">
+      <div id="link">
+          <v-btn
+            text
+            :ripple="false"
+            to="/"
+            class="no-background-hover ma-0 pa-0"
+          >
+            Home
+          </v-btn>
+
+          <v-btn
+            text
+            :ripple="false"
+            class="no-background-hover ma-0 pa-0 text--secondary"
+            style="margin-left: -5px"
+          >
+            / MY BOOKINGS
+          </v-btn>
+        </div>
       <v-card-title
         style="
           font-family: Arial, Helvetica, sans-serif;
           text-align: center;
+          padding:2mm;
         "
         >My Bookings</v-card-title
       >
@@ -47,6 +67,18 @@ export default {
         { text: "Ends At", value: "endTime.date" },
       ],
       tableData: [],
+      items: [
+        {
+          text: 'HOME',
+          disabled: false,
+          href: '/',
+        },
+        {
+          text: 'My Bookings',
+          disabled: true,
+          href: 'breadcrumbs_link_1',
+        },
+      ],
     };
   },
   methods: {

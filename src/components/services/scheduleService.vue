@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <v-sheet class="xyz pa-0" style="width: 100%; height: 60px">
+      <v-sheet class="xyz pa-0" style="width: 100%; height: 48px">
         <v-slide-group multiple show-arrows>
           <v-slide-item v-for="(i, index) in item" v-bind:key="index">
             <v-btn
@@ -34,9 +34,9 @@
               "
               @click="changeKey(i.category)"
               style="
-                height: 57px;
+                height: 48px;
                 width: 250px;
-                border-radius: 18px;
+                border-radius: 24px;
                 box-shadow: none;
               "
               :color="
@@ -122,7 +122,7 @@
                           line-height: 15px;
                           text-decoration-line: line-through;
                           color: #d12121;
-                          margin-top: 5px;
+                          margin-top: 20px;
                           margin-right: 11px;
                         "
                         >₹{{
@@ -138,7 +138,7 @@
                           font-size: 20px;
                           line-height: 24px;
                           color: rgba(0, 0, 0, 0.87);
-                          margin-top: 5px;
+                          margin-top: 20px;
                           width: fit-content;
                         "
                       >
@@ -154,8 +154,8 @@
                   :key="i"
                   class="servicedesc"
                 >
-                  <v-icon class="green--text mx-2 my-1 " style="font-size: 14px"
-                    >mdi-check-decagram</v-icon
+                  <v-icon class="green--text mx-2 my-1 " style="font-size: 20px"
+                    >mdi-check-circle-outline</v-icon
                   >{{ item }}
                 </div>
               </div>
@@ -171,7 +171,7 @@
                   height: 48px;
                   background: #ffffff;
                   border: 1px solid #d50000;
-                  border-radius: 8px;
+                  border-radius: 24px;
                   box-shadow: none;
                   font-family: 'Inter';
                   font-style: normal;
@@ -198,7 +198,7 @@
                   height: 48px;
                   background: #ffffff;
 
-                  border-radius: 8px;
+                  border-radius: 24px;
                   box-shadow: none;
                   font-family: 'Inter';
                   font-style: normal;
@@ -221,7 +221,7 @@
                   width: 148.5px;
                   height: 48px;
                   background: #d50000;
-                  border-radius: 8px;
+                  border-radius: 24px;
                   margin-top: 10px;
                   margin-bottom: 10px;
                   box-shadow: none;
@@ -588,6 +588,7 @@ export default {
       this.snackbarMessage = "Added To Cart";
       this.snackbar = true;
       this.$store.state.cart = true;
+      this.$store.state.isCheckoutClicked = true;
     },
     vechileDialog() {
       console.log(this.$store.state.vdialog);
@@ -608,6 +609,7 @@ export default {
     },
 
     addToCart(service) {
+      this.$store.state.isCheckoutClicked = false;
       if (this.$store.state.cartItems.includes(service)) {
         console.log("Already In Cart");
         this.snackbarMessage = "Item Already Exist!";
@@ -616,7 +618,6 @@ export default {
       } else {
         this.$store.state.cartItems.push(service);
         this.snackbarMessage = "Added To Cart";
-
         this.snackbar = true;
       }
     },
@@ -651,7 +652,10 @@ export default {
       this.data = this.items.filter(
         (item) => item.category == this.serviceCategory
       );
-      if (this.serviceCategory == "All services") {
+      console.log("this is service category",this.serviceCategory);
+      if (this.serviceCategory == "All services" || typeof(this.serviceCategory) == 'undefined') {
+        console.log("Inside if condition");
+        this.serviceCategory = "All services";
         this.data = this.items;
       }
     },
@@ -837,6 +841,8 @@ export default {
 
   position: relative;
   margin-bottom: 20px;
+  margin-top: 15px;
+  margin-left: 5px;
   border: blue;
 }
 .xyz {
@@ -845,7 +851,7 @@ export default {
   align-content: center;
   align-items: center;
 
-  border-radius: 42px;
+  border-radius: 24px;
 
   opacity: 0.6;
   margin-top: px;
@@ -1149,10 +1155,9 @@ export default {
   border-radius: 8px 8px 0px 0px;
 }
 .servicedesc {
-  font-size: 15px;
   margin: 2px;
 
-  font-family: "Inter";
+  font-family:Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

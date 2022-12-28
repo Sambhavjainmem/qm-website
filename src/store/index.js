@@ -19,6 +19,7 @@ export default new Vuex.Store({
     customer: {},
     Vservices: [1, 3, 3],
     Sservices: [1, 2, 4],
+    isCheckoutClicked: false,
     vinfo: {
       brand: "Brand",
       model: "Model",
@@ -33,13 +34,8 @@ export default new Vuex.Store({
     location1: "Get Location",
     location2: "",
     prices : {},
-    
+    serviceCategory : 'All services', 
     services: [] 
-
-
-
-
-
   },
   getters: {
   },
