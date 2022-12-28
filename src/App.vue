@@ -2,7 +2,7 @@
   <v-app>
     <div id="nav" style="height:72px">
       <div id="left">
-        <a href="/"> <img class="logo" style="height:48px; width:48px" src="./assets/Logo-2 (1).png" /></a>
+        <a href="/"> <img class="logo" style="height:56px; width:48px" src="./assets/Logo-2 (1).png" /></a>
         <a href="/">
           <div id="qm">
             <div id="q">Quick</div>
@@ -38,25 +38,26 @@
         <cart-vue />
       </v-navigation-drawer> -->
       <div id="right">
-        <div id="link">
-          {{ this.$store.state.vinfo.brand }} /
-          {{ this.$store.state.vinfo.model }} /
-          {{ this.$store.state.vinfo.fuel }}
+        <div id="link" v-if="this.$store.state.vinfo.brand != 'Brand'">
+          {{ this.$store.state.vinfo.brand }} -
+          {{ this.$store.state.vinfo.model }} 
+          
           <div
-          v-if="this.$store.state.vinfo.brand != 'Brand'"
+          
             style="color: red; cursor: pointer; margin-left: 6px"
             @click="$store.state.vdialog = true"
           >
             (Change Car)
           </div>
-          <div v-if="this.$store.state.vinfo.brand == 'Brand'"
+        </div>
+        <div id="link" v-if="this.$store.state.vinfo.brand == 'Brand'">
+          <div
             style="color: red; cursor: pointer; margin-left: 6px"
             @click="$store.state.vdialog = true"
           >
-            (Select Car)
+          Select Car
           </div>
         </div>
-        
 
         <v-badge
           bottom
@@ -185,6 +186,7 @@
         backdrop-filter: blur(24px);
         border-radius: 0px 0px 16px 16px;
         display: flex;
+        padding-top:20px;
         flex-direction: column;
       "
     >
