@@ -30,13 +30,13 @@
           </div>
 
           <div id="bottomrow">
-            <div id="v" style="color: #d50000">VIEW</div>
+            <!-- <div id="v" style="color: #d50000">VIEW</div>
             <v-btn
               style="background-color: #d50000; border-radius: 8px"
               small
               class="white--text ma-0"
               >Book Now</v-btn
-            >
+            > -->
           </div>
         </div>
       </div>
@@ -65,13 +65,13 @@
           </div>
 
           <div id="bottomrow">
-            <div id="v" style="color: #d50000">VIEW</div>
+            <!-- <div id="v" style="color: #d50000">VIEW</div>
             <v-btn
               style="background-color: #d50000; border-radius: 8px"
               small
               class="white--text ma-0"
               >Book Now</v-btn
-            >
+            > -->
           </div>
         </div>
       </div>

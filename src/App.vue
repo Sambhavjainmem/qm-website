@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <div id="nav">
+    <div id="nav" style="height:72px">
       <div id="left">
-        <a href="/"> <img class="logo" src="./assets/Logo-2 (1).png" /></a>
+        <a href="/"> <img class="logo" style="height:48px; width:48px" src="./assets/Logo-2 (1).png" /></a>
         <a href="/">
           <div id="qm">
             <div id="q">Quick</div>
@@ -14,7 +14,7 @@
           <div
             style="
               font-size: 15px;
-              opicity: 0.7;
+              opacity: 0.7;
               display: flex;
               flex-direction: row;
             "
@@ -43,12 +43,20 @@
           {{ this.$store.state.vinfo.model }} /
           {{ this.$store.state.vinfo.fuel }}
           <div
+          v-if="this.$store.state.vinfo.brand != 'Brand'"
             style="color: red; cursor: pointer; margin-left: 6px"
             @click="$store.state.vdialog = true"
           >
             (Change Car)
           </div>
+          <div v-if="this.$store.state.vinfo.brand == 'Brand'"
+            style="color: red; cursor: pointer; margin-left: 6px"
+            @click="$store.state.vdialog = true"
+          >
+            (Select Car)
+          </div>
         </div>
+        
 
         <v-badge
           bottom

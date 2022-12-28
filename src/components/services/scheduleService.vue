@@ -214,7 +214,7 @@
                 @click="addToCart(service)"
               >
                 <!-- <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon> -->
-                Add to Cart</v-btn
+                Added</v-btn
               >
               <v-btn
                 style="
@@ -228,7 +228,7 @@
                 "
                 class="white--text"
                 @click="buyNow(service)"
-                >Buy Now</v-btn
+                >Book Now</v-btn
               >
             </div>
           </div>
