@@ -29,14 +29,14 @@
             <v-btn
               active-class="red white--text"
               class="ma-0 pt-4 pb-4 pl-12 pr-12 xyza"
-              @click="key = i.category"
+              @click=" changeKey(i.category) "
               style="
                 height: 57px;
                 width: 250px;
                 border-radius: 18px;
                 box-shadow: none;
               "
-              :color="
+              :color= "
                 serviceCategory == i.category
                   ? 'background: red '
                   : 'background: transparent'
@@ -516,6 +516,7 @@ export default {
         );
       }
       this.curpage = this.key;
+      
     },
   },
   created() {
@@ -540,6 +541,10 @@ export default {
   },
 
   methods: {
+    changeKey(category){
+      this.key = category;
+      this.serviceCategory=this.key;
+    },
     alreadyExist(service) {
       return this.$store.state.cartItems.includes(service);
     },
