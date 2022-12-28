@@ -141,7 +141,8 @@
           </v-list-item>
         </v-card>
         <v-stepper v-model="e6" vertical>
-          <v-stepper-step class="stepperCss" :complete="e6 > 1" step="1">
+          <v-stepper-step 
+           :complete="e6 > 1" step="1">
             Select Pickup Location
           </v-stepper-step>
 
@@ -162,7 +163,7 @@
             
           </v-stepper-content>
 
-          <v-stepper-step class="stepperCss" :complete="e6 > 2" step="2">
+          <v-stepper-step  :complete="e6 > 2" step="2">
             Select Pickup Date
           </v-stepper-step>
 
@@ -171,7 +172,7 @@
               <v-chip-group
                 class="my-4 pa-0"
                 mandatory
-                active-class="primary"
+                active-class="red white--text"
                 width="100%"
                 v-model="dateChipIndex"
               >
@@ -194,7 +195,8 @@
               <v-chip-group
                 class="my-4 pa-0"
                 mandatory
-                active-class="primary"
+                active-class="red white--text"
+
                 width="100%"
                 v-model="timeChipIndex"
               >

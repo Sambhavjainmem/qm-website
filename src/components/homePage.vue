@@ -183,7 +183,12 @@ export default {
   },
   methods: {
     goservices(){
-     this.$router.push({path : "/services"});
+      let data='All services';
+     //this.$router.push({path : "/services"});
+     this.$router.push({
+        name: "scheduleService",
+        params: { data },
+      });
     }
   }
 };

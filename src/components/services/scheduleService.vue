@@ -15,7 +15,7 @@
           <v-btn
             text
             :ripple="false"
-            class="no-background-hover ma-0 pa-0"
+            class="no-background-hover ma-0 pa-0 text--secondary"
             style="margin-left: -5px"
           >
             / {{ key }}
@@ -27,16 +27,19 @@
         <v-slide-group multiple show-arrows>
           <v-slide-item v-for="(i, index) in item" v-bind:key="index">
             <v-btn
-              active-class="red white--text"
-              class="ma-0 pt-4 pb-4 pl-12 pr-12 xyza"
-              @click=" changeKey(i.category) "
+              :class="
+                serviceCategory == i.category
+                  ? 'ma-0 pt-4 pb-4 pl-12 pr-12 xyza font-weight-black'
+                  : 'ma-0 pt-4 pb-4 pl-12 pr-12 xyza'
+              "
+              @click="changeKey(i.category)"
               style="
                 height: 57px;
                 width: 250px;
                 border-radius: 18px;
                 box-shadow: none;
               "
-              :color= "
+              :color="
                 serviceCategory == i.category
                   ? 'background: red '
                   : 'background: transparent'
@@ -77,9 +80,14 @@
               <div class="layer1-1-2-2-1">
                 <div id="cardrow">
                   <div class="cardcell left">
-                    <div style="" class="titletool">{{ service.title }}</div>
-                    <div class="title">{{ service.title }}</div>
-
+                   
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on, attrs }">
+                        
+                        <div v-bind="attrs" v-on="on" class="title">{{ service.title }}</div>
+                      </template>
+                      <span>{{ service.title }}</span>
+                    </v-tooltip>
                     <div class="rat">
                       <v-icon class="rating">mdi-star</v-icon
                       ><v-icon class="rating">mdi-star</v-icon
@@ -146,7 +154,7 @@
                   :key="i"
                   class="servicedesc"
                 >
-                  <v-icon class="green--text ma-1" style="font-size: 14px"
+                  <v-icon class="green--text mx-2 my-1 " style="font-size: 14px"
                     >mdi-check-decagram</v-icon
                   >{{ item }}
                 </div>
@@ -156,12 +164,40 @@
             <div class="buttonrow">
               <v-btn
                 :disabled="alreadyExist(service)"
+                v-if="alreadyExist(service) == false"
                 class="red--text"
                 style="
                   width: 148.5px;
                   height: 48px;
                   background: #ffffff;
                   border: 1px solid #d50000;
+                  border-radius: 8px;
+                  box-shadow: none;
+                  font-family: 'Inter';
+                  font-style: normal;
+                  font-weight: 500;
+                  font-size: 14px;
+                  line-height: 17px;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+                  /* identical to box height */
+
+                  text-transform: uppercase;
+                "
+                @click="addToCart(service)"
+              >
+                <!-- <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon> -->
+                Add to Cart</v-btn
+              >
+              <v-btn
+                :disabled="alreadyExist(service)"
+                v-else
+                class="red--text"
+                style="
+                  width: 148.5px;
+                  height: 48px;
+                  background: #ffffff;
+
                   border-radius: 8px;
                   box-shadow: none;
                   font-family: 'Inter';
@@ -491,7 +527,9 @@ export default {
 
   mounted() {
     // this.$store.state.vinfo  = JSON.parse( localStorage.getItem('vdata' ) );
+
     this.serviceCategory = this.serviceCategory = this.$route.params.data;
+
     console.log(this.serviceCategory);
 
     this.key = "All services";
@@ -511,16 +549,12 @@ export default {
       if (this.key == "All services") {
         this.data = this.items;
       } else {
-        this.data = this.items.filter(
-          (item) => item.category == this.key
-        );
+        this.data = this.items.filter((item) => item.category == this.key);
       }
       this.curpage = this.key;
-      
     },
   },
   created() {
-    
     this.firebaseData();
     this.carsdata();
     // console.log(this.key)
@@ -541,9 +575,9 @@ export default {
   },
 
   methods: {
-    changeKey(category){
+    changeKey(category) {
       this.key = category;
-      this.serviceCategory=this.key;
+      this.serviceCategory = this.key;
     },
     alreadyExist(service) {
       return this.$store.state.cartItems.includes(service);
@@ -614,7 +648,12 @@ export default {
         console.log(this.item);
       });
       this.$store.state.services = this.items;
-      this.data = this.items.filter((item) => item.category == this.serviceCategory);
+      this.data = this.items.filter(
+        (item) => item.category == this.serviceCategory
+      );
+      if (this.serviceCategory == "All services") {
+        this.data = this.items;
+      }
     },
   },
 };

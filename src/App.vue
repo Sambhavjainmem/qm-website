@@ -18,8 +18,11 @@
               display: flex;
               flex-direction: row;
             "
-          >
+          > 
+          <div style="font-weight: bold; font-size:20">
             {{ $store.state.location1 }}
+
+          </div>
             <div
               style="mergin-left: 2px; margin-right: 2px"
               v-if="$store.state.location2"
@@ -47,18 +50,22 @@
           </div>
         </div>
 
-
-
-
-
-        <v-btn
-          text
-          :ripple="false"
-          class="no-background-hover"
-          @click="$store.state.cart = true"
+        <v-badge
+          bottom
+          offset-x="30"
+          offset-y="35"
+          :content="cartLength"
+          color="#D50000"
         >
-          <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon>
-        </v-btn>
+          <v-btn
+            text
+            :ripple="false"
+            class="no-background-hover"
+            @click="$store.state.cart = true"
+          >
+            <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon>
+          </v-btn>
+        </v-badge>
 
         <v-btn
           text
@@ -82,7 +89,6 @@
           <newLogin />
         </v-dialog>
         <v-dialog
-          
           v-model="this.$store.state.vdialog"
           fullscreen
           hide-overlay
@@ -106,11 +112,11 @@
           <SignupForm />
         </v-dialog>
         <v-dialog v-model="dialogs">
-        <v-btn icon dark @click="dialogs = false">
-          <v-icon class="white--text">mdi-close</v-icon>
-        </v-btn>
-        <getQuick />
-      </v-dialog>
+          <v-btn icon dark @click="dialogs = false">
+            <v-icon class="white--text">mdi-close</v-icon>
+          </v-btn>
+          <getQuick />
+        </v-dialog>
 
         <!-- <v-btn
           text
@@ -130,7 +136,6 @@
           v-if="user"
           >Log Out</v-btn
         > -->
-       
 
         <!-- <v-btn icon v-if="user">
           <v-icon>mdi-account</v-icon>
@@ -177,7 +182,7 @@
     >
       <div
         class="item"
-        style="font-family:Arial, Helvetica, sans-serif" 
+        style="font-family: Arial, Helvetica, sans-serif"
         @click="
           () => {
             $store.state.logindialog = true;
@@ -189,16 +194,40 @@
       >
         Login
       </div>
-      <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="booklist" v-if="user">My Bookings</div>
-      <div class="item" style="font-family:Arial, Helvetica, sans-serif">Resources</div>
-      <div class="item" style="font-family:Arial, Helvetica, sans-serif">FAQs</div>
-      <div class="item" style="font-family:Arial, Helvetica, sans-serif" @click="dialogs = true">Become a Quick Mechanic</div>
-      <div class="item" style="font-family:Arial, Helvetica, sans-serif">
+      <div
+        class="item"
+        style="font-family: Arial, Helvetica, sans-serif"
+        @click="booklist"
+        v-if="user"
+      >
+        My Bookings
+      </div>
+      <div class="item" style="font-family: Arial, Helvetica, sans-serif">
+        Resources
+      </div>
+      <div class="item" style="font-family: Arial, Helvetica, sans-serif">
+        FAQs
+      </div>
+      <div
+        class="item"
+        style="font-family: Arial, Helvetica, sans-serif"
+        @click="dialogs = true"
+      >
+        Become a Quick Mechanic
+      </div>
+      <div class="item" style="font-family: Arial, Helvetica, sans-serif">
         Call Us:
         <div style="color: red">1800 XXXX XXXX</div>
         <v-icon style="font-size: 15px" class="red--text">mdi-phone</v-icon>
       </div>
-      <div class="item" @click="logoutfn" v-if="user"  style="font-family:Arial, Helvetica, sans-serif">Log Out</div>
+      <div
+        class="item"
+        @click="logoutfn"
+        v-if="user"
+        style="font-family: Arial, Helvetica, sans-serif"
+      >
+        Log Out
+      </div>
     </div>
   </v-app>
 </template>
@@ -218,7 +247,7 @@ import locationVue from "./components/locationVue.vue";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import CartVue from "./components/cartVue.vue";
 import newLogin from "./components/newLogin.vue";
-import vechileInfo from './components/vechileInfo.vue'
+import vechileInfo from "./components/vechileInfo.vue";
 
 export default {
   name: "App",
@@ -309,7 +338,15 @@ export default {
     newLogin,
     vechileInfo,
   },
-
+  computed: {
+    cartLength() {
+      if (this.$store.state.cartItems.length == 0) {
+        return "0";
+      } else {
+        return this.$store.state.cartItems.length;
+      }
+    },
+  },
   created() {
     this.firebaseData();
     onAuthStateChanged(auth, (user) => {
@@ -349,7 +386,6 @@ export default {
   },
 
   methods: {
-    
     booklist() {
       console.log("clicked");
       this.$router.push({ path: "/bookingList" });
@@ -361,7 +397,6 @@ export default {
       let items = [];
       const querySnapshot = await getDocs(collection(db, "services"));
       querySnapshot.forEach((doc) => {
-      
         items.push(doc.data());
       });
       this.sservice = items.filter((item) => item.type == "Scheduled Services");
@@ -371,13 +406,15 @@ export default {
     },
 
     getuserdata(uid) {
-      console.log('Checkpoint: getUserData Called')
+      console.log("Checkpoint: getUserData Called");
       const docRef = doc(db, "users", uid);
       onSnapshot(docRef, (doc) => {
-        this.$store.state.customer=doc.data();
-        console.log("Checkpoint Customer Details Stored", this.$store.state.customer.userInfo);
+        this.$store.state.customer = doc.data();
+        console.log(
+          "Checkpoint Customer Details Stored",
+          this.$store.state.customer.userInfo
+        );
       });
-     
     },
 
     logoutfn() {
