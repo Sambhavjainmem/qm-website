@@ -19,14 +19,14 @@
           <div id="abc">
             <div id="line"></div>
             <div class="servtext">{{ item.name }}</div>
-            <div class="rat">
+            <!-- <div class="rat">
               <v-icon class="rating">mdi-star</v-icon
               ><v-icon class="rating">mdi-star</v-icon
               ><v-icon class="rating">mdi-star</v-icon
               ><v-icon class="rating">mdi-star</v-icon
               ><v-icon class="notrating">mdi-star-outline</v-icon
               ><v-icon class="ratno">4.0</v-icon>
-            </div>
+            </div> -->
           </div>
 
           <div id="bottomrow">
@@ -54,14 +54,14 @@
           <div id="abc">
             <div id="line"></div>
             <div class="servtext">{{ item.name }}</div>
-            <div class="rat">
+            <!-- <div class="rat">
               <v-icon class="rating">mdi-star</v-icon
               ><v-icon class="rating">mdi-star</v-icon
               ><v-icon class="rating">mdi-star</v-icon
               ><v-icon class="rating">mdi-star</v-icon
               ><v-icon class="notrating">mdi-star-outline</v-icon
               ><v-icon class="ratno">4.0</v-icon>
-            </div>
+            </div> -->
           </div>
 
           <div id="bottomrow">
