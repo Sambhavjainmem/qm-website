@@ -11,110 +11,96 @@
       </v-dialog>
 
       <v-carousel hide-delimiters class="vsm" :show-arrows="false">
-    <v-carousel-item
-    style="height: 78"
-      src="../assets/banner1.png"
-    >
-    <div class="newmain">
-      <div id="store">
-            
-
-
-
-            
-           <a href="https://play.google.com/store/apps/details?id=com.quickmechanic.unifiedmobileapp&pli=1"
-              target="_blank"
-              ><img
+        <v-carousel-item style="height: 78" src="../assets/banner1.png">
+          <div class="newmain">
+            <div id="store">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.quickmechanic.unifiedmobileapp&pli=1"
+                target="_blank"
+                ><img
+                  width="40px"
+                  height="auto"
+                  style="
+                    display: flex;
+                    margin-bottom: 2px;
+                    transform: rotate(180deg);
+                  "
+                  src="../assets/Group 10765.png"
+              /></a>
+              <img
                 width="40px"
                 height="auto"
-                style="
-                  display: flex;
-                  margin-bottom: 2px;
-                  transform: rotate(180deg);
-                "
-                 src="../assets/Group 10765.png"
-            /></a>
-            <img
-              width="40px"
-              height="auto"
-              style="display: flex; transform: rotate(180deg)"
-              src="../assets/Group 10766.jpg"
-            />
-          </div>
+                style="display: flex; transform: rotate(180deg)"
+                src="../assets/Group 10766.png"
+              />
+            </div>
 
-        <div class="newmiddle">
+            <div class="newmiddle">
+              <div class="newheadder">
+                A MECHANIC YOU CAN TRUST
+                <div class="headertop">
+                  <div class="newheaddertop">
+                    One Stop for your Car Service Anywhere --- Anytime
+                  </div>
+                </div>
+              </div>
+              <div class="chipparent">
+                <div class="newchip">
+                  <v-chip
+                    class="ma-0 chipclass"
+                    :input-value="active"
+                    filter
+                    style="background: #eeeeee; width: 165px"
+                  >
+                    Experienced Mechanics
+                  </v-chip>
 
-          <div class = "newheadder"> A MECHANIC YOU CAN TRUST</div>
-          <div class="chipparent">
-          <div class="newchip">
+                  <v-chip
+                    class="ma-0 pl-7 chipclass"
+                    :input-value="active"
+                    filter
+                    style="background: #eeeeee; width: 165px"
+                  >
+                    Quality Service
+                  </v-chip>
 
-            <v-chip
-                  class="ma-0 chipclass"
-                  :input-value="active"
-                  filter
-                  style="background: #eeeeee; width: 165px"
-                >
-                Experienced Mechanics
-
-                </v-chip>
-
-                <v-chip
-                  class="ma-0 pl-7 chipclass"
-                  :input-value="active"
-                  filter
-                  style="background: #eeeeee; width: 165px"
-                >
-                Quality Service
-
-                </v-chip>
-
-                <v-chip
-                  class="ma-0 pl-10 chipclass"
-                  :input-value="active"
-                  filter
-                  filter-icon="mdi-minus"
-                  
-                >
-                Affordable Prices
-
-                </v-chip>
+                  <v-chip
+                    class="ma-0 pl-10 chipclass"
+                    :input-value="active"
+                    filter
+                    filter-icon="mdi-minus"
+                  >
+                    Affordable Prices
+                  </v-chip>
+                </div>
               </div>
 
+              <div id="svechile2">
+                <!-- HTML !-->
+
+                <button class="cpb2" role="button" @click="goservices">
+                  OUR SERVICES
+                </button>
+                <!-- HTML !-->
+                <!-- <button class="button-75 cpb2" role="button"><span class="text"> VALUE ADDED SERVICES</span></button> -->
+
+                <button class="cpb2sos" role="button" @click="dialogs = true">
+                  SOS
+                </button>
+                <button
+                  class="cpb2"
+                  role="button"
+                  style="
+                    background: transparent;
+                    cursor: inherit;
+                    border: white;
+                  "
+                ></button>
+              </div>
+            </div>
           </div>
-
-          <div id="svechile2">
-        
-
-            <!-- HTML !-->
-
-            <button class="cpb2" role="button" @click="goservices">
-              OUR SERVICES
-            </button>
-            <!-- HTML !-->
-            <!-- <button class="button-75 cpb2" role="button"><span class="text"> VALUE ADDED SERVICES</span></button> -->
-
-            <button class="cpb2sos" role="button" @click="dialogs = true">
-              SOS
-            </button>
-            <button
-              class="cpb2"
-              role="button"
-              style="background: transparent; cursor: inherit; border: white"
-            ></button>
-          </div>
-
-            
-
-
-
-
-        </div>
-
-      </div>
-
-  </v-carousel-item>
-    
-  </v-carousel>
+        </v-carousel-item>
+      </v-carousel>
 
       <div
         style="
@@ -124,9 +110,7 @@
           left: 0px;
           bottom: 55px;
         "
-      >
-        
-      </div>
+      ></div>
 
       <secondSection />
 
@@ -182,7 +166,6 @@ export default {
 </script>,
  
 <style scoped>
-
 /* @media (min-height: 720px) {
   .home {
     height: 680px;
@@ -216,6 +199,16 @@ export default {
   width: 15px;
   height: 15px;
   margin-bottom: 0px;
+}
+.headertop {
+  width: 100%;
+  height: fit-content;
+  position: absolute;
+  top: -30px;
+  left: 0px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* #tem {
@@ -348,8 +341,6 @@ option {
   opacity: 0.75;
 }
 
-
-
 #svechile {
   width: 100%;
   height: 70px;
@@ -363,8 +354,6 @@ option {
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
-
-
 }
 
 .fueltype {
@@ -515,7 +504,6 @@ top: 38px; */
   height: calc(vh - 56px);
   margin-top: 60px;
   background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
-
 }
 .subhome {
   width: 100%;

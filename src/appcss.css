@@ -56,12 +56,13 @@ border-radius: 17px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 70px;
 
 }
 
 
 .newheadder {
-  font-family: 'Open Sans';
+  font-family: Arial, Helvetica, sans-serif;
 font-style: normal;
 font-weight: 700;
 font-size: 3.5rem;
@@ -70,7 +71,26 @@ line-height: 87px;
 text-align: center;
 
 color: #FFFFFF;
-width:fit-content
+width:fit-content;
+position: relative;
+
+}
+.newheaddertop {
+width: fit-content;
+height: fit-content;
+
+
+
+
+  font-family: 'Open Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 27px;
+
+color: #FFFFFF;
+
+
 }
 
 
