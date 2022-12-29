@@ -10,8 +10,8 @@
         </div>
       </v-dialog>
 
-      <v-carousel hide-delimiters class="vsm" :show-arrows="false">
-        <v-carousel-item style="height: 78" src="../assets/banner1.png">
+      
+        <div id="divwithimg" src="../assets/banner1.png">
           <div class="newmain">
             <div id="store">
               <a
@@ -99,8 +99,8 @@
               </div>
             </div>
           </div>
-        </v-carousel-item>
-      </v-carousel>
+        </div>
+   
 
       <div
         style="
@@ -209,6 +209,15 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#divwithimg {
+  width: 100%;
+  height: 100%;
+  background:url(../assets/banner1.png) center no-repeat;
+  background-size:100% 100%;
+
+
 }
 
 /* #tem {
@@ -501,8 +510,9 @@ top: 38px; */
 }
 .home {
   width: 100%;
-  height: calc(vh - 56px);
+  height: calc(82vh - 56px);
   margin-top: 60px;
+  max-height: 900px;
   background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
 }
 .subhome {
