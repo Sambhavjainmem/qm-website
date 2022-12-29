@@ -39,11 +39,22 @@
       </v-navigation-drawer> -->
       <div id="right">
         <div id="link" >
-          <div
-            style="color: #D50000; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+          <a href="/trainingView"><div
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
           >
           Training
-          </div>
+          </div></a>
+          <a ><div
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+          >
+          About Us
+          </div></a>
+          <a ><div
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+          >
+          Contact Us
+          </div></a>
+          
         </div>
         <div id="link" v-if="this.$store.state.vinfo.brand != 'Brand'">
           {{ this.$store.state.vinfo.brand }} -

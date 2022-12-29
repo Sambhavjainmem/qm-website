@@ -206,7 +206,7 @@
               </v-chip-group>
             </v-row>
             <v-btn color="#D50000" class="white--text" @click="schedulePickupService">
-              Continue
+              CHECKOUT
             </v-btn>
             <v-btn text @click="e6 = 2"> Cancel </v-btn>
           </v-stepper-content>
@@ -288,12 +288,13 @@ export default {
   },
   methods: {
     async schedulePickupService() {
-      let id = Math.random().toString(36).slice(2);
-      const docRef = doc(db, "pickups", id);
+      
+      if(this.$store.state.uid!=''){
+      const docRef = doc(db, "pickups");
       console.log('Checkpoint ',this.$store.state.customer.userInfo.dob);
       setDoc(docRef, {
         status: "pending",
-        id: id,
+        id: docRef.id,
         customerInfo: {
           dob: this.$store.state.customer.userInfo.dob,
           fcmToken: this.$store.state.customer.fcmToken.tokenId,
@@ -317,9 +318,9 @@ export default {
         },
         pickupInfo: {
           mode: "NA",
-          address: "NA",
-          date: "NA",
-          time: "NA",
+          address: this.address,
+          date: this.listDateSlots[this.dateChipIndex].value,
+          time: this.listTimeSlots[this.timeChipIndex],
           location: {
             latitude: "NA",
             longitude: "NA",
@@ -347,6 +348,9 @@ export default {
         this.orderSuccess = true;
         this.dialog=true;
       });
+      }else{
+        this.$store.state.logindialog = true;
+      }
     },
 
     async createRazorPayOrder() {
@@ -431,7 +435,7 @@ export default {
   created() {
     this.generateDateSlots();
     this.setAddress();
-    this.createRazorPayOrder();
+    console.log('UID: ',this.$store.state.uid);
   },
 };
 </script>

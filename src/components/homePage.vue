@@ -136,7 +136,7 @@
       ></div>
 
       <secondSection />
-
+        <tileView/>
       <getQuick />
 
       <checkOut />
@@ -152,6 +152,7 @@ import bottomVue from "./bottomVue";
 import getQuick from "./getQuick.vue";
 
 import checkOut from "./checkOut.vue";
+import tileView from './tileView.vue';
 export default {
   name: "homePage",
   data() {
@@ -173,6 +174,7 @@ export default {
     getQuick,
 
     checkOut,
+    tileView,
     // profileVue ,
   },
   methods: {
