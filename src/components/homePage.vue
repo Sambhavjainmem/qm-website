@@ -17,16 +17,23 @@
     >
     <div class="newmain">
       <div id="store">
-            <img
-              width="40px"
-              height="auto"
-              style="
-                display: flex;
-               
-                transform: rotate(180deg);
-              "
-              src="../assets/Group 10765.png"
-            />
+            
+
+
+
+            
+           <a href="https://play.google.com/store/apps/details?id=com.quickmechanic.unifiedmobileapp&pli=1"
+              target="_blank"
+              ><img
+                width="40px"
+                height="auto"
+                style="
+                  display: flex;
+                  margin-bottom: 2px;
+                  transform: rotate(180deg);
+                "
+                 src="../assets/Group 10765.png"
+            /></a>
             <img
               width="40px"
               height="auto"
