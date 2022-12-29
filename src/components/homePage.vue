@@ -46,22 +46,40 @@
               </div>
               <div class="chipparent">
                 <div class="newchip">
-                  <v-chip
-                    class="ma-0 chipclass"
-                    :input-value="active"
-                    filter
-                    style="background: #eeeeee; width: 165px"
-                  >
-                    Experienced Mechanics
-                  </v-chip>
+                  
+
 
                   <v-chip
-                    class="ma-0 pl-7 chipclass"
+                    
                     :input-value="active"
                     filter
-                    style="background: #eeeeee; width: 165px"
+                    filter-icon="mdi-minus"
+                    style=" width: 191px;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 48px;
+                    padding: 8px 8px 8px 8px;
+                    background: rgba(255, 255, 255, 0.6);
+                    border-radius: 17px;"
                   >
-                    Quality Service
+                  Experienced Mechanics
+                  </v-chip>
+
+
+                  <v-chip
+                    class="ma-0 pl-10 chipclass"
+                    :input-value="active"
+                    filter
+                    filter-icon="mdi-minus"
+                    style=" width: 191px;
+                    height: 48px;
+                    padding: 8px 8px 8px 8px;
+                    background: rgba(255, 255, 255, 0.6);
+                    border-radius: 17px;"
+                  >
+                  Quality Service
                   </v-chip>
 
                   <v-chip
@@ -69,6 +87,11 @@
                     :input-value="active"
                     filter
                     filter-icon="mdi-minus"
+                    style=" width: 191px;
+                    height: 48px;
+                    padding: 8px 8px 8px 8px;
+                    background: rgba(255, 255, 255, 0.6);
+                    border-radius: 17px;"
                   >
                     Affordable Prices
                   </v-chip>
