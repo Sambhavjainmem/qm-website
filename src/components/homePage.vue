@@ -239,6 +239,7 @@ export default {
   height: 100%;
   background:url(../assets/banner1.png) center no-repeat;
   background-size:100% 100%;
+  position: relative;
 
 
 }
