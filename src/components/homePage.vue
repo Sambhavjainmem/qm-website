@@ -9,63 +9,20 @@
           <getQuick style="height: 95vh" />
         </div>
       </v-dialog>
-      <div id="vsm">
-        <div class="bgtext">
-          <div>QuickMechanic</div>
-          <div
-            style="
-              width: 100%;
-              height: 100%;
-              display: flex;
-              text-align: center;
-              justify-content: center;
-              align-items: center;
-              position: absolute;
-              top: 0px;
-              left: 0px;
-              /* border: 1px solid blue; */
-            "
-          >
-            <div id="mh1" style="colo">
-              <div>GET YOUR CAR SERVICED AT AFFORDABLE PRICES</div>
 
-              <div id="chip">
-                <v-chip
-                  class="ma-0"
-                  :input-value="active"
-                  filter
-                  style="background: #eeeeee; width: 165px"
-                >
-                  Free Pick Up and Drop
-                </v-chip>
+      <v-carousel hide-delimiters class="vsm" :show-arrows="false">
+    <v-carousel-item
+    style="height: 78"
+      src="../assets/banner1.png"
+    >
+    <div class="newmain">
+      <div id="store">
+            
 
-                <v-chip
-                  class="ma-0 pl-7"
-                  :input-value="active"
-                  filter
-                  style="background: #eeeeee; width: 165px"
-                >
-                  1 Month Warranty
-                </v-chip>
 
-                <v-chip
-                  class="ma-0 pl-10"
-                  :input-value="active"
-                  filter
-                  filter-icon="mdi-minus"
-                  style="background: #eeeeee; width: 165px"
-                >
-                  Take 5 Hours
-                </v-chip>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div id="left">
-          <div id="store">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.quickmechanic.unifiedmobileapp&pli=1"
+            
+           <a href="https://play.google.com/store/apps/details?id=com.quickmechanic.unifiedmobileapp&pli=1"
               target="_blank"
               ><img
                 width="40px"
@@ -75,7 +32,7 @@
                   margin-bottom: 2px;
                   transform: rotate(180deg);
                 "
-                src="../assets/Group 10765.jpg"
+                 src="../assets/Group 10765.png"
             /></a>
             <img
               width="40px"
@@ -84,12 +41,50 @@
               src="../assets/Group 10766.jpg"
             />
           </div>
-        </div>
-        <div id="middle">
-          <!-- <div id="mh">GET YOUR CAR SERVICED AT AFFORDABLE PRICES</div> -->
 
-          <div id="msh"></div>
+        <div class="newmiddle">
+
+          <div class = "newheadder"> A MECHANIC YOU CAN TRUST</div>
+          <div class="chipparent">
+          <div class="newchip">
+
+            <v-chip
+                  class="ma-0 chipclass"
+                  :input-value="active"
+                  filter
+                  style="background: #eeeeee; width: 165px"
+                >
+                Experienced Mechanics
+
+                </v-chip>
+
+                <v-chip
+                  class="ma-0 pl-7 chipclass"
+                  :input-value="active"
+                  filter
+                  style="background: #eeeeee; width: 165px"
+                >
+                Quality Service
+
+                </v-chip>
+
+                <v-chip
+                  class="ma-0 pl-10 chipclass"
+                  :input-value="active"
+                  filter
+                  filter-icon="mdi-minus"
+                  
+                >
+                Affordable Prices
+
+                </v-chip>
+              </div>
+
+          </div>
+
           <div id="svechile2">
+        
+
             <!-- HTML !-->
 
             <button class="cpb2" role="button" @click="goservices">
@@ -107,11 +102,19 @@
               style="background: transparent; cursor: inherit; border: white"
             ></button>
           </div>
+
+            
+
+
+
+
         </div>
-        <div id="right">
-          <img class="ford" src="../assets/ford_ecosport2018_blue.png" />
-        </div>
+
       </div>
+
+  </v-carousel-item>
+    
+  </v-carousel>
 
       <div
         style="
@@ -122,27 +125,11 @@
           bottom: 55px;
         "
       >
-        <div class="footer">
-          <span id="vas" class="subfooter">We are in Social</span>
-          <div class="subfooter">
-            <v-icon class="socl">mdi-facebook</v-icon
-            ><v-icon class="socl">mdi-twitter</v-icon
-            ><v-icon class="socl">mdi-youtube</v-icon
-            ><v-icon class="socl">mdi-instagram</v-icon
-            ><v-icon class="socl">mdi-linkedin</v-icon>
-          </div>
-          <div class="subfooter">
-            <img id="star" src="../assets/star.png" /> 4.5 &nbsp; &nbsp;<img
-              id="star"
-              src="../assets/g.png"
-            />
-            2,000+ Google views!
-          </div>
-        </div>
+        
       </div>
 
       <secondSection />
-      <tileView/>
+
       <getQuick />
 
       <checkOut />
@@ -156,9 +143,8 @@ import secondSection from "./secondSection.vue";
 
 import bottomVue from "./bottomVue";
 import getQuick from "./getQuick.vue";
-import tileView from "./tileView.vue"
-import checkOut from "./checkOut.vue";
 
+import checkOut from "./checkOut.vue";
 export default {
   name: "homePage",
   data() {
@@ -180,7 +166,6 @@ export default {
     getQuick,
 
     checkOut,
-    tileView,
     // profileVue ,
   },
   methods: {
@@ -197,6 +182,7 @@ export default {
 </script>,
  
 <style scoped>
+
 /* @media (min-height: 720px) {
   .home {
     height: 680px;
@@ -232,12 +218,13 @@ export default {
   margin-bottom: 0px;
 }
 
-#tem {
+/* #tem {
   display: flex;
   width: 100%;
   height: 100vh;
   justify-content: center;
-}
+  border: 1px solid green;
+} */
 
 .cpb2sos {
   background-color: white;
@@ -304,7 +291,7 @@ option {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: calc(50vh - 136px);
+  top: calc(50% - 136px);
   left: 0px;
   width: 40px;
   height: 272px;
@@ -361,28 +348,7 @@ option {
   opacity: 0.75;
 }
 
-@media screen and (max-width: 991px) {
-  .cpb2 {
-    width: fit-content;
-    height: 38px;
-    background-color: #d50000;
-    color: rgb(94, 28, 28);
-    align-items: center;
 
-    color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 3px;
-    box-shadow: ins;
-    border-radius: 8px;
-    justify-content: space-between;
-    z-index: 3;
-  }
-  .cpb2sos {
-    height: 38px;
-    z-index: 3;
-  }
-}
 
 #svechile {
   width: 100%;
@@ -392,13 +358,13 @@ option {
   margin-bottom: 150px;
 }
 #svechile2 {
-  width: 90%;
+  width: 100%;
   height: 70px;
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
 
-  margin-bottom: -70px;
+
 }
 
 .fueltype {
@@ -549,6 +515,7 @@ top: 38px; */
   height: calc(vh - 56px);
   margin-top: 60px;
   background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+
 }
 .subhome {
   width: 100%;
