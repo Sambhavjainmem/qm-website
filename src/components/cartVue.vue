@@ -355,13 +355,6 @@ export default {
         {
           payableAmount: 100,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
-          },
-        }
       );
       alert(response);
     },
@@ -438,6 +431,7 @@ export default {
   created() {
     this.generateDateSlots();
     this.setAddress();
+    this.createRazorPayOrder();
   },
 };
 </script>

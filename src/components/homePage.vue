@@ -4,8 +4,11 @@
       <v-dialog v-model="dialogs" fullscreen>
         <div style="background-color: white">
           <v-btn icon dark @click="dialogs = false" style="width: 1cm; top: ">
+        <div style="background-color: white">
+          <v-btn icon dark @click="dialogs = false" style="width: 1cm; top: ">
             <v-icon class="red--text ma-5 pa-5">mdi-close</v-icon>
           </v-btn>
+          <getQuick style="height: 95vh" />
           <getQuick style="height: 95vh" />
         </div>
       </v-dialog>

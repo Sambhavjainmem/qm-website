@@ -151,7 +151,11 @@
               justify-content: space-between;
             "
           >
-            <img class="storeimg" src="../assets/Group 10765-h.jpg" />
+          <a
+              href="https://play.google.com/store/apps/details?id=com.quickmechanic.unifiedmobileapp&pli=1"
+              target="_blank"
+              >
+            <img class="storeimg" src="../assets/Group 10765-h.jpg" /></a>
             <img
               class="storeimg"
               style="margin-left: 3px"
