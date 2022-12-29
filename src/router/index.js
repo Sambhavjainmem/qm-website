@@ -16,9 +16,10 @@ import productsVue from '../components/productsVue.vue';
 import newLogin from '../components/newLogin.vue';
 import BookingList from '../components/BookingList.vue';
 // import LoginView from '../components/LoginView.vue'
+import tileView from '../components/tileView';
 import LoginPage from '../components/LoginPage.vue'
 import { auth } from '../firebase'
-
+import trainingView from '../components/trainingView.vue';
 Vue.use(VueRouter)
 
 const routes = [
@@ -112,6 +113,22 @@ const routes = [
     path: '/services',
     name: 'scheduleService',
     component: scheduleService,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/tileView',
+    name: 'tileView',
+    component: tileView,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/trainingView',
+    name: 'trainingView',
+    component: trainingView,
     meta: {
       requiresAuth: false
     }

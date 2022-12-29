@@ -38,6 +38,13 @@
         <cart-vue />
       </v-navigation-drawer> -->
       <div id="right">
+        <div id="link" >
+          <div
+            style="color: #D50000; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+          >
+          Training
+          </div>
+        </div>
         <div id="link" v-if="this.$store.state.vinfo.brand != 'Brand'">
           {{ this.$store.state.vinfo.brand }} -
           {{ this.$store.state.vinfo.model }} 
