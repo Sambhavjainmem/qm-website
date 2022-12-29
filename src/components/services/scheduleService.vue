@@ -7,7 +7,7 @@
             text
             :ripple="false"
             to="/"
-            class="no-background-hover ma-0 pa-0"
+            class="no-background-hover ma-0 pa-0 "
           >
             Home
           </v-btn>
@@ -745,7 +745,7 @@ export default {
   flex-direction: row;
 
   justify-content: space-between;
-
+  margin-top: 20px;
   align-items: center;
 }
 

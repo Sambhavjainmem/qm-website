@@ -17,7 +17,7 @@
           <img class="SDImage" :src="item.photoURL" />
 
           <div id="abc">
-            <div id="line"></div>
+            <!-- <div id="line"></div> -->
             <div class="servtext">{{ item.name }}</div>
             <!-- <div class="rat">
               <v-icon class="rating">mdi-star</v-icon
@@ -52,7 +52,7 @@
           <img class="SDImage" :src="item.photoURL" />
 
           <div id="abc">
-            <div id="line"></div>
+            <!-- <div id="line"></div> -->
             <div class="servtext">{{ item.name }}</div>
             <!-- <div class="rat">
               <v-icon class="rating">mdi-star</v-icon
@@ -206,8 +206,8 @@ export default {
 }
 
 .sdimgdiv {
-  width: 195px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   font-size: 14px;
   font-weight: 500;
   position: relative;
@@ -232,6 +232,7 @@ export default {
 .SDImage {
   width: 128px;
   height: 128px;
+  margin-top: 50px;
 }
 
 .component {
@@ -250,6 +251,8 @@ img {
   justify-self: center;
 }
 .servtext {
+  font-size:16px;
+  text-align: center;
   margin-left: 10px;
   margin-top: 18px;
 }
