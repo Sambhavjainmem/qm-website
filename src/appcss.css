@@ -1,4 +1,82 @@
 
+
+
+
+.newmain{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000000;
+}
+
+
+.chipparent {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.newmiddle {
+  width: fit-content;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+
+}
+.newchip {
+  width: 80%;
+
+  height: 60px;
+
+  display: flex;
+  justify-content:space-between;
+  margin-left: 13%;
+}
+
+.chipclass {
+  width: 191px;
+height: 48px;
+
+
+background: rgba(255, 255, 255, 0.6);
+border-radius: 17px;
+}
+.newmain{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.newheadder {
+  font-family: 'Open Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 3.5rem;
+line-height: 87px;
+
+text-align: center;
+
+color: #FFFFFF;
+width:fit-content
+}
+
+
+
+
+
 .maindiv123 {
 
   width: 100%;

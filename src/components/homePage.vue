@@ -2,80 +2,30 @@
   <div id="tem">
     <div class="home" id="refhome">
       <v-dialog v-model="dialogs" fullscreen>
-        <div style="background-color:white">
-          <v-btn icon dark @click="dialogs = false" style="width: 1cm;
-              top: ;">
+        <div style="background-color: white">
+          <v-btn icon dark @click="dialogs = false" style="width: 1cm; top: ">
             <v-icon class="red--text ma-5 pa-5">mdi-close</v-icon>
           </v-btn>
-          <getQuick style="height:95vh" />
+          <getQuick style="height: 95vh" />
         </div>
-        
       </v-dialog>
-      <div id="vsm">
-        <div class="bgtext">
-          <div>QuickMechanic</div>
-          <div
-            style="
-              width: 100%;
-              height: 100%;
-              display: flex;
-              text-align: center;
-              justify-content: center;
-              align-items: center;
-              position: absolute;
-              top: 0px;
-              left: 0px;
-              /* border: 1px solid blue; */
-            "
-          >
-            <div id="mh1" style="colo"><div>GET YOUR CAR SERVICED AT AFFORDABLE PRICES</div>
 
-              <div id="chip">
-            <v-chip class="ma-0" :input-value="active" filter
-            style="background: #eeeeee; width:165px"
-            >
-              Free Pick Up and Drop
-            </v-chip>
-
-           
-            <v-chip class="ma-0 pl-7" :input-value="active" filter
-            style="background:#eeeeee; width:165px"
-            >
-              1 Month Warranty
-            </v-chip>
-
-            <v-chip
-              class="ma-0 pl-10"
-              :input-value="active"
-              filter
-              filter-icon="mdi-minus"
-              style="background: #eeeeee; width:165px"
-              
-            >
-              Take 5 Hours
-            </v-chip>
-          </div>
-
-
-            </div>
-            
-          </div>
-
-
-          
-        </div>
-
-        <div id="left">
-          <div id="store">
+      <v-carousel hide-delimiters class="vsm" :show-arrows="false">
+    <v-carousel-item
+    style="height: 78"
+      src="../assets/banner1.png"
+    >
+    <div class="newmain">
+      <div id="store">
             <img
               width="40px"
               height="auto"
               style="
                 display: flex;
-                margin-bottom: 2px;
+               
                 transform: rotate(180deg);
               "
-              src="../assets/Group 10765.jpg"
+              src="../assets/Group 10765.png"
             />
             <img
               width="40px"
@@ -84,17 +34,55 @@
               src="../assets/Group 10766.jpg"
             />
           </div>
-        </div>
-        <div id="middle">
-          <!-- <div id="mh">GET YOUR CAR SERVICED AT AFFORDABLE PRICES</div> -->
-          
-          <div id="msh"></div>
+
+        <div class="newmiddle">
+
+          <div class = "newheadder"> A MECHANIC YOU CAN TRUST</div>
+          <div class="chipparent">
+          <div class="newchip">
+
+            <v-chip
+                  class="ma-0 chipclass"
+                  :input-value="active"
+                  filter
+                  style="background: #eeeeee; width: 165px"
+                >
+                Experienced Mechanics
+
+                </v-chip>
+
+                <v-chip
+                  class="ma-0 pl-7 chipclass"
+                  :input-value="active"
+                  filter
+                  style="background: #eeeeee; width: 165px"
+                >
+                Quality Service
+
+                </v-chip>
+
+                <v-chip
+                  class="ma-0 pl-10 chipclass"
+                  :input-value="active"
+                  filter
+                  filter-icon="mdi-minus"
+                  
+                >
+                Affordable Prices
+
+                </v-chip>
+              </div>
+
+          </div>
+
           <div id="svechile2">
+        
+
             <!-- HTML !-->
-            
-              <button class="cpb2" role="button" @click="goservices">
-                OUR SERVICES
-              </button>
+
+            <button class="cpb2" role="button" @click="goservices">
+              OUR SERVICES
+            </button>
             <!-- HTML !-->
             <!-- <button class="button-75 cpb2" role="button"><span class="text"> VALUE ADDED SERVICES</span></button> -->
 
@@ -107,11 +95,19 @@
               style="background: transparent; cursor: inherit; border: white"
             ></button>
           </div>
+
+            
+
+
+
+
         </div>
-        <div id="right">
-          <img class="ford" src="../assets/ford_ecosport2018_blue.png" />
-        </div>
+
       </div>
+
+  </v-carousel-item>
+    
+  </v-carousel>
 
       <div
         style="
@@ -122,23 +118,7 @@
           bottom: 55px;
         "
       >
-        <div class="footer">
-          <span id="vas" class="subfooter">We are in Social</span>
-          <div class="subfooter">
-            <v-icon class="socl">mdi-facebook</v-icon
-            ><v-icon class="socl">mdi-twitter</v-icon
-            ><v-icon class="socl">mdi-youtube</v-icon
-            ><v-icon class="socl">mdi-instagram</v-icon
-            ><v-icon class="socl">mdi-linkedin</v-icon>
-          </div>
-          <div class="subfooter">
-            <img id="star" src="../assets/star.png" /> 4.5 &nbsp; &nbsp;<img
-              id="star"
-              src="../assets/g.png"
-            />
-            2,000+ Google views!
-          </div>
-        </div>
+        
       </div>
 
       <secondSection />
@@ -182,19 +162,20 @@ export default {
     // profileVue ,
   },
   methods: {
-    goservices(){
-      let data='All services';
-     //this.$router.push({path : "/services"});
-     this.$router.push({
+    goservices() {
+      let data = "All services";
+      //this.$router.push({path : "/services"});
+      this.$router.push({
         name: "scheduleService",
         params: { data },
       });
-    }
-  }
+    },
+  },
 };
 </script>,
  
 <style scoped>
+
 /* @media (min-height: 720px) {
   .home {
     height: 680px;
@@ -230,19 +211,20 @@ export default {
   margin-bottom: 0px;
 }
 
-#tem {
+/* #tem {
   display: flex;
   width: 100%;
   height: 100vh;
   justify-content: center;
-}
+  border: 1px solid green;
+} */
 
 .cpb2sos {
   background-color: white;
   color: black;
   border: 1px solid black;
   border-radius: 8px;
-  
+
   width: 221px;
   height: 48px;
   z-index: 5px;
@@ -269,8 +251,8 @@ export default {
 .cpb2 {
   width: 221px;
   height: 48px;
-  background-color: #D50000;
-  color: #D50000;
+  background-color: #d50000;
+  color: #d50000;
   align-items: center;
   box-shadow: #fc894d 20px;
   color: white;
@@ -302,7 +284,7 @@ option {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: calc(50vh - 136px);
+  top: calc(50% - 136px);
   left: 0px;
   width: 40px;
   height: 272px;
@@ -359,28 +341,7 @@ option {
   opacity: 0.75;
 }
 
-@media screen and (max-width: 991px) {
-  .cpb2 {
-    width: fit-content;
-    height: 38px;
-    background-color: #D50000;
-    color: rgb(94, 28, 28);
-    align-items: center;
 
-    color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 3px;
-    box-shadow: ins;
-    border-radius: 8px;
-    justify-content: space-between;
-    z-index: 3;
-  }
-  .cpb2sos {
-    height: 38px;
-    z-index: 3;
-  }
-}
 
 #svechile {
   width: 100%;
@@ -390,13 +351,13 @@ option {
   margin-bottom: 150px;
 }
 #svechile2 {
-  width: 90%;
+  width: 100%;
   height: 70px;
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
 
-  margin-bottom: -70px;
+
 }
 
 .fueltype {
@@ -410,7 +371,7 @@ option {
   height: 100%;
 
   position: relative;
-  bottom:25mm;
+  bottom: 25mm;
   margin-left: 0px;
 }
 #msh {
@@ -478,7 +439,7 @@ padding-right: 0px; */
 
   text-align: center;
 
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 34px;
@@ -488,7 +449,6 @@ padding-right: 0px; */
   position: relative;
   /* border: 1px solid blue;
   border-bottom: 1px solid red; */
- 
 }
 
 #mh {
@@ -518,7 +478,7 @@ top: 38px; */
 
   text-align: center;
 
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 34px;
@@ -548,7 +508,7 @@ top: 38px; */
   height: calc(vh - 56px);
   margin-top: 60px;
   background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
-  
+
 }
 .subhome {
   width: 100%;
@@ -579,12 +539,11 @@ top: 38px; */
 
 .ford {
   width: fit-content;
- 
+
   margin-left: -400px;
 
   margin-top: 90px;
   z-index: 0;
-  
 }
 .footer {
   position: absolute;
