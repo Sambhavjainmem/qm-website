@@ -2,14 +2,12 @@
   <div id="tem">
     <div class="home" id="refhome">
       <v-dialog v-model="dialogs" fullscreen>
-        <div style="background-color:white">
-          <v-btn icon dark @click="dialogs = false" style="width: 1cm;
-              top: ;">
+        <div style="background-color: white">
+          <v-btn icon dark @click="dialogs = false" style="width: 1cm; top: ">
             <v-icon class="red--text ma-5 pa-5">mdi-close</v-icon>
           </v-btn>
-          <getQuick style="height:95vh" />
+          <getQuick style="height: 95vh" />
         </div>
-        
       </v-dialog>
       <div id="vsm">
         <div class="bgtext">
@@ -28,55 +26,57 @@
               /* border: 1px solid blue; */
             "
           >
-            <div id="mh1" style="colo"><div>GET YOUR CAR SERVICED AT AFFORDABLE PRICES</div>
+            <div id="mh1" style="colo">
+              <div>GET YOUR CAR SERVICED AT AFFORDABLE PRICES</div>
 
               <div id="chip">
-            <v-chip class="ma-0" :input-value="active" filter
-            style="background: #eeeeee; width:165px"
-            >
-              Free Pick Up and Drop
-            </v-chip>
+                <v-chip
+                  class="ma-0"
+                  :input-value="active"
+                  filter
+                  style="background: #eeeeee; width: 165px"
+                >
+                  Free Pick Up and Drop
+                </v-chip>
 
-           
-            <v-chip class="ma-0 pl-7" :input-value="active" filter
-            style="background:#eeeeee; width:165px"
-            >
-              1 Month Warranty
-            </v-chip>
+                <v-chip
+                  class="ma-0 pl-7"
+                  :input-value="active"
+                  filter
+                  style="background: #eeeeee; width: 165px"
+                >
+                  1 Month Warranty
+                </v-chip>
 
-            <v-chip
-              class="ma-0 pl-10"
-              :input-value="active"
-              filter
-              filter-icon="mdi-minus"
-              style="background: #eeeeee; width:165px"
-              
-            >
-              Take 5 Hours
-            </v-chip>
-          </div>
-
-
+                <v-chip
+                  class="ma-0 pl-10"
+                  :input-value="active"
+                  filter
+                  filter-icon="mdi-minus"
+                  style="background: #eeeeee; width: 165px"
+                >
+                  Take 5 Hours
+                </v-chip>
+              </div>
             </div>
-            
           </div>
-
-
-          
         </div>
 
         <div id="left">
           <div id="store">
-            <img
-              width="40px"
-              height="auto"
-              style="
-                display: flex;
-                margin-bottom: 2px;
-                transform: rotate(180deg);
-              "
-              src="../assets/Group 10765.jpg"
-            />
+            <a
+              href="https://play.google.com/store/apps/details?id=com.quickmechanic.unifiedmobileapp&pli=1"
+              target="_blank"
+              ><img
+                width="40px"
+                height="auto"
+                style="
+                  display: flex;
+                  margin-bottom: 2px;
+                  transform: rotate(180deg);
+                "
+                src="../assets/Group 10765.jpg"
+            /></a>
             <img
               width="40px"
               height="auto"
@@ -87,14 +87,14 @@
         </div>
         <div id="middle">
           <!-- <div id="mh">GET YOUR CAR SERVICED AT AFFORDABLE PRICES</div> -->
-          
+
           <div id="msh"></div>
           <div id="svechile2">
             <!-- HTML !-->
-            
-              <button class="cpb2" role="button" @click="goservices">
-                OUR SERVICES
-              </button>
+
+            <button class="cpb2" role="button" @click="goservices">
+              OUR SERVICES
+            </button>
             <!-- HTML !-->
             <!-- <button class="button-75 cpb2" role="button"><span class="text"> VALUE ADDED SERVICES</span></button> -->
 
@@ -182,15 +182,15 @@ export default {
     // profileVue ,
   },
   methods: {
-    goservices(){
-      let data='All services';
-     //this.$router.push({path : "/services"});
-     this.$router.push({
+    goservices() {
+      let data = "All services";
+      //this.$router.push({path : "/services"});
+      this.$router.push({
         name: "scheduleService",
         params: { data },
       });
-    }
-  }
+    },
+  },
 };
 </script>,
  
@@ -242,7 +242,7 @@ export default {
   color: black;
   border: 1px solid black;
   border-radius: 8px;
-  
+
   width: 221px;
   height: 48px;
   z-index: 5px;
@@ -269,8 +269,8 @@ export default {
 .cpb2 {
   width: 221px;
   height: 48px;
-  background-color: #D50000;
-  color: #D50000;
+  background-color: #d50000;
+  color: #d50000;
   align-items: center;
   box-shadow: #fc894d 20px;
   color: white;
@@ -363,7 +363,7 @@ option {
   .cpb2 {
     width: fit-content;
     height: 38px;
-    background-color: #D50000;
+    background-color: #d50000;
     color: rgb(94, 28, 28);
     align-items: center;
 
@@ -410,7 +410,7 @@ option {
   height: 100%;
 
   position: relative;
-  bottom:25mm;
+  bottom: 25mm;
   margin-left: 0px;
 }
 #msh {
@@ -478,7 +478,7 @@ padding-right: 0px; */
 
   text-align: center;
 
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 34px;
@@ -488,7 +488,6 @@ padding-right: 0px; */
   position: relative;
   /* border: 1px solid blue;
   border-bottom: 1px solid red; */
- 
 }
 
 #mh {
@@ -518,7 +517,7 @@ top: 38px; */
 
   text-align: center;
 
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 34px;
@@ -548,7 +547,6 @@ top: 38px; */
   height: calc(vh - 56px);
   margin-top: 60px;
   background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
-  
 }
 .subhome {
   width: 100%;
@@ -579,12 +577,11 @@ top: 38px; */
 
 .ford {
   width: fit-content;
- 
+
   margin-left: -400px;
 
   margin-top: 90px;
   z-index: 0;
-  
 }
 .footer {
   position: absolute;
