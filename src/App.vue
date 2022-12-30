@@ -4,7 +4,7 @@
       <div id="left">
         <a href="/"> <img class="logo" style="height:56px; width:48px" src="./assets/Logo-2 (1).png" /></a>
         <a>
-          <div id="qm" @click="gotToHome">
+          <div id="qm" @click="goToPages('home')">
             <div id="q">Quick</div>
             <div id="m">Mechanic</div>
           </div>
@@ -12,7 +12,7 @@
         <div class="locName" @click="$store.state.locdialog = true">
           <v-icon id="locicon">mdi-map-marker </v-icon>
           <div
-            style=" 
+            style="
               font-size: 15px;
               opacity: 0.7;
               display: flex;
@@ -39,24 +39,37 @@
       </v-navigation-drawer> -->
       <div id="right">
         <div id="link" >
-          <a ><div v-if="changeColor"
-            @click="goToTraining"
+          <a ><div v-if="this.$store.state.currentPath == '/trainingView'"
+            @click="goToPages('training')"
             style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
           >
           Training
           </div>
-        <div v-if="!changeColor"
-            @click="goToTraining"
+          <div v-else
+            @click="goToPages('training')"
             style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
           >
           Training
           </div></a>
-          <a ><div
-            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+          <a ><div v-if="this.$store.state.currentPath == '/aboutusView'"
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            @click="goToPages('aboutUs')"
           >
           About Us
-          </div></a>
-          <a ><div
+          </div><div v-else
+            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            @click="goToPages('aboutUs')"
+          >
+          About Us
+          </div>
+        </a>
+          <a ><div v-if="this.$store.state.currentPath == '/contactusView'"
+             @click="goToPages('contactUs')"
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+          >
+          Contact Us
+          </div>
+          <div v-else @click="goToPages('contactUs')"
             style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
           >
           Contact Us
@@ -391,7 +404,7 @@ export default {
   created() {
     this.screenSize();
     window.addEventListener("resize", this.screenSize);
-    
+    console.log("this is path:",this.$route.path);
     this.firebaseData();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -438,12 +451,20 @@ export default {
     .setProperty('--display-size', finalsize+"px");   
 },
 
-    gotToHome(){
-      this.$router.push(`/`);
-    },
-    goToTraining(){
-      this.changeColor = true;
-      this.$router.push(`/trainingView`);
+    goToPages(idx){
+      if(idx == "home"){
+        
+        this.$router.push(`/`);
+      }else if(idx == "training"){
+        
+        this.$router.push(`/trainingView`);
+      }else if(idx == "aboutUs"){
+        
+        this.$router.push(`/aboutusView`);
+      }else if(idx == "contactUs"){
+        
+        this.$router.push(`/contactusView`);
+      }
     },
     booklist() {
       console.log("clicked");

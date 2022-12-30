@@ -557,6 +557,7 @@ export default {
   created() {
     this.firebaseData();
     this.carsdata();
+    this.$store.state.currentPath = '';
     // console.log(this.key)
     this.dialogs = true;
     //  console.log("********************")

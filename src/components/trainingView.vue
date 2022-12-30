@@ -1,4 +1,4 @@
-[5:13 pm, 29/12/2022] Sambhav Eazily: <template >
+<template >
     <div style="height:80rem; width: 100%; margin-top:4rem;">
         <v-row class="backgroundImageCss">
             <v-col cols="1" style=" margin: 0px; padding: 0px;" >
@@ -101,6 +101,9 @@ export default {
     getQuick,
 
     // profileVue ,
+  },
+  created(){
+    this.$store.state.currentPath = '/trainingView';
   },
 }
 </script>

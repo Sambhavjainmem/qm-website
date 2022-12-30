@@ -20,6 +20,8 @@ import tileView from '../components/tileView';
 import LoginPage from '../components/LoginPage.vue'
 import { auth } from '../firebase'
 import trainingView from '../components/trainingView.vue';
+import AboutUsView from '../components/AboutUsView.vue'
+import ContactUsView from '../components/ContactUsView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -133,8 +135,23 @@ const routes = [
       requiresAuth: false
     }
   },
+  {
+    path: '/aboutusView',
+    name: 'AboutUsView',
+    component: AboutUsView,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/contactusView',
+    name: 'ContactUsView',
+    component: ContactUsView,
+    meta: {
+      requiresAuth: false
+    }
+  },
 
- 
 
 
 
