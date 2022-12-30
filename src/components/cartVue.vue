@@ -55,14 +55,13 @@
               >
                 <v-list-item-content>
                   <v-list-item-title v-text="item.title"></v-list-item-title>
-                  <v-list-item-subtitle>
-                    Rs. {{ item.price }}
-                  </v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action>
-                  <v-btn icon @click="removeItem(i)">
+                  <v-list-item-title>Rs. {{ item.price }}</v-list-item-title>
+
+                  <!-- <v-btn icon @click="removeItem(i)">
                     <v-icon> mdi-delete </v-icon></v-btn
-                  >
+                  > -->
                 </v-list-item-action>
               </v-list-item>
             </v-card>
@@ -251,7 +250,7 @@
 <script>
 import axios from "axios";
 import { auth, db } from "../firebase";
-import { doc, setDoc } from "@firebase/firestore";
+import { doc, setDoc,collection } from "@firebase/firestore";
 export default {
   name: "cartVue",
   data() {
@@ -290,9 +289,20 @@ export default {
     async schedulePickupService() {
       
       if(this.$store.state.uid!=''){
-      const docRef = doc(db, "pickups");
-      console.log('Checkpoint ',this.$store.state.customer.userInfo.dob);
+        const services=[];
+        this.$store.state.cartItems.forEach((service)=>{
+          services.push({
+            name: service.title,
+          price: this.$store.state.prices[service.category],
+          category: service.category,
+          })
+        })
+      const docRef = doc(collection(db, "pickups"));
+      console.log('Checkpoint ',services);
+      console.log('Checkpoint ',this.$store.state.cartItems);
+
       setDoc(docRef, {
+        services: services,
         status: "pending",
         id: docRef.id,
         customerInfo: {
@@ -344,7 +354,7 @@ export default {
         this.$store.state.cartItems = [];
         this.$store.state.cart = false;
         this.$store.state.isCheckoutClicked = false;
-
+        this.e6=1;
         this.orderSuccess = true;
         this.dialog=true;
       });
