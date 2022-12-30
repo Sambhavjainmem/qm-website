@@ -120,33 +120,55 @@
         </span>
       </div> -->
 
-      <div class="footercolumn3">
-        <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 20px;">Our Sevices </span>
-        <span class="footertext" style="padding-bottom:10px">Phone no</span>
-        <span class="footertext" style="padding-bottom:10px">Working Days</span>
-        <span class="footertext" style="padding-bottom:10px">Working Days</span>
-        <span class="footertext" style="padding-bottom:10px">Working Hours</span>
-        <span class="footertext" style="padding-bottom:10px">Official Emails</span>
-      </div>
 
-      <div class="footercolumn2">
-        <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 20px;">Opening Hours</span>
-        <span class="footertext" style="padding-bottom:10px">011-278900000</span>
-        <span class="footertext" style="padding-bottom:10px">Monday-Sunday</span>
-        <span class="footertext" style="padding-bottom:10px">Careers</span>
-        <span class="footertext" style="padding-bottom:10px">9:00 AM - 07:00 PM</span>
-        <span class="footertext" style="padding-bottom:10px">help@quickmechanic.com</span>
-      </div>
+      <v-container style="margin-left:10vw; margin-top: 6vh; text-align:center" >
+        <v-row>
+          <div class="footercolumn3">
+          <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 25px;">Our Sevices </span>
+          <span class="footertext" style="padding-bottom:5px">- Mechanic</span>
+          <span class="footertext" style="padding-bottom:5px">- Car Checks</span>
+          <span class="footertext" style="padding-bottom:5px">- Oil and Break Checks</span>
+          <span class="footertext" style="padding-bottom:5px">- Breakdown Sevices</span>
+          <span class="footertext" style="padding-bottom:5px">- Tyres Services</span>
+          <span class="footertext" style="padding-bottom:5px">- Battery Change</span>
+          <span class="footertext" style="padding-bottom:5px">- Online Skill Development</span>
+        </div>
 
-      <div class="footercolumn2">
-        <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 20px;">Contact Us</span>
-        <span class="footertext" style="padding-bottom:10px">011-278900000</span>
-        <span class="footertext" style="padding-bottom:10px">Monday-Sunday</span>
-        <span class="footertext" style="padding-bottom:10px">Careers</span>
-        <span class="footertext" style="padding-bottom:10px">9:00 AM - 07:00 PM</span>
-        <span class="footertext" style="padding-bottom:10px">help@quickmechanic.com</span>
-      </div>
+        <div class="footercolumn2">
+          <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 25px;">Opening Hours</span>
+          <span class="footertext" style="padding-bottom:10px">Mon - Fri: 7am - 10pm</span>
+          <span class="footertext" style="padding-bottom:10px"></span>
+          <span class="footertext" style="padding-bottom:10px"></span>
+          <span class="footertext" style="padding-bottom:10px"></span>
+          <span class="footertext" style="padding-bottom:10px">
+            <v-avatar class="ma-1" color="white" size="30"
+            ><v-icon size="20">mdi-facebook</v-icon></v-avatar
+          >
+          <v-avatar class="ma-1" color="white" size="30"
+            ><v-icon size="20">mdi-instagram</v-icon></v-avatar
+          >
+          </span>
+        </div>
 
+        <div class="footercolumn2">
+          <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 25px; text-align: center;">Contact Us</span>
+          <span class="footertext" style="padding-bottom:3px ; width: 30vw;">Omaxe NRI City Centre, 2nd Floor, Multiplex Area</span>
+          <span class="footertext" style="padding-bottom:3px  ; width: 30vw;">Pari Chowk, Omega II, Greater Noida,</span>
+          <span class="footertext" style="padding-bottom:3px  ; width: 30vw;">Gautam Buddha Nagar</span>
+          <span class="footertext" style="padding-bottom:3px  ; width: 30vw;">Greater Noida UP 201308 India</span>
+          <span class="footertext" style="padding-bottom:3px"></span>
+          <span class="footertext" style="padding-bottom:10px"></span>
+          <span class="footertext" style="padding-bottom:20px"></span>
+          <span class="footertext" style="padding-bottom:20px"></span>
+          <span class="footertext" style="padding-bottom:10px;"><img width="350rem" src="../assets/footerBanner.png" alt=""></span>
+        </div>
+        </v-row>
+        <v-row> <span style="margin-top: 5vh" id="line"></span></v-row>
+        <v-row> <span style="color:white; margin-top: 3vh; margin-top: 3vh;">Quick Mechanic</span></v-row>
+      </v-container>
+
+      
+      
       <!-- <div class="footercolumn2">
         <div id="store">
           <img
@@ -158,6 +180,7 @@
         </div>
       </div> -->
     </div>
+    
 
     <!-- <img class ="logo" src="../assets/Group_10826.png">
         <span id="copyright">copyright ©️ {{new Date().getFullYear()}} Quick Mechanic</span>
@@ -278,11 +301,11 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   flex-direction: column;
   background-color: black;
   margin-top: 40px;
-  height: 700px;
+  height: 900px;
 }
 .bottom {
   width: 100%;
-  height: 265px;
+  height: 465px;
   display: flex;
   flex-direction: row;
 }
@@ -303,7 +326,7 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   width: 25%;
   
   margin-top: 30px;
-  margin-left: 50px;
+  margin-left: 4vw;
   margin-bottom: 20px;
 }
 .footercolumn3 {
@@ -312,7 +335,7 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   width: 25%;
   margin: 10px;
   margin-top: 30px;
-  margin-left: 40px;
+  margin-left: 6vw;
   margin-bottom: 20px;
 }
 .footertext {
@@ -323,7 +346,8 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   margin-top: 0px;
   margin-bottom: 0px;
   color: white;
-  font-weight: 300;
+  text-align: left;
+  font-weight: 400;
 }
 .footertextheading {
   font-size: 30px;
@@ -338,6 +362,12 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   width: 100%;
   height: 50px;
   z-index: 5px;
+}
+#line {
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  opacity:0.8
 }
 .logo {
   width: 45px;
