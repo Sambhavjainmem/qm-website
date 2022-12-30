@@ -145,9 +145,9 @@
         >
           <SignupForm />
         </v-dialog>
-        <v-dialog v-model="dialogs" fullscreen>
+        <v-dialog v-model="$store.state.becomedialog" fullscreen>
           <div style="background-color: white">
-            <v-btn icon dark @click="dialogs = false" style="width: 1cm; top: ">
+            <v-btn icon dark @click="$store.state.becomedialog = false" style="width: 1cm; top: ">
               <v-icon class="red--text ma-5 pa-5">mdi-close</v-icon>
             </v-btn>
             <getQuick style="height: 95vh" />
@@ -248,7 +248,7 @@
       <div
         class="item"
         style="font-family: Arial, Helvetica, sans-serif"
-        @click="dialogs = true"
+        @click="$store.state.becomedialog = true"
       >
         Become a Quick Mechanic
       </div>

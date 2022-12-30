@@ -7,7 +7,8 @@
           <v-icon class="elevation-0 red--text">mdi-close</v-icon>
         </v-btn> -->
     </div>
-    <div class="bgtext">GET QUICKMECHANIC APP</div>
+    <div class="bgtext" v-if="!$store.state.becomedialog" >GET QUICKMECHANIC APP</div>
+    <div class="bgtext" v-if="$store.state.becomedialog">BECOME A QUICK MECHANIC</div>
     <div id="fff">
       <div class="downloadleft">
         <img class="sosphone" src="../assets/App_website-logo.png" />
