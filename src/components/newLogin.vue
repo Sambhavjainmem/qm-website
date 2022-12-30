@@ -79,8 +79,7 @@
               @click="
                 () => {
                   confirm();
-                  console.log(otp);
-                  store.state.loginpage = false;
+                  $store.state.loginpage = false;
                 }
               "
             >
@@ -120,6 +119,7 @@ export default {
       otp: "",
       flag: false,
       clicked: true,
+      phoneNumber:'',
     };
   },
 
@@ -156,7 +156,7 @@ export default {
       const docRef = doc(db, "users", auth.currentUser.uid);
       const docSnap = await getDoc(docRef);
       this.$store.state.customer=docSnap.data();
-      console.log(this.customer.userInfo);
+      console.log(this.$store.state.customer.userInfo);
     },
     getBaseLog() {
       // this.size = Math.log(y) / Math.log(x);

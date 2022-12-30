@@ -404,7 +404,11 @@ export default {
           //  console.log(position);
           this.lat = position.coords.latitude;
           this.long = position.coords.longitude;
-          console.log("position");
+          this.$store.state.coordinates= {
+      latitude: this.lat,
+      longitude: this.long,
+     
+    },
           url = `https://geocode.maps.co/reverse?lat=${this.lat}&lon=${this.long}`;
           const response = await axios.get(url);
 

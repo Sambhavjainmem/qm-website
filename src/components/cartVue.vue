@@ -293,7 +293,10 @@ export default {
   },
   methods: {
     async schedulePickupService() {
-      
+      var date = new Date();
+      var utc = date.getTime();
+      var dateIST = new Date(utc);
+
       if(this.$store.state.uid!=''){
         const services=[];
         this.$store.state.cartItems.forEach((service)=>{
@@ -325,8 +328,8 @@ export default {
           time: "NA",
         },
         when: {
-          date: "NA",
-          time: "NA",
+          date: dateIST.toLocaleDateString(),
+          time: dateIST.toLocaleTimeString('en-US'),
         },
         endTime: {
           date: "NA",
@@ -338,8 +341,8 @@ export default {
           date: this.listDateSlots[this.dateChipIndex].value,
           time: this.listTimeSlots[this.timeChipIndex],
           location: {
-            latitude: "NA",
-            longitude: "NA",
+            latitude: this.$store.state.coordinates.latitude,
+            longitude: this.$store.state.coordinates.longitude,
           },
           state: "NA",
         },
@@ -451,7 +454,7 @@ export default {
   created() {
     this.generateDateSlots();
     this.setAddress();
-    console.log('UID: ',this.$store.state.uid);
+   
   },
 };
 </script>

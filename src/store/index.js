@@ -33,6 +33,11 @@ export default new Vuex.Store({
     serviceCategory : 'All services', 
     services: [] ,
     currentPath:'',
+    coordinates: {
+      latitude: 0.0,
+      longitude: 0.0,
+     
+    },
   },
   getters: {
   },
