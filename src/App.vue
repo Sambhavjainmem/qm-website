@@ -386,7 +386,12 @@ export default {
       }
     },
   },
+  destroyed() {
+  window.removeEventListener("resize", this.screenSize);
+},
   created() {
+    this.screenSize();
+    window.addEventListener("resize", this.screenSize);
     
     this.firebaseData();
     onAuthStateChanged(auth, (user) => {
@@ -426,6 +431,14 @@ export default {
   },
 
   methods: {
+
+    screenSize(){
+      let size = window.innerWidth - 162;
+      let finalsize = size - (size % 384);
+      document.documentElement.style
+    .setProperty('--display-size', finalsize+"px");   
+},
+
     goToPages(idx){
       if(idx == "home"){
         this.$router.push(`/`);

@@ -52,8 +52,14 @@
               <v-list-item
                 v-for="(item, i) in this.$store.state.cartItems"
                 :key="i"
+                style="position: relative"
+              >
+
+              <v-btn icon @click="removeItem(i)" class="cartitemclose">
+                <v-icon style="font-size: 12px"> mdi-close </v-icon></v-btn
               >
                 <v-list-item-content>
+
                   <v-list-item-title v-text="item.title"></v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action>
