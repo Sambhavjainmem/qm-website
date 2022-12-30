@@ -11,7 +11,44 @@
       </v-dialog>
 
       
-        <div id="divwithimg" src="../assets/banner1.png">
+        <div id="divwithimg" >
+
+          <v-carousel
+         
+        :show-arrows="false"
+        hide-delimiters
+        interval="3000"
+        height="100%"
+        cycle
+        style="position:absolute; top: 0px; left: 0px;;"
+      >
+        <v-carousel-item  src="../assets/banner1.png">
+        
+        </v-carousel-item>
+        <v-carousel-item  src="../assets/banner2.png">
+        
+      </v-carousel-item>
+      <v-carousel-item  src="../assets/banner2.png">
+        
+      </v-carousel-item>
+      </v-carousel>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <div class="newmain">
             <div id="store">
               <a
@@ -239,8 +276,7 @@ export default {
 #divwithimg {
   width: 100%;
   height: 100%;
-  background:url(../assets/banner1.png) center no-repeat;
-  background-size:100% 100%;
+ 
   position: relative;
 
 
@@ -389,6 +425,7 @@ option {
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
+  z-index: 1;
 }
 
 .fueltype {

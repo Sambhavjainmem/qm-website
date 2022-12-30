@@ -956,7 +956,7 @@ export default {
   justify-content: center;
 }
 #carddiv {
-  width: 100%;
+  width: var(--display-size);
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -964,6 +964,8 @@ export default {
   margin-top: 16px;
   position: relative;
   justify-content: flex-start;
+  background-color: var(--background-color);
+
 }
 .v-application--wrap {
   min-height: 375px;
@@ -1053,7 +1055,7 @@ export default {
 }
 .layer1-1-2 {
   height: fit-content;
-  width: 344px;
+  width: var(--card-width);
 
   display: flex;
   flex-direction: column;

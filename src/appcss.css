@@ -1,5 +1,9 @@
 
-
+:root{
+  --display-size : 100%;
+  --background-color : white;
+  --card-width: 344px;
+}
 
 
 .newmain{

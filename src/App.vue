@@ -385,7 +385,11 @@ export default {
       }
     },
   },
+  destroyed() {
+  window.removeEventListener("resize", this.screenSize);
+},
   created() {
+    window.addEventListener("resize", this.screenSize);
     
     this.firebaseData();
     onAuthStateChanged(auth, (user) => {
@@ -425,6 +429,17 @@ export default {
   },
 
   methods: {
+
+    screenSize(){
+    //   let size = window.innerWidth - 162;
+    //   document.documentElement.style
+    // .setProperty('--display-size', size);
+    // document.documentElement.style
+    // .setProperty('--background-color', 'yellow');
+
+
+    },
+
     gotToHome(){
       this.$router.push(`/`);
     },
