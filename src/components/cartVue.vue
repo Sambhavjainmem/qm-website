@@ -55,14 +55,13 @@
               >
                 <v-list-item-content>
                   <v-list-item-title v-text="item.title"></v-list-item-title>
-                  <v-list-item-subtitle>
-                    Rs. {{ item.price }}
-                  </v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action>
-                  <v-btn icon @click="removeItem(i)">
+                  <v-list-item-title>Rs. {{ item.price }}</v-list-item-title>
+
+                  <!-- <v-btn icon @click="removeItem(i)">
                     <v-icon> mdi-delete </v-icon></v-btn
-                  >
+                  > -->
                 </v-list-item-action>
               </v-list-item>
             </v-card>
