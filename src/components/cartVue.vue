@@ -56,7 +56,7 @@
               >
 
               <v-btn icon @click="removeItem(i)" class="cartitemclose">
-                <v-icon class="fontsize"> mdi-close </v-icon></v-btn
+                <v-icon style="font-size: 12px"> mdi-close </v-icon></v-btn
               >
                 <v-list-item-content>
 
