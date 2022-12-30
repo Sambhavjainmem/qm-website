@@ -31,9 +31,9 @@
                 <v-row>
                     <div style="font-size: 32px; font-weight: 700;
                     font-family: Arial, Helvetica, sans-serif; 
-                    text-align: left;
+                    text-align: center;
                     ">
-                    <v-btn color="#D50000" style=" height:48px; margin-left: 100px; padding: 5px; border-radius: 8px; width: 132px;"><span style="margin:5px 5px 5px 5px; font-size:12px; font-weight: bolder; color: white;">GET CERTIFIED</span></v-btn></div>
+                    <v-btn color="#D50000" style=" height:48px;  padding: 5px; border-radius: 8px; width: 132px;"><span style="margin:5px 5px 5px 5px; font-size:12px; font-weight: bolder; color: white;">GET CERTIFIED</span></v-btn></div>
                 </v-row>
             </v-col>
         </v-row>
@@ -58,8 +58,7 @@
                         color: gray;
                         ">QuickMechanic endeavour is to fulfil the growing need for skilled manpowerin India automotive sector 
             and narrow the existing gap between the demand and supply of skills.</p>
-            <p style="text-align:left;  font-family:Arial, Helvetica, sans-serif;
-[5:13 pm, 29/12/2022] Sambhav Eazily: padding-left: 250px;
+            <p style="text-align:left;  font-family:Arial, Helvetica, sans-serif; padding-left: 250px;
                         font-size: 18px;
                         padding-right: 190px;
                         color: gray;
