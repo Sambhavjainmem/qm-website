@@ -17,33 +17,21 @@
         background-color: white;
       "
     >
-      <div v-if=" !this.$store.state.isCheckoutClicked ">
+
+    
+
+      <!-- <div v-if="!this.$store.state.isCheckoutClicked">
         <v-card>
           <v-list-item class="ma-0 pa-0">
             <div class="carttitleblock">
-              <v-btn icon >
-               </v-btn>
-              
+              <v-btn icon> </v-btn>
+
               <div class="carttitle">Your Cart</div>
 
-
-
               <v-btn icon @click="$store.state.cart = false">
                 <v-icon> mdi-close </v-icon></v-btn
               >
-              
-              
-              
-           
-            
-            
-            
             </div>
-            <!-- <v-list-item-action>
-              <v-btn icon @click="$store.state.cart = false">
-                <v-icon> mdi-close </v-icon></v-btn
-              >
-            </v-list-item-action> -->
           </v-list-item>
         </v-card>
         <v-list flat v-if="this.$store.state.cartItems != 0">
@@ -54,20 +42,16 @@
                 :key="i"
                 style="position: relative"
               >
-
-              <v-btn icon @click="removeItem(i)" class="cartitemclose">
-                <v-icon style="font-size: 12px"> mdi-close </v-icon></v-btn
-              >
+                <v-btn icon @click="removeItem(i)" class="cartitemclose">
+                  <v-icon style="font-size: 12px"> mdi-close </v-icon></v-btn
+                >
                 <v-list-item-content>
-
                   <v-list-item-title v-text="item.title"></v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action>
                   <v-list-item-title>Rs. {{ item.price }}</v-list-item-title>
 
-                  <!-- <v-btn icon @click="removeItem(i)">
-                    <v-icon> mdi-delete </v-icon></v-btn
-                  > -->
+                 
                 </v-list-item-action>
               </v-list-item>
             </v-card>
@@ -117,7 +101,7 @@
               border-radius: 12px;
               width: 100%;
               height: 50px;
-              background-color: #D50000;
+              background-color: #d50000;
               color: white;
               font-weight: 700;
               text-align: center;
@@ -131,23 +115,23 @@
             CHECK OUT
           </div>
         </div>
-      </div>
-      <div v-else>
+      </div> -->
+      <!-- <div v-else>
         <v-card>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title >Your Cart</v-list-item-title>
-            </v-list-item-content>
-            <v-list-item-action>
-              <v-btn icon @click="closeCart">
+          <v-list-item class="ma-0 pa-0">
+            <div class="carttitleblock">
+              <v-btn icon> </v-btn>
+
+              <div class="carttitle">Your Cart</div>
+
+              <v-btn icon @click="$store.state.cart = false">
                 <v-icon> mdi-close </v-icon></v-btn
               >
-            </v-list-item-action>
+            </div>
           </v-list-item>
         </v-card>
         <v-stepper v-model="e6" vertical>
-          <v-stepper-step 
-           :complete="e6 > 1" step="1">
+          <v-stepper-step :complete="e6 > 1" step="1">
             Select Pickup Location
           </v-stepper-step>
 
@@ -163,12 +147,13 @@
               ></v-text-field>
             </v-row>
 
-            <v-btn color="#D50000" class="white--text"  @click="e6 = 2"> Continue </v-btn>
-            <v-btn text @click="this.$store.state.isCheckoutClicked = false"> Cancel </v-btn>
-            
+            <v-btn color="#D50000" class="white--text" @click="e6 = 2">
+              Continue
+            </v-btn>
+            <v-btn text @click="disableCheckoutButton"> Cancel </v-btn>
           </v-stepper-content>
 
-          <v-stepper-step  :complete="e6 > 2" step="2">
+          <v-stepper-step :complete="e6 > 2" step="2">
             Select Pickup Date
           </v-stepper-step>
 
@@ -187,7 +172,9 @@
               </v-chip-group>
             </v-row>
 
-            <v-btn color="#D50000"  class="white--text" @click="e6 = 3"> Continue </v-btn>
+            <v-btn color="#D50000" class="white--text" @click="e6 = 3">
+              Continue
+            </v-btn>
             <v-btn text @click="e6 = 1"> Cancel </v-btn>
           </v-stepper-content>
 
@@ -201,7 +188,6 @@
                 class="my-4 pa-0"
                 mandatory
                 active-class="red white--text"
-
                 width="100%"
                 v-model="timeChipIndex"
               >
@@ -210,58 +196,60 @@
                 </v-chip>
               </v-chip-group>
             </v-row>
-            <v-btn color="#D50000" class="white--text" @click="schedulePickupService">
+            <v-btn
+              color="#D50000"
+              class="white--text"
+              @click="schedulePickupService"
+            >
               CHECKOUT
             </v-btn>
             <v-btn text @click="e6 = 2"> Cancel </v-btn>
           </v-stepper-content>
         </v-stepper>
-      </div>
+      </div> -->
     </div>
     <template>
-  <div class="text-center">
-    <v-dialog v-model="dialog"
-        transition="dialog-bottom-transition"
-        max-width="600"
-      >
-        <template >
-          <v-card>
-            
-            <v-card-text>
-              <v-row justify="center" align="center">
-                <v-col cols="2">
-                  <v-icon class="pa-12" color="green" size="100px">mdi-check-circle-outline</v-icon>
-                </v-col>
-                <v-col cols="10">
-              <div class="text-h5 pa-12">Pickup Scheduled Successfully!</div>
-
-                </v-col>
-
-              </v-row>
-            </v-card-text>
-            <v-card-actions class="justify-end">
-              <v-btn
-                text
-                @click="dialog = false"
-              >Close</v-btn>
-            </v-card-actions>
-          </v-card>
-        </template>
-      </v-dialog>
-      
-  </div>
-</template>
+      <div class="text-center">
+        <v-dialog
+          v-model="dialog"
+          transition="dialog-bottom-transition"
+          max-width="600"
+        >
+          <template>
+            <v-card>
+              <v-card-text>
+                <v-row justify="center" align="center">
+                  <v-col cols="2">
+                    <v-icon class="pa-12" color="green" size="100px"
+                      >mdi-check-circle-outline</v-icon
+                    >
+                  </v-col>
+                  <v-col cols="10">
+                    <div class="text-h5 pa-12">
+                      Pickup Scheduled Successfully!
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+              <v-card-actions class="justify-end">
+                <v-btn text @click="dialog = false">Close</v-btn>
+              </v-card-actions>
+            </v-card>
+          </template>
+        </v-dialog>
+      </div>
+    </template>
   </div>
 </template>
 <script>
 import axios from "axios";
 import { auth, db } from "../firebase";
-import { doc, setDoc,collection } from "@firebase/firestore";
+import { doc, setDoc, collection } from "@firebase/firestore";
 export default {
   name: "cartVue",
   data() {
     return {
-      dialog:false,
+      dialog: false,
       orderSuccess: false,
       e6: 1,
       dateChipIndex: 1,
@@ -292,82 +280,85 @@ export default {
     },
   },
   methods: {
+    disableCheckoutButton() {
+      this.$store.state.isCheckoutClicked = false;
+    },
     async schedulePickupService() {
       var date = new Date();
       var utc = date.getTime();
       var dateIST = new Date(utc);
 
-      if(this.$store.state.uid!=''){
-        const services=[];
-        this.$store.state.cartItems.forEach((service)=>{
+      if (this.$store.state.uid != "") {
+        const services = [];
+        this.$store.state.cartItems.forEach((service) => {
           services.push({
             name: service.title,
-          price: this.$store.state.prices[service.category],
-          category: service.category,
-          })
-        })
-      const docRef = doc(collection(db, "pickups"));
-      console.log('Checkpoint ',services);
-      console.log('Checkpoint ',this.$store.state.cartItems);
+            price: this.$store.state.prices[service.category],
+            category: service.category,
+          });
+        });
+        const docRef = doc(collection(db, "pickups"));
+        console.log("Checkpoint ", services);
+        console.log("Checkpoint ", this.$store.state.cartItems);
 
-      setDoc(docRef, {
-        services: services,
-        status: "pending",
-        id: docRef.id,
-        customerInfo: {
-          dob: this.$store.state.customer.userInfo.dob,
-          fcmToken: this.$store.state.customer.fcmToken.tokenId,
-          name: this.$store.state.customer.userInfo.fullName,
-          gender: this.$store.state.customer.userInfo.gender,
-          phoneNo: this.$store.state.customer.userInfo.phoneNumber,
-          photoURL: this.$store.state.customer.userInfo.photoURL,
-          id: auth.currentUser.uid,
-        },
-        startTime: {
-          date: "NA",
-          time: "NA",
-        },
-        when: {
-          date: dateIST.toLocaleDateString(),
-          time: dateIST.toLocaleTimeString('en-US'),
-        },
-        endTime: {
-          date: "NA",
-          time: "NA",
-        },
-        pickupInfo: {
-          mode: "NA",
-          address: this.address,
-          date: this.listDateSlots[this.dateChipIndex].value,
-          time: this.listTimeSlots[this.timeChipIndex],
-          location: {
-            latitude: this.$store.state.coordinates.latitude,
-            longitude: this.$store.state.coordinates.longitude,
+        setDoc(docRef, {
+          services: services,
+          status: "pending",
+          id: docRef.id,
+          customerInfo: {
+            dob: this.$store.state.customer.userInfo.dob,
+            fcmToken: this.$store.state.customer.fcmToken.tokenId,
+            name: this.$store.state.customer.userInfo.fullName,
+            gender: this.$store.state.customer.userInfo.gender,
+            phoneNo: this.$store.state.customer.userInfo.phoneNumber,
+            photoURL: this.$store.state.customer.userInfo.photoURL,
+            id: auth.currentUser.uid,
           },
-          state: "NA",
-        },
-        acceptedAt: {
-          date: "NA",
-          time: "NA",
-        },
-        couponInfo: {
-          couponCode: "NA",
-          isCouponUsed: "NA",
-        },
-        vehicleInfo: {
-          vehicleName: this.$store.state.vinfo.model,
-          vehicleBrand: this.$store.state.vinfo.brand,
-        },
-      }).then(() => {
-        console.log("Success");
-        this.$store.state.cartItems = [];
-        this.$store.state.cart = false;
-        this.$store.state.isCheckoutClicked = false;
-        this.e6=1;
-        this.orderSuccess = true;
-        this.dialog=true;
-      });
-      }else{
+          startTime: {
+            date: "NA",
+            time: "NA",
+          },
+          when: {
+            date: dateIST.toLocaleDateString(),
+            time: dateIST.toLocaleTimeString("en-US"),
+          },
+          endTime: {
+            date: "NA",
+            time: "NA",
+          },
+          pickupInfo: {
+            mode: "NA",
+            address: this.address,
+            date: this.listDateSlots[this.dateChipIndex].value,
+            time: this.listTimeSlots[this.timeChipIndex],
+            location: {
+              latitude: this.$store.state.coordinates.latitude,
+              longitude: this.$store.state.coordinates.longitude,
+            },
+            state: "NA",
+          },
+          acceptedAt: {
+            date: "NA",
+            time: "NA",
+          },
+          couponInfo: {
+            couponCode: "NA",
+            isCouponUsed: "NA",
+          },
+          vehicleInfo: {
+            vehicleName: this.$store.state.vinfo.model,
+            vehicleBrand: this.$store.state.vinfo.brand,
+          },
+        }).then(() => {
+          console.log("Success");
+          this.$store.state.cartItems = [];
+          this.$store.state.cart = false;
+          this.$store.state.isCheckoutClicked = false;
+          this.e6 = 1;
+          this.orderSuccess = true;
+          this.dialog = true;
+        });
+      } else {
         this.$store.state.logindialog = true;
       }
     },
@@ -377,15 +368,15 @@ export default {
         "https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder",
         {
           payableAmount: 100,
-        },
+        }
       );
       alert(response);
     },
-    closeCart(){
+    closeCart() {
       this.$store.state.cart = false;
       this.$store.state.isCheckoutClicked = false;
     },
-    enableCheckOutButton(){
+    enableCheckOutButton() {
       this.$store.state.isCheckoutClicked = true;
     },
     setAddress() {
@@ -447,37 +438,36 @@ export default {
           value: dateString,
         });
       }
-    
+
       this.listDateSlots = listOfDates;
     },
   },
   created() {
     this.generateDateSlots();
     this.setAddress();
-   
   },
 };
 </script>
 <style scoped>
-.v-stepper__step__step{
-  background-color: #D50;
+.v-stepper__step__step {
+  background-color: #d50;
   color: red;
 }
 
 .v-sheet.v-stepper {
-   
-   
-    height: calc(100vh - 67px);
+  height: calc(100vh - 67px);
 }
-.carttitle{
+.carttitle {
   font-size: 22px;
-    font-weight: 400;
+  font-weight: 400;
 }
 
-
-.carttitleblock{
-display:flex;width: 100%; height: 100%; justify-content: space-between;align-items: center;
-
+.carttitleblock {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
     
