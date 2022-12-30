@@ -102,6 +102,9 @@ export default {
 
     // profileVue ,
   },
+  created(){
+    this.$store.state.currentPath = '/trainingView';
+  },
 }
 </script>
 

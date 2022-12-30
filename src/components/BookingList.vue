@@ -96,6 +96,7 @@ export default {
   },
   created() {
     this.fetchBookings();
+    this.$store.state.currentPath = '';
   },
 };
 </script>,

@@ -31,7 +31,8 @@ export default new Vuex.Store({
     location2: "",
     prices : {},
     serviceCategory : 'All services', 
-    services: [] 
+    services: [] ,
+    currentPath:'',
   },
   getters: {
   },

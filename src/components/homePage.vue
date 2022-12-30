@@ -88,7 +88,7 @@
 
                   <v-chip
                     
-                    :input-value="active"
+                    
                     filter
                     filter-icon="mdi-minus"
                     style=" width: 191px;
@@ -107,7 +107,7 @@
 
                   <v-chip
                     class="ma-0 pl-10 chipclass"
-                    :input-value="active"
+                    
                     filter
                     filter-icon="mdi-minus"
                     style=" width: 191px;
@@ -121,7 +121,7 @@
 
                   <v-chip
                     class="ma-0 pl-10 chipclass"
-                    :input-value="active"
+                    
                     filter
                     filter-icon="mdi-minus"
                     style=" width: 191px;
@@ -176,7 +176,7 @@
         <tileView/>
       <getQuick />
 
-      <checkOut />
+      <!-- <checkOut /> -->
       <bottomVue />
     </div>
     <div></div>
@@ -188,7 +188,7 @@ import secondSection from "./secondSection.vue";
 import bottomVue from "./bottomVue";
 import getQuick from "./getQuick.vue";
 
-import checkOut from "./checkOut.vue";
+
 import tileView from './tileView.vue';
 export default {
   name: "homePage",
@@ -209,10 +209,11 @@ export default {
 
     bottomVue,
     getQuick,
-
-    checkOut,
     tileView,
     // profileVue ,
+  },
+  created(){
+    this.$store.state.currentPath = '/';
   },
   methods: {
     goservices() {

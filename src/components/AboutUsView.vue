@@ -88,6 +88,9 @@ export default {
 
     // profileVue ,
   },
+  created(){
+    this.$store.state.currentPath = '/aboutusView';
+  },
 }
 </script>
 

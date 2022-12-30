@@ -39,25 +39,37 @@
       </v-navigation-drawer> -->
       <div id="right">
         <div id="link" >
-          <a ><div v-if="changeColor"
+          <a ><div v-if="this.$store.state.currentPath == '/trainingView'"
             @click="goToPages('training')"
             style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
           >
           Training
           </div>
-        <div v-if="!changeColor"
+          <div v-else
             @click="goToPages('training')"
             style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
           >
           Training
           </div></a>
-          <a ><div
+          <a ><div v-if="this.$store.state.currentPath == '/aboutusView'"
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            @click="goToPages('aboutUs')"
+          >
+          About Us
+          </div><div v-else
             style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
             @click="goToPages('aboutUs')"
           >
           About Us
-          </div></a>
-          <a ><div @click="goToPages('contactUs')"
+          </div>
+        </a>
+          <a ><div v-if="this.$store.state.currentPath == '/contactusView'"
+             @click="goToPages('contactUs')"
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+          >
+          Contact Us
+          </div>
+          <div v-else @click="goToPages('contactUs')"
             style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
           >
           Contact Us
@@ -392,7 +404,7 @@ export default {
   created() {
     this.screenSize();
     window.addEventListener("resize", this.screenSize);
-    
+    console.log("this is path:",this.$route.path);
     this.firebaseData();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -441,18 +453,18 @@ export default {
 
     goToPages(idx){
       if(idx == "home"){
+        
         this.$router.push(`/`);
       }else if(idx == "training"){
+        
         this.$router.push(`/trainingView`);
-        this.changeColor = true;
       }else if(idx == "aboutUs"){
+        
         this.$router.push(`/aboutusView`);
       }else if(idx == "contactUs"){
+        
         this.$router.push(`/contactusView`);
       }
-    },
-    gotToHome(){
-      this.$router.push(`/`);
     },
     booklist() {
       console.log("clicked");
