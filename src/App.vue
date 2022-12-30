@@ -3,8 +3,8 @@
     <div id="nav" style="height:72px">
       <div id="left">
         <a href="/"> <img class="logo" style="height:56px; width:48px" src="./assets/Logo-2 (1).png" /></a>
-        <a href="/">
-          <div id="qm">
+        <a>
+          <div id="qm" @click="gotToHome">
             <div id="q">Quick</div>
             <div id="m">Mechanic</div>
           </div>
@@ -12,7 +12,7 @@
         <div class="locName" @click="$store.state.locdialog = true">
           <v-icon id="locicon">mdi-map-marker </v-icon>
           <div
-            style="
+            style=" 
               font-size: 15px;
               opacity: 0.7;
               display: flex;
@@ -39,18 +39,25 @@
       </v-navigation-drawer> -->
       <div id="right">
         <div id="link" >
-          <a href="/trainingView"><div
+          <a ><div v-if="changeColor"
+            @click="goToTraining"
             style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+          >
+          Training
+          </div>
+        <div v-if="!changeColor"
+            @click="goToTraining"
+            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
           >
           Training
           </div></a>
           <a ><div
-            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
           >
           About Us
           </div></a>
           <a ><div
-            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
           >
           Contact Us
           </div></a>
@@ -138,11 +145,13 @@
         >
           <SignupForm />
         </v-dialog>
-        <v-dialog v-model="dialogs">
-          <v-btn icon dark @click="dialogs = false">
-            <v-icon class="white--text">mdi-close</v-icon>
-          </v-btn>
-          <getQuick />
+        <v-dialog v-model="dialogs" fullscreen>
+          <div style="background-color: white">
+            <v-btn icon dark @click="dialogs = false" style="width: 1cm; top: ">
+              <v-icon class="red--text ma-5 pa-5">mdi-close</v-icon>
+            </v-btn>
+            <getQuick style="height: 95vh" />
+          </div>
         </v-dialog>
 
         <!-- <v-btn
@@ -193,7 +202,7 @@
 
     <div
       v-if="menu"
-      style="
+      style=" 
         position: fixed;
         top: 56px;
         right: 0px;
@@ -331,6 +340,7 @@ export default {
       expectedOtp: "133707",
 
       condition: false,
+      changeColor: false,
 
       ac: {
         header: "AC Maintenance & Service",
@@ -414,6 +424,13 @@ export default {
   },
 
   methods: {
+    gotToHome(){
+      this.$router.push(`/`);
+    },
+    goToTraining(){
+      this.changeColor = true;
+      this.$router.push(`/trainingView`);
+    },
     booklist() {
       console.log("clicked");
       this.$router.push({ path: "/bookingList" });
@@ -450,6 +467,13 @@ export default {
         console.log("logout sechusdokfj");
         this.router.replace("/");
         this.$store.state.customer = {};
+        this.$store.state.vinfo= {
+          brand: "Brand",
+          model: "Model",
+          fuel: "Fuel",
+        };
+        localStorage.removeItem("vdata");
+        
       });
     },
     fff() {

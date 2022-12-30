@@ -24,11 +24,7 @@ export default new Vuex.Store({
       brand: "Brand",
       model: "Model",
       fuel: "Fuel",
-    }
-    ,
-    brand: "Brand",
-    model: "Model",
-    fueltype: "Fuel",
+    },
     cart: false,
     phno: "",
     location1: "Get Location",

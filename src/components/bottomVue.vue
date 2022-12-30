@@ -64,7 +64,7 @@
     </div>
 
     <div class="bottom">
-      <div class="footercolumn1" id="bottom">
+      <!-- <div class="footercolumn1" id="bottom">
         <img class="logo" src="../assets/Group_10826.png" />
         <span
           class="footertext"
@@ -118,9 +118,10 @@
             ><v-icon size="15">mdi-linkedin</v-icon></v-avatar
           >
         </span>
-      </div>
+      </div> -->
 
       <div class="footercolumn3">
+        <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 20px;">Our Sevices </span>
         <span class="footertext" style="padding-bottom:10px">Phone no</span>
         <span class="footertext" style="padding-bottom:10px">Working Days</span>
         <span class="footertext" style="padding-bottom:10px">Working Days</span>
@@ -129,6 +130,7 @@
       </div>
 
       <div class="footercolumn2">
+        <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 20px;">Opening Hours</span>
         <span class="footertext" style="padding-bottom:10px">011-278900000</span>
         <span class="footertext" style="padding-bottom:10px">Monday-Sunday</span>
         <span class="footertext" style="padding-bottom:10px">Careers</span>
@@ -137,15 +139,24 @@
       </div>
 
       <div class="footercolumn2">
+        <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 20px;">Contact Us</span>
+        <span class="footertext" style="padding-bottom:10px">011-278900000</span>
+        <span class="footertext" style="padding-bottom:10px">Monday-Sunday</span>
+        <span class="footertext" style="padding-bottom:10px">Careers</span>
+        <span class="footertext" style="padding-bottom:10px">9:00 AM - 07:00 PM</span>
+        <span class="footertext" style="padding-bottom:10px">help@quickmechanic.com</span>
+      </div>
+
+      <!-- <div class="footercolumn2">
         <div id="store">
           <img
             width="151px"
             style="display: flex; margin-top: 20px; margin-bottom: 10px"
             src="../assets/store.png"
           />
-          <!-- <img width="151px" style="display: flex" src="../assets/Group 10766-h.jpg" /> -->
+          <img width="151px" style="display: flex" src="../assets/Group 10766-h.jpg" />
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- <img class ="logo" src="../assets/Group_10826.png">
@@ -171,9 +182,9 @@ export default {
 <style scoped>
 import ' https://code.jquery.com/jquery-1.8.3.js '
 
-#store {
+#store { 
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
   position: static;
   top: 200px;
   left: 0px;
@@ -265,7 +276,7 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
 .topbottom {
   display: flex;
   flex-direction: column;
-  background-color: #373434;
+  background-color: black;
   margin-top: 40px;
   height: 700px;
 }
