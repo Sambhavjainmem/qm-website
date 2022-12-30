@@ -386,6 +386,7 @@ export default {
     },
   },
   created() {
+    
     this.firebaseData();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -463,16 +464,18 @@ export default {
     },
 
     logoutfn() {
-      signOut(auth).then(() => {
-        console.log("logout sechusdokfj");
-        this.router.replace("/");
-        this.$store.state.customer = {};
-        this.$store.state.vinfo= {
+      localStorage.removeItem("vdata");
+      this.$store.state.vinfo= {
           brand: "Brand",
           model: "Model",
           fuel: "Fuel",
         };
-        localStorage.removeItem("vdata");
+      signOut(auth).then(() => {
+        console.log("logout sechusdokfj");
+        this.$router.replace("/");
+        this.$store.state.customer = {};    
+        
+        
         
       });
     },
