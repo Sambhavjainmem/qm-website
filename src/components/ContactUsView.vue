@@ -42,13 +42,6 @@ Greater Noida UP 201308 India</p>
             </v-col>
             <v-col cols="2"></v-col>
         </v-row>
-        <v-row  style="height:15rem; background-color: #EEEEEE; padding-top:3rem; margin: 0%;">
-            <v-col cols="2"></v-col>
-            <v-col cols="8" style="border">
-                
-            </v-col>
-            <v-col cols="2"></v-col>
-        </v-row>
         <bottomVue/>
     </div>
 </template>
