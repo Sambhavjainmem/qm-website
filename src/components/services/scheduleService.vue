@@ -801,14 +801,6 @@ export default {
   display: flex;
 }
 
-/* .layer1-1-2-2:hover .cardcell {
-  width: fit-content;
-  height: 100%;
-
-  position: relative;
-  margin-bottom: 20px;
-  border: blue;
-} */
 
 #star {
   color: goldenrod;
@@ -957,6 +949,7 @@ export default {
 }
 #carddiv {
   width: var(--display-size);
+ 
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -1217,7 +1210,6 @@ export default {
   flex-direction: column;
   margin-left: 0;
 
-  /* background-color: blue; */
 }
 #daterow {
   width: 100%;

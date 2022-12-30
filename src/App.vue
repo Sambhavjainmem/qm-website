@@ -389,6 +389,7 @@ export default {
   window.removeEventListener("resize", this.screenSize);
 },
   created() {
+    this.screenSize();
     window.addEventListener("resize", this.screenSize);
     
     this.firebaseData();
@@ -431,14 +432,11 @@ export default {
   methods: {
 
     screenSize(){
-    //   let size = window.innerWidth - 162;
-    //   document.documentElement.style
-    // .setProperty('--display-size', size);
-    // document.documentElement.style
-    // .setProperty('--background-color', 'yellow');
-
-
-    },
+      let size = window.innerWidth - 162;
+      let finalsize = size - (size % 384);
+      document.documentElement.style
+    .setProperty('--display-size', finalsize+"px");   
+},
 
     gotToHome(){
       this.$router.push(`/`);
