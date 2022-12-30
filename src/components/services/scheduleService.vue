@@ -963,7 +963,7 @@ export default {
   flex-wrap: wrap;
   margin-top: 16px;
   position: relative;
-  justify-content: flex-start;
+  justify-content: flex;
 }
 .v-application--wrap {
   min-height: 375px;
