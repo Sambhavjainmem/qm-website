@@ -37,8 +37,14 @@
         <v-card elevation="0" style="height:5vh">
             <div style="text-align: center; font-size: 20px; margin: 2%;">PICKUP SUMMARY</div>
         </v-card>
-        <v-card style="height:30vh">
-          <div style="padding:10% 10% 10% 10%">
+        <v-card style="height:30vh; overflow-y: auto;">
+          <div style="padding:10% 10% 10% 10%;">
+            <div style="padding-bottom: 5%; font-size: 10px; color: #d50000;">PERIODIC SERVICE</div>
+            <div style="color:black; font-size: 18px; padding-bottom: 1px;">Standard Services</div>
+            <div style="color:grey; font-size:12px; padding-bottom: 12px;">Takes 5 hrs <v-icon size="6">mdi-circle</v-icon> Warranty : 1200km or 1 month</div>
+            <div style="padding-bottom: 5%; font-size: 10px; color: #d50000;">PERIODIC SERVICE</div>
+            <div style="color:black; font-size: 18px; padding-bottom: 1px;">Standard Services</div>
+            <div style="color:grey; font-size:12px; padding-bottom: 12px;">Takes 5 hrs <v-icon size="6">mdi-circle</v-icon> Warranty : 1200km or 1 month</div>
             <div style="padding-bottom: 5%; font-size: 10px; color: #d50000;">PERIODIC SERVICE</div>
             <div style="color:black; font-size: 18px; padding-bottom: 1px;">Standard Services</div>
             <div style="color:grey; font-size:12px; padding-bottom: 12px;">Takes 5 hrs <v-icon size="6">mdi-circle</v-icon> Warranty : 1200km or 1 month</div>
@@ -46,13 +52,13 @@
             <div style="color:black; font-size:15px;  font-weight: 400; opacity: 0.8;"><v-icon style="padding-right:.5rem" color="red">mdi-map-marker</v-icon> Shivalik Rd, Block C, Malviya Nagar</div>
           </div>
         </v-card>
-        <v-card  style="height:7vh"><div style="padding:5% 5% 5% 10%; font-size:15px"><v-icon color="red" style="padding-right:1rem">mdi-sale</v-icon>Use Coupons and Offers <v-icon color="#d50000" style="padding-left:4rem">mdi-chevron-right</v-icon> </div>
+        <v-card  style="height:7vh"><div style="padding:5% 5% 5% 10%; font-size:15px"><v-icon color="red" style="padding-right:1rem">mdi-sale</v-icon>Use Coupons and Offers <v-icon color="#d50000" style="padding-left:4rem">mdi-chevron-right</v-icon></div>
         </v-card>
-        <v-card  style="height:41vh; display: flex; ">
+        <v-card  style="height:41vh; overflow-y: auto;">
           
-            <div style="padding:10% 10% 10% 10%">
+            <div style="padding:10% 10% 10% 10%;">
               <div style="font-size:15px; padding-bottom: 5%; font-weight: 400;">PAYMENT SUMMARY</div>
-              <div style="font-size:15px; padding-bottom: 5%; font-weight: lighter; width: 100%; ">
+              <!-- <div style="font-size:15px; padding-bottom: 5%; font-weight: lighter; width: 100%; ">
                 <span style="color:black; font-weight: 300; text-align: left; font-size: 14px;">Item Total</span>
                 <span style="color:black; font-weight: 300;  text-align: right; font-size: 14px;">4000</span>
               </div>
@@ -63,7 +69,108 @@
               <div style="font-size:15px; padding-bottom: 5%; font-weight: lighter;"><span style="color:grey;  font-size: 14px;  font-weight: 300;">GST(18%)</span><span style="color:grey;  font-size: 14px; font-weight: 300;">4000</span></div>
               <v-divider></v-divider>
               <div style="font-size:15px; padding-bottom: 5%; font-weight: lighter;"><span style="color:black;  font-size: 14px;  font-weight: 300;">Grand Total</span><span style="color:black;  font-size: 14px; font-weight: 300;">4000</span></div>
-              <div style="font-size:15px; padding-bottom: 5%; font-weight: lighter;"><span style="color:grey;  font-size: 14px; font-weight: 300;">Total Discount</span><span style="color:grey;  font-size: 14px; font-weight: 300;">4000</span></div>
+              <div style="font-size:15px; padding-bottom: 5%; font-weight: lighter;"><span style="color:grey;  font-size: 14px; font-weight: 300;">Total Discount</span><span style="color:grey;  font-size: 14px; font-weight: 300;">4000</span></div> -->
+              <v-list-item
+                v-for="(item, i) in this.$store.state.cartItems" :key="i"
+                
+                style="position: relative;"
+              >
+                <!-- <v-btn icon @click="removeItem(i)" class="cartitemclose">
+                  <v-icon style="font-size: 12px"> mdi-close </v-icon></v-btn
+                > -->
+                <v-list-item-content>
+                  <v-list-item-title style="color:black; font-weight: 300; text-align: left; font-size: 14px;">Item Total</v-list-item-title>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-list-item-title style="color:black; font-weight: 300;  text-align: right; font-size: 14px;"><v-icon style="margin-top:0px; opacity: 0.6;" size="14px" color="black">mdi-currency-inr</v-icon>4000</v-list-item-title>
+                </v-list-item-action>
+                
+              </v-list-item>
+              <v-list-item
+                v-for="(item, i) in this.$store.state.cartItems" :key="i"
+                
+                style="position: relative"
+              >
+                <!-- <v-btn icon @click="removeItem(i)" class="cartitemclose">
+                  <v-icon style="font-size: 12px"> mdi-close </v-icon></v-btn
+                > -->
+                <v-list-item-content>
+                  <v-list-item-title style=" color:grey; font-weight: 300; text-align: left; font-size: 14px;">Coupon Discount</v-list-item-title>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-list-item-title style="color:grey; font-weight: 300;  text-align: right; font-size: 14px;"><span style="font-weight:bold;">-</span><v-icon style="margin-top:0px;" size="14px" color="grey">mdi-currency-inr</v-icon>400</v-list-item-title>
+                </v-list-item-action>
+                
+              </v-list-item>
+              <v-divider style="margin:3% 0% 5% 0%; padding: 0px"></v-divider>
+              <v-list-item
+                v-for="(item, i) in this.$store.state.cartItems" :key="i"
+                
+                style="position: relative"
+              >
+                <!-- <v-btn icon @click="removeItem(i)" class="cartitemclose">
+                  <v-icon style="font-size: 12px"> mdi-close </v-icon></v-btn
+                > -->
+                <v-list-item-content>
+                  <v-list-item-title style="color:black; font-weight: 300; text-align: left; font-size: 14px;">Sub Total</v-list-item-title>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-list-item-title style="color:black; font-weight: 300;  text-align: right; font-size: 14px;"><v-icon style="margin-top:0px; opacity: 0.6;" size="14px" color="black">mdi-currency-inr</v-icon>{{ item.price }}</v-list-item-title>
+                </v-list-item-action>
+                
+              </v-list-item>
+              
+              <v-list-item
+                v-for="(item, i) in this.$store.state.cartItems" :key="i"
+                
+                style="position: relative"
+              >
+                <!-- <v-btn icon @click="removeItem(i)" class="cartitemclose">
+                  <v-icon style="font-size: 12px"> mdi-close </v-icon></v-btn
+                > -->
+                <v-list-item-content>
+                  <v-list-item-title style="color:grey; font-weight: 300; text-align: left; font-size: 14px;">GST(18%)</v-list-item-title>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-list-item-title style="color:grey; font-weight: 300;  text-align: right; font-size: 14px;"><v-icon style="margin-top:0px;" size="14px" color="grey">mdi-currency-inr</v-icon>{{ item.price }}</v-list-item-title>
+                </v-list-item-action>
+                
+              </v-list-item>
+              <v-divider style="margin:3% 0% 5% 0%; padding: 0px"></v-divider>
+              <v-list-item
+                v-for="(item, i) in this.$store.state.cartItems" :key="i"
+                
+                style="position: relative"
+              >
+                <!-- <v-btn icon @click="removeItem(i)" class="cartitemclose">
+                  <v-icon style="font-size: 12px"> mdi-close </v-icon></v-btn
+                > -->
+                <v-list-item-content>
+                  <v-list-item-title style="color:black; font-weight: 300; text-align: left; font-size: 14px;">Grand Total</v-list-item-title>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-list-item-title style="color:black; font-weight: 300;  text-align: right; font-size: 14px;"><v-icon style="margin-top:0px; opacity: 0.6;" size="14px" color="black">mdi-currency-inr</v-icon>{{ item.price }}</v-list-item-title>
+                </v-list-item-action>
+                
+              </v-list-item>
+              
+              <v-list-item
+                v-for="(item, i) in this.$store.state.cartItems" :key="i"
+                
+                style="position: relative"
+              >
+                <!-- <v-btn icon @click="removeItem(i)" class="cartitemclose">
+                  <v-icon style="font-size: 12px"> mdi-close </v-icon></v-btn
+                > -->
+                <v-list-item-content>
+                  <v-list-item-title style="color:grey; font-weight: 300; text-align: left; font-size: 14px;">Additional Discount</v-list-item-title>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-list-item-title style="color:grey; font-weight: 300;  text-align: right; font-size: 14px;"><v-icon style="margin-top:0px; opacity: 0.6;" size="14px" color="grey">mdi-currency-inr</v-icon>{{ item.price }}</v-list-item-title>
+                </v-list-item-action>
+                
+              </v-list-item>
+
             </div>
           </v-card>
         <v-card  style="height:10vh;">
@@ -530,6 +637,10 @@ export default {
   height: 100%;
   justify-content: space-between;
   align-items: center;
+}
+.v-list-item{
+  
+  padding: 0px;
 }
 </style>
     
