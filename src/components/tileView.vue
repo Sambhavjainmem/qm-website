@@ -1,8 +1,8 @@
 <template >
-    <div style="height:30rem; width: 100%; margin-right:0px;">
-        <v-row style="height:10rem; background-color: white; margin:0px;"  >
+    <div style="height:30rem; width: 100%; margin-right:0px;background: linear-gradient(180deg, #FFFFFF 0%, #EFEFEF 100%);">
+        <v-row style="height:10rem; background-color: transparent; margin:0px;"  >
             <v-col cols="2.7">
-                <v-row style="height:10rem; background-color: white; "></v-row>
+                <v-row style="height:10rem; background-color: transparent; "></v-row>
                 <span></span>
             </v-col>
             <v-col cols="2.2">
@@ -24,12 +24,12 @@
                 </v-row>
             </v-col>
             <v-col cols="2.7">
-                <v-row style="height:10rem; background-color: white; "></v-row>
+                <v-row style="height:10rem; background-color: transparent; "></v-row>
                 <span></span>
             </v-col>
             <v-spacer></v-spacer>
         </v-row>
-        <v-row style="height:20rem; background-color: #EEEEEE; margin:0px;">
+        <v-row style="height:20rem; background-color: transparent; margin:0px;">
             <span style="text-align:center; font-weight:bold; font-family:Arial, Helvetica, sans-serif;
              font-size: 40px;
              margin-top: 5rem;
