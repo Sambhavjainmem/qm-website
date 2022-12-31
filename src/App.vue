@@ -41,23 +41,23 @@
         <div id="link" >
           <a ><div v-if="this.$store.state.currentPath == '/trainingView'"
             @click="goToPages('training')"
-            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
           >
           Training
           </div>
           <div v-else
             @click="goToPages('training')"
-            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
           >
           Training
           </div></a>
           <a ><div v-if="this.$store.state.currentPath == '/aboutusView'"
-            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
             @click="goToPages('aboutUs')"
           >
           About Us
           </div><div v-else
-            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
             @click="goToPages('aboutUs')"
           >
           About Us
@@ -65,12 +65,12 @@
         </a>
           <a ><div v-if="this.$store.state.currentPath == '/contactusView'"
              @click="goToPages('contactUs')"
-            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
           >
           Contact Us
           </div>
           <div v-else @click="goToPages('contactUs')"
-            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px;"
+            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
           >
           Contact Us
           </div></a>
@@ -82,7 +82,7 @@
           
           <div
           
-            style="color: red; cursor: pointer; margin-left: 6px"
+            style="color: red; cursor: pointer; margin-left: 6px; font-family: Arial, Helvetica, sans-serif;"
             @click="$store.state.vdialog = true"
           >
             (Change Car)
@@ -90,7 +90,7 @@
         </div>
         <div id="link" v-if="this.$store.state.vinfo.brand == 'Brand'">
           <div
-            style="color: red; cursor: pointer; margin-left: 6px"
+            style="color: red; cursor: pointer; margin-left: 6px; font-family: Arial, Helvetica, sans-serif;"
             @click="$store.state.vdialog = true"
           >
           Select Car

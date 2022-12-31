@@ -52,7 +52,29 @@
             <div style="color:black; font-size:15px;  font-weight: 400; opacity: 0.8;"><v-icon style="padding-right:.5rem" color="red">mdi-map-marker</v-icon> Shivalik Rd, Block C, Malviya Nagar</div>
           </div>
         </v-card>
-        <v-card  style="height:7vh"><div style="padding:5% 5% 5% 10%; font-size:15px"><v-icon color="red" style="padding-right:1rem">mdi-sale</v-icon>Use Coupons and Offers <v-icon color="#d50000" style="padding-left:4rem">mdi-chevron-right</v-icon></div>
+        <v-card  style="height:7vh"><div style="padding:5% 5% 5% 10%; font-size:15px"><v-icon color="red" style="padding-right:1rem">mdi-sale</v-icon>Use Coupons and Offers
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon color="#d50000" v-bind="attrs"
+                v-on="on" style="padding-left:4rem"
+          dark>mdi-chevron-right</v-icon>
+            </template>
+            <v-list style="width:20rem">
+              <v-list-item style="margin:5px"
+                v-for="(item, index) in items"
+                :key="index"
+              >
+                <v-list-item-content>
+                  <v-list-item-title>{{ item.title }} <span style="margin-left:4rem; color: grey;">10 %</span></v-list-item-title>
+                  <v-list-item-title style="font-size:12px">Description</v-list-item-title>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-list-item-title style="text-align: right; font-size: 14px;"><v-btn class="white--text" color="#d50000">Apply</v-btn></v-list-item-title>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+          </div>
         </v-card>
         <v-card  style="height:41vh; overflow-y: auto;">
           
@@ -434,6 +456,12 @@ export default {
         "5:00 PM",
         "6:00 PM",
         "7:00 PM",
+      ],
+      items: [
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me 2' },
       ],
     };
   },
