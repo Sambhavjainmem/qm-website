@@ -1,12 +1,12 @@
 <template >
     <div style="height:30rem; width: 100%; margin-right:0px;">
-        <v-row style="height:10rem; background-color: black; margin:0px;"  >
+        <v-row style="height:10rem; background-color: white; margin:0px;"  >
             <v-col cols="2.7">
-                <v-row style="height:10rem; background-color: black; "><v-icon>mdi-wrench</v-icon></v-row>
+                <v-row style="height:10rem; background-color: white; "></v-row>
                 <span></span>
             </v-col>
             <v-col cols="2.2">
-                <v-row style="height:10rem; background-color: white; margin-right: 3px; ">
+                <v-row style="height:10rem; background-color: #F5F5F5; margin-right: 3px; ">
                     <v-icon large color="black" style="padding:20px">mdi-wrench</v-icon>
                     <span style="text-align:center; font-weight:bold; font-family:Arial, Helvetica, sans-serif">Experienced Mechanic</span>
                 </v-row>
@@ -24,7 +24,7 @@
                 </v-row>
             </v-col>
             <v-col cols="2.7">
-                <v-row style="height:10rem; background-color: black; "><v-icon>mdi-wrench</v-icon></v-row>
+                <v-row style="height:10rem; background-color: white; "></v-row>
                 <span></span>
             </v-col>
             <v-spacer></v-spacer>

@@ -163,8 +163,8 @@
           <span class="footertext" style="padding-bottom:10px;"><img width="350rem" src="../assets/footerBanner.png" alt=""></span>
         </div>
         </v-row>
-        <v-row> <span style="margin-top: 5vh" id="line"></span></v-row>
-        <v-row> <span style="color:white; margin-top: 3vh; margin-top: 3vh;">Quick Mechanic</span></v-row>
+        <v-row> <span style="margin-top: 3vh" id="line"></span></v-row>
+        <v-row> <span style="color:white; margin-top: 3vh; margin-bottom: 5vh;">Quick Mechanic</span></v-row>
       </v-container>
 
       
@@ -326,7 +326,7 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   width: 25%;
   
   margin-top: 30px;
-  margin-left: 4vw;
+  margin-left: 5vw;
   margin-bottom: 20px;
 }
 .footercolumn3 {
@@ -335,7 +335,7 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   width: 25%;
   margin: 10px;
   margin-top: 30px;
-  margin-left: 6vw;
+  margin-left: 0vw;
   margin-bottom: 20px;
 }
 .footertext {
