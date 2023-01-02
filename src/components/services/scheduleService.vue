@@ -7,7 +7,7 @@
             text
             :ripple="false"
             to="/"
-            class="no-background-hover ma-0 pa-0 "
+            class="no-background-hover ma-0 pa-0"
           >
             Home
           </v-btn>
@@ -71,7 +71,7 @@
             <vechileInfo />
           </v-card>
         </v-dialog>
-        <div id="carddiv">
+        <div id="carddiv" v-if="this.serviceCategory == 'All services'">
           <div class="layer1-1-2" v-for="(service, i) in data" :key="i">
             <div class="layer1-1-2-1">
               <img class="serviceimg" :src="service.thumbnail" alt="sevice" />
@@ -80,11 +80,11 @@
               <div class="layer1-1-2-2-1">
                 <div id="cardrow">
                   <div class="cardcell left">
-                   
                     <v-tooltip bottom>
                       <template v-slot:activator="{ on, attrs }">
-                        
-                        <div v-bind="attrs" v-on="on" class="title">{{ service.title }}</div>
+                        <div v-bind="attrs" v-on="on" class="title">
+                          {{ service.title }}
+                        </div>
                       </template>
                       <span>{{ service.title }}</span>
                     </v-tooltip>
@@ -154,7 +154,7 @@
                   :key="i"
                   class="servicedesc"
                 >
-                  <v-icon class="green--text mx-2 my-1 " style="font-size: 20px"
+                  <v-icon class="green--text mx-2 my-1" style="font-size: 20px"
                     >mdi-check-circle-outline</v-icon
                   >{{ item }}
                 </div>
@@ -232,8 +232,103 @@
               >
             </div>
           </div>
-        </div>
 
+          
+        </div>
+        <div class="productmain" v-if="!(this.serviceCategory == 'All services')">
+        <div class="productCard" >
+            <div class="pimage">
+              <img
+                
+                class="productimg"
+                :src="this.data[0].thumbnail"
+              />
+            </div>
+
+            <div class="pdesc">
+              <div class="phead">{{ this.data[0].title }}</div>
+              <div class="pprice">₹  {{ $store.state.prices[this.data[0].category] }}</div>
+              <div class="ppoints">
+                <div class="servicedesc" v-for="(item, i) in this.data[0].description" :key="i">
+                  <v-icon class="green--text mx-2 my-1" style="font-size: 20px"
+                    >mdi-check-circle-outline</v-icon
+                  >{{  item}}
+                </div>
+                
+              </div>
+              <div class="buttonrow">
+                <v-btn
+                  :disabled="alreadyExist(service)"
+                  v-if="alreadyExist(service) == false"
+                  class="red--text"
+                  style="
+                    width: 148.5px;
+                    height: 48px;
+                    background: #ffffff;
+                    border: 1px solid #d50000;
+                    border-radius: 24px;
+                    box-shadow: none;
+                    font-family: 'Inter';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 17px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    /* identical to box height */
+
+                    text-transform: uppercase;
+                  "
+                  @click="addToCart(service)"
+                >
+                  <!-- <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon> -->
+                  Add to Cart</v-btn
+                >
+                <v-btn
+                  :disabled="alreadyExist(service)"
+                  v-else
+                  class="red--text"
+                  style="
+                    width: 148.5px;
+                    height: 48px;
+                    background: #ffffff;
+
+                    border-radius: 24px;
+                    box-shadow: none;
+                    font-family: 'Inter';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 17px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    /* identical to box height */
+
+                    text-transform: uppercase;
+                  "
+                  @click="addToCart(service)"
+                >
+                  <!-- <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon> -->
+                  Added</v-btn
+                >
+                <v-btn
+                  style="
+                    width: 148.5px;
+                    height: 48px;
+                    background: #d50000;
+                    border-radius: 24px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    box-shadow: none;
+                  "
+                  class="white--text"
+                  @click="buyNow(service)"
+                  >Book Now</v-btn
+                >
+              </div>
+            </div>
+          </div>
+          </div>
         <!-- ksdlkfj;sdlkja;sdl -->
 
         <div class="layer1-1-3">
@@ -528,7 +623,7 @@ export default {
   mounted() {
     // this.$store.state.vinfo  = JSON.parse( localStorage.getItem('vdata' ) );
 
-    this.serviceCategory = this.serviceCategory = this.$route.params.data;
+   this.serviceCategory = this.$route.params.data;
 
     console.log(this.serviceCategory);
 
@@ -548,6 +643,7 @@ export default {
     key: function () {
       if (this.key == "All services") {
         this.data = this.items;
+        
       } else {
         this.data = this.items.filter((item) => item.category == this.key);
       }
@@ -557,7 +653,7 @@ export default {
   created() {
     this.firebaseData();
     this.carsdata();
-    this.$store.state.currentPath = '';
+    this.$store.state.currentPath = "";
     // console.log(this.key)
     this.dialogs = true;
     //  console.log("********************")
@@ -579,6 +675,11 @@ export default {
     changeKey(category) {
       this.key = category;
       this.serviceCategory = this.key;
+      console.log( "this is data",this.data)
+     // console.log("service categorie",this.serviceCategory,(this.serviceCategory == 'All services'));
+
+
+
     },
     alreadyExist(service) {
       return this.$store.state.cartItems.includes(service);
@@ -653,8 +754,11 @@ export default {
       this.data = this.items.filter(
         (item) => item.category == this.serviceCategory
       );
-      console.log("this is service category",this.serviceCategory);
-      if (this.serviceCategory == "All services" || typeof(this.serviceCategory) == 'undefined') {
+      console.log("this is service category", this.serviceCategory);
+      if (
+        this.serviceCategory == "All services" ||
+        typeof this.serviceCategory == "undefined"
+      ) {
         console.log("Inside if condition");
         this.serviceCategory = "All services";
         this.data = this.items;
@@ -761,10 +865,11 @@ export default {
   width: 15%;
 }
 #back {
-  height: 100vh;
+  height: fit-content;
   width: 100%;
   margin-top: 60px;
   border: 1px solid white;
+  background: linear-gradient(180deg, #ffffff 0%, #efefef 100%);
 }
 
 .title {
@@ -801,7 +906,6 @@ export default {
 .layer1-1-2:hover .titletool {
   display: flex;
 }
-
 
 #star {
   color: goldenrod;
@@ -950,7 +1054,7 @@ export default {
 }
 #carddiv {
   width: var(--display-size);
- 
+
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -958,8 +1062,7 @@ export default {
   margin-top: 16px;
   position: relative;
   justify-content: flex-start;
-  background-color: var(--background-color);
-
+  background-color: transparent;
 }
 .v-application--wrap {
   min-height: 375px;
@@ -1153,7 +1256,7 @@ export default {
 .servicedesc {
   margin: 2px;
 
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -1210,7 +1313,6 @@ export default {
   display: flex;
   flex-direction: column;
   margin-left: 0;
-
 }
 #daterow {
   width: 100%;

@@ -83,10 +83,28 @@
               </div>
               <div class="chipparent">
                 <div class="newchip">
+                   <button class="cpb2" role="button" @click="goservices">
+                  OUR SERVICES
+                </button>
+                <!-- HTML !-->
+                <!-- <button class="button-75 cpb2" role="button"><span class="text"> VALUE ADDED SERVICES</span></button> -->
+
+                <button class="cpb2sos" role="button" @click="dialogs = true">
+                  SOS
+                </button>
+                <!-- <button
+                  class="cpb2"
+                  role="button"
+                  style="
+                    background: transparent;
+                    cursor: inherit;
+                    border: white;
+                  "
+                ></button> -->
                   
 
 
-                  <v-chip
+                  <!-- <v-chip
                     
                     
                     filter
@@ -131,23 +149,23 @@
                     border-radius: 17px;"
                   >
                     Affordable Prices
-                  </v-chip>
+                  </v-chip> -->
                 </div>
               </div>
 
               <div id="svechile2">
                 <!-- HTML !-->
 
-                <button class="cpb2" role="button" @click="goservices">
+                <!-- <button class="cpb2" role="button" @click="goservices">
                   OUR SERVICES
-                </button>
+                </button> -->
                 <!-- HTML !-->
                 <!-- <button class="button-75 cpb2" role="button"><span class="text"> VALUE ADDED SERVICES</span></button> -->
 
-                <button class="cpb2sos" role="button" @click="dialogs = true">
+                <!-- <button class="cpb2sos" role="button" @click="dialogs = true">
                   SOS
-                </button>
-                <button
+                </button> -->
+                <!-- <button
                   class="cpb2"
                   role="button"
                   style="
@@ -155,7 +173,7 @@
                     cursor: inherit;
                     border: white;
                   "
-                ></button>
+                ></button> -->
               </div>
             </div>
           </div>

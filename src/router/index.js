@@ -22,6 +22,7 @@ import { auth } from '../firebase'
 import trainingView from '../components/trainingView.vue';
 import AboutUsView from '../components/AboutUsView.vue'
 import ContactUsView from '../components/ContactUsView.vue'
+import productpdpVue from '../components/productpdpVue.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -38,6 +39,14 @@ const routes = [
     path: '/vechile',
     name: 'vechileInfo',
     component: vechileInfo,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/product',
+    name: 'productpdpVue',
+    component: productpdpVue,
     meta: {
       requiresAuth: false
     }
