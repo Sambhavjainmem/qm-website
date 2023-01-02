@@ -80,6 +80,7 @@
           
             <div style="padding:10% 10% 10% 10%;">
               <div style="font-size:15px; padding-bottom: 5%; font-weight: 400;">PAYMENT SUMMARY</div>
+              <!-- demo -->
               <!-- <div style="font-size:15px; padding-bottom: 5%; font-weight: lighter; width: 100%; ">
                 <span style="color:black; font-weight: 300; text-align: left; font-size: 14px;">Item Total</span>
                 <span style="color:black; font-weight: 300;  text-align: right; font-size: 14px;">4000</span>
