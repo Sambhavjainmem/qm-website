@@ -256,7 +256,7 @@
                 </div>
                 
               </div>
-              <div class="buttonrow">
+              <div class="buttonrow pbtnrow">
                 <v-btn
                   :disabled="alreadyExist(service)"
                   v-if="alreadyExist(service) == false"
@@ -273,8 +273,9 @@
                     font-weight: 500;
                     font-size: 14px;
                     line-height: 17px;
-                    margin-top: 10px;
-                    margin-bottom: 10px;
+                    margin-top: 0px;
+                    margin-left: 50px
+                    margin-bottom: 0px;
                     /* identical to box height */
 
                     text-transform: uppercase;
@@ -300,8 +301,7 @@
                     font-weight: 500;
                     font-size: 14px;
                     line-height: 17px;
-                    margin-top: 10px;
-                    margin-bottom: 10px;
+                   
                     /* identical to box height */
 
                     text-transform: uppercase;
@@ -317,8 +317,7 @@
                     height: 48px;
                     background: #d50000;
                     border-radius: 24px;
-                    margin-top: 10px;
-                    margin-bottom: 10px;
+                   
                     box-shadow: none;
                   "
                   class="white--text"
