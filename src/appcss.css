@@ -81,6 +81,7 @@ border-radius: 17px;
  height: 400px; 
  display: block;
  object-fit: cover;
+ border-radius: 10px 0 0px 10px;
 
 }
 .pdesc {
@@ -91,6 +92,7 @@ border-radius: 17px;
   flex-direction: column;
   margin-left: 16px;
   padding: 12px;
+  border-radius: 0px 10px 10px 0;
 
 }
 .productmain {
@@ -122,10 +124,17 @@ border-radius: 17px;
   letter-spacing: 0px;
    line-height: 1.428;
    font-size: 30px;
+   margin-left: 12px;
 }
 .pprice {
   font-weight: 400;
   font-size: 1.3rem;
+  margin-left: 12px;
+  margin-top: 5px;
+    margin-bottom: 5px;
+}
+.pbtnrow{
+  margin-bottom: -8px;
 }
 .pbtnrow {
   width: 100%;
