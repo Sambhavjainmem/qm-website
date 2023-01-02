@@ -14,7 +14,7 @@
           @click="dent(item.name)"
         >
           <!-- <v-icon id="fav">mdi-heart-outline</v-icon> -->
-          <img class="SDImage" :src="item.photoURL" />
+          <img class="SDImage" :src="item.photoURL2" />
 
           <div id="abc">
             <!-- <div id="line"></div> -->
@@ -49,7 +49,7 @@
           @click="dent(item.name)"
         >
           <!-- <v-icon id="fav">mdi-heart-outline</v-icon> -->
-          <img class="SDImage" :src="item.photoURL" />
+          <img class="SDImage" :src="item.photoURL2" />
 
           <div id="abc">
             <!-- <div id="line"></div> -->
@@ -230,9 +230,9 @@ export default {
 }
 
 .SDImage {
-  width: 128px;
-  height: 128px;
-  margin-top: 50px;
+  width: 100%;
+  height: auto;
+ 
 }
 
 .component {
@@ -254,7 +254,7 @@ img {
   font-size:16px;
   text-align: center;
   margin-left: 10px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 #v {
   display: flex;
