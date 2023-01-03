@@ -39,6 +39,7 @@ export default new Vuex.Store({
       longitude: 0.0,
      
     },
+    showOrderSummary:false,
   },
   getters: {
   },

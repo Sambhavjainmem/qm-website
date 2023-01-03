@@ -76,7 +76,7 @@
           </div></a>
           
         </div>
-        <div id="link" v-if="this.$store.state.vinfo.brand != 'Brand'">
+        <div id="link" v-if="this.$store.state.vinfo.brand != 'Brand'" style="font-family: Arial, Helvetica, sans-serif;">
           {{ this.$store.state.vinfo.brand }} -
           {{ this.$store.state.vinfo.model }} 
           
