@@ -236,20 +236,20 @@
           
         </div>
         <div class="productmain" v-if="!(this.serviceCategory == 'All services')">
-        <div class="productCard" >
+        <div class="productCard" v-for="service in this.data" :key="service.title" >
             <div class="pimage">
               <img
                 
                 class="productimg"
-                :src="this.data[0].thumbnail"
+                :src="service.thumbnail"
               />
             </div>
 
             <div class="pdesc">
-              <div class="phead">{{ this.data[0].title }}</div>
-              <div class="pprice">₹  {{ $store.state.prices[this.data[0].category] }}</div>
+              <div class="phead">{{ service.title }}</div>
+              <div class="pprice">₹  {{ $store.state.prices[service.category] }}</div>
               <div class="ppoints">
-                <div class="servicedesc" v-for="(item, i) in this.data[0].description" :key="i">
+                <div class="servicedesc" v-for="(item, i) in service.description" :key="i">
                   <v-icon class="green--text mx-2 my-1" style="font-size: 20px"
                     >mdi-check-circle-outline</v-icon
                   >{{  item}}
@@ -274,7 +274,7 @@
                     font-size: 14px;
                     line-height: 17px;
                     margin-top: 0px;
-                    margin-left: 16%;
+                    margin-left: 0px;
                     margin-bottom: 0px;
                     /* identical to box height */
 
