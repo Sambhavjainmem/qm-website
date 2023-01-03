@@ -274,7 +274,7 @@
                     font-size: 14px;
                     line-height: 17px;
                     margin-top: 0px;
-                    margin-left: 50px
+                    margin-left: 16%;
                     margin-bottom: 0px;
                     /* identical to box height */
 
