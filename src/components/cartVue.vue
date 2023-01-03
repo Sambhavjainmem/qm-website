@@ -25,7 +25,7 @@
 
               <div class="carttitle">Your Cart</div>
 
-              <v-btn icon @click="$store.state.cart = false">
+              <v-btn icon @click="closeCart">
                 <v-icon> mdi-close </v-icon></v-btn
               >
             </div>
@@ -121,25 +121,20 @@
             height: 7vh;
           "
         >
-         
-      
-              <v-list-item class="ma-0 pa-0">
-                <div class="carttitleblock">
-                  <v-btn icon> </v-btn>
+          <v-list-item class="ma-0 pa-0">
+            <div class="carttitleblock">
+              <v-btn icon> </v-btn>
 
-                  <div class="carttitle">Summary</div>
+              <div class="carttitle">Summary</div>
 
-                  <v-btn icon @click="$store.state.cart = false">
-                    <v-icon> mdi-close </v-icon></v-btn
-                  >
-                </div>
-              </v-list-item>
-            </v-card>
-       
+              <v-btn icon @click="closeCart">
+                <v-icon> mdi-close </v-icon></v-btn
+              >
+            </div>
+          </v-list-item>
+        </v-card>
 
-
-        
-        <v-card style="height: 77vh; overflow-y: auto">
+        <v-card style="height: 82vh; overflow-y: auto">
           <div style="padding: 10% 10% 10% 10%">
             <div
               v-for="(item, i) in $store.state.cartItems"
@@ -207,28 +202,31 @@
                       margin: 0rem;
                       width: 20rem;
                     "
-                    v-for="(item, index) in items"
+                    v-for="(item, index) in couponsList"
                     :key="index"
-                  >
+                    ><div
+                      style="
+                        font-size: 20px;
+                        margin: 5px 15px 5px 15px;
+                        padding-top: 0px;
+                      "
+                    >
+                      {{ item.discountPercent }}%
+                    </div>
                     <v-list-item-content>
-                      <v-list-item-title style="font-size: 16px"
-                        >Coupon Name</v-list-item-title
-                      >
+                      <v-list-item-title style="font-size: 16px">{{
+                        item.name
+                      }}</v-list-item-title>
                       <v-list-item-title style="font-size: 12px"
-                        >Description of this code
+                        >{{ item.code }}
                       </v-list-item-title>
-                      <v-list-item-title style=""
-                        ><v-chip
-                          style="max-width: 100px; max-height: 50px"
-                          x-small
-                          >COUPON_CODE_1</v-chip
-                        ></v-list-item-title
-                      >
                     </v-list-item-content>
                     <v-list-item-action>
-                      <v-list-item-title
-                        style="text-align: right; font-size: 14px"
-                        ><v-btn class="white--text" color="#d50000"
+                      <v-list-item-title style="font-size: 14px"
+                        ><v-btn
+                          class="red--text elevation-0"
+                          color="transparent"
+                          @click="couponApplied(item.discountPercent)"
                           >Apply</v-btn
                         ></v-list-item-title
                       >
@@ -268,7 +266,7 @@
                     size="14px"
                     color="black"
                     >mdi-currency-inr</v-icon
-                  >4000</v-list-item-title
+                  >{{ totalAmount }}</v-list-item-title
                 >
               </v-list-item-action>
             </v-list-item>
@@ -295,7 +293,7 @@
                   ><span style="font-weight: bold">-</span
                   ><v-icon style="margin-top: 0px" size="14px" color="grey"
                     >mdi-currency-inr</v-icon
-                  >400</v-list-item-title
+                  >{{ this.discountedPrice }}</v-list-item-title
                 >
               </v-list-item-action>
             </v-list-item>
@@ -325,7 +323,7 @@
                     size="14px"
                     color="black"
                     >mdi-currency-inr</v-icon
-                  >{{ 0 }}</v-list-item-title
+                  >{{ totalAmount - discountedPrice }}</v-list-item-title
                 >
               </v-list-item-action>
             </v-list-item>
@@ -352,7 +350,9 @@
                   "
                   ><v-icon style="margin-top: 0px" size="14px" color="grey"
                     >mdi-currency-inr</v-icon
-                  >{{ 0 }}</v-list-item-title
+                  >{{
+                    (totalAmount - discountedPrice) * 0.18
+                  }}</v-list-item-title
                 >
               </v-list-item-action>
             </v-list-item>
@@ -382,37 +382,13 @@
                     size="14px"
                     color="black"
                     >mdi-currency-inr</v-icon
-                  >{{ 0 }}</v-list-item-title
-                >
-              </v-list-item-action>
-            </v-list-item>
-
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title
-                  style="
-                    color: grey;
-                    font-weight: 300;
-                    text-align: left;
-                    font-size: 14px;
-                  "
-                  >Additional Discount</v-list-item-title
-                >
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-list-item-title
-                  style="
-                    color: grey;
-                    font-weight: 300;
-                    text-align: right;
-                    font-size: 14px;
-                  "
-                  ><v-icon
-                    style="margin-top: 0px; opacity: 0.6"
-                    size="14px"
-                    color="grey"
-                    >mdi-currency-inr</v-icon
-                  >{{ 0 }}</v-list-item-title
+                  >{{
+                    (
+                      totalAmount -
+                      discountedPrice +
+                      (totalAmount - discountedPrice) * 0.18
+                    ).toFixed(2)
+                  }}</v-list-item-title
                 >
               </v-list-item-action>
             </v-list-item>
@@ -426,7 +402,13 @@
               <div style="font-size: 20px; padding-top: 1px">
                 <v-icon style="margin-top: 0px" size="20px" color="black"
                   >mdi-currency-inr</v-icon
-                >3000
+                >{{
+                  (
+                    totalAmount -
+                    discountedPrice +
+                    (totalAmount - discountedPrice) * 0.18
+                  ).toFixed(2)
+                }}
               </div>
             </v-col>
             <v-col cols="6">
@@ -434,6 +416,7 @@
                 color="#d50000"
                 class="white--text"
                 style="padding-left: 2rem; padding-right: 2rem"
+                @click="schedulePickupService"
                 >PAY NOW</v-btn
               ></v-col
             >
@@ -448,7 +431,7 @@
 
               <div class="carttitle">Your Cart</div>
 
-              <v-btn icon @click="$store.state.cart = false">
+              <v-btn icon @click="closeCart">
                 <v-icon> mdi-close </v-icon></v-btn
               >
             </div>
@@ -564,7 +547,7 @@
  <script>
 import axios from "axios";
 import { auth, db } from "../firebase";
-import { doc, setDoc, collection } from "@firebase/firestore";
+import { doc, setDoc, collection, onSnapshot } from "@firebase/firestore";
 export default {
   name: "cartVue",
   data() {
@@ -586,12 +569,9 @@ export default {
         "6:00 PM",
         "7:00 PM",
       ],
-      items: [
-        { title: "Click Me" },
-        { title: "Click Me" },
-        { title: "Click Me" },
-        { title: "Click Me 2" },
-      ],
+      couponsList: [],
+      discountedPrice: 0,
+      gstPrice: 0,
     };
   },
   computed: {
@@ -606,6 +586,22 @@ export default {
     },
   },
   methods: {
+    couponApplied(percent) {
+      console.log("coupon applied");
+      this.discountedPrice = this.totalAmount * (percent / 100);
+    },
+
+    async fetchCoupons() {
+      const colRef = collection(db, "coupons");
+      onSnapshot(colRef, (snapshot) => {
+        let items = [];
+        snapshot.forEach((item) => {
+          items.push({ id: item.id, ...item.data() });
+        });
+        this.couponsList = items;
+        console.log("this is coupon", this.couponsList);
+      });
+    },
     goToSummaryPage() {
       this.$store.state.showOrderSummary = true;
     },
@@ -778,7 +774,8 @@ export default {
   created() {
     this.generateDateSlots();
     this.setAddress();
-    this.createRazorPayOrder();
+    this.fetchCoupons();
+    //this.createRazorPayOrder();
   },
 };
 </script>
