@@ -96,7 +96,10 @@
           Select Car
           </div>
         </div>
-
+        <div 
+        @click="$store.state.cart = true"
+        
+        >
         <v-badge
           bottom
           offset-x="30"
@@ -113,7 +116,7 @@
             <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon>
           </v-btn>
         </v-badge>
-
+        </div>
         <v-btn
           text
           @click="menu = !menu"

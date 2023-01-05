@@ -190,7 +190,7 @@
                     color="#d50000"
                     v-bind="attrs"
                     v-on="on"
-                    style="padding-left: 4rem"
+                    style="margin-left: 4rem"
                     dark
                     >mdi-chevron-right</v-icon
                   >
@@ -416,7 +416,7 @@
                 color="#d50000"
                 class="white--text"
                 style="padding-left: 2rem; padding-right: 2rem"
-                @click="schedulePickupService"
+                @click="createRazorPayOrder"
                 >PAY NOW</v-btn
               ></v-col
             >
@@ -438,11 +438,46 @@
           </v-list-item>
         </v-card>
         <v-stepper v-model="e6" vertical>
-          <v-stepper-step :complete="e6 > 1" step="1">
-            Select Pickup Location
+          <v-stepper-step :complete="e6 > 1" step="1" color="#D50000">
+            Select Pickup Type
           </v-stepper-step>
 
           <v-stepper-content step="1">
+            <v-radio-group v-model="radioGroup" mandatory class="mt-0">
+              <v-radio
+                label="Pickup (Get Your Car Picked Up By Our Mechanic)"
+                value="Pickup"
+              ></v-radio>
+              <v-radio
+                label="Self  (Drop Your Car At Our Garage)"
+                value="Self"
+              ></v-radio>
+            </v-radio-group>
+
+            <v-btn
+              v-if="radioGroup == 'Pickup'"
+              color="#D50000"
+              class="white--text"
+              @click="e6 = 2"
+            >
+              Continue
+            </v-btn>
+            <v-btn
+              v-else
+              color="#D50000"
+              class="white--text"
+              @click="goToSummaryPage"
+            >
+              Confirm
+            </v-btn>
+            <v-btn text @click="disableCheckoutButton"> Cancel </v-btn>
+          </v-stepper-content>
+
+          <v-stepper-step :complete="e6 > 2" step="2" color="#D50000">
+            Select Pickup Location
+          </v-stepper-step>
+
+          <v-stepper-content step="2">
             <v-row>
               <v-text-field
                 v-model="address"
@@ -454,22 +489,22 @@
               ></v-text-field>
             </v-row>
 
-            <v-btn color="#D50000" class="white--text" @click="e6 = 2">
+            <v-btn color="#D50000" class="white--text" @click="e6 = 3">
               Continue
             </v-btn>
-            <v-btn text @click="disableCheckoutButton"> Cancel </v-btn>
+            <v-btn text @click="e6 = 1"> Cancel </v-btn>
           </v-stepper-content>
 
-          <v-stepper-step :complete="e6 > 2" step="2">
+          <v-stepper-step :complete="e6 > 3" step="3" color="#D50000">
             Select Pickup Date
           </v-stepper-step>
 
-          <v-stepper-content step="2">
+          <v-stepper-content step="3">
             <v-row justify="space-around">
               <v-chip-group
                 class="my-4 pa-0"
                 mandatory
-                active-class="red white--text"
+                active-class="red accent-4 white--text"
                 width="100%"
                 v-model="dateChipIndex"
               >
@@ -482,19 +517,19 @@
             <v-btn color="#D50000" class="white--text" @click="e6 = 3">
               Continue
             </v-btn>
-            <v-btn text @click="e6 = 1"> Cancel </v-btn>
+            <v-btn text @click="e6 = 2"> Cancel </v-btn>
           </v-stepper-content>
 
-          <v-stepper-step :complete="e6 > 3" step="3">
+          <v-stepper-step :complete="e6 > 4" step="4" color="#D50000">
             Select Pickup Time
           </v-stepper-step>
 
-          <v-stepper-content step="3">
+          <v-stepper-content step="4">
             <v-row justify="space-around">
               <v-chip-group
                 class="my-4 pa-0"
                 mandatory
-                active-class="red white--text"
+                active-class="red accent-4 white--text"
                 width="100%"
                 v-model="timeChipIndex"
               >
@@ -506,7 +541,7 @@
             <v-btn color="#D50000" class="white--text" @click="goToSummaryPage">
               CHECKOUT
             </v-btn>
-            <v-btn text @click="e6 = 2"> Cancel </v-btn>
+            <v-btn text @click="e6 = 3"> Cancel </v-btn>
           </v-stepper-content>
         </v-stepper>
       </div>
@@ -572,6 +607,10 @@ export default {
       couponsList: [],
       discountedPrice: 0,
       gstPrice: 0,
+      orderId: "",
+      script: `https://checkout.razorpay.com/v1/checkout.js`,
+      isSkipped: false,
+      radioGroup: "Pickup",
     };
   },
   computed: {
@@ -586,6 +625,7 @@ export default {
     },
   },
   methods: {
+    
     couponApplied(percent) {
       console.log("coupon applied");
       this.discountedPrice = this.totalAmount * (percent / 100);
@@ -689,16 +729,55 @@ export default {
         this.$store.state.logindialog = true;
       }
     },
-
+    async loadRazorPay() {
+      return new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = this.script;
+        script.onload = () => {
+          resolve(true);
+        };
+        script.onerror = () => {
+          resolve(false);
+        };
+        document.body.appendChild(script);
+      });
+    },
+    async initializeRazorpay() {
+      const result = await this.loadRazorPay();
+      if (!result) {
+        alert("Failed to load razorpay script");
+        return;
+      }
+      const options = {
+        key: "rzp_test_ERgSVx1qxIlbw7",
+        amount: 100,
+        currency: `INR`,
+        name: `QuickMechanic`,
+        order_id: this.orderId,
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/quickmechanic-india.appspot.com/o/Logo-2.png?alt=media&token=6f32c013-07d7-4e52-9efc-24625451c35f",
+        handler: function () {
+          console.log("Payment Successful");
+        },
+        prefill: {
+          name: this.$store.state.customer.userInfo.fullName,
+          email:
+            this.$store.state.customer.userInfo.email == ""
+              ? "quickmechanicit@gmail.com"
+              : this.$store.state.customer.userInfo.email,
+          contact: this.$store.state.customer.userInfo.phoneNumber,
+        },
+      };
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    },
     async createRazorPayOrder() {
       console.log("Api Called");
-      const response = await axios.post(
-        "https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder",
-        {
-          payableAmount: 100,
-        }
+      const response = await axios.get(
+        `https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder1?payableAmount=${100}`
       );
-      console.log(response);
+      this.orderId = response.data.orderId;
+      this.initializeRazorpay();
     },
     closeCart() {
       this.$store.state.cart = false;
@@ -775,7 +854,6 @@ export default {
     this.generateDateSlots();
     this.setAddress();
     this.fetchCoupons();
-    //this.createRazorPayOrder();
   },
 };
 </script>

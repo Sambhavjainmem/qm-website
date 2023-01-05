@@ -73,7 +73,7 @@
             </div>
 
             <div class="newmiddle">
-              <div class="newheadder">
+              <div class="newheadder"  style="padding-top:9rem">
                 A MECHANIC YOU CAN TRUST
                 <div class="headertop">
                   <div class="newheaddertop">
@@ -81,11 +81,11 @@
                   </div>
                 </div>
               </div>
-              <div class="chipparent">
+              <div class="chipparent" style="padding-top:4rem">
                 <div class="newchip">
                    <button class="cpb2" role="button" @click="goservices">
-                  OUR SERVICES
-                </button>
+                    OUR SERVICES
+                  </button>
                 <!-- HTML !-->
                 <!-- <button class="button-75 cpb2" role="button"><span class="text"> VALUE ADDED SERVICES</span></button> -->
 
@@ -181,20 +181,26 @@
    
 
       <div
+      class="white--text"
         style="
           width: 100%;
           height: 10px;
           position: relative;
           left: 0px;
-          bottom: 55px;
+          bottom: 45px;
+          font-weight: 500;
+          text-align: right;
+          font-size: 20px;
+          padding-right: 3rem;
+          margin-bottom: 0px;
         "
-      ></div>
+      >Contact Us - 8865880350</div>
 
       <secondSection />
         <tileView/>
       <getQuick />
+      
 
-      <!-- <checkOut /> -->
       <bottomVue />
     </div>
     <div></div>
@@ -205,7 +211,6 @@ import secondSection from "./secondSection.vue";
 
 import bottomVue from "./bottomVue";
 import getQuick from "./getQuick.vue";
-
 
 import tileView from './tileView.vue';
 export default {
@@ -224,7 +229,6 @@ export default {
 
   components: {
     secondSection,
-
     bottomVue,
     getQuick,
     tileView,
@@ -285,7 +289,7 @@ export default {
   width: 100%;
   height: fit-content;
   position: absolute;
-  top: -30px;
+  top: -10px;
   left: 0px; 
   display: flex;
   justify-content: center;

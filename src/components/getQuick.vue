@@ -1,5 +1,5 @@
 <template>
-  <div class="downloadmain" >
+  <div class="downloadmain">
     <div class="dialogBoxCss">
       <!-- <v-btn @click="dialogs = false" style="
       background: transparent; box-shadow: none;
@@ -7,8 +7,12 @@
           <v-icon class="elevation-0 red--text">mdi-close</v-icon>
         </v-btn> -->
     </div>
-    <div class="bgtext" v-if="!$store.state.becomedialog" >GET QUICKMECHANIC APP</div>
-    <div class="bgtext" v-if="$store.state.becomedialog">BECOME A QUICK MECHANIC</div>
+    <div class="bgtext" v-if="!$store.state.becomedialog">
+      GET QUICKMECHANIC APP
+    </div>
+    <div class="bgtext" v-if="$store.state.becomedialog">
+      BECOME A QUICK MECHANIC
+    </div>
     <div id="fff">
       <div class="downloadleft">
         <img class="sosphone" src="../assets/App_website-logo.png" />
@@ -23,7 +27,7 @@
             class="radiorow"
             style="width: 300px; display: flex; flex-direction: row"
           >
-            <v-radio-group v-model="radioGroup">
+            <v-radio-group v-model="radioGroup" mandatory>
               <div
                 style="
                   display: flex;
@@ -47,7 +51,6 @@
                 >
                   <v-radio
                     style="font-size: 30px"
-              
                     value="sms"
                     color="gray"
                     class="ma-0 pa-0"
@@ -70,7 +73,6 @@
                   "
                 >
                   <v-radio
-             
                     value="whatsApp"
                     color="gray"
                     class="ma-0 pa-0"
@@ -113,33 +115,21 @@
             </div>
             <div style="width: 6px; margin-right: 2px; height: 1px"></div>
             <input
+              v-model="phone"
               type="text"
               name="fname"
               placeholder="-"
               style="width: calc(100% - 110px); height: 100%"
             />
-            <button
-              type="button"
-              style="
-                width: 106px;
-                height: 36px;
-
-                color: white;
-                padding-left: 8px;
-                padding-right: 8px;
-                font-family: Arial, Helvetica, sans-serif;
-                font-style: normal;
-                font-weight: 500;
-                font-size: 13px;
-                line-height: 17px;
-
-                text-transform: uppercase;
-                background: #D50000;
-                border-radius: 18px;
-              "
+            <v-btn
+              color="#d50000"
+              class="white--text"
+              rounded
+              @click="sendSms"
+              :disabled="disable"
             >
-              SEND LINK
-            </button>
+              {{ this.buttonText }}
+          </v-btn>
           </div>
 
           <div
@@ -152,11 +142,12 @@
               justify-content: space-between;
             "
           >
-          <a
+            <a
               href="https://play.google.com/store/apps/details?id=com.quickmechanic.unifiedmobileapp&pli=1"
               target="_blank"
-              >
-            <img class="storeimg" src="../assets/Group 10765-h.jpg" /></a>
+            >
+              <img class="storeimg" src="../assets/Group 10765-h.jpg"
+            /></a>
             <img
               class="storeimg"
               style="margin-left: 3px"
@@ -169,7 +160,7 @@
   </div>
 </template>
 <script>
-
+import axios from "axios";
 
 export default {
   name: "getQuick",
@@ -178,10 +169,13 @@ export default {
       radioGroup: true,
       radioGroup2: true,
       dialogs: false,
+      phone: "",
+      buttonText: "SEND LINK",
+      disable:false,
     };
   },
   components: {},
-  
+
   watch: {
     // Creating function
     // for input component
@@ -196,19 +190,16 @@ export default {
     console.log(this.radioGroup);
     console.log(this.radioGroup2);
     // this.sendSms();
-    
   },
-  // methods: {
-  //   sendSms() {
-  //     const client = Twilio('AC753557afb669991fd24cf49766de7f78', '5f62a5b764913bce85aef0d778f128ea');
-  //       client.messages.create({
-  //         "to" : "+917352540343",
-  //         "from": "+918865880350",
-  //         "body" : "hello"
-  //       });
-    
-  //   },
-  // },
+  methods: {
+    async sendSms() {
+      this.buttonText = "Sent";
+      this.disable=true;
+      const url = `https://vue-sms-5477.twil.io/sms?a=${this.phone}&msg=https://play.google.com/store/apps/details?id=com.quickmechanic.unifiedmobileapp&pli=1`;
+      const response = await axios.get(url);
+      console.log(response);
+    },
+  },
 };
 </script>
 
@@ -499,7 +490,7 @@ input ::after {
   display: flex;
   flex-direction: column;
 }
-.dialogBoxCss{
+.dialogBoxCss {
   width: 1cm;
   position: absolute;
   top: 5mm;

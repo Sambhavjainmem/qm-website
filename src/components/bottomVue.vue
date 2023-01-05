@@ -1,5 +1,5 @@
 <template>
-  <div class="topbottom" >
+  <div class="topbottom">
     <div id="footerbanner">
       <div id="seehow">SEE HOW IT WORKS</div>
       <div id="subbottom">
@@ -120,55 +120,108 @@
         </span>
       </div> -->
 
-
-      <v-container style="margin-left:10vw; margin-top: 6vh; text-align:center" >
+      <v-container
+        style="margin-left: 10vw; margin-top: 6vh; text-align: center"
+      >
         <v-row>
           <div class="footercolumn3">
-          <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 25px;">Our Sevices </span>
-          <span class="footertext" style="padding-bottom:5px">- Mechanic</span>
-          <span class="footertext" style="padding-bottom:5px">- Car Checks</span>
-          <span class="footertext" style="padding-bottom:5px">- Oil and Break Checks</span>
-          <span class="footertext" style="padding-bottom:5px">- Breakdown Sevices</span>
-          <span class="footertext" style="padding-bottom:5px">- Tyres Services</span>
-          <span class="footertext" style="padding-bottom:5px">- Battery Change</span>
-          <span class="footertext" style="padding-bottom:5px">- Online Skill Development</span>
-        </div>
+            <span
+              class="footertext"
+              style="padding-bottom: 10px; font-weight: 500; font-size: 25px"
+              >Our Sevices
+            </span>
+            <span class="footertext" style="padding-bottom: 5px"
+              >- Mechanic</span
+            >
+            <span class="footertext" style="padding-bottom: 5px"
+              >- Car Checks</span
+            >
+            <span class="footertext" style="padding-bottom: 5px"
+              >- Oil and Break Checks</span
+            >
+            <span class="footertext" style="padding-bottom: 5px"
+              >- Breakdown Sevices</span
+            >
+            <span class="footertext" style="padding-bottom: 5px"
+              >- Tyres Services</span
+            >
+            <span class="footertext" style="padding-bottom: 5px"
+              >- Battery Change</span
+            >
+            <span class="footertext" style="padding-bottom: 5px"
+              >- Online Skill Development</span
+            >
+          </div>
 
-        <div class="footercolumn2">
-          <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 25px;">Opening Hours</span>
-          <span class="footertext" style="padding-bottom:10px">Mon - Fri: 7am - 10pm</span>
-          <span class="footertext" style="padding-bottom:10px"></span>
-          <span class="footertext" style="padding-bottom:10px"></span>
-          <span class="footertext" style="padding-bottom:10px"></span>
-          <span class="footertext" style="padding-bottom:10px">
-            <v-avatar class="ma-1" color="white" size="30"
-            ><v-icon size="20">mdi-facebook</v-icon></v-avatar
-          >
-          <v-avatar class="ma-1" color="white" size="30"
-            ><v-icon size="20">mdi-instagram</v-icon></v-avatar
-          >
-          </span>
-        </div>
+          <div class="footercolumn2">
+            <span
+              class="footertext"
+              style="padding-bottom: 10px; font-weight: 500; font-size: 25px"
+              >Opening Hours</span
+            >
+            <span class="footertext" style="padding-bottom: 10px"
+              >Mon - Fri: 7am - 10pm</span
+            >
+            <span class="footertext" style="padding-bottom: 10px"></span>
+            <span class="footertext" style="padding-bottom: 10px"></span>
+            <span class="footertext" style="padding-bottom: 10px"></span>
+            <span class="footertext" style="padding-bottom: 10px">
+              <v-avatar class="ma-1" color="white" size="30"
+                ><v-icon size="20">mdi-facebook</v-icon></v-avatar
+              >
+              <v-avatar class="ma-1" color="white" size="30"
+                ><v-icon size="20">mdi-instagram</v-icon></v-avatar
+              >
+            </span>
+          </div>
 
-        <div class="footercolumn2">
-          <span class="footertext" style="padding-bottom:10px; font-weight: 500; font-size: 25px; text-align: center;">Contact Us</span>
-          <span class="footertext" style="padding-bottom:3px ; width: 30vw;">Omaxe NRI City Centre, 2nd Floor, Multiplex Area</span>
-          <span class="footertext" style="padding-bottom:3px  ; width: 30vw;">Pari Chowk, Omega II, Greater Noida,</span>
-          <span class="footertext" style="padding-bottom:3px  ; width: 30vw;">Gautam Buddha Nagar</span>
-          <span class="footertext" style="padding-bottom:3px  ; width: 30vw;">Greater Noida UP 201308 India</span>
-          <span class="footertext" style="padding-bottom:3px"></span>
-          <span class="footertext" style="padding-bottom:10px"></span>
-          <span class="footertext" style="padding-bottom:20px"></span>
-          <span class="footertext" style="padding-bottom:20px"></span>
-          <span class="footertext" style="padding-bottom:10px;"><img width="350rem" src="../assets/footerBanner.png" alt=""></span>
-        </div>
+          <div class="footercolumn2">
+            <span
+              class="footertext"
+              style="
+                padding-bottom: 10px;
+                font-weight: 500;
+                font-size: 25px;
+                text-align: start;
+              "
+              >Contact Us</span
+            >
+            <span class="footertext" style="padding-bottom: 3px; width: 30vw"
+              >Omaxe NRI City Centre, 2nd Floor, Multiplex Area</span
+            >
+            <span class="footertext" style="padding-bottom: 3px; width: 30vw"
+              >Pari Chowk, Omega II, Greater Noida,</span
+            >
+            <span class="footertext" style="padding-bottom: 3px; width: 30vw"
+              >Gautam Buddha Nagar</span
+            >
+            <span class="footertext" style="padding-bottom: 3px; width: 30vw"
+              >Greater Noida UP 201308 India</span
+            >
+            <span class="footertext" style="padding-bottom: 3px"></span>
+            <span class="footertext" style="padding-bottom: 10px"></span>
+            <span class="footertext" style="padding-bottom: 20px"></span>
+            <span class="footertext" style="padding-bottom: 20px"></span>
+            <span
+              style="
+                font-size: 30px;
+                font-weight: 900;
+                letter-spacing: 3px;
+                color: #d50000;
+                height: 10px;
+              "
+              >QUICKMECHANIC</span
+            >
+          </div>
         </v-row>
         <v-row> <span style="margin-top: 3vh" id="line"></span></v-row>
-        <v-row> <span style="color:white; margin-top: 3vh; margin-bottom: 5vh;">Quick Mechanic</span></v-row>
+        <v-row>
+          <span style="color: white; margin-top: 3vh; margin-bottom: 5vh"
+            >QuickMechanic</span
+          ></v-row
+        >
       </v-container>
 
-      
-      
       <!-- <div class="footercolumn2">
         <div id="store">
           <img
@@ -180,7 +233,6 @@
         </div>
       </div> -->
     </div>
-    
 
     <!-- <img class ="logo" src="../assets/Group_10826.png">
         <span id="copyright">copyright ©️ {{new Date().getFullYear()}} Quick Mechanic</span>
@@ -205,9 +257,9 @@ export default {
 <style scoped>
 import ' https://code.jquery.com/jquery-1.8.3.js '
 
-#store { 
+#store {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   position: static;
   top: 200px;
   left: 0px;
@@ -324,7 +376,7 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   display: flex;
   flex-direction: column;
   width: 25%;
-  
+
   margin-top: 30px;
   margin-left: 5vw;
   margin-bottom: 20px;
@@ -367,7 +419,7 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   width: 100%;
   height: 1px;
   background-color: white;
-  opacity:0.8
+  opacity: 0.8;
 }
 .logo {
   width: 45px;

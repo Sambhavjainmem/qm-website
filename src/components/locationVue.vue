@@ -337,6 +337,30 @@ export default {
   // },
 
   methods: {
+    getCityIcon(city) {
+      switch (city) {
+        case "Delhi":
+          return "../assets/city.png";
+
+        case "Bangalore":
+          return "../assets/cities/icon_bengaluru.png";
+        case "Mumbai":
+          return "../assets/cities/icon_mumbai.png";
+        case "Chandigarh":
+          return "../assets/cities/icon_rohtak_1624945760.png";
+        case "Chennai":
+          return "../assets/cities/icon_chennai.png";
+        case "Hyderabad":
+          return "../assets/cities/icon_hyderabad.png";
+        case "Kolkata":
+          return "../assets/cities/icon_kolkata.png";
+        case "Jaipur":
+          return "../assets/cities/icon_jaipur_1667550208.png";
+
+        default:
+          return '../assets/city.png'
+      }
+    },
 
     locmalual (item){
     
@@ -471,6 +495,7 @@ export default {
     // },
   },
   created() {
+    console.log(this.getCityIcon('Delhi'));
     // this.$store.commit("getData", [{ name: "suraj" }, { name: "kumar" }]);
     // console.log(this.items);
   },

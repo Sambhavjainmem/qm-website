@@ -232,29 +232,35 @@
               >
             </div>
           </div>
-
-          
         </div>
-        <div class="productmain" v-if="!(this.serviceCategory == 'All services')">
-        <div class="productCard" v-for="service in this.data" :key="service.title" >
+        <div
+          class="productmain"
+          v-if="!(this.serviceCategory == 'All services')"
+        >
+          <div
+            class="productCard"
+            v-for="service in this.data"
+            :key="service.title"
+          >
             <div class="pimage">
-              <img
-                
-                class="productimg"
-                :src="service.thumbnail"
-              />
+              <img class="productimg" :src="service.thumbnail" />
             </div>
 
             <div class="pdesc">
               <div class="phead">{{ service.title }}</div>
-              <div class="pprice">₹  {{ $store.state.prices[service.category] }}</div>
+              <div class="pprice">
+                ₹ {{ $store.state.prices[service.category] }}
+              </div>
               <div class="ppoints">
-                <div class="servicedesc" v-for="(item, i) in service.description" :key="i">
+                <div
+                  class="servicedesc"
+                  v-for="(item, i) in service.description"
+                  :key="i"
+                >
                   <v-icon class="green--text mx-2 my-1" style="font-size: 20px"
                     >mdi-check-circle-outline</v-icon
-                  >{{  item}}
+                  >{{ item }}
                 </div>
-                
               </div>
               <div class="buttonrow pbtnrow">
                 <v-btn
@@ -301,7 +307,7 @@
                     font-weight: 500;
                     font-size: 14px;
                     line-height: 17px;
-                   
+
                     /* identical to box height */
 
                     text-transform: uppercase;
@@ -317,7 +323,7 @@
                     height: 48px;
                     background: #d50000;
                     border-radius: 24px;
-                   
+
                     box-shadow: none;
                   "
                   class="white--text"
@@ -327,7 +333,7 @@
               </div>
             </div>
           </div>
-          </div>
+        </div>
         <!-- ksdlkfj;sdlkja;sdl -->
 
         <div class="layer1-1-3">
@@ -575,6 +581,8 @@
         </div>
       </div>
     </div>
+    <bottom-vue/>
+
     <v-snackbar v-model="snackbar"> {{ snackbarMessage }} </v-snackbar>
   </div>
 </template>
@@ -582,6 +590,7 @@
 import vechileInfo from "../vechileInfo.vue";
 import { db } from "../../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import  BottomVue  from "../bottomVue.vue";
 
 export default {
   name: "scheduleService",
@@ -617,12 +626,13 @@ export default {
 
   components: {
     vechileInfo,
+    BottomVue,
   },
 
   mounted() {
     // this.$store.state.vinfo  = JSON.parse( localStorage.getItem('vdata' ) );
 
-   this.serviceCategory = this.$route.params.data;
+    this.serviceCategory = this.$route.params.data;
 
     console.log(this.serviceCategory);
 
@@ -642,7 +652,6 @@ export default {
     key: function () {
       if (this.key == "All services") {
         this.data = this.items;
-        
       } else {
         this.data = this.items.filter((item) => item.category == this.key);
       }
@@ -674,11 +683,8 @@ export default {
     changeKey(category) {
       this.key = category;
       this.serviceCategory = this.key;
-      console.log( "this is data",this.data)
-     // console.log("service categorie",this.serviceCategory,(this.serviceCategory == 'All services'));
-
-
-
+      console.log("this is data", this.data);
+      // console.log("service categorie",this.serviceCategory,(this.serviceCategory == 'All services'));
     },
     alreadyExist(service) {
       return this.$store.state.cartItems.includes(service);

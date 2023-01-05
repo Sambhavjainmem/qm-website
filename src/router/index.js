@@ -23,6 +23,7 @@ import trainingView from '../components/trainingView.vue';
 import AboutUsView from '../components/AboutUsView.vue'
 import ContactUsView from '../components/ContactUsView.vue'
 import productpdpVue from '../components/productpdpVue.vue'
+import invoiceView from '../components/invoiceView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -109,6 +110,14 @@ const routes = [
     name: 'locationVue',
     component: locationVue,
     meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/invoiceView',
+    name: 'invoiceView',
+    component: invoiceView,
+    meta:{
       requiresAuth: false
     }
   },
