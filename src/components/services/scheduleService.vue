@@ -581,7 +581,10 @@
         </div>
       </div>
     </div>
-    <bottom-vue/>
+    <div style="background-color: white; margin-bottom: 0px; height: 10rem; width: 100vw; text-align: center;">
+      <img src="../../assets/bottom.jpg" height="140rem" width="" alt="" style="margin-top:16px">
+    </div>
+    <bottom-vue style="margin-top:0px" />
 
     <v-snackbar v-model="snackbar"> {{ snackbarMessage }} </v-snackbar>
   </div>
@@ -590,7 +593,7 @@
 import vechileInfo from "../vechileInfo.vue";
 import { db } from "../../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import  BottomVue  from "../bottomVue.vue";
+import BottomVue from "../bottomVue.vue";
 
 export default {
   name: "scheduleService",

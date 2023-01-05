@@ -158,6 +158,7 @@
                 font-weight: 400;
                 opacity: 0.8;
               "
+              v-if="radioGroup == 'Pickup'"
             >
               <v-icon style="padding-right: 0.5rem" color="red"
                 >mdi-calendar</v-icon
@@ -173,6 +174,7 @@
                 font-weight: 400;
                 opacity: 0.8;
               "
+              v-if="radioGroup == 'Pickup'"
             >
               <v-icon style="padding-right: 0.5rem" color="red"
                 >mdi-map-marker</v-icon
@@ -224,12 +226,22 @@
                     <v-list-item-action>
                       <v-list-item-title style="font-size: 14px"
                         ><v-btn
+                          v-if="index == selectedCouponIndex"
                           class="red--text elevation-0"
                           color="transparent"
-                          @click="couponApplied(item.discountPercent)"
+                          @click="removeCoupon()"
+                          text
+                          >Remove</v-btn
+                        >
+
+                        <v-btn
+                          v-else
+                          class="red--text elevation-0"
+                          color="transparent"
+                          @click="couponApplied(item.discountPercent, index)"
                           >Apply</v-btn
-                        ></v-list-item-title
-                      >
+                        >
+                      </v-list-item-title>
                     </v-list-item-action>
                   </v-list-item>
                 </v-list>
@@ -413,13 +425,23 @@
             </v-col>
             <v-col cols="6">
               <v-btn
+                v-if="radioGroup == 'Self'"
+                color="#d50000"
+                class="white--text"
+                style="padding-left: 2rem; padding-right: 2rem"
+                @click="schedulePickupService"
+                >BOOK NOW</v-btn
+              >
+
+              <v-btn
+                v-else
                 color="#d50000"
                 class="white--text"
                 style="padding-left: 2rem; padding-right: 2rem"
                 @click="createRazorPayOrder"
                 >PAY NOW</v-btn
-              ></v-col
-            >
+              >
+            </v-col>
           </v-row>
         </v-card>
       </div>
@@ -514,7 +536,7 @@
               </v-chip-group>
             </v-row>
 
-            <v-btn color="#D50000" class="white--text" @click="e6 = 3">
+            <v-btn color="#D50000" class="white--text" @click="e6 = 4">
               Continue
             </v-btn>
             <v-btn text @click="e6 = 2"> Cancel </v-btn>
@@ -568,6 +590,7 @@
                     </div>
                   </v-col>
                 </v-row>
+                <v-card-subtitle justify="center" align="center" v-if="radioGroup=='Self'">Thank You! We will contact you shortly…</v-card-subtitle>
               </v-card-text>
               <v-card-actions class="justify-end">
                 <v-btn text @click="dialog = false">Close</v-btn>
@@ -611,6 +634,8 @@ export default {
       script: `https://checkout.razorpay.com/v1/checkout.js`,
       isSkipped: false,
       radioGroup: "Pickup",
+      isCouponApplied: false,
+      selectedCouponIndex: -1,
     };
   },
   computed: {
@@ -625,10 +650,60 @@ export default {
     },
   },
   methods: {
-    
-    couponApplied(percent) {
+    createInvoice(pickupId, services) {
+      var date = new Date();
+      var utc = date.getTime();
+      var dateIST = new Date(utc);
+      const docRef = doc(collection(db, "pickups/" + pickupId + "/invoices"));
+      setDoc(docRef, {
+        isWalletUsed: false,
+        walletAmountUsed: 0,
+        walletId: "NA",
+        amount: (
+                      this.totalAmount -
+                      this.discountedPrice +
+                      (this.totalAmount - this.discountedPrice) * 0.18
+                    ).toFixed(2),
+        amountBeforeTax: this.totalAmount,
+        tax: (this.totalAmount - this.discountedPrice) * 0.18,
+        items: services,
+        customerId: auth.currentUser.uid,
+        customerName: this.$store.state.customer.userInfo.fullName,
+        id: docRef.id,
+        mechanicId: "NA",
+        mechanicName: "NA",
+        paid: this.radioGroup=='Self'? false: true,
+        serviceId: pickupId,
+        serviceType: "Scheduled",
+        when: {
+          date: dateIST.toLocaleDateString(),
+          time: dateIST.toLocaleTimeString("en-US"),
+        },
+        orderId: this.orderId,
+        //paymentId: response.paymentId.toString(),
+        //signature: response.signature.toString(),
+        //gstList: widget.gstInfo,
+      }).then(() => {
+        console.log("Success");
+        this.$store.state.cartItems = [];
+        this.$store.state.cart = false;
+        this.$store.state.isCheckoutClicked = false;
+        this.$store.state.showOrderSummary = false;
+
+        this.e6 = 1;
+        this.orderSuccess = true;
+        this.dialog = true;
+      });
+    },
+    removeCoupon() {
+      this.selectedCouponIndex = -1;
+      this.discountedPrice = 0;
+    },
+    couponApplied(percent, idx) {
+      this.selectedCouponIndex = idx;
       console.log("coupon applied");
       this.discountedPrice = this.totalAmount * (percent / 100);
+      this.isCouponApplied = true;
     },
 
     async fetchCoupons() {
@@ -639,7 +714,7 @@ export default {
           items.push({ id: item.id, ...item.data() });
         });
         this.couponsList = items;
-        console.log("this is coupon", this.couponsList);
+        //console.log("this is coupon", this.couponsList);
       });
     },
     goToSummaryPage() {
@@ -663,9 +738,7 @@ export default {
           });
         });
         const docRef = doc(collection(db, "pickups"));
-        console.log("Checkpoint ", services);
-        console.log("Checkpoint ", this.$store.state.cartItems);
-
+        
         setDoc(docRef, {
           services: services,
           status: "pending",
@@ -692,10 +765,16 @@ export default {
             time: "NA",
           },
           pickupInfo: {
-            mode: "NA",
-            address: this.address,
-            date: this.listDateSlots[this.dateChipIndex].value,
-            time: this.listTimeSlots[this.timeChipIndex],
+            mode: this.radioGroup,
+            address: this.radioGroup == "Self" ? "NA" : this.address,
+            date:
+              this.radioGroup == "Self"
+                ? "NA"
+                : this.listDateSlots[this.dateChipIndex].value,
+            time:
+              this.radioGroup == "Self"
+                ? "NA"
+                : this.listTimeSlots[this.timeChipIndex],
             location: {
               latitude: this.$store.state.coordinates.latitude,
               longitude: this.$store.state.coordinates.longitude,
@@ -715,15 +794,7 @@ export default {
             vehicleBrand: this.$store.state.vinfo.brand,
           },
         }).then(() => {
-          console.log("Success");
-          this.$store.state.cartItems = [];
-          this.$store.state.cart = false;
-          this.$store.state.isCheckoutClicked = false;
-          this.$store.state.showOrderSummary = false;
-
-          this.e6 = 1;
-          this.orderSuccess = true;
-          this.dialog = true;
+          this.createInvoice(docRef.id,services);
         });
       } else {
         this.$store.state.logindialog = true;
@@ -773,27 +844,33 @@ export default {
     },
     async createRazorPayOrder() {
       console.log("Api Called");
-      const response = await axios.get(
+   await axios.get(
         `https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder1?payableAmount=${100}`
-      );
-      this.orderId = response.data.orderId;
-      this.initializeRazorpay();
+      ).then((response)=>{
+
+        this.orderId = response.data.orderId;
+        console.log(this.orderId);
+        this.initializeRazorpay();
+      });
     },
     closeCart() {
       this.$store.state.cart = false;
       this.$store.state.isCheckoutClicked = false;
       this.$store.state.showOrderSummary = false;
+      this.radioGroup = "Pickup";
     },
     enableCheckOutButton() {
-      this.$store.state.isCheckoutClicked = true;
+      if(this.$store.state.cartItems.length!=0){
+
+        this.$store.state.isCheckoutClicked = true;
+      }
     },
     setAddress() {
       var location = JSON.parse(localStorage.getItem("location"));
-      if (location == null) {
-        console.log(location);
-      } else {
+      if (location != null) {
         this.$store.state.location = location;
-      }
+        
+      } 
     },
     removeItem(index) {
       this.$store.state.cartItems.splice(index, 1);
@@ -854,6 +931,7 @@ export default {
     this.generateDateSlots();
     this.setAddress();
     this.fetchCoupons();
+    //this.createRazorPayOrder();
   },
 };
 </script>

@@ -256,9 +256,6 @@
         My Bookings
       </div>
       <div class="item" style="font-family: Arial, Helvetica, sans-serif">
-        Resources
-      </div>
-      <div class="item" style="font-family: Arial, Helvetica, sans-serif">
         FAQs
       </div>
       <div

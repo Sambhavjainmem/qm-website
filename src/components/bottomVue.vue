@@ -323,6 +323,7 @@ import ' https://code.jquery.com/jquery-1.8.3.js '
   font-size: 30px;
   line-height: 58px;
   width: 100%;
+  margin-top: 3rem;
   height: fit-content;
   display: flex;
   justify-content: center;
