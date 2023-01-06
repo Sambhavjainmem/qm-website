@@ -194,7 +194,7 @@
           padding-right: 3rem;
           margin-bottom: 0px;
         "
-      >Contact Us - 8865880350</div>
+      >Contact Us - +919811100558</div>
 
       <secondSection />
         <tileView/>

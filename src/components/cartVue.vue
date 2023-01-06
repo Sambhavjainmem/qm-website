@@ -590,7 +590,12 @@
                     </div>
                   </v-col>
                 </v-row>
-                <v-card-subtitle justify="center" align="center" v-if="radioGroup=='Self'">Thank You! We will contact you shortly…</v-card-subtitle>
+                <v-card-subtitle
+                  justify="center"
+                  align="center"
+                  v-if="radioGroup == 'Self'"
+                  >Thank You! We will contact you shortly…</v-card-subtitle
+                >
               </v-card-text>
               <v-card-actions class="justify-end">
                 <v-btn text @click="dialog = false">Close</v-btn>
@@ -660,10 +665,10 @@ export default {
         walletAmountUsed: 0,
         walletId: "NA",
         amount: (
-                      this.totalAmount -
-                      this.discountedPrice +
-                      (this.totalAmount - this.discountedPrice) * 0.18
-                    ).toFixed(2),
+          this.totalAmount -
+          this.discountedPrice +
+          (this.totalAmount - this.discountedPrice) * 0.18
+        ).toFixed(2),
         amountBeforeTax: this.totalAmount,
         tax: (this.totalAmount - this.discountedPrice) * 0.18,
         items: services,
@@ -672,7 +677,7 @@ export default {
         id: docRef.id,
         mechanicId: "NA",
         mechanicName: "NA",
-        paid: this.radioGroup=='Self'? false: true,
+        paid: this.radioGroup == "Self" ? false : true,
         serviceId: pickupId,
         serviceType: "Scheduled",
         when: {
@@ -738,7 +743,7 @@ export default {
           });
         });
         const docRef = doc(collection(db, "pickups"));
-        
+
         setDoc(docRef, {
           services: services,
           status: "pending",
@@ -794,7 +799,7 @@ export default {
             vehicleBrand: this.$store.state.vinfo.brand,
           },
         }).then(() => {
-          this.createInvoice(docRef.id,services);
+          this.createInvoice(docRef.id, services);
         });
       } else {
         this.$store.state.logindialog = true;
@@ -844,14 +849,15 @@ export default {
     },
     async createRazorPayOrder() {
       console.log("Api Called");
-   await axios.get(
-        `https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder1?payableAmount=${100}`
-      ).then((response)=>{
-
-        this.orderId = response.data.orderId;
-        console.log(this.orderId);
-        this.initializeRazorpay();
-      });
+      await axios
+        .get(
+          `https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder1?payableAmount=${100}`
+        )
+        .then((response) => {
+          this.orderId = response.data.orderId;
+          console.log(this.orderId);
+          this.initializeRazorpay();
+        });
     },
     closeCart() {
       this.$store.state.cart = false;
@@ -860,8 +866,7 @@ export default {
       this.radioGroup = "Pickup";
     },
     enableCheckOutButton() {
-      if(this.$store.state.cartItems.length!=0){
-
+      if (this.$store.state.cartItems.length != 0) {
         this.$store.state.isCheckoutClicked = true;
       }
     },
@@ -869,8 +874,7 @@ export default {
       var location = JSON.parse(localStorage.getItem("location"));
       if (location != null) {
         this.$store.state.location = location;
-        
-      } 
+      }
     },
     removeItem(index) {
       this.$store.state.cartItems.splice(index, 1);

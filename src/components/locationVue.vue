@@ -148,7 +148,6 @@
           font-weight: 500;
           font-size: 34px;
           line-height: 46px;
-          
 
           color: rgba(0, 0, 0, 0.6);
         "
@@ -209,20 +208,29 @@
       >
         <div style="">Popular Cities</div>
         <div style="display: flex; flex-diraction: row">
-          <div class="card" v-for=" (item,i) in popularCity" :key="i" @click="locmalual(item)">
+          <div
+            class="card"
+            v-for="(item, i) in popularCity"
+            :key="i"
+            @click="locmalual(item)"
+          >
             <img style="width: 48px; height: 55px" src="../assets/city.png" />
-            <div class="citytitle">{{item.name}}</div>
+            <div class="citytitle">{{ item.name }}</div>
           </div>
-
-         
         </div>
       </div>
       <div style="height: 100px; width: 90%">
         <div style="">Other Cities</div>
         <div style="width: 100%; height: fit-content; flex-wrap: wrap">
-          <v-chip v-for="(item ,i) in otherpopularCity" :key="i" outlined class="ma-2" @click="locmalual(item)"> {{ item.name }}</v-chip>
-
-         
+          <v-chip
+            v-for="(item, i) in otherpopularCity"
+            :key="i"
+            outlined
+            class="ma-2"
+            @click="locmalual(item)"
+          >
+            {{ item.name }}</v-chip
+          >
         </div>
       </div>
     </div>
@@ -239,90 +247,76 @@ export default {
       long: "",
       load: false,
       popularCity: [
-      {
-        "name" : "Delhi",
-        "location" : {
-          "longitude" : "77.2314900",
-            "latitude" : "28.6519500",
-
-        }
-      },
-      {
-        "name" : "Bangalore",
-        "location" : {
-          "longitude" : "77.580643",
-            "latitude" : "12.972442",
-
-        }
-      },
-      {
-        "name" : "Mumbai",
-        "location" : {
-          "longitude" : "72.8826100",
-            "latitude" : "19.0728300",
-
-        }
-      },
-      {
-        "name" : "Chandigarh",
-        "location" : {
-          "longitude" : "76.768066",
-            "latitude" : "30.741482",
-
-        }
-      },
-      {
-        "name" : "Chennai",
-        "location" : {
-          "longitude" : "NA",
-            "latitude" : "NA",
-
-        }
-      },
-      {
-        "name" : "Hyderabad",
-        "location" : {
-          "longitude" : "80.237617",
-            "latitude" : "13.067439",
-
-        }
-      },
-      {
-        "name" : "Kolkata",
-        "location" : {
-          "longitude" : "88.3630400",
-            "latitude" : "22.5626300",
-
-        }
-      },
-      {
-        "name" : "Jaipur",
-        "location" : {
-          "longitude" : "75.7878100",
-            "latitude" : "26.9196200",
-
-        }
-      },
-
-
-
-
-     ],
-     otherpopularCity: [
-      
-     {"name" : "Surat"},
-     {"name" : "Lucknow"},
-     {"name" : "Patna"},
-     {"name" : "Agra"},
-     {"name" : "Nasik"},
-     {"name" : "Thane"},
-     {"name" : "Faridabad"},
-     {"name" : "Rajkot"},
-     {"name" : "Allahabad"},
-     {"name" : "Jabalpur"},
-     {"name" : "Jodhpur"},
-     ],
-
+        {
+          name: "Delhi",
+          location: {
+            longitude: "77.2314900",
+            latitude: "28.6519500",
+          },
+        },
+        {
+          name: "Bangalore",
+          location: {
+            longitude: "77.580643",
+            latitude: "12.972442",
+          },
+        },
+        {
+          name: "Mumbai",
+          location: {
+            longitude: "72.8826100",
+            latitude: "19.0728300",
+          },
+        },
+        {
+          name: "Chandigarh",
+          location: {
+            longitude: "76.768066",
+            latitude: "30.741482",
+          },
+        },
+        {
+          name: "Chennai",
+          location: {
+            longitude: "NA",
+            latitude: "NA",
+          },
+        },
+        {
+          name: "Hyderabad",
+          location: {
+            longitude: "80.237617",
+            latitude: "13.067439",
+          },
+        },
+        {
+          name: "Kolkata",
+          location: {
+            longitude: "88.3630400",
+            latitude: "22.5626300",
+          },
+        },
+        {
+          name: "Jaipur",
+          location: {
+            longitude: "75.7878100",
+            latitude: "26.9196200",
+          },
+        },
+      ],
+      otherpopularCity: [
+        { name: "Surat" },
+        { name: "Lucknow" },
+        { name: "Patna" },
+        { name: "Agra" },
+        { name: "Nasik" },
+        { name: "Thane" },
+        { name: "Faridabad" },
+        { name: "Rajkot" },
+        { name: "Allahabad" },
+        { name: "Jabalpur" },
+        { name: "Jodhpur" },
+      ],
     };
   },
 
@@ -358,29 +352,25 @@ export default {
           return "../assets/cities/icon_jaipur_1667550208.png";
 
         default:
-          return '../assets/city.png'
+          return "../assets/city.png";
       }
     },
 
-    locmalual (item){
-    
-    this.$store.state.location1 = item.name; 
-          this.$store.state.location2 = null;
-               
-          localStorage.setItem(
-            "location1",
-            JSON.stringify(this.$store.state.location1)
-          );
-          localStorage.setItem(
-            "location2",
-            JSON.stringify(this.$store.state.location2)
-          );
-     
-            this.$store.state.locdialog = false;     
-  },
+    locmalual(item) {
+      this.$store.state.location1 = item.name;
+      this.$store.state.location2 = null;
+      this.$store.state.currentState=item.name;
+      localStorage.setItem(
+        "location1",
+        JSON.stringify(this.$store.state.location1)
+      );
+      localStorage.setItem(
+        "location2",
+        JSON.stringify(this.$store.state.location2)
+      );
 
-
-
+      this.$store.state.locdialog = false;
+    },
 
     // async location() {
     //   navigator.geolocation.getCurrentPosition(
@@ -428,19 +418,19 @@ export default {
           //  console.log(position);
           this.lat = position.coords.latitude;
           this.long = position.coords.longitude;
-          this.$store.state.coordinates= {
-      latitude: this.lat,
-      longitude: this.long,
-     
-    },
-          url = `https://geocode.maps.co/reverse?lat=${this.lat}&lon=${this.long}`;
+          (this.$store.state.coordinates = {
+            latitude: this.lat,
+            longitude: this.long,
+          }),
+            (url = `https://geocode.maps.co/reverse?lat=${this.lat}&lon=${this.long}`);
           const response = await axios.get(url);
 
-          console.log(typeof response.data.display_name);
+          console.log(response.data.address);
           const myArray = response.data.display_name.split(",");
-          this.$store.state.location= response.data.display_name;
+          this.$store.state.location = response.data.display_name;
+          this.$store.state.currentState=response.data.address.state;
 
-          console.log(myArray);
+       
           this.$store.state.location1 = myArray[0];
           this.$store.state.location2 = myArray[1];
           localStorage.setItem(
@@ -455,7 +445,6 @@ export default {
             "location",
             JSON.stringify(this.$store.state.location)
           );
-
 
           console.log(
             "loc",
@@ -495,7 +484,7 @@ export default {
     // },
   },
   created() {
-    console.log(this.getCityIcon('Delhi'));
+    console.log(this.getCityIcon("Delhi"));
     // this.$store.commit("getData", [{ name: "suraj" }, { name: "kumar" }]);
     // console.log(this.items);
   },

@@ -334,6 +334,7 @@
             </div>
           </div>
         </div>
+        <v-subheader >For offers and seasonal promotion please contact service advisor @+919811100558</v-subheader>
         <!-- ksdlkfj;sdlkja;sdl -->
 
         <div class="layer1-1-3">
@@ -581,10 +582,24 @@
         </div>
       </div>
     </div>
-    <div style="background-color: white; margin-bottom: 0px; height: 10rem; width: 100vw; text-align: center;">
-      <img src="../../assets/bottom.jpg" height="140rem" width="" alt="" style="margin-top:16px">
+    <div
+      style="
+        background-color: white;
+        margin-bottom: 0px;
+        height: 10rem;
+        width: 100vw;
+        text-align: center;
+      "
+    >
+      <img
+        src="../../assets/bottom.jpg"
+        height="140rem"
+        width=""
+        alt=""
+        style="margin-top: 16px"
+      />
     </div>
-    <bottom-vue style="margin-top:0px" />
+    <bottom-vue style="margin-top: 0px" />
 
     <v-snackbar v-model="snackbar"> {{ snackbarMessage }} </v-snackbar>
   </div>
