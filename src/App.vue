@@ -288,6 +288,7 @@
 
 <script>
 import "./appcss.css";
+import axios  from "axios";
 import getQuick from "./components/getQuick.vue";
 import { auth, db } from "./firebase";
 import { signOut, onAuthStateChanged } from "@firebase/auth";
@@ -327,7 +328,8 @@ export default {
       dialog: false,
       dialogs: false,
       sdialogs: false,
-
+      lat: "",
+      long: "",
       loading: false,
 
       snackbarColor: "default",
@@ -402,7 +404,9 @@ export default {
   window.removeEventListener("resize", this.screenSize);
 },
   created() {
+   
     this.screenSize();
+
     window.addEventListener("resize", this.screenSize);
     console.log("this is path:",this.$route.path);
     this.firebaseData();
@@ -440,10 +444,49 @@ export default {
       this.$store.state.vinfo = vobj;
     }
     console.log("local sorage", this.$store.state.vinfo.brand);
+    this.location();
+   
   },
 
   methods: {
 
+
+    async location() {   
+        navigator.geolocation.getCurrentPosition(
+        async (position) => {
+        this.lat = position.coords.latitude;
+        this.long = position.coords.longitude;
+        (this.$store.state.coordinates = {
+           latitude: this.lat,
+           longitude: this.long,
+        });
+          var url = `https://geocode.maps.co/reverse?lat=${this.lat}&lon=${this.long}`;     
+          const response = await axios.get(url);
+          const myArray = response.data.display_name.split(",");
+          this.$store.state.location = response.data.display_name;
+          this.$store.state.currentState=response.data.address.state;       
+          this.$store.state.location1 = myArray[0];
+          this.$store.state.location2 = myArray[1];
+          localStorage.setItem(
+            "location1",
+            JSON.stringify(this.$store.state.location1)
+          );
+          localStorage.setItem(
+            "location2",
+            JSON.stringify(this.$store.state.location2)
+          );
+          localStorage.setItem(
+            "location",
+            JSON.stringify(this.$store.state.location)
+          );
+          this.$store.state.locdialog = false;
+          this.load = false;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );    
+    },
     screenSize(){
       let size = window.innerWidth - 162;
       let finalsize = size - (size % 384);
@@ -507,11 +550,8 @@ export default {
       signOut(auth).then(() => {
         console.log("logout sechusdokfj");
         this.$router.replace("/");
-        this.$store.state.customer = {};    
-        
-        
-        
-      });
+        this.$store.state.customer = {}; 
+        });
     },
     fff() {
       this.dialog = false;
