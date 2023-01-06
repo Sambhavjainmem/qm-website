@@ -18,12 +18,12 @@
                 <tr>
                     <td style="text-align: left; border: white; font-weight:500">Buyer: (Bill To)</td>
                     <td style="font-weight:900; border: white; ">Invoice ID:</td>
-                    <td style="text-align:right; border: white; font-weight:500"> zdfCNOdfwZT9qfKPRj8u</td>
+                    <td style="text-align:right; border: white; font-weight:500"> {{ CurrentInvoice.id }}</td>
                 </tr>
                 <tr>
-                    <td style="text-align: left; border: white; font-weight:900">Sambhav</td>
+                    <td style="text-align: left; border: white; font-weight:900">{{ CurrentInvoice.customerName }}</td>
                     <td style="font-weight:900; border: white;">Order ID:</td>
-                    <td style="text-align:right; border: white; font-weight:500"> zdfCNOdfwZT9qfKPRj8u</td>
+                    <td style="text-align:right; border: white; font-weight:500"> {{ CurrentInvoice.orderId }}</td>
                 </tr>
                 <tr>
                     <td style="text-align: left; border: white; font-weight:500">State: NCT of Delhi</td>
@@ -33,7 +33,7 @@
                 <tr>
                     <td style="text-align: left; border: white; font-weight:500">State Code: 7</td>
                     <td style="font-weight:900; border: white;">Invoice Date:</td>
-                    <td  style="text-align:right; border: white; font-weight:500"> 12/25/2022</td>
+                    <td  style="text-align:right; border: white; font-weight:500">{{ CurrentInvoice.when.date }}</td>
                 </tr>
             </table>
             <table style="width:90vw; margin-top: 10px; margin-bottom: 0px;">
@@ -42,17 +42,11 @@
                     <th style="font-weight:900; background-color:#BDBDBD; width: 15vw; text-align: right;">HSN/SAC</th> 
                     <th style="font-weight:900; background-color:#BDBDBD; width: 15vw; text-align: right;">Amount</th>
                 </tr>
-                <tr>
-                    <td style=" font-weight:500">SOS Advance Payment</td>
+                <tr v-for="(item, i) in itemsList" :key="i" >
+                    <td style=" font-weight:500">{{ item.name}}</td>
                     <td style="text-align:right; font-weight:500">998714</td> 
-                    <td style="text-align:right; font-weight:500">Rs.170.00</td>
+                    <td style="text-align:right; font-weight:500">Rs.{{(item.price).toFixed(2)}}</td>
                 </tr>
-                <tr>
-                    <td style=" font-weight:500">IGST</td>
-                    <td style="text-align:right; font-weight:500">998714</td> 
-                    <td style="text-align:right; font-weight:500">Rs.30.60</td>
-                </tr>
-                
             </table>
             <table style="width:90vw; margin-bottom: 10px;">
                 <tr>
@@ -72,11 +66,11 @@
                     <th style="font-weight:900; background-color:#BDBDBD; width:25vw">Taxable Amount</th>
                     <th style="font-weight:900; background-color:#BDBDBD; width:15vw">Tax</th>
                 </tr>
-                <tr>
+                <tr v-for="(item, i) in gstList" :key="i" >
                     <td style=" font-weight:500">998714</td>
-                    <td style=" font-weight:500">IGST</td> 
-                    <td style=" font-weight:500">18%</td>
-                    <td style=" font-weight:500">170.00</td>
+                    <td style=" font-weight:500">item.type</td> 
+                    <td style=" font-weight:500">{{item.rate}}%</td>
+                    <td style=" font-weight:500">Rs.170.00</td>
                     <td style=" font-weight:500">Rs.30.60</td>
                 </tr>
             </table>
@@ -110,8 +104,43 @@
 </template>
 
 <script>
+import {  db } from "../firebase";
+import { collection, onSnapshot } from "@firebase/firestore";
 export default{
     name: "invoiceView",
+    data(){
+        return{
+            allInvoices : [],
+            InvoiceData: {},
+            CurrentInvoice : [],
+            itemsList: [],
+            gstList: [],
+        };
+    },
+    methods:{
+        async fetchData() {
+            const colRef = collection(db, "pickups/" + "k3g0emMNsyoOUVkDIy09" + "/invoices");
+            onSnapshot(colRef, (snapshot) => {
+                let items = [];
+                snapshot.forEach((item) => {
+                items.push({ id: item.id, ...item.data() });
+                });
+                this.allInvoices = items;
+                this.InvoiceData = this.allInvoices.filter(
+                    (item) => item.id == "MgEVk7rllS8dQ14y1w2O"
+                );
+                this.CurrentInvoice = this.InvoiceData[0];
+                this.itemsList = this.CurrentInvoice.items;
+                this.gstList = this.CurrentInvoice.gstList;
+                console.log(this.itemsList);
+            });
+        },
+    },
+    created() {
+        this.fetchData();
+        //this.createRazorPayOrder();
+    },
+    
 
 }
 </script>

@@ -699,6 +699,7 @@ export default {
         id: docRef.id,
         mechanicId: "NA",
         mechanicName: "NA",
+        state: this.$store.state.currentState,
         paid: this.radioGroup == "Self" ? false : true,
         serviceId: pickupId,
         serviceType: "Scheduled",
@@ -970,6 +971,7 @@ export default {
 };
 </script>
  <style scoped>
+
 .v-stepper__step__step {
   background-color: #d50;
   color: red;
@@ -978,6 +980,7 @@ export default {
 .v-sheet.v-stepper {
   height: calc(100vh - 67px);
 }
+
 .carttitle {
   font-size: 18px;
   font-weight: 400;
@@ -990,6 +993,7 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+
 .v-list-item {
   padding: 0px;
 }
