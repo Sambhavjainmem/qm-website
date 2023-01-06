@@ -656,6 +656,28 @@ export default {
   },
   methods: {
     createInvoice(pickupId, services) {
+
+
+      if(this.$store.state.currentState =='Uttar Pradesh'){
+        services.push({
+          name: 'SGST',
+          price: (this.totalAmount - this.discountedPrice) * 0.09
+        });
+        services.push({
+          name: 'CGST',
+          price: (this.totalAmount - this.discountedPrice) * 0.09
+        });
+      }
+      else{
+        services.push({
+          name: 'IGST',
+          price: (this.totalAmount - this.discountedPrice) * 0.18
+        });
+      }
+
+      console.log('state',this.$store.state.currentState);
+      var igstInfo = [{ rate: 18, type: "IGST" },];
+      var cgstInfo = [{ rate: 9, type: "SGST" },{ rate: 9, type: "CGST" },];
       var date = new Date();
       var utc = date.getTime();
       var dateIST = new Date(utc);
@@ -687,7 +709,7 @@ export default {
         orderId: this.orderId,
         //paymentId: response.paymentId.toString(),
         //signature: response.signature.toString(),
-        //gstList: widget.gstInfo,
+        gstList: this.$store.state.currentState=='Uttar Pradesh'? cgstInfo : igstInfo,
       }).then(() => {
         console.log("Success");
         this.$store.state.cartItems = [];
@@ -698,6 +720,7 @@ export default {
         this.e6 = 1;
         this.orderSuccess = true;
         this.dialog = true;
+        
       });
     },
     removeCoupon() {
@@ -709,6 +732,7 @@ export default {
       console.log("coupon applied");
       this.discountedPrice = this.totalAmount * (percent / 100);
       this.isCouponApplied = true;
+
     },
 
     async fetchCoupons() {
@@ -784,15 +808,15 @@ export default {
               latitude: this.$store.state.coordinates.latitude,
               longitude: this.$store.state.coordinates.longitude,
             },
-            state: "NA",
+            state: this.$store.state.currentState,
           },
           acceptedAt: {
             date: "NA",
             time: "NA",
           },
           couponInfo: {
-            couponCode: "NA",
-            isCouponUsed: "NA",
+            couponCode: this.selectedCouponIndex==-1? 'NA': this.couponsList[this.selectedCouponIndex].code,
+            isCouponUsed: this.selectedCouponIndex==-1? false:true,
           },
           vehicleInfo: {
             vehicleName: this.$store.state.vinfo.model,
