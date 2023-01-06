@@ -305,7 +305,7 @@
                   ><span style="font-weight: bold">-</span
                   ><v-icon style="margin-top: 0px" size="14px" color="grey"
                     >mdi-currency-inr</v-icon
-                  >{{ this.discountedPrice }}</v-list-item-title
+                  >{{ this.discountedPrice.toFixed(2) }}</v-list-item-title
                 >
               </v-list-item-action>
             </v-list-item>
@@ -363,7 +363,7 @@
                   ><v-icon style="margin-top: 0px" size="14px" color="grey"
                     >mdi-currency-inr</v-icon
                   >{{
-                    (totalAmount - discountedPrice) * 0.18
+                    ((totalAmount - discountedPrice) * 0.18).toFixed(2)
                   }}</v-list-item-title
                 >
               </v-list-item-action>
@@ -660,6 +660,10 @@ export default {
 
       if(this.$store.state.currentState =='Uttar Pradesh'){
         services.push({
+          name: 'Discount',
+          price: this.discountedPrice
+        });
+        services.push({
           name: 'SGST',
           price: (this.totalAmount - this.discountedPrice) * 0.09
         });
@@ -669,6 +673,10 @@ export default {
         });
       }
       else{
+        services.push({
+          name: 'Discount',
+          price: this.discountedPrice
+        });
         services.push({
           name: 'IGST',
           price: (this.totalAmount - this.discountedPrice) * 0.18
@@ -703,11 +711,14 @@ export default {
         paid: this.radioGroup == "Self" ? false : true,
         serviceId: pickupId,
         serviceType: "Scheduled",
+
         when: {
           date: dateIST.toLocaleDateString(),
           time: dateIST.toLocaleTimeString("en-US"),
         },
         orderId: this.orderId,
+        discountedPrice:this.discountedPrice,
+        
         //paymentId: response.paymentId.toString(),
         //signature: response.signature.toString(),
         gstList: this.$store.state.currentState=='Uttar Pradesh'? cgstInfo : igstInfo,

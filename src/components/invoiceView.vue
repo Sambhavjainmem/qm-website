@@ -26,12 +26,12 @@
                     <td style="text-align:right; border: white; font-weight:500"> {{ CurrentInvoice.orderId }}</td>
                 </tr>
                 <tr>
-                    <td style="text-align: left; border: white; font-weight:500">State: NCT of Delhi</td>
+                    <td style="text-align: left; border: white; font-weight:500">State: {{CurrentInvoice.state}}</td>
                     <td style="font-weight:900; border: white;">Service ID:</td>
-                    <td style="text-align:right; border: white; font-weight:500"> lc3ajy019ws4cahv984</td>
+                    <td style="text-align:right; border: white; font-weight:500"> {{CurrentInvoice.serviceId}}</td>
                 </tr>
                 <tr>
-                    <td style="text-align: left; border: white; font-weight:500">State Code: 7</td>
+                    <td style="text-align: left; border: white; font-weight:500">State Code: </td>
                     <td style="font-weight:900; border: white;">Invoice Date:</td>
                     <td  style="text-align:right; border: white; font-weight:500">{{ CurrentInvoice.when.date }}</td>
                 </tr>
@@ -54,7 +54,7 @@
                         <span style="font-weight:900; font-size: 20px;">Two Hundred Only</span>
                     </td>
                     <td style="text-align:right; width: 40vw; border-left: white;">
-                        <span style="font-weight:900; font-size: 20px; padding: 3px;">TOTAL AMOUNT Rs.200.60</span>
+                        <span style="font-weight:900; font-size: 20px; padding: 3px;">TOTAL AMOUNT Rs.{{CurrentInvoice.amount}}</span>
                     </td>
                 </tr>
             </table>
@@ -68,17 +68,17 @@
                 </tr>
                 <tr v-for="(item, i) in gstList" :key="i" >
                     <td style=" font-weight:500">998714</td>
-                    <td style=" font-weight:500">item.type</td> 
+                    <td style=" font-weight:500">{{item.type}}</td> 
                     <td style=" font-weight:500">{{item.rate}}%</td>
-                    <td style=" font-weight:500">Rs.170.00</td>
-                    <td style=" font-weight:500">Rs.30.60</td>
+                    <td style=" font-weight:500">Rs.{{(CurrentInvoice.amountBeforeTax-CurrentInvoice.discountedPrice)}}</td>
+                    <td style=" font-weight:500">Rs.{{((CurrentInvoice.amountBeforeTax-CurrentInvoice.discountedPrice)*(item.rate/100)).toFixed(2)}}</td>
                 </tr>
             </table>
             <table style="width:90vw;  margin-bottom: 10px;">
                 <tr>
                     <td style=" border-right: white; font-weight:500">Tax Amount (in words): <br>
                         <span style="font-weight:900; font-size: 20px; font-weight:500"> Thirty Only</span></td>
-                    <td style="font-weight:900; font-size: 20px;  border-left: white; text-align: right;">TOTAL TAX   Rs.30.60</td>
+                    <td style="font-weight:900; font-size: 20px;  border-left: white; text-align: right;">TOTAL TAX   Rs.{{CurrentInvoice.tax.toFixed(2)}}</td>
                 </tr>
                 <tr >
                     <td style="border-bottom:white; font-weight:500">Company's PAN: <span style="font-weight:900; font-size: 20px;"> AAACQ8090K </span></td>
@@ -119,7 +119,7 @@ export default{
     },
     methods:{
         async fetchData() {
-            const colRef = collection(db, "pickups/" + "k3g0emMNsyoOUVkDIy09" + "/invoices");
+            const colRef = collection(db, "pickups/" + "MpxxhWBAmRJdsKsUmsVK" + "/invoices");
             onSnapshot(colRef, (snapshot) => {
                 let items = [];
                 snapshot.forEach((item) => {
@@ -127,7 +127,7 @@ export default{
                 });
                 this.allInvoices = items;
                 this.InvoiceData = this.allInvoices.filter(
-                    (item) => item.id == "MgEVk7rllS8dQ14y1w2O"
+                    (item) => item.id == "fstrqHTWxyYB3L8gp6aJ"
                 );
                 this.CurrentInvoice = this.InvoiceData[0];
                 this.itemsList = this.CurrentInvoice.items;
