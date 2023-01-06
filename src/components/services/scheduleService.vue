@@ -654,7 +654,7 @@ export default {
 
     console.log(this.serviceCategory);
 
-    this.key = "All services";
+    this.key = this.serviceCategory;
     if (this.$store.state.vinfo.brand == "Brand") {
       this.$store.state.vdialog = true;
       this.dialogs = true;

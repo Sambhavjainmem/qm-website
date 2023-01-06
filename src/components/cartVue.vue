@@ -850,15 +850,17 @@ export default {
       }
       const options = {
         key: "rzp_test_ERgSVx1qxIlbw7",
-        amount: 100,
+        amount: (
+          this.totalAmount -
+          this.discountedPrice +
+          (this.totalAmount - this.discountedPrice) * 0.18
+        )*100,
         currency: `INR`,
         name: `QuickMechanic`,
         order_id: this.orderId,
         image:
           "https://firebasestorage.googleapis.com/v0/b/quickmechanic-india.appspot.com/o/Logo-2.png?alt=media&token=6f32c013-07d7-4e52-9efc-24625451c35f",
-        handler: function () {
-          console.log("Payment Successful");
-        },
+        handler: this.schedulePickupService,
         prefill: {
           name: this.$store.state.customer.userInfo.fullName,
           email:
@@ -875,7 +877,11 @@ export default {
       console.log("Api Called");
       await axios
         .get(
-          `https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder1?payableAmount=${100}`
+          `https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder1?payableAmount=${(
+          this.totalAmount -
+          this.discountedPrice +
+          (this.totalAmount - this.discountedPrice) * 0.18
+        )*100}`
         )
         .then((response) => {
           this.orderId = response.data.orderId;
