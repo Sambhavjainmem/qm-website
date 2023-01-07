@@ -115,10 +115,16 @@ export default{
             CurrentInvoice : [],
             itemsList: [],
             gstList: [],
+            ServiceId : "",
+            InvoiceId : "",
         };
     },
     methods:{
         async fetchData() {
+            let data = this.$route.params.data;
+            console.log("data is", data);
+            this.ServiceId = data.ServiceId;
+            this.InvoiceId = data.InvoiceId;
             const colRef = collection(db, "pickups/" + "MpxxhWBAmRJdsKsUmsVK" + "/invoices");
             onSnapshot(colRef, (snapshot) => {
                 let items = [];
