@@ -210,12 +210,61 @@
         <div style="display: flex; flex-diraction: row">
           <div
             class="card"
-            v-for="(item, i) in popularCity"
-            :key="i"
-            @click="locmalual(item)"
+            @click="locmalual(popularCity[0])"
           >
-            <img style="width: 48px; height: 55px" src="../assets/city.png" />
-            <div class="citytitle">{{ item.name }}</div>
+            <img style="width: 48px; height: 55px" src="../assets/cities/icon_new-delhi.png" />
+            <div class="citytitle">Delhi</div>
+          </div>
+          <div
+            class="card"
+            @click="locmalual(popularCity[1])"
+          >
+            <img style="width: 48px; height: 55px" src="../assets/cities/icon_bengaluru.png" />
+            <div class="citytitle">Bangalore</div>
+          </div>
+          
+          
+          <div
+            class="card"
+            @click="locmalual(popularCity[2])"
+          >
+            <img style="width: 48px; height: 55px" src="../assets/cities/icon_mumbai.png" />
+            <div class="citytitle">Mumbai</div>
+          </div>
+          <div
+            class="card"
+            @click="locmalual(popularCity[3])"
+          >
+            <img style="width: 48px; height: 55px" src="../assets/cities/icon_panipat_1624945713.png" />
+            <div class="citytitle">Chandigarh</div>
+          </div>
+          <div
+            class="card"
+            @click="locmalual(popularCity[4])"
+          >
+            <img style="width: 48px; height: 55px" src="../assets/cities/icon_chennai.png" />
+            <div class="citytitle">Chennai</div>
+          </div>
+          <div
+            class="card"
+            @click="locmalual(popularCity[5])"
+          >
+            <img style="width: 48px; height: 55px" src="../assets/cities/icon_hyderabad.png" />
+            <div class="citytitle">Hyderabad</div>
+          </div>
+          <div
+            class="card"
+            @click="locmalual(popularCity[6])"
+          >
+            <img style="width: 48px; height: 55px" src="../assets/cities/icon_kolkata.png" />
+            <div class="citytitle">Kolkata</div>
+          </div>
+          <div
+            class="card"
+            @click="locmalual(popularCity[7])"
+          >
+            <img style="width: 48px; height: 55px" src="../assets/cities/icon_jaipur_1667550208.png" />
+            <div class="citytitle">Jaipur</div>
           </div>
         </div>
       </div>

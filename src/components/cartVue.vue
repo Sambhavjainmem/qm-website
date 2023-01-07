@@ -668,6 +668,7 @@ export default {
     },
   },
   methods: {
+    
     handleClick() {
       let data = {
         serviceId: this.CurrentserviceId,
@@ -679,6 +680,10 @@ export default {
       });
       this.dialog = false;
     },
+
+    
+
+
     createInvoice(pickupId, services) {
       if (this.$store.state.currentState == "Uttar Pradesh") {
         services.push({
@@ -920,7 +925,8 @@ export default {
       paymentObject.open();
     },
     async createRazorPayOrder() {
-      console.log("Api Called");
+      if(this.$store.state.uid != ""){
+        console.log("Api Called");
       await axios
         .get(
           `https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder1?payableAmount=${
@@ -935,6 +941,9 @@ export default {
           console.log(this.orderId);
           this.initializeRazorpay();
         });
+      }else{
+        this.$store.state.logindialog = true;
+      }
     },
     closeCart() {
       this.$store.state.cart = false;

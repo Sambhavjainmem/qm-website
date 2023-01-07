@@ -279,6 +279,33 @@
         Log Out
       </div>
     </div>
+    <v-dialog
+          v-model="alertDialog"
+          transition="dialog-bottom-transition"
+          max-width="700"
+        >
+          <template>
+            <v-card height="300">
+              <v-card-text>
+                <v-row justify="center" align="center">
+                  <v-col cols="2">
+                    <v-icon class="pa-15" color="red" size="90px"
+                      >mdi-alert-circle-outline</v-icon
+                    >
+                  </v-col>
+                  <v-col cols="10">
+                    <div class="text-h6 pa-12">
+                      CAN'T LOGGED IN AS MECHANIC
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+              <v-card-actions class="justify-end">
+                <v-btn text @click="alertDialog = false">Close</v-btn>
+              </v-card-actions>
+            </v-card>
+          </template>
+        </v-dialog>
   </v-app>
 </template>
 
@@ -316,10 +343,11 @@ export default {
   },
   data() {
     return {
+      role: "",
       msg: "",
       btntitle: "Get OTP",
       wait: true,
-
+      alertDialog: false,
       drawer: true,
       mini: true,
       isLoggedIn: false,
@@ -413,6 +441,7 @@ export default {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.$store.state.uid = user.uid;
+        console.log(user);
         console.log("userid =", this.$store.state.uid);
         this.user = true;
         this.getuserdata(this.$store.state.uid);
@@ -533,6 +562,11 @@ export default {
       const docRef = doc(db, "users", uid);
       onSnapshot(docRef, (doc) => {
         this.$store.state.customer = doc.data();
+        this.role = this.$store.state.customer.userInfo.role
+        if(this.role == 'Mechanic'){
+          this.alertDialog = true;
+          this.logoutfn();
+        }
         console.log(
           "Checkpoint Customer Details Stored",
           this.$store.state.customer.userInfo
@@ -551,6 +585,7 @@ export default {
         console.log("logout sechusdokfj");
         this.$router.replace("/");
         this.$store.state.customer = {}; 
+        this.$store.state.uid = "";
         });
     },
     fff() {
