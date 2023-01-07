@@ -47,7 +47,10 @@
                 </v-list-item-content>
 
                 <v-list-item-action>
-                  <v-list-item-title>Rs. {{ $store.state.prices[item.category] }}</v-list-item-title>
+                  <v-list-item-title
+                    >Rs.
+                    {{ $store.state.prices[item.category] }}</v-list-item-title
+                  >
                 </v-list-item-action>
               </v-list-item>
             </v-card>
