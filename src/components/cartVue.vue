@@ -47,7 +47,7 @@
                 </v-list-item-content>
 
                 <v-list-item-action>
-                  <v-list-item-title>Rs. {{ item.price }}</v-list-item-title>
+                  <v-list-item-title>Rs. {{ $store.state.prices[item.category] }}</v-list-item-title>
                 </v-list-item-action>
               </v-list-item>
             </v-card>
@@ -598,8 +598,14 @@
                 >
               </v-card-text>
               <v-card-actions class="justify-end">
-                <v-btn text @click="handleClick()" style="text-align:left">
-                  View Invoice</v-btn>
+                <v-btn
+                  v-if="radioGroup == 'Pickup'"
+                  text
+                  @click="handleClick()"
+                  style="text-align: left"
+                >
+                  View Invoice</v-btn
+                >
                 <v-btn text @click="dialog = false">Close</v-btn>
               </v-card-actions>
             </v-card>
@@ -643,14 +649,14 @@ export default {
       radioGroup: "Pickup",
       isCouponApplied: false,
       selectedCouponIndex: -1,
-      CurrentserviceId:"",
+      CurrentserviceId: "",
       CurrentinvoiceId: "",
     };
   },
   computed: {
     totalAmount() {
       return this.$store.state.cartItems.reduce(
-        (sum, val) => sum + parseInt(val.price),
+        (sum, val) => sum + parseInt(this.$store.state.prices[val.category]),
         0
       );
     },
@@ -659,55 +665,58 @@ export default {
     },
   },
   methods: {
-    handleClick(){
+    handleClick() {
       let data = {
-        ServiceId: this.CurrentserviceId,
-        InvoiceId: this.CurrentinvoiceId
+        serviceId: this.CurrentserviceId,
+        invoiceId: this.CurrentinvoiceId,
       };
       this.$router.push({
         name: "invoiceView", //use name for router push
-        params: { data }
+        params: { data },
       });
       this.dialog = false;
     },
     createInvoice(pickupId, services) {
-
-
-      if(this.$store.state.currentState =='Uttar Pradesh'){
+      if (this.$store.state.currentState == "Uttar Pradesh") {
         services.push({
-          name: 'Discount',
-          price: this.discountedPrice
+          name: "Discount",
+          price: this.discountedPrice,
         });
         services.push({
-          name: 'SGST',
-          price: (this.totalAmount - this.discountedPrice) * 0.09
+          name: "SGST",
+          price: (this.totalAmount - this.discountedPrice) * 0.09,
         });
         services.push({
-          name: 'CGST',
-          price: (this.totalAmount - this.discountedPrice) * 0.09
+          name: "CGST",
+          price: (this.totalAmount - this.discountedPrice) * 0.09,
         });
-      }
-      else{
+      } else {
         services.push({
-          name: 'Discount',
-          price: this.discountedPrice
+          name: "Discount",
+          price: this.discountedPrice,
         });
         services.push({
-          name: 'IGST',
-          price: (this.totalAmount - this.discountedPrice) * 0.18
+          name: "IGST",
+          price: (this.totalAmount - this.discountedPrice) * 0.18,
         });
       }
 
-      console.log('state',this.$store.state.currentState);
-      var igstInfo = [{ rate: 18, type: "IGST" },];
-      var cgstInfo = [{ rate: 9, type: "SGST" },{ rate: 9, type: "CGST" },];
+      console.log("state", this.$store.state.currentState);
+      var igstInfo = [{ rate: 18, type: "IGST" }];
+      var cgstInfo = [
+        { rate: 9, type: "SGST" },
+        { rate: 9, type: "CGST" },
+      ];
       var date = new Date();
       var utc = date.getTime();
       var dateIST = new Date(utc);
       const docRef = doc(collection(db, "pickups/" + pickupId + "/invoices"));
       this.CurrentserviceId = pickupId;
       this.CurrentinvoiceId = docRef.id;
-      console.log("this is",this.CurrentserviceId+"and"+this.CurrentinvoiceId);
+      console.log(
+        "this is",
+        this.CurrentserviceId + "and" + this.CurrentinvoiceId
+      );
       setDoc(docRef, {
         isWalletUsed: false,
         walletAmountUsed: 0,
@@ -735,11 +744,14 @@ export default {
           time: dateIST.toLocaleTimeString("en-US"),
         },
         orderId: this.orderId,
-        discountedPrice:this.discountedPrice,
-        
+        discountedPrice: this.discountedPrice,
+
         //paymentId: response.paymentId.toString(),
         //signature: response.signature.toString(),
-        gstList: this.$store.state.currentState=='Uttar Pradesh'? cgstInfo : igstInfo,
+        gstList:
+          this.$store.state.currentState == "Uttar Pradesh"
+            ? cgstInfo
+            : igstInfo,
       }).then(() => {
         console.log("Success");
         this.$store.state.cartItems = [];
@@ -750,7 +762,6 @@ export default {
         this.e6 = 1;
         this.orderSuccess = true;
         this.dialog = true;
-        
       });
     },
     removeCoupon() {
@@ -762,7 +773,6 @@ export default {
       console.log("coupon applied");
       this.discountedPrice = this.totalAmount * (percent / 100);
       this.isCouponApplied = true;
-
     },
 
     async fetchCoupons() {
@@ -845,8 +855,11 @@ export default {
             time: "NA",
           },
           couponInfo: {
-            couponCode: this.selectedCouponIndex==-1? 'NA': this.couponsList[this.selectedCouponIndex].code,
-            isCouponUsed: this.selectedCouponIndex==-1? false:true,
+            couponCode:
+              this.selectedCouponIndex == -1
+                ? "NA"
+                : this.couponsList[this.selectedCouponIndex].code,
+            isCouponUsed: this.selectedCouponIndex == -1 ? false : true,
           },
           vehicleInfo: {
             vehicleName: this.$store.state.vinfo.model,
@@ -880,11 +893,11 @@ export default {
       }
       const options = {
         key: "rzp_test_ERgSVx1qxIlbw7",
-        amount: (
-          this.totalAmount -
-          this.discountedPrice +
-          (this.totalAmount - this.discountedPrice) * 0.18
-        )*100,
+        amount:
+          (this.totalAmount -
+            this.discountedPrice +
+            (this.totalAmount - this.discountedPrice) * 0.18) *
+          100,
         currency: `INR`,
         name: `QuickMechanic`,
         order_id: this.orderId,
@@ -907,11 +920,12 @@ export default {
       console.log("Api Called");
       await axios
         .get(
-          `https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder1?payableAmount=${(
-          this.totalAmount -
-          this.discountedPrice +
-          (this.totalAmount - this.discountedPrice) * 0.18
-        )*100}`
+          `https://us-central1-quickmechanic-india.cloudfunctions.net/razorpayModule-createNewRazorpayOrder1?payableAmount=${
+            (this.totalAmount -
+              this.discountedPrice +
+              (this.totalAmount - this.discountedPrice) * 0.18) *
+            100
+          }`
         )
         .then((response) => {
           this.orderId = response.data.orderId;
@@ -1000,7 +1014,6 @@ export default {
 };
 </script>
  <style scoped>
-
 .v-stepper__step__step {
   background-color: #d50;
   color: red;

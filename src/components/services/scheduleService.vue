@@ -728,7 +728,6 @@ export default {
       const querySnapshots = await getDocs(q);
       querySnapshots.forEach((doc) => {
         this.$store.state.prices = doc.data();
-        console.log(this.$store.state.prices["Batteries"]);
       });
       console.log("function ended");
     },
