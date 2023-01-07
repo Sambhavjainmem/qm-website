@@ -598,6 +598,8 @@
                 >
               </v-card-text>
               <v-card-actions class="justify-end">
+                <v-btn text @click="handleClick()" style="text-align:left">
+                  View Invoice</v-btn>
                 <v-btn text @click="dialog = false">Close</v-btn>
               </v-card-actions>
             </v-card>
@@ -641,6 +643,8 @@ export default {
       radioGroup: "Pickup",
       isCouponApplied: false,
       selectedCouponIndex: -1,
+      CurrentserviceId:"",
+      CurrentinvoiceId: "",
     };
   },
   computed: {
@@ -655,6 +659,17 @@ export default {
     },
   },
   methods: {
+    handleClick(){
+      let data = {
+        ServiceId: this.CurrentserviceId,
+        InvoiceId: this.CurrentinvoiceId
+      };
+      this.$router.push({
+        name: "invoiceView", //use name for router push
+        params: { data }
+      });
+      this.dialog = false;
+    },
     createInvoice(pickupId, services) {
 
 
@@ -690,6 +705,9 @@ export default {
       var utc = date.getTime();
       var dateIST = new Date(utc);
       const docRef = doc(collection(db, "pickups/" + pickupId + "/invoices"));
+      this.CurrentserviceId = pickupId;
+      this.CurrentinvoiceId = docRef.id;
+      console.log("this is",this.CurrentserviceId+"and"+this.CurrentinvoiceId);
       setDoc(docRef, {
         isWalletUsed: false,
         walletAmountUsed: 0,
