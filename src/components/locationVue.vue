@@ -184,7 +184,7 @@
         <v-btn class="red--text" text @click="bool = !bool"
           ><v-icon>mdi-chevron-left</v-icon> back</v-btn
         >
-        <input
+        <!-- <input
           style="
             width: 90%;
             height: 48px;
@@ -195,7 +195,7 @@
           type="text"
           id="fname"
           name="fname"
-        />
+        /> -->
       </div>
       <div
         style="
