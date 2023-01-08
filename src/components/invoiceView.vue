@@ -32,7 +32,6 @@
         <tr style="font-weight: 500">
           EMAIL: contactus@quickmechanic.co.in
         </tr>
-        
       </table>
       <v-divider class="black" style="width: 90vw"></v-divider>
       <table style="width: 90vw; border: white">
@@ -118,9 +117,9 @@
             "
           >
             Amount Chargeable (in words) <br />
-            <span style="font-weight: 900; font-size: 20px"
-              >{{ NumInWords(CurrentInvoice.amount) }}</span
-            >
+            <span style="font-weight: 900; font-size: 20px">{{
+              NumInWords(CurrentInvoice.amount)
+            }}</span>
           </td>
           <td style="text-align: right; width: 40vw; border-left: white">
             <span style="font-weight: 900; font-size: 20px; padding: 3px"
@@ -171,13 +170,12 @@
         <tr>
           <td style="border-right: white; font-weight: 500">
             Tax Amount (in words): <br />
-            <span style="font-weight: 900;
-              font-size: 20px; ">
-                {{ NumInWords(CurrentInvoice.tax.toFixed(0))}}</span
+            <span style="font-weight: 900; font-size: 20px">
+              {{ NumInWords(CurrentInvoice.tax.toFixed(0)) }}</span
             >
           </td>
           <td
-            style=" 
+            style="
               font-weight: 900;
               font-size: 20px;
               border-left: white;
@@ -243,7 +241,18 @@
         >
       </v-row>
     </div>
-    <v-btn fab    fixed right color="#d50000" class="white--text"  bottom @click="print()">Download</v-btn>
+    <v-btn
+      fab
+      class="ma-6 pa-6 rounded-pill white--text"
+      tile
+      width="150px"
+      fixed
+      right
+      color="#d50000"
+      bottom
+      @click="print()"
+      ><v-icon class="mr-2 white--text" medium>mdi-download</v-icon>Download</v-btn
+    >
   </div>
 </template>
 
@@ -269,9 +278,9 @@ export default {
       const docRef = doc(
         db,
         "pickups",
-      this.ServiceId,
+        this.ServiceId,
         "invoices",
-       this.InvoiceId
+        this.InvoiceId
       );
       const snapshot = await getDoc(docRef);
       this.CurrentInvoice = snapshot.data();
@@ -279,25 +288,71 @@ export default {
       this.gstList = this.CurrentInvoice.gstList;
     },
     NumInWords(number) {
-      const first = ['','One ','Two ','Three ','Four ', 'Five ','Six ','Seven ','Eight ','Nine ','Ten ','Eleven ','Twelve ','Thirteen ','Fourteen ','Fifteen ','Sixteen ','Seventeen ','Eighteen ','Nineteen '];
-      const tens = ['', '', 'Twenty','Thirty','Forty','Fifty', 'Sixty','Seventy','Eighty','Ninety'];
-      const mad = ['', 'Thousand', 'Million', 'Billion', 'Trillion'];
-      let word = '';
+      const first = [
+        "",
+        "One ",
+        "Two ",
+        "Three ",
+        "Four ",
+        "Five ",
+        "Six ",
+        "Seven ",
+        "Eight ",
+        "Nine ",
+        "Ten ",
+        "Eleven ",
+        "Twelve ",
+        "Thirteen ",
+        "Fourteen ",
+        "Fifteen ",
+        "Sixteen ",
+        "Seventeen ",
+        "Eighteen ",
+        "Nineteen ",
+      ];
+      const tens = [
+        "",
+        "",
+        "Twenty",
+        "Thirty",
+        "Forty",
+        "Fifty",
+        "Sixty",
+        "Seventy",
+        "Eighty",
+        "Ninety",
+      ];
+      const mad = ["", "Thousand", "Million", "Billion", "Trillion"];
+      let word = "";
 
       for (let i = 0; i < mad.length; i++) {
-        let tempNumber = number%(100*Math.pow(1000,i));
-        if (Math.floor(tempNumber/Math.pow(1000,i)) !== 0) {
-          if (Math.floor(tempNumber/Math.pow(1000,i)) < 20) {
-            word = first[Math.floor(tempNumber/Math.pow(1000,i))] + mad[i] + ' ' + word;
+        let tempNumber = number % (100 * Math.pow(1000, i));
+        if (Math.floor(tempNumber / Math.pow(1000, i)) !== 0) {
+          if (Math.floor(tempNumber / Math.pow(1000, i)) < 20) {
+            word =
+              first[Math.floor(tempNumber / Math.pow(1000, i))] +
+              mad[i] +
+              " " +
+              word;
           } else {
-            word = tens[Math.floor(tempNumber/(10*Math.pow(1000,i)))] + ' ' + first[Math.floor(tempNumber/Math.pow(1000,i))%10] + mad[i] + ' ' + word;
+            word =
+              tens[Math.floor(tempNumber / (10 * Math.pow(1000, i)))] +
+              " " +
+              first[Math.floor(tempNumber / Math.pow(1000, i)) % 10] +
+              mad[i] +
+              " " +
+              word;
           }
         }
 
-        tempNumber = number%(Math.pow(1000,i+1));
-        if (Math.floor(tempNumber/(100*Math.pow(1000,i))) !== 0) word = first[Math.floor(tempNumber/(100*Math.pow(1000,i)))] + 'Hunderd ' + word;
+        tempNumber = number % Math.pow(1000, i + 1);
+        if (Math.floor(tempNumber / (100 * Math.pow(1000, i))) !== 0)
+          word =
+            first[Math.floor(tempNumber / (100 * Math.pow(1000, i)))] +
+            "Hunderd " +
+            word;
       }
-        return word;
+      return word;
     },
   },
   created() {

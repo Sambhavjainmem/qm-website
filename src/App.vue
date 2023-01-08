@@ -376,39 +376,15 @@ export default {
       smsSent: false,
       user: false,
 
-      snackbar: false,
+   
 
       otp: "Enter OTP",
 
-      expectedOtp: "133707",
+   
 
       condition: false,
-      changeColor: false,
 
-      ac: {
-        header: "AC Maintenance & Service",
-        header2: "AC check-up",
-        subheader: "INR 699 + PART & SERVICE COST",
-
-        notifications: false,
-        sound: true,
-        widgets: false,
-      },
-      wheel: {
-        header: "AC Maintenance & Service",
-        header2: "AC check-up",
-        subheader: "INR 699 + PART & SERVICE COST",
-      },
-      battries: {
-        header: "AC Maintenance & Service",
-        header2: "AC check-up",
-        subheader: "INR 699 + PART & SERVICE COST",
-      },
-      danting: {
-        header: "AC Maintenance & Service",
-        header2: "AC check-up",
-        subheader: "INR 699 + PART & SERVICE COST",
-      },
+      
     };
   },
   components: {
@@ -493,7 +469,8 @@ export default {
           const response = await axios.get(url);
           const myArray = response.data.display_name.split(",");
           this.$store.state.location = response.data.display_name;
-          this.$store.state.currentState=response.data.address.state;       
+          this.$store.state.currentState=response.data.address.state;   
+          console.log(response.data.address)    
           this.$store.state.location1 = myArray[0];
           this.$store.state.location2 = myArray[1];
           localStorage.setItem(

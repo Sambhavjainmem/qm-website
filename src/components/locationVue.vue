@@ -406,6 +406,7 @@ export default {
     },
 
     locmalual(item) {
+      this.$store.state.location = item.name;
       this.$store.state.location1 = item.name;
       this.$store.state.location2 = null;
       this.$store.state.currentState=item.name;
