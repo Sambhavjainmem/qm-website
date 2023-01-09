@@ -28,7 +28,7 @@
         <v-carousel-item  src="../assets/banner2.png">
         
       </v-carousel-item>
-      <v-carousel-item  src="../assets/banner2.png">
+      <v-carousel-item  src="../assets/banner3.jpg">
         
       </v-carousel-item>
       </v-carousel>
@@ -73,7 +73,7 @@
             </div>
 
             <div class="newmiddle">
-              <div class="newheadder"  style="padding-top:9rem">
+              <div class="newheadder"  style="padding-top:0rem">
                 A MECHANIC YOU CAN TRUST
                 <div class="headertop">
                   <div class="newheaddertop">
@@ -194,7 +194,7 @@
           padding-right: 3rem;
           margin-bottom: 0px;
         "
-      >Contact Us - +919811100558</div>
+      >Contact Us - +91-9667761701</div>
 
       <secondSection />
         <tileView/>
@@ -289,7 +289,7 @@ export default {
   width: 100%;
   height: fit-content;
   position: absolute;
-  top: -10px;
+  bottom: -20px;
   left: 0px; 
   display: flex;
   justify-content: center;

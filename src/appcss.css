@@ -14,6 +14,21 @@
  color: balck;
 
 }
+#partnerimgdiv {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+#partnerimg {
+  margin-top: 16px;
+   min-width: 600px;
+   max-width: 100%;
+   
+   height: auto;
+}
 .fontsize {
   font-size: 10px;
 }
@@ -180,6 +195,7 @@ text-align: center;
 color: #FFFFFF;
 width:fit-content;
 position: relative;
+z-index: 0;
 
 }
 .newheaddertop {

@@ -15,7 +15,7 @@
               background-color: transparent;
             "
           >
-            Training and Certifications
+            Training and Certification
           </div>
         </v-row>
         <v-row style="">
@@ -31,7 +31,7 @@
               background-color: transparent;
             "
           >
-            Get Certified under Automotive skill development
+            Get Certified under Skill India Programme
           </div>
         </v-row>
         <v-row>
@@ -67,7 +67,12 @@
         </v-row>
       </v-col>
     </v-row>
+    <div id="partnerimgdiv">
+      <img src="../assets/bottom.jpg"  id="partnerimg"    />
+    </div>
+
     <v-row style="height: 45rem; background-color: #eeeeee; margin: 0px">
+   
       <span
         style="
           text-align: center;
@@ -75,7 +80,10 @@
           font-size: 36px;
           margin-top: 5rem;
         "
-        >Automotive Skill Developement Platform</span
+        >
+       
+      <br>
+      Automotive Skill Developement Platform</span
       >
 
       <p

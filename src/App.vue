@@ -263,7 +263,7 @@
         style="font-family: Arial, Helvetica, sans-serif"
         @click="$store.state.becomedialog = true"
       >
-        Become a Quick Mechanic
+        Become a Certified Mechanic
       </div>
       <div class="item" style="font-family: Arial, Helvetica, sans-serif">
         Call Us:
