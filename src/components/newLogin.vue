@@ -7,13 +7,9 @@
       }
     "
   >
-  <v-dialog
-          v-model="this.$store.state.bSignupForm"    
-      fullscreen    
-      persistent
-        >
-          <SignupForm />
-        </v-dialog>
+    <v-dialog v-model="this.$store.state.bSignupForm" fullscreen persistent>
+      <SignupForm />
+    </v-dialog>
     <div class="maindiv123">
       <div id="card123">
         <div id="login123">
@@ -60,13 +56,8 @@
               >
                 Get OTP
               </button>
-              <button
-                v-if="!clicked"
-                id="getotp"
-                
-                style="color: green; "
-              >
-               <v-icon>mdi-check-all</v-icon>
+              <button v-if="!clicked" id="getotp" style="color: green">
+                <v-icon>mdi-check-all</v-icon>
               </button>
               <!-- <v-btn v-if="!clicked" elevation="2" icon loading></v-btn> -->
             </div>
@@ -116,7 +107,7 @@
 
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth, db } from "../firebase";
-import {  doc, getDoc } from "@firebase/firestore";
+import { doc, getDoc } from "@firebase/firestore";
 import SignupForm from "./SignupForm.vue";
 export default {
   name: "newLogin",
@@ -128,8 +119,7 @@ export default {
       otp: "",
       flag: false,
       clicked: true,
-      phoneNumber:'',
-      bSignupForm: false,
+      phoneNumber: "",
     };
   },
 
@@ -158,17 +148,16 @@ export default {
     otp: function () {
       this.getBaseLog();
     },
-
   },
 
   methods: {
     async fetchCustomerData() {
       const docRef = doc(db, "users", auth.currentUser.uid);
       const docSnap = await getDoc(docRef);
-      this.$store.state.customer=docSnap.data();
+      this.$store.state.customer = docSnap.data();
       console.log(this.$store.state.customer.userInfo);
-      if(this.$store.state.customer.role == "NA"){
-        this.bSignupForm = true;
+      if (this.$store.state.customer.role == "NA") {
+        this.$store.state.bSignupForm = true;
       }
     },
     getBaseLog() {

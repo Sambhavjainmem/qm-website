@@ -7,22 +7,12 @@
       }
     "
   >
-  <v-dialog
-          v-model="bSignupForm"
-    
-      width="500"
-      
-   
-          persistent
-        >
-          <SignupForm />
-        </v-dialog>
     <div class="maindiv123">
       <div id="card123">
         <div id="login123">
           
           <div id="mainarea">
-            <div class="area headder">SignUp</div>
+            <div class="area headder">Please complete your profile.</div>
             <div class="area">
               
               <input

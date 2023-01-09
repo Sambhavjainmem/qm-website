@@ -193,6 +193,9 @@
           <v-icon>mdi-account</v-icon>
         </v-btn> -->
       </div>
+      <v-dialog v-model="this.$store.state.bSignupForm" fullscreen persistent>
+      <SignupForm />
+    </v-dialog>
     </div>
     <v-dialog
       v-model="$store.state.locdialog"
@@ -541,7 +544,9 @@ export default {
         this.$store.state.customer = doc.data();
         this.role = this.$store.state.customer.role;
         if(this.role == "NA"){
+          console.log(this.role);
           this.$store.state.bSignupForm = true;
+          console.log(this.$store.state.bSignupForm);
         }
         if(this.role == 'Mechanic'){
           this.alertDialog = true;
