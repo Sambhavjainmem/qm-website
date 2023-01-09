@@ -7,6 +7,13 @@
       }
     "
   >
+  <v-dialog
+          v-model="this.$store.state.bSignupForm"    
+      fullscreen    
+      persistent
+        >
+          <SignupForm />
+        </v-dialog>
     <div class="maindiv123">
       <div id="card123">
         <div id="login123">
@@ -106,9 +113,11 @@
 //   import vechileInfo from "../vechileInfo.vue";
 //   import { db } from "../../firebase";
 //   import { collection, getDocs } from "firebase/firestore";
+
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth, db } from "../firebase";
 import {  doc, getDoc } from "@firebase/firestore";
+import SignupForm from "./SignupForm.vue";
 export default {
   name: "newLogin",
   data() {
@@ -120,10 +129,13 @@ export default {
       flag: false,
       clicked: true,
       phoneNumber:'',
+      bSignupForm: false,
     };
   },
 
-  components: {},
+  components: {
+    SignupForm,
+  },
   mounted() {
     this.clicked = true;
     auth.useDeviceLanguage();
@@ -146,9 +158,7 @@ export default {
     otp: function () {
       this.getBaseLog();
     },
-    // phoneNumber: function () {
-    //   this.getBaseLog();
-    // },
+
   },
 
   methods: {
@@ -157,6 +167,9 @@ export default {
       const docSnap = await getDoc(docRef);
       this.$store.state.customer=docSnap.data();
       console.log(this.$store.state.customer.userInfo);
+      if(this.$store.state.customer.role == "NA"){
+        this.bSignupForm = true;
+      }
     },
     getBaseLog() {
       // this.size = Math.log(y) / Math.log(x);

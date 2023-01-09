@@ -539,7 +539,10 @@ export default {
       const docRef = doc(db, "users", uid);
       onSnapshot(docRef, (doc) => {
         this.$store.state.customer = doc.data();
-        this.role = this.$store.state.customer.userInfo.role
+        this.role = this.$store.state.customer.role;
+        if(this.role == "NA"){
+          this.$store.state.bSignupForm = true;
+        }
         if(this.role == 'Mechanic'){
           this.alertDialog = true;
           this.logoutfn();

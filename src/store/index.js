@@ -21,6 +21,7 @@ export default new Vuex.Store({
     Vservices: [1, 3, 3],
     Sservices: [1, 2, 4],
     isCheckoutClicked: false,
+    bSignupForm : false,
     vinfo: {
       brand: "Brand",
       model: "Model",
