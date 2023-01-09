@@ -334,7 +334,21 @@
             </div>
           </div>
         </div>
-        <v-subheader >For offers and seasonal promotion please contact service advisor @+919811100558</v-subheader>
+        <v-row align="center" justify="end" class="mx-16">
+          <v-col cols="4" v-if="data[0].faq != null">
+            <a :href="data[0].faq" target="_blank"
+              ><v-btn text color="#d50000" class="ml-16"
+                >Frequently Asked Questions</v-btn
+              ></a
+            ></v-col
+          >
+          <v-col cols="8">
+            <v-subheader
+              >For offers and seasonal promotion please contact service advisor
+              @+919811100558</v-subheader
+            ></v-col
+          >
+        </v-row>
         <!-- ksdlkfj;sdlkja;sdl -->
 
         <div class="layer1-1-3">
