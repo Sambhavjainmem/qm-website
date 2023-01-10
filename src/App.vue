@@ -39,6 +39,28 @@
       </v-navigation-drawer> -->
       <div id="right">
         <div id="link" >
+          <a ><div v-if="this.$store.state.currentPath == '/'"
+             @click="goHome()"
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
+          >
+          Home
+          </div>
+          <div v-else @click="goHome()"
+            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
+          >
+          Home
+          </div></a>
+          <a ><div v-if="this.$store.state.currentPath == '/services'"
+             @click="goservices()"
+            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
+          >
+          Services
+          </div>
+          <div v-else @click="goservices()"
+            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
+          >
+          Services
+          </div></a>
           <a ><div v-if="this.$store.state.currentPath == '/trainingView'"
             @click="goToPages('training')"
             style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
@@ -51,18 +73,7 @@
           >
           Training
           </div></a>
-          <a ><div v-if="this.$store.state.currentPath == '/aboutusView'"
-            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
-            @click="goToPages('aboutUs')"
-          >
-          About Us
-          </div><div v-else
-            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
-            @click="goToPages('aboutUs')"
-          >
-          About Us
-          </div>
-        </a>
+          
           <a ><div v-if="this.$store.state.currentPath == '/contactusView'"
              @click="goToPages('contactUs')"
             style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
@@ -258,6 +269,22 @@
       >
         My Bookings
       </div>
+
+      <div
+        class="item"
+        style="font-family: Arial, Helvetica, sans-serif"
+        @click="goToPages('aboutUs')"
+       
+      >
+      About Us
+      </div>
+
+
+
+     
+
+
+
       <!-- <div class="item" style="font-family: Arial, Helvetica, sans-serif">
         FAQs
       </div> -->
@@ -457,7 +484,23 @@ export default {
   },
 
   methods: {
-
+    goHome() {
+    
+  
+      this.$store.state.currentPath = '/';
+   
+      this.$router.push("/");
+    },
+    goservices() {
+      let data = "All services";
+  
+      this.$store.state.currentPath = '/services';
+   
+      this.$router.push({
+        name: "scheduleService",
+        params: { data },
+      });
+    },
 
     async location() {   
         navigator.geolocation.getCurrentPosition(

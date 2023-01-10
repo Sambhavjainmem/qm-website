@@ -73,10 +73,10 @@
         </v-dialog>
         <div id="carddiv" v-if="this.serviceCategory == 'All services'">
           <div class="layer1-1-2" v-for="(service, i) in data" :key="i">
-            <div class="layer1-1-2-1">
+            <div class="layer1-1-2-1" @click="buyNow(service)">
               <img class="serviceimg" :src="service.thumbnail" alt="sevice" />
             </div>
-            <div class="layer1-1-2-2">
+            <div class="layer1-1-2-2" @click="buyNow(service)">
               <div class="layer1-1-2-2-1">
                 <div id="cardrow">
                   <div class="cardcell left">
@@ -1198,6 +1198,7 @@ export default {
   margin-top: 32px;
   margin-left: 20px;
   margin-right: 20px;
+  cursor: pointer;
 }
 .layer1-1-3 {
   height: 10%;
