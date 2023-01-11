@@ -663,7 +663,7 @@ export default {
 
   mounted() {
     // this.$store.state.vinfo  = JSON.parse( localStorage.getItem('vdata' ) );
-
+    this.$store.state.currentPath = '/services';
     this.serviceCategory = this.$route.params.data;
 
     console.log(this.serviceCategory);
