@@ -183,6 +183,14 @@ export default {
 </script>
 
 <style>
+
+
+
+
+.v-application--is-ltr .v-messages {
+    text-align: left;
+    display: none;
+}
 .backgroundImageCss {
   height: 34rem;
   margin: 0px;
