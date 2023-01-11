@@ -11,7 +11,7 @@
       GET QUICKMECHANIC APP
     </div>
     <div class="bgtext" v-if="$store.state.becomedialog">
-      BBecome a Certified Mechanic
+      Become a Certified Mechanic
     </div>
     <div id="fff">
       <div class="downloadleft">
