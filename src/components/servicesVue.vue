@@ -103,7 +103,7 @@ export default {
       let items = [];
       const querySnapshot = await getDocs(collection(db, "categories"));
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
+ 
         items.push(doc.data());
       });
       this.sservice = items.filter((item) => item.type == "Scheduled Services");
@@ -113,19 +113,14 @@ export default {
     },
 
     dent(data) {
-      // this.$router.push({path : "/services"});
+
       console.log(data);
       this.$router.push({
         name: "scheduleService",
         params: { data },
       });
     },
-    // spa() {
-    //   this.$router.push({ path: "/service/5" });
-    // },
-    // inspection() {
-    //   this.$router.push({ path: "/service/6" });
-    // },
+
   },
 };
 </script>
@@ -173,6 +168,9 @@ export default {
   margin-bottom: "20px";
   font-weight: 400;
 }
+
+
+
 #VASText {
   font-size: 20px;
   margin: 10px;
@@ -217,7 +215,7 @@ export default {
   margin: 8px;
   margin-right: 20px;
   align-content: center;
-  justify-content: space-between;
+
   /* -webkit-box-shadow: 1px 1px 5px 0px #a2958a;
   -moz-box-shadow: 1px 1px 5px 0px #a2958a;
   box-shadow: 1px 1px 5px 0px #a2958a;  */
@@ -251,7 +249,7 @@ img {
   justify-self: center;
 }
 .servtext {
-  font-size:16px;
+  font-size:1rem;
   text-align: center;
   margin-left: 10px;
   margin-top: 12px;
@@ -269,7 +267,7 @@ img {
   color: #ff3b30;
 }
 #bottomrow {
-  display: flex;
+  display: none;
   flex-direction: row;
   margin-top: 0px;
   justify-content: space-between;
@@ -283,5 +281,74 @@ img {
 }
 .notrating {
   font-size: 15px;
+}
+
+@media (max-width: 888px){    
+
+
+  #mar {
+  margin-left: 4px;
+  margin-right: 4px;
+
+}
+.xyz {
+  display: none;
+}
+
+
+
+
+
+
+  #SDSText {
+  font-size: 24px;  
+} 
+.VASimg {
+  width: 100%;
+  margin-top: 0px;
+
+}
+
+.service {
+  width: 100%;
+  z-index: 0;
+  margin: 0px; 
+} 
+
+.sdimgdiv {
+  width: 21%;
+  height: fit-content;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+  margin-right: 0px;
+  align-content: center;
+ 
+  -webkit-box-shadow: 1px 1px 5px 0px #a2958a;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid rgb(206, 147, 147);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.452);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+}
+.servtext {
+  font-size: 12px;
+text-align: center;
+margin-left: 0px;
+margin-top: 0px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+font-weight: 400;
+}
+.sbc {
+  width: fit-content
+}
+
+
 }
 </style>

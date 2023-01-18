@@ -465,6 +465,18 @@ input[type="password"] {
   cursor: pointer;
   
 }
+.moblocName {
+  font-size: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+  float: right;
+  position: absolute;
+  right: 15px;
+  top: 0px;
+  height: 45px;
+  width: auto;
+  
+}
 .item {
   width: 100%;
   height: 50px;
@@ -518,6 +530,10 @@ cursor: pointer;
   flex-direction: row;
 }
 
+#mobilenav {
+  display: none;
+
+}
 .bgtext {
             position: relative;
         }
@@ -556,24 +572,37 @@ cursor: pointer;
 
   } */
   @media (max-width: 888px){
+    
+  
     .v-navigation-drawer{
       display:flex;
       position: fixed;
       top: 0px;
       left: 0px;   
     }
+    
 
-
-  @media (max-width: 1000px){
-    .v-navigation-drawer {
-      
-      width: 5px;
-      height:5px;
-    }
-  }
   #nav {
     display: none;
 
   }
+  #mobilenav {
+    display:flex;
+    flex-direction: row;
 
+
+  }
+  #qm {
+   
+   
+    margin-left: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  .downloadmain {
+    display: none;
+  }
+
+  
 }

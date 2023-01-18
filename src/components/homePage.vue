@@ -77,7 +77,7 @@
                 A MECHANIC YOU CAN TRUST
                 <div class="headertop">
                   <div class="newheaddertop">
-                    One Stop for your Car Service Anywhere --- Anytime
+                    One Stop for your Car Service ---Anytime Anywhere
                   </div>
                 </div>
               </div>
@@ -674,29 +674,60 @@ top: 38px; */
 }
 
 @media (max-width: 888px) {
-  .subhome {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    flex-wrap: wrap;
-  }
-  .sos {
-    display: none;
-    z-index: 3;
-  }
-  .sos2 {
-    display: list-item;
+  .home {
 
     margin-top: 0px;
-    cursor: pointer;
-    margin-left: 0px;
-    align-self: center;
-    margin-top: -80px;
-    height: 100px;
-    z-index: 3;
+
   }
+  .newheaddertop {
+
+  font-size: 14px;
+
 }
+
+  .newchip {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+
+    flex-direction: column;
+
+
+  }
+
+  .cpb2sos {
+
+    width: 200px;
+    height: 42px;
+
+  }
+
+  .cpb2 {
+    width: 200px;
+    height: 42px;
+    margin-bottom: 16px;
+
+  }
+
+  .newheadder {
+
+    font-size: 1.2rem;
+    line-height: 87px;
+
+  }
+
+  #store {
+    display: none;
+
+  }
+
+
+
+}
+
+
+
+
 
 @media (max-width: 845px) {
   .footer {

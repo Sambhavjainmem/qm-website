@@ -549,5 +549,15 @@ input ::after {
   .downloadmain {
     height: 720px;
   }
+
+
+  @media (max-width: 888px){
+
+  .downloadmain {
+    display: none;
+  }
+
+  
+}
 }
 </style>

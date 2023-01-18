@@ -1090,6 +1090,7 @@ export default {
 }
 #carddiv {
   width: var(--display-size);
+  width: 100%;
 
   height: fit-content;
   display: flex;
@@ -1387,5 +1388,47 @@ export default {
   display: flex;
   flex-direction: row;
   margin-left: 10px;
+}
+
+
+@media (max-width: 888px){    
+  #carddiv {
+
+  width: 100%;
+
+
+}
+.layer1-1-2 {
+  height: fit-content;
+  width: var(--card-width);
+
+  margin-left: 0px;
+  margin-right: 0px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#back {
+
+  margin-top: 0px;
+
+}
+
+#loc {
+
+  margin-top: 0px;
+
+}
+
+
+
+#mar {
+margin-left: 4px;
+margin-right: 4px;
+
+}
+.xyz {
+display: none;
+}
 }
 </style>

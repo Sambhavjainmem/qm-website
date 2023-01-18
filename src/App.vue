@@ -1,5 +1,33 @@
 <template>
   <v-app>
+    <div id="mobilenav">
+      <v-app-bar-nav-icon  class="mr-2" @click="drawer = true"></v-app-bar-nav-icon>
+      <a href="/"> <img class="logo" style="height:38px; width:30px" src="./assets/Logo-2 (1).png" /></a>
+        <a>
+          <div id="qm" @click="goToPages('home')">
+            <div id="q">Quick</div>
+            <div id="m">Mechanic</div>
+          </div>
+        </a>
+        <div class="moblocName" @click="$store.state.locdialog = true">
+         
+          <div style="
+              font-size: 15px;
+              opacity: 0.7;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            ">
+            <div style="font-weight: bold; font-size:12px">
+              {{ $store.state.location1 }}
+
+            </div>
+           
+         
+          </div>
+        </div>
+    </div>
     <div id="nav" style="height:72px">
       <div id="left">
         <a href="/"> <img class="logo" style="height:56px; width:48px" src="./assets/Logo-2 (1).png" /></a>
@@ -11,151 +39,103 @@
         </a>
         <div class="locName" @click="$store.state.locdialog = true">
           <v-icon id="locicon">mdi-map-marker </v-icon>
-          <div
-            style="
+          <div style="
               font-size: 15px;
               opacity: 0.7;
               display: flex;
               flex-direction: row;
-            "
-          > 
-          <div style="font-weight: bold; font-size:20">
-            {{ $store.state.location1 }}
+            ">
+            <div style="font-weight: bold; font-size:20">
+              {{ $store.state.location1 }}
 
-          </div>
-            <div
-              style="mergin-left: 2px; margin-right: 2px"
-              v-if="$store.state.location2"
-            >
+            </div>
+            <div style="mergin-left: 2px; margin-right: 2px" v-if="$store.state.location2">
               ,
             </div>
             {{ $store.state.location2 }}
           </div>
         </div>
       </div>
-      <!-- 
-      <v-navigation-drawer v-model="$store.state.cart" right app width="350">
-        <cart-vue />
-      </v-navigation-drawer> -->
+
       <div id="right">
-        <div id="link" >
-          <a ><div v-if="this.$store.state.currentPath == '/'"
-             @click="goHome()"
-            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
-          >
-          Home
-          </div>
-          <div v-else @click="goHome()"
-            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
-          >
-          Home
-          </div></a>
-          <a ><div v-if="this.$store.state.currentPath == '/services'"
-             @click="goservices()"
-            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
-          >
-          Services
-          </div>
-          <div v-else @click="goservices()"
-            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
-          >
-          Services
-          </div></a>
-          <a ><div v-if="this.$store.state.currentPath == '/trainingView'"
-            @click="goToPages('training')"
-            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
-          >
-          Training
-          </div>
-          <div v-else
-            @click="goToPages('training')"
-            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
-          >
-          Training
-          </div></a>
-          
-          <a ><div v-if="this.$store.state.currentPath == '/contactusView'"
-             @click="goToPages('contactUs')"
-            style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
-          >
-          Contact Us
-          </div>
-          <div v-else @click="goToPages('contactUs')"
-            style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;"
-          >
-          Contact Us
-          </div></a>
-          
+        <div id="link">
+          <a>
+            <div v-if="this.$store.state.currentPath == '/'" @click="goHome()"
+              style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;">
+              Home
+            </div>
+            <div v-else @click="goHome()"
+              style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;">
+              Home
+            </div>
+          </a>
+          <a>
+            <div v-if="this.$store.state.currentPath == '/services'" @click="goservices()"
+              style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;">
+              Services
+            </div>
+            <div v-else @click="goservices()"
+              style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;">
+              Services
+            </div>
+          </a>
+          <a>
+            <div v-if="this.$store.state.currentPath == '/trainingView'" @click="goToPages('training')"
+              style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;">
+              Training
+            </div>
+            <div v-else @click="goToPages('training')"
+              style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;">
+              Training
+            </div>
+          </a>
+
+          <a>
+            <div v-if="this.$store.state.currentPath == '/contactusView'" @click="goToPages('contactUs')"
+              style="color: red; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;">
+              Contact Us
+            </div>
+            <div v-else @click="goToPages('contactUs')"
+              style="color: black; cursor: pointer; margin-left: 6px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;">
+              Contact Us
+            </div>
+          </a>
+
         </div>
-        <div id="link" v-if="this.$store.state.vinfo.brand != 'Brand'" style="font-family: Arial, Helvetica, sans-serif;">
+        <div id="link" v-if="this.$store.state.vinfo.brand != 'Brand'"
+          style="font-family: Arial, Helvetica, sans-serif;">
           {{ this.$store.state.vinfo.brand }} -
-          {{ this.$store.state.vinfo.model }} 
-          
-          <div
-          
-            style="color: red; cursor: pointer; margin-left: 6px; font-family: Arial, Helvetica, sans-serif;"
-            @click="$store.state.vdialog = true"
-          >
+          {{ this.$store.state.vinfo.model }}
+
+          <div style="color: red; cursor: pointer; margin-left: 6px; font-family: Arial, Helvetica, sans-serif;"
+            @click="$store.state.vdialog = true">
             (Change Car)
           </div>
         </div>
         <div id="link" v-if="this.$store.state.vinfo.brand == 'Brand'">
-          <div
-            style="color: red; cursor: pointer; margin-left: 6px; font-family: Arial, Helvetica, sans-serif;"
-            @click="$store.state.vdialog = true"
-          >
-          Select Car
+          <div style="color: red; cursor: pointer; margin-left: 6px; font-family: Arial, Helvetica, sans-serif;"
+            @click="$store.state.vdialog = true">
+            Select Car
           </div>
         </div>
-        <div 
-        @click="$store.state.cart = true"
-        
-        >
-        <v-badge
-          bottom
-          offset-x="30"
-          offset-y="35"
-          :content="cartLength"
-          color="#D50000"
-        >
-          <v-btn
-            text
-            :ripple="false"
-            class="no-background-hover"
-            @click="$store.state.cart = true"
-          >
-            <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon>
-          </v-btn>
-        </v-badge>
+        <div @click="$store.state.cart = true">
+          <v-badge bottom offset-x="30" offset-y="35" :content="cartLength" color="#D50000">
+            <v-btn text :ripple="false" class="no-background-hover" @click="$store.state.cart = true">
+              <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon>
+            </v-btn>
+          </v-badge>
         </div>
-        <v-btn
-          text
-          @click="menu = !menu"
-          style="background: rgba(0, 0, 0, 0.12)"
-          rounded
-          :ripple="false"
-          class="mr-1"
-          v-click-outside="onClickOutside"
-        >
+        <v-btn text @click="menu = !menu" style="background: rgba(0, 0, 0, 0.12)" rounded :ripple="false" class="mr-1"
+          v-click-outside="onClickOutside">
           <v-icon>mdi-menu</v-icon>
           <v-icon class="ml-1">mdi-account-circle</v-icon>
         </v-btn>
 
-        <v-dialog
-          v-model="$store.state.logindialog"
-          fullscreen
-          :scrim="false"
-          transition="dialog-bottom-transition"
-        >
+        <v-dialog v-model="$store.state.logindialog" fullscreen :scrim="false" transition="dialog-bottom-transition">
           <newLogin />
         </v-dialog>
-        <v-dialog
-          v-model="this.$store.state.vdialog"
-          fullscreen
-          hide-overlay
-          transition="dialog-bottom-transition"
-          persistent
-        >
+        <v-dialog v-model="this.$store.state.vdialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+          persistent>
           <v-card>
             <v-btn icon dark @click="this.$store.state.vdialog = false">
             </v-btn>
@@ -164,12 +144,7 @@
           </v-card>
         </v-dialog>
 
-        <v-dialog
-          v-model="$store.state.dialog"
-          fullscreen
-          hide-overlay
-          transition="dialog-bottom-transition"
-        >
+        <v-dialog v-model="$store.state.dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
           <SignupForm />
         </v-dialog>
         <v-dialog v-model="$store.state.becomedialog" fullscreen>
@@ -205,34 +180,68 @@
         </v-btn> -->
       </div>
       <v-dialog v-model="this.$store.state.bSignupForm" fullscreen persistent>
-      <SignupForm />
-    </v-dialog>
+        <SignupForm />
+      </v-dialog>
     </div>
-    <v-dialog
-      v-model="$store.state.locdialog"
-      fullscreen
-      hide-overlay
-      transition="dialog-bottom-transition"
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
     >
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
+          <v-list-item @click="goHome">
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item @click="goservices">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Services</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item @click="goToPages('training')" >
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Training</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Contact Us</v-list-item-title>
+          </v-list-item>
+
+
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+    <v-dialog v-model="$store.state.locdialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <location-vue />
     </v-dialog>
 
-    <v-dialog
-      v-model="$store.state.cart"
-      fullscreen
-      hide-overlay
-      transition="dialog-right-transition"
-    >
+    <v-dialog v-model="$store.state.cart" fullscreen hide-overlay transition="dialog-right-transition">
       <cart-vue />
     </v-dialog>
+
 
     <v-main>
       <router-view></router-view>
     </v-main>
 
-    <div
-      v-if="menu"
-      style=" 
+    <div v-if="menu" style=" 
         position: fixed;
         top: 56px;
         right: 0px;
@@ -245,54 +254,34 @@
         display: flex;
         padding-top:20px;
         flex-direction: column;
-      "
-    >
-      <div
-        class="item"
-        style="font-family: Arial, Helvetica, sans-serif"
-        @click="
-          () => {
-            $store.state.logindialog = true;
-            boolotp = false;
-            loading = false;
-          }
-        "
-        v-if="!user"
-      >
+      ">
+      <div class="item" style="font-family: Arial, Helvetica, sans-serif" @click="
+        () => {
+          $store.state.logindialog = true;
+          boolotp = false;
+          loading = false;
+        }
+      " v-if="!user">
         Login
       </div>
-      <div
-        class="item"
-        style="font-family: Arial, Helvetica, sans-serif"
-        @click="booklist"
-        v-if="user"
-      >
+      <div class="item" style="font-family: Arial, Helvetica, sans-serif" @click="booklist" v-if="user">
         My Bookings
       </div>
 
-      <div
-        class="item"
-        style="font-family: Arial, Helvetica, sans-serif"
-        @click="goToPages('aboutUs')"
-       
-      >
-      About Us
+      <div class="item" style="font-family: Arial, Helvetica, sans-serif" @click="goToPages('aboutUs')">
+        About Us
       </div>
 
 
 
-     
+
 
 
 
       <!-- <div class="item" style="font-family: Arial, Helvetica, sans-serif">
         FAQs
       </div> -->
-      <div
-        class="item"
-        style="font-family: Arial, Helvetica, sans-serif"
-        @click="$store.state.becomedialog = true"
-      >
+      <div class="item" style="font-family: Arial, Helvetica, sans-serif" @click="$store.state.becomedialog = true">
         Become a Certified Mechanic
       </div>
       <div class="item" style="font-family: Arial, Helvetica, sans-serif">
@@ -300,42 +289,31 @@
         <div style="color: red">1800 XXXX XXXX</div>
         <v-icon style="font-size: 15px" class="red--text">mdi-phone</v-icon>
       </div>
-      <div
-        class="item"
-        @click="logoutfn"
-        v-if="user"
-        style="font-family: Arial, Helvetica, sans-serif"
-      >
+      <div class="item" @click="logoutfn" v-if="user" style="font-family: Arial, Helvetica, sans-serif">
         Log Out
       </div>
     </div>
-    <v-dialog
-          v-model="alertDialog"
-          transition="dialog-bottom-transition"
-          max-width="700"
-        >
-          <template>
-            <v-card height="300">
-              <v-card-text>
-                <v-row justify="center" align="center">
-                  <v-col cols="2">
-                    <v-icon class="pa-15" color="red" size="90px"
-                      >mdi-alert-circle-outline</v-icon
-                    >
-                  </v-col>
-                  <v-col cols="10">
-                    <div class="text-h6 pa-12">
-                      CAN'T LOGGED IN AS MECHANIC
-                    </div>
-                  </v-col>
-                </v-row>
-              </v-card-text>
-              <v-card-actions class="justify-end">
-                <v-btn text @click="alertDialog = false">Close</v-btn>
-              </v-card-actions>
-            </v-card>
-          </template>
-        </v-dialog>
+    <v-dialog v-model="alertDialog" transition="dialog-bottom-transition" max-width="700">
+      <template>
+        <v-card height="300">
+          <v-card-text>
+            <v-row justify="center" align="center">
+              <v-col cols="2">
+                <v-icon class="pa-15" color="red" size="90px">mdi-alert-circle-outline</v-icon>
+              </v-col>
+              <v-col cols="10">
+                <div class="text-h6 pa-12">
+                  CAN'T LOGGED IN AS MECHANIC
+                </div>
+              </v-col>
+            </v-row>
+          </v-card-text>
+          <v-card-actions class="justify-end">
+            <v-btn text @click="alertDialog = false">Close</v-btn>
+          </v-card-actions>
+        </v-card>
+      </template>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -345,7 +323,7 @@
 
 <script>
 import "./appcss.css";
-import axios  from "axios";
+import axios from "axios";
 import getQuick from "./components/getQuick.vue";
 import { auth, db } from "./firebase";
 import { signOut, onAuthStateChanged } from "@firebase/auth";
@@ -378,7 +356,7 @@ export default {
       btntitle: "Get OTP",
       wait: true,
       alertDialog: false,
-      drawer: true,
+      drawer: false,
       mini: true,
       isLoggedIn: false,
       height: 0,
@@ -406,15 +384,15 @@ export default {
       smsSent: false,
       user: false,
 
-   
+
 
       otp: "Enter OTP",
 
-   
+
 
       condition: false,
 
-      
+
     };
   },
   components: {
@@ -435,14 +413,14 @@ export default {
     },
   },
   destroyed() {
-  window.removeEventListener("resize", this.screenSize);
-},
+    window.removeEventListener("resize", this.screenSize);
+  },
   created() {
-   
+
     this.screenSize();
 
     window.addEventListener("resize", this.screenSize);
-    console.log("this is path:",this.$route.path);
+    console.log("this is path:", this.$route.path);
     this.firebaseData();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -480,43 +458,43 @@ export default {
     }
     console.log("local sorage", this.$store.state.vinfo.brand);
     this.location();
-   
+
   },
 
   methods: {
     goHome() {
-    
-  
+
+
       this.$store.state.currentPath = '/';
-   
+
       this.$router.push("/");
     },
     goservices() {
       let data = "All services";
-  
+
       this.$store.state.currentPath = '/services';
-   
+
       this.$router.push({
         name: "scheduleService",
         params: { data },
       });
     },
 
-    async location() {   
-        navigator.geolocation.getCurrentPosition(
+    async location() {
+      navigator.geolocation.getCurrentPosition(
         async (position) => {
-        this.lat = position.coords.latitude;
-        this.long = position.coords.longitude;
-        (this.$store.state.coordinates = {
-           latitude: this.lat,
-           longitude: this.long,
-        });
-          var url = `https://geocode.maps.co/reverse?lat=${this.lat}&lon=${this.long}`;     
+          this.lat = position.coords.latitude;
+          this.long = position.coords.longitude;
+          (this.$store.state.coordinates = {
+            latitude: this.lat,
+            longitude: this.long,
+          });
+          var url = `https://geocode.maps.co/reverse?lat=${this.lat}&lon=${this.long}`;
           const response = await axios.get(url);
           const myArray = response.data.display_name.split(",");
           this.$store.state.location = response.data.display_name;
-          this.$store.state.currentState=response.data.address.state;   
-          console.log(response.data.address)    
+          this.$store.state.currentState = response.data.address.state;
+          console.log(response.data.address)
           this.$store.state.location1 = myArray[0];
           this.$store.state.location2 = myArray[1];
           localStorage.setItem(
@@ -537,27 +515,27 @@ export default {
         (error) => {
           console.log(error);
         }
-      );    
+      );
     },
-    screenSize(){
+    screenSize() {
       let size = window.innerWidth - 162;
       let finalsize = size - (size % 384);
       document.documentElement.style
-    .setProperty('--display-size', finalsize+"px");   
-},
+        .setProperty('--display-size', finalsize + "px");
+    },
 
-    goToPages(idx){
-      if(idx == "home"){
-        
+    goToPages(idx) {
+      if (idx == "home") {
+
         this.$router.push(`/`);
-      }else if(idx == "training"){
-        
+      } else if (idx == "training") {
+
         this.$router.push(`/trainingView`);
-      }else if(idx == "aboutUs"){
-        
+      } else if (idx == "aboutUs") {
+
         this.$router.push(`/aboutusView`);
-      }else if(idx == "contactUs"){
-        
+      } else if (idx == "contactUs") {
+
         this.$router.push(`/contactusView`);
       }
     },
@@ -586,12 +564,12 @@ export default {
       onSnapshot(docRef, (doc) => {
         this.$store.state.customer = doc.data();
         this.role = this.$store.state.customer.role;
-        if(this.role == "NA"){
+        if (this.role == "NA") {
           console.log(this.role);
           this.$store.state.bSignupForm = true;
           console.log(this.$store.state.bSignupForm);
         }
-        if(this.role == 'Mechanic'){
+        if (this.role == 'Mechanic') {
           this.alertDialog = true;
           this.logoutfn();
         }
@@ -604,17 +582,17 @@ export default {
 
     logoutfn() {
       localStorage.removeItem("vdata");
-      this.$store.state.vinfo= {
-          brand: "Brand",
-          model: "Model",
-          fuel: "Fuel",
-        };
+      this.$store.state.vinfo = {
+        brand: "Brand",
+        model: "Model",
+        fuel: "Fuel",
+      };
       signOut(auth).then(() => {
         console.log("logout sechusdokfj");
         this.$router.replace("/");
-        this.$store.state.customer = {}; 
+        this.$store.state.customer = {};
         this.$store.state.uid = "";
-        });
+      });
     },
     fff() {
       this.dialog = false;
