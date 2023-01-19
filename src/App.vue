@@ -1,5 +1,17 @@
 <template>
   <v-app>
+    <div @click="$store.state.cart = true" v-if="!$store.state.cart" style="position: fixed; bottom: 40px;right: 30px;z-index: 10" >
+          
+       
+        <v-btn fab >
+          <v-badge bottom offset-x="30" offset-y="35" :content="cartLength" color="#D50000">
+            <v-btn text :ripple="false" class="no-background-hover" @click="$store.state.cart = true">
+              <v-icon class="mr-1 black--text">mdi-cart-variant</v-icon>
+            </v-btn>
+          </v-badge>
+        </v-btn>
+      </div>
+     
     <div id="mobilenav">
       <v-app-bar-nav-icon  class="mr-2" @click="drawer = true"></v-app-bar-nav-icon>
       <a href="/"> <img class="logo" style="height:38px; width:30px" src="./assets/Logo-2 (1).png" /></a>
@@ -9,8 +21,13 @@
             <div id="m">Mechanic</div>
           </div>
         </a>
-        <div class="moblocName" @click="$store.state.locdialog = true">
-         
+
+        
+
+
+        <div class="moblocName" >
+          
+
           <div style="
               font-size: 15px;
               opacity: 0.7;
@@ -18,7 +35,9 @@
               display: flex;
               flex-direction: column;
               justify-content: center;
-            ">
+            "
+            @click="$store.state.locdialog = true"
+            >
             <div style="font-weight: bold; font-size:12px">
               {{ $store.state.location1 }}
 
@@ -224,6 +243,31 @@
             <v-list-item-title>Contact Us</v-list-item-title>
           </v-list-item>
 
+          <v-list-item @click="
+        () => {
+          $store.state.logindialog = true;
+          boolotp = false;
+          loading = false;
+        }" v-if="!user" >
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>LogIn</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item v-if="!user">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>SignUp</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-if="user" @click="logoutfn"> 
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+
 
         </v-list-item-group>
       </v-list>
@@ -236,8 +280,9 @@
       <cart-vue />
     </v-dialog>
 
-
+  
     <v-main>
+     
       <router-view></router-view>
     </v-main>
 
@@ -334,6 +379,7 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import CartVue from "./components/cartVue.vue";
 import newLogin from "./components/newLogin.vue";
 import vechileInfo from "./components/vechileInfo.vue";
+
 
 export default {
   name: "App",

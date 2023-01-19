@@ -20,6 +20,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
  
 }
 #partnerimg {
@@ -581,6 +582,12 @@ cursor: pointer;
       left: 0px;   
     }
     
+    #partnerimg {
+
+      min-width: 100%;
+      max-width: 100%;
+      
+    }
 
   #nav {
     display: none;

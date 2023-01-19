@@ -1,5 +1,5 @@
 <template>
-  <div class="downloadmain">
+  <div class="downloadmain" v-if="this.size > 880">
     <div class="dialogBoxCss">
       <!-- <v-btn @click="dialogs = false" style="
       background: transparent; box-shadow: none;
@@ -8,7 +8,7 @@
         </v-btn> -->
     </div>
     <div class="bgtext" v-if="!$store.state.becomedialog">
-      GET QUICKMECHANIC APP
+      DOWNLOAD QUICKMECHANIC APP
     </div>
     <div class="bgtext" v-if="$store.state.becomedialog">
       Become a Certified Mechanic
@@ -20,7 +20,7 @@
       <div class="downloadright">
         <div style="widht: 429px; height: 255px">
           <div class="sendlink">
-            Get QuickMechanic App installation link on your phone <br />
+            DOWNLOAD QUICKMECHANIC APP installation link on your phone <br />
             via SMS/Whatsapp
           </div>
           <div
@@ -170,8 +170,9 @@ export default {
       radioGroup2: true,
       dialogs: false,
       phone: "",
-      buttonText: "SEND LINK",
+      buttonText: "SENDLINK",
       disable:false,
+      size: 1,
     };
   },
   components: {},
@@ -189,6 +190,9 @@ export default {
   mounted() {
     console.log(this.radioGroup);
     console.log(this.radioGroup2);
+
+
+    this.size = window.innerWidth;
     // this.sendSms();
   },
   methods: {

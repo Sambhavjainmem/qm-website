@@ -2,7 +2,7 @@
   <div class="service">
     <div class="SDservices">
       <div id="SDSText">SERVICES WE OFFER</div>
-      <!-- <componentsVue :sdata="sservice" /> -->
+
     </div>
 
     <div class="VAservices">
@@ -17,26 +17,13 @@
           <img class="SDImage" :src="item.photoURL2" />
 
           <div id="abc">
-            <!-- <div id="line"></div> -->
+     
             <div class="servtext">{{ item.name }}</div>
-            <!-- <div class="rat">
-              <v-icon class="rating">mdi-star</v-icon
-              ><v-icon class="rating">mdi-star</v-icon
-              ><v-icon class="rating">mdi-star</v-icon
-              ><v-icon class="rating">mdi-star</v-icon
-              ><v-icon class="notrating">mdi-star-outline</v-icon
-              ><v-icon class="ratno">4.0</v-icon>
-            </div> -->
+         
           </div>
 
           <div id="bottomrow">
-            <!-- <div id="v" style="color: #d50000">VIEW</div>
-            <v-btn
-              style="background-color: #d50000; border-radius: 8px"
-              small
-              class="white--text ma-0"
-              >Book Now</v-btn
-            > -->
+       
           </div>
         </div>
       </div>
@@ -286,6 +273,14 @@ img {
 @media (max-width: 888px){    
 
 
+  .VASimg {
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+} 
+
+
+
   #mar {
   margin-left: 4px;
   margin-right: 4px;
@@ -316,9 +311,9 @@ img {
 } 
 
 .sdimgdiv {
-  width: 21%;
+  width: 45%;
   height: fit-content;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   position: relative;
   display: flex;
@@ -336,7 +331,7 @@ img {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
 }
 .servtext {
-  font-size: 12px;
+  font-size: 18px;
 text-align: center;
 margin-left: 0px;
 margin-top: 0px;

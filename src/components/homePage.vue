@@ -9,7 +9,11 @@
           <getQuick style="height: 95vh" />
         </div>
       </v-dialog>
-
+      <v-dialog v-model="$store.state.phonesos" fullscreen>
+        <phoneSos />
+      </v-dialog>
+      <div class="home" id="refhome">
+    
       
         <div id="divwithimg" >
 
@@ -89,7 +93,7 @@
                 <!-- HTML !-->
                 <!-- <button class="button-75 cpb2" role="button"><span class="text"> VALUE ADDED SERVICES</span></button> -->
 
-                <button class="cpb2sos" role="button" @click="dialogs = true">
+                <button class="cpb2sos" role="button" @click="sosmethod">
                   SOS
                 </button>
                 <!-- <button
@@ -202,6 +206,7 @@
       
 
       <bottomVue />
+      </div>
     </div>
     <div></div>
   </div>
@@ -213,6 +218,7 @@ import bottomVue from "./bottomVue";
 import getQuick from "./getQuick.vue";
 
 import tileView from './tileView.vue';
+import phoneSos from './phoneSos.vue'
 export default {
   name: "homePage",
   data() {
@@ -224,7 +230,11 @@ export default {
       width: 0,
       dialog: false,
       dialogs: false,
+      
+
+      size: 0 ,
     };
+
   },
 
   components: {
@@ -232,10 +242,14 @@ export default {
     bottomVue,
     getQuick,
     tileView,
+    phoneSos,
     // profileVue ,
   },
   created(){
     this.$store.state.currentPath = '/';
+  },
+  mounted() {
+    this.size = window.innerWidth;
   },
   methods: {
     goservices() {
@@ -246,6 +260,14 @@ export default {
         params: { data },
       });
     },
+    sosmethod(){
+      if(this.size< 880){
+        this.$store.state.phonesos = true;
+      }
+      else {
+        this.dialogs = true;
+      }
+    }
   },
 };
 </script>,

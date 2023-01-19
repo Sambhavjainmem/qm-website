@@ -334,7 +334,7 @@
             </div>
           </div>
         </div>
-        <v-row align="center" justify="end" class="mx-16">
+        <!-- <v-row align="center" justify="end" class="mx-16">
           <v-col cols="4" v-if="data[0].faq != null">
             <a :href="data[0].faq" target="_blank"
               ><v-btn text color="#d50000" class="ml-16"
@@ -348,9 +348,9 @@
               @+919811100558</v-subheader
             ></v-col
           >
-        </v-row>
+        </v-row> -->
         <!-- ksdlkfj;sdlkja;sdl -->
-
+          <div id="serviceline">For offers and seasonal promotion please contact service advisor @+919811100558</div>
         <div class="layer1-1-3">
           <div class="layer1-1-3-1"></div>
           <div class="layer1-1-3-2"></div>
@@ -596,22 +596,8 @@
         </div>
       </div>
     </div>
-    <div
-      style="
-        background-color: white;
-        margin-bottom: 0px;
-        height: 10rem;
-        width: 100vw;
-        text-align: center;
-      "
-    >
-      <img
-        src="../../assets/bottom.jpg"
-        height="140rem"
-        width=""
-        alt=""
-        style="margin-top: 16px"
-      />
+    <div id="partnerimgdiv">
+      <img src="../../assets/bottom.jpg"  id="partnerimg"    />
     </div>
     <bottom-vue style="margin-top: 0px" />
 
@@ -653,6 +639,7 @@ export default {
       curpage: "",
       items: [],
       serviceCategory: "",
+      size: 1,
     };
   },
 
@@ -663,6 +650,7 @@ export default {
 
   mounted() {
     // this.$store.state.vinfo  = JSON.parse( localStorage.getItem('vdata' ) );
+    this.size = window.innerWidth;
     this.$store.state.currentPath = '/services';
     this.serviceCategory = this.$route.params.data;
 
@@ -713,9 +701,12 @@ export default {
 
   methods: {
     changeKey(category) {
-      this.key = category;
-      this.serviceCategory = this.key;
-      console.log("this is data", this.data);
+      if(this.size > 880)
+      {
+        this.key = category;
+        this.serviceCategory = this.key;
+        console.log("this is data", this.data);
+      }
       // console.log("service categorie",this.serviceCategory,(this.serviceCategory == 'All services'));
     },
     alreadyExist(service) {
@@ -844,6 +835,12 @@ export default {
   align-items: center;
   text-align: center;
   height: auto;
+}
+#serviceline{
+  font-size: 16px;
+  font-weight: 300;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 .titletool {
   position: absolute;
@@ -1391,10 +1388,12 @@ export default {
 }
 
 
-@media (max-width: 888px){    
+@media (max-width: 888px){   
+  
   #carddiv {
 
   width: 100%;
+  justify-content: space-evenly;
 
 
 }

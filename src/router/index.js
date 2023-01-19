@@ -24,6 +24,7 @@ import AboutUsView from '../components/AboutUsView.vue'
 import ContactUsView from '../components/ContactUsView.vue'
 import productpdpVue from '../components/productpdpVue.vue'
 import invoiceView from '../components/invoiceView.vue'
+import phoneSos from '../components/phoneSos'
 Vue.use(VueRouter)
 
 const routes = [
@@ -31,6 +32,14 @@ const routes = [
     path: '/',
     name: 'homePage',
     component: homePage,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/sos',
+    name: 'phoneSos',
+    component: phoneSos,
     meta: {
       requiresAuth: false
     }

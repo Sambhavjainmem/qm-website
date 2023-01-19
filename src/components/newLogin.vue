@@ -351,5 +351,12 @@ input {
   line-height: 1.3;
   border: none;
 }
+@media (max-width: 888px){
+  #login123 {
+  width: 388px;
+  height: 343px;
+ 
+}
+}
 </style>
     

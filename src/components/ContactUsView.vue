@@ -1,86 +1,84 @@
 <template >
   <div style="height: 30rem; width: 100%; margin-top: 4rem">
     <v-row class="ContactUsImageCss">
-      <v-col cols="1" style="margin: 0px; padding: 0px">
-        <!-- <div style="margin-left:0px; margin-top: 150px; margin-bottom: 5px;">
-                    <v-img style=" border: solid .5px white; border-radius: 5px;" height="136px" width="40.76px" src="../assets/Group 10765.jpg"></v-img>
-                </div>
-                <div style="margin-left:0px;">
-                    <v-img style=" border: solid .5px white; border-radius: 5px;" height="136px" width="40.76px" src="../assets/Group 10766.jpg"></v-img>
-                </div> -->
-      </v-col>
-      <v-col cols="1" style="margin: 0px"></v-col>
-      <v-col cols="8" style="margin: 0%; padding: 0px">
+     
+      
+      <div  style="margin: 0%; padding: 0px">
         <v-row style="margin-top: 4rem">
-          <div
-            style="
-              font-size: 72px;
-              font-weight: 700;
-              font-family: Arial, Helvetica, sans-serif;
-              color: white;
-              text-align: center;
-            "
-          >
+          <div id="contactus">
             Contact Us
           </div>
         </v-row>
-      </v-col>
+      </div>
     </v-row>
-    <v-row
+    <div
       style="
         height: 15rem;
         background-color: #eeeeee;
         padding-top: 3rem;
         margin: 0%;
       "
+      id="infopage"
     >
-      <v-col cols="2"></v-col>
-      <v-col cols="2.4">
+  
+      <div class="hideitem needwidth" >
         <div
-          style="
-            text-align: center;
-            font-size: 30px;
-            font-weight: bolder;
-            margin-bottom: 1rem;
-          "
+        class="contacttitle"
         >
           Call us
         </div>
-        <div style="text-align: center">
+        <div class="description">
           Tel: +91 9667761701 contactus@quickmechanic.co.in
         </div>
-      </v-col>
-      <v-col cols="3">
+      </div>
+
+
+
+
+
+      <div class="needwidth" >
         <div
-          style="
-            text-align: center;
-            font-size: 30px;
-            font-weight: bolder;
-            margin-bottom: 1rem;
-          "
+         class="contacttitle"
         >
           Visit Us
         </div>
-        <p style="text-align: center">
+        <div class="description">
           Omaxe NRI City Centre, 2nd Floor, Multiplex Area Pari Chowk, Omega II,
           Greater Noida, Gautam Buddha Nagar Greater Noida UP 201308 India
-        </p>
-      </v-col>
-      <v-col cols="2.4">
+        </div>
+      </div>
+
+
+
+
+      <div  class="needwidth" >
         <div
-          style="
-            text-align: center;
-            font-size: 30px;
-            font-weight: bolder;
-            margin-bottom: 1rem;
-          "
+        class="contacttitle"
         >
           Opening Hours
         </div>
-        <div style="text-align: center">Mon - Fri: 7am - 10pm</div>
-      </v-col>
-      <v-col cols="2"></v-col>
-    </v-row>
+        <div class="description">Mon - Fri: 7am - 10pm</div>
+
+        <div
+        class="contacttitle lastcallus "
+        >
+          Call us
+        </div>
+        <div class="description">
+          Tel: +91 9667761701 contactus@quickmechanic.co.in
+        </div>
+      </div>
+
+
+
+
+      <div  id="hideitem"></div>
+
+
+
+
+
+    </div>
     <bottomVue />
   </div>
 </template>
@@ -111,4 +109,71 @@ export default {
   background: url("../assets/contactusBanner.jpg");
   background-size: cover;
 }
+.lastcallus {
+  display: none;
+
+
+}
+#contactus {
+              font-size: 72px;
+              font-weight: 700;
+              font-family: Arial, Helvetica, sans-serif;
+              color: white;
+              text-align: center;
+}
+.contacttitle {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bolder;
+            margin-bottom: 1rem;
+}
+
+#infopage {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  
+}
+.needwidth {
+  width: 25%;
+}
+
+.description {
+  text-align: center;
+}
+@media (max-width: 887px) {
+  #contactus {
+    font-size: 48px;
+  }
+  .hideitem {
+    display: none;
+  }
+  .lastcallus {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+.needwidth {
+  width: 50%;
+}
+
+.contacttitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bolder;
+  margin-bottom: 8px;
+}
+.description {
+
+  font-size: 12px;
+}
+#infopage {
+ padding: 4px;
+  
+}
+}
+
 </style>

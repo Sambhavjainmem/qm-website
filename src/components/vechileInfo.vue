@@ -10,39 +10,7 @@
   
     
         
-  <!-- <div class="sos">
-        <v-dialog
-        v-model="dialog"
-        fullscreen
-        hide-overlay
-        transition="dialog-bottom-transition"
-      >
-        <template v-slot:activator="{ on, attrs }">
-           <v-img 
-         v-bind="attrs"
-            v-on="on"
-        src="../assets/SOS-removebg.png"></v-img>
-        </template>
-        
-        <v-card>
-         
-         <v-btn
-           icon
-           dark
-           @click="dialog = false"
-         >
-           <v-icon class="black--text">mdi-close</v-icon>
-         </v-btn>
-        
-        
-    
-      
-         <getQuick />
-             
-      
-     </v-card>
-   </v-dialog>
-  </div> -->
+
   
   
   
@@ -119,36 +87,13 @@
 
     <div id="bgcolor">
 
-      <div
-      
-      style="
-        width: fit-content;
-        height: 70px;
-        font-family: 'Avenir Next';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 34px;
-        line-height: 46px;
-
-        color: rgba(0, 0, 0, 0.6);
-        position: absolute;
-        top: 80px;
-        left: 100px;
-        z-index: 100000;
-      "
+      <div     
+        id="tagline"
     >
       Select Your Car
 
       <div
-        style="
-          font-family: 'Avenir Next';
-          font-style: normal;
-          font-weight: 400;
-          font-size: 20px;
-          line-height: 27px;
-
-          color: rgba(0, 0, 0, 0.87);
-        "
+      id="subtag"
       >
         We will get you the best prices for the services we offer for your car
       </div>
@@ -193,45 +138,72 @@
        
  
     <v-container fluid style=" color: red;height: fit-content;width: fit-content; ">
-      <v-row align="center" justify="space-between" >
+      <div id="vechilerow">
        
-  
-       
+        <v-row align="center" id="mobile">
+        <v-col
+          class="d-flex"
+          cols="12"
+          sm="12"
+        >
+          <v-select
+          
+          outlined
+          small
+
+          :items="items"
+          label="BRAND"
+          solo           
+          flat
+          v-model="$store.state.vinfo.brand"
+          @change="onChange()"
+        ></v-select>
+        </v-col>
   
         <v-col
           class="d-flex"
-          cols="4"
-         
-          flat
-          style="border-right: 2px soid black"
+          cols="12"
+          sm="12"
         >
+         <v-select
+          
+          outlined
+          small
 
+          :items="caritems"
+            label="MODEL"
+            solo
+            flat
+            v-model="$store.state.vinfo.model"
+            @change="onChangecar()"
+        ></v-select>
+        </v-col>
+  
+        <button class="cpb233"  @click="ggg">CHECK BEST PRICES</button>
+  
+       
+      </v-row>
+       
+  
+      
+     
         
           <v-select
             :items="items"
             label="BRAND"
             solo
-            height="50px"
+           
             flat
             v-model="$store.state.vinfo.brand"
             @change="onChange()"
+
+            class="mhide"
             
-            
-        
-            >
-            <div class="seperater">
-            </div>
+            style="">
+          
           </v-select>
-        
-   
-        </v-col>
-        
-         <v-col
-          class="d-flex"
-          cols="4"
-         
-        >
-      
+          
+          
           <v-select
             :items="caritems"
             label="MODEL"
@@ -239,25 +211,20 @@
             flat
             v-model="$store.state.vinfo.model"
             @change="onChangecar()"
+            class="mhide"
+         
           ></v-select>
 
       
-        </v-col>
-        <v-col
-          class="d-flex ma-0 pa-0"
-          cols="4"
+
         
-          style=" display: flex;flex-direction: row-reverse;"
-          
-        >
-        
-        <button class="cpb23"  @click="ggg">CHECK BEST PRICES</button>
+        <button class="cpb23 mhide" @click="ggg">CHECK BEST PRICES</button>
   
-        </v-col>
+    
        
 
     
-      </v-row>
+        </div>
     </v-container>
 
 
@@ -612,6 +579,13 @@ backdrop-filter: blur(16px);
     height: 56px;
     
   }
+  #mobile {
+    display: none;
+  }
+  #nonmobile  {
+    width: 100%;
+    height: 100%;
+  }
   .socl {
     color: black;
   }
@@ -630,6 +604,42 @@ backdrop-filter: blur(16px);
     
     border-radius: 10px;
   
+  
+  
+  
+  
+  
+  }
+  #tagline {
+    width: fit-content;
+        height: 70px;
+        font-family: 'Avenir Next';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 34px;
+        line-height: 46px;
+
+        color: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        top: 80px;
+        left: 100px;
+        z-index: 100000;
+  }
+  .cpb233 {
+    width: 100%;
+    height: 56px;
+    background-color: red;
+    color: rgb(94, 28, 28);
+    align-items: center;
+    /* background-image: linear-gradient(135deg, #f34079 40%, #fc894d); */
+    
+  color: white;
+  padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+   
+    border-radius: 17px;
+  justify-content: space-between;
   
   
   
@@ -660,6 +670,11 @@ backdrop-filter: blur(16px);
   }
 
   .cpb23 {
+
+
+                  margin-top: -6px;
+                  margin-right: -2px;
+
     width: 290px;
     height: 56px;
     background-color:#D50000;
@@ -672,16 +687,25 @@ backdrop-filter: blur(16px);
   padding-left: 10px;
     padding-right: 10px;
     padding-top: 3px;
-    margin-top: -35px;
+
    
     border-radius: 24px;
   justify-content: space-between;
-  z-index: 1000;margin-right: 12px;
+  z-index: 1000;
   
   
   
   
   
+  }
+  #subtag {
+    font-family: 'Avenir Next';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 27px;
+
+          color: rgba(0, 0, 0, 0.87);
   }
   
   option {
@@ -746,6 +770,11 @@ backdrop-filter: blur(16px);
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+  }
+  #vechilerow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
   
   .button-75:active {
@@ -1003,6 +1032,42 @@ box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.7);
     }
   
   @media (max-width: 888px){
+
+    #subtag { 
+        font-weight: 300;
+        font-size: 12px;
+      }
+
+    #tagline {
+        font-weight: 500;
+        font-size: 24px;
+        top: 8px;
+        left: 24px;
+  }
+    .mhide {
+      display: none;
+    }
+    #mobile {
+    display: initial;
+    margin-top: -100px;
+  }
+  #nonmobile  {
+    display: none;
+  }
+
+  
+
+    #svechile {
+
+  height: 70px;
+  border-radius: 36px;
+  border: none;
+  box-shadow: none
+
+
+}
+
+ 
   
       .subhome{
           width: 100%;
@@ -1025,6 +1090,7 @@ box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.7);
             margin-top:-80px;
             height: 100px;
           }
+          
        }
   
   

@@ -36,6 +36,7 @@ export default new Vuex.Store({
     services: [] ,
     becomedialog: false,
     currentPath:'',
+    phonesos: false,
     coordinates: {
       latitude: 0.0,
       longitude: 0.0,
